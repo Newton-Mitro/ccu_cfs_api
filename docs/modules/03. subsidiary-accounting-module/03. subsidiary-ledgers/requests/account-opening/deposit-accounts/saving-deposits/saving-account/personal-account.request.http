@@ -1,0 +1,116 @@
+### Create Subsidiary Ledger Account Request
+# @name createSubsidiaryLedgerAccount
+POST http://localhost:3000/SubsidiaryLedgerAccount
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+  "AccountType": "Personal",
+  "ControlLedger": "Saving Account",
+  "AccountName": "Raton Halder",
+  "Branch": "Head Office",
+  "Duration": 0.0,
+  "InterestRate": 3.00,
+  "ProtectionSchemePercent": 0,
+  "OpeningAmount": 0.00,
+  "InstallmentAmount": 0.00,
+  "NumberOfInstallment": 0,
+  "Stock": 0,
+  "Introducers": [
+    {
+      "IdentificationNumber": "001",
+      "NameEn": "Michael Halder",
+      "NameBn": "dfsf",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1965-01-15",
+      "NID": "dsfdsf",
+      "BirthRegistrationNumber": "",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "SAV-00123",
+      "CustomerType": "Person"
+    },
+    {
+      "IdentificationNumber": "002",
+      "NameEn": "Depali Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1968-03-03",
+      "NID": "",
+      "BirthRegistrationNumber": "dsfdsf",
+      "Gender": "Female",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "SAV-00123",
+      "CustomerType": "Person"
+    }
+  ],
+  "Holders": [
+    {
+      "IdentificationNumber": "003",
+      "NameEn": "Raton Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1988-03-13",
+      "NID": "",
+      "BirthRegistrationNumber": "100000000001",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "",
+      "CustomerType": "Person"
+    }
+  ],
+  "Operators": [
+    {
+      "IdentificationNumber": "003",
+      "NameEn": "Raton Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1988-03-13",
+      "NID": "100000000001",
+      "BirthRegistrationNumber": "",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "CustomerType": "Person"
+    }
+  ],
+  "Nominees": [
+    {
+      "IdentificationNumber": "005",
+      "NameEn": "Princha Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1986-03-13",
+      "NID": "dsfdsfsdfsdfs",
+      "BirthRegistrationNumber": "",
+      "Gender": "Female",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Single",
+      "CustomerType": "Person",
+      "Relationship": "Daughter",
+      "Percent": 100
+    }
+  ],
+  "Collaterals": [],
+  "Schedules": [],
+  "Signature": "",
+  "TotalCollateralAmount": 0.00,
+  "TotalScheduleDefaultMonth": 0,
+  "ContinuousScheduleDefaultMonth": 0,
+  "DefaulterType": "Regular",
+  "AccountStatus": "Inactive"
+} 

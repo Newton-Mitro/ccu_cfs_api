@@ -1,0 +1,190 @@
+### Create Subsidiary Ledger Account Request
+# @name createSubsidiaryLedgerAccount
+POST http://localhost:3000/SubsidiaryLedgerAccount
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+  "AccountType": "Personal",
+  "ControlLedger": "Double Deposit Account",
+  "AccountName": "Raton Halder",
+  "Branch": "Head Office",
+  "Duration": 0.0,
+  "InterestRate": 0.00,
+  "ProtectionSchemePercent": 0,
+  "OpeningAmount": 0.00,
+  "InstallmentAmount": 0.00,
+  "NumberOfInstallment": 1,
+  "Stock": 0,
+  "Introducers": [
+    {
+      "IdentificationNumber": "001",
+      "NameEn": "Michael Halder",
+      "NameBn": "dfsf",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1965-01-15",
+      "NID": "",
+      "BirthRegistrationNumber": "",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "T-0063366",
+      "CustomerType": "Person"
+    },
+    {
+      "IdentificationNumber": "002",
+      "NameEn": "Depali Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1968-03-03",
+      "NID": "",
+      "BirthRegistrationNumber": "",
+      "Gender": "Female",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "T-0063366",
+      "CustomerType": "Person"
+    }
+  ],
+  "Holders": [
+    {
+      "IdentificationNumber": "003",
+      "NameEn": "Raton Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1988-03-13",
+      "NID": "",
+      "BirthRegistrationNumber": "100000000001",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "SavingAccountNumber": "T-0063366",
+      "CustomerType": "Person"
+    }
+    # ,
+    # {
+    #   "IdentificationNumber": "004",
+    #   "NameEn": "Mita Halder",
+    #   "NameBn": "",
+    #   "Email": "",
+    #   "ContactNumber": "",
+    #   "DateOfBirth": "1990-02-10",
+    #   "NID": "100000000002",
+    #   "BirthRegistrationNumber": "",
+    #   "Gender": "Female",
+    #   "Religion": "Christian",
+    #   "Profession": "Rather Not Say",
+    #   "MaritalStatus": "Married",
+    #   "SavingAccountNumber": "T-0035419",
+    #   "CustomerType": "Person"
+    # }
+  ],
+  "Operators": [
+    {
+      "IdentificationNumber": "003",
+      "NameEn": "Raton Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1988-03-13",
+      "NID": "100000000001",
+      "BirthRegistrationNumber": "",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Married",
+      "CustomerType": "Person"
+    }
+    # ,
+    # {
+    #   "IdentificationNumber": "004",
+    #   "NameEn": "Mita Halder",
+    #   "NameBn": "",
+    #   "Email": "",
+    #   "ContactNumber": "",
+    #   "DateOfBirth": "1990-02-10",
+    #   "NID": "100000000002",
+    #   "BirthRegistrationNumber": "",
+    #   "Gender": "Female",
+    #   "Religion": "Christian",
+    #   "Profession": "Rather Not Say",
+    #   "MaritalStatus": "Married",
+    #   "CustomerType": "Person"
+    # }
+  ],
+  "Nominees": [
+    {
+      "IdentificationNumber": "005",
+      "NameEn": "Princha Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1986-03-13",
+      "NID": "dsfdsfsdfsdfs",
+      "BirthRegistrationNumber": "",
+      "Gender": "Female",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Single",
+      "CustomerType": "Person",
+      "Relationship": "Daughter",
+      "Percent": 50
+    },
+    {
+      "IdentificationNumber": "006",
+      "NameEn": "Manik Halder",
+      "NameBn": "",
+      "Email": "",
+      "ContactNumber": "",
+      "DateOfBirth": "1987-03-13",
+      "NID": "dsfdsfsdfsdfs",
+      "BirthRegistrationNumber": "",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Rather Not Say",
+      "MaritalStatus": "Single",
+      "CustomerType": "Person",
+      "Relationship": "Daughter",
+      "Percent": 50
+    }
+  ],
+  "Collaterals": [
+    {
+      "CollateralType": "Account Surety",
+      "CollateralTakenFromAccount": "SAV-054867",
+      "CollateralGivenToAccount": "G-00001",
+      "CollateralAmount": 5000.00,
+      "CollateralStatus": "Active"
+    }
+  ],
+  "Schedules": [
+    {
+      "InstallmentNo": 1,
+      "MonthlyLastInstallmentDate": "",
+      "InstallmentMonth": "03",
+      "InstallmentYear": "2024",
+      "ScheduleType": "Regular Schedule",
+      "InstallmentType": "Regular Installment",
+      "InstallmentAmount": 500.00,
+      "PaidInstallmentAmount": 0.00,
+      "AdvancedPaidInstallmentAmount": 0.00,
+      "DueInstallmentAmount": 0.00,
+      "DueFineAmount": 0.00,
+      "ScheduleProcessingDate": "",
+      "ScheduleStatus": "Active"
+    }
+  ],
+  "Signature": "",
+  "TotalCollateralAmount": 0.00,
+  "TotalScheduleDefaultMonth": 0.00,
+  "ContinuousScheduleDefaultMonth": 0.00,
+  "DefaulterType": "Regular",
+  "AccountStatus": "Inactive"
+} 
