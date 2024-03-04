@@ -2,8 +2,8 @@
 {
   "_id": "",
   "chartOfAccountId": "",
-  "controlLedger": false,
-  "controlLedgerType": "Cash at Hand | Cash at Bank | Petty Cash | Fixed Asset | Vendor | Deposit | Loan",
+  "ledgerType": "General Ledger | Control Ledger | Associate Ledger",
+  "associateWithId": "",
   "accountType": "Asset | Liability | Equity | Expense | Revenue",
   "ledgerNameEn": "",
   "ledgerNameBn": "",
@@ -12,3 +12,14 @@
   "active": true
 }
 ```
+
+## Associate Ledgers
+
+- Control Ledger
+  - Interest Ledger
+  - Fine Ledger
+  - Protection Scheme Ledger
+  - Protection Scheme Renewal Fee Ledger
+  - Depreciation Ledger?
+  - Advanced Ledger?
+  - Due Ledgers?
