@@ -1,6 +1,6 @@
 ### Create Subsidiary Ledger Account Request
 # @name createSubsidiaryLedgerAccount
-POST http://localhost:3000/SubsidiaryLedgerAccount
+POST  http://localhost:5000/SubsidiaryLedgerAccount
 Content-Type: application/json
 Accept: application/json
 

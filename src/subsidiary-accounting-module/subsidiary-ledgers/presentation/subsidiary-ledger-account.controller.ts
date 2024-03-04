@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Logger, Post } from '@nestjs/common';
 import { UUID } from 'src/common/utils/uuid.util';
 import { EmailMessagingService } from 'src/messaging-module/infrastructure/email-messaging.service';
 import { SMSMessagingService } from 'src/messaging-module/infrastructure/sms-messaging.service';
@@ -7,6 +7,7 @@ import { SubsidiaryLedgerAccountDTO } from './contract/dto/subsidiary-ledger-acc
 
 @Controller('SubsidiaryLedgerAccount')
 export class SubsidiaryLedgerAccountController {
+  private readonly logger = new Logger(SubsidiaryLedgerAccountController.name);
   constructor(
     private readonly subsidiaryLedgerAccountService: SubsidiaryLedgerAccountService,
     private readonly emailService: EmailMessagingService,
@@ -16,9 +17,9 @@ export class SubsidiaryLedgerAccountController {
   @Post()
   async create(@Body() subsidiaryLedgerAccountDTO: SubsidiaryLedgerAccountDTO) {
     const emailMessage = {
-      from: '"Credit Solution" <info@cccul.com>',
+      from: '"CCU_CFS" <noreply@domain.com>',
       to: 'newtonmitro@gmail.com',
-      subject: 'Test Subject',
+      subject: 'One Time Verification Code',
       // text: 'Test Body',
       // html: '<h1>Hello world.</h1>',
       template: 'send-otp',
@@ -33,8 +34,8 @@ export class SubsidiaryLedgerAccountController {
     //   html: '<h1>Hello world.</h1>',
     // };
 
-    // const res = await this.emailService.sendMail(emailMessage);
-    // return res;
+    const res = await this.emailService.sendMail(emailMessage);
+    return res;
 
     const smsMessage = {
       mobileNumber: '01704687376',
@@ -47,8 +48,8 @@ export class SubsidiaryLedgerAccountController {
       context: { name: 'Newton Mitro', otp: UUID.makeAccountId(6) },
     };
 
-    const res = await this.smsService.sendSMS(smsMessage);
-    return res;
+    // const res = await this.smsService.sendSMS(smsMessage);
+    // return res;
 
     return this.subsidiaryLedgerAccountService.CreateAccount(
       subsidiaryLedgerAccountDTO,
