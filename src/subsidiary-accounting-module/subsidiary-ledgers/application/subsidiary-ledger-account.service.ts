@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
-import { IOpenableSubsidiaryLedger } from '../core/interface/strategy/openable-subsidiary-ledger.interface';
-import { BaseCustomerModel } from '../core/model/base-customer.model';
-import { CollateralModel } from '../core/model/collateral.model';
-import { HumanCustomerModel } from '../core/model/human-customer.model';
-import { IntroducerModel } from '../core/model/introducer.model';
-import { NomineeModel } from '../core/model/nominee.model';
-import { OperatorModel } from '../core/model/operator.model';
-import { OrganizationCustomerModel } from '../core/model/organization-customer.model';
-import { ScheduleModel } from '../core/model/schedule.model';
-import { SubsidiaryLedgerAccountModel } from '../core/model/subsidiary-ledger-account.model';
-import { SubsidiaryLedgerCreatorFactory } from '../core/subsidiary-ledger-creator-factory';
-import { SubsidiaryLedgerAccountDTO } from '../presentation/contract/dto/subsidiary-ledger-account.dto';
+import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
+import { CollateralModel } from 'src/subsidiary-accounting-module/collaterals/domain/model/collateral.model';
+import { ScheduleModel } from 'src/subsidiary-accounting-module/schedules/domain/model/schedule.model';
+import { IOpenableSubsidiaryLedger } from '../domain/interface/strategy/openable-subsidiary-ledger.interface';
+import { BaseCustomerModel } from '../domain/model/base-customer.model';
+import { HumanCustomerModel } from '../domain/model/human-customer.model';
+import { IntroducerModel } from '../domain/model/introducer.model';
+import { NomineeModel } from '../domain/model/nominee.model';
+import { OperatorModel } from '../domain/model/operator.model';
+import { OrganizationCustomerModel } from '../domain/model/organization-customer.model';
+import { SubsidiaryLedgerAccountModel } from '../domain/model/subsidiary-ledger-account.model';
+import { SubsidiaryLedgerCreatorFactory } from '../domain/subsidiary-ledger-creator-factory';
+import { CreateSubsidiaryLedgerDTO } from '../presentation/contract/create-subsidiary-ledger.dto';
 
 @Injectable()
 export class SubsidiaryLedgerAccountService {
@@ -20,7 +20,7 @@ export class SubsidiaryLedgerAccountService {
   ) {}
 
   CreateAccount(
-    subsidiaryLedgerAccountDTO: SubsidiaryLedgerAccountDTO,
+    subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO,
   ): SubsidiaryLedgerAccountModel {
     const iOpenableSubsidiaryLedger: IOpenableSubsidiaryLedger =
       this.subsidiaryLedgerCreatorFactory.Create(

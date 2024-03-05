@@ -8,8 +8,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { KycAttachmentsService } from '../application/kyc-attachments.service';
-import { CreateKycAttachmentDTO } from './dto/create-kyc-attachment.dto';
-import { UpdateKycAttachmentDTO } from './dto/update-kyc-attachment.dto';
+import { CreateKycAttachmentDTO } from './contract/create-kyc-attachment.dto';
+import { UpdateKycAttachmentDTO } from './contract/update-kyc-attachment.dto';
 
 @Controller('kyc-attachments')
 export class KycAttachmentsController {

@@ -4,12 +4,12 @@ import mongoose, { Model } from 'mongoose';
 import {
   CUSTOMER_MODEL,
   CustomerDocument,
-} from '../infrastructure/schemas/customer.schema';
+} from '../infrastructure/schema/customer.schema';
 import {
   KYC_ATTACHMENT_MODEL,
   KycAttachmentDocument,
-} from '../infrastructure/schemas/kyc-attachment.schema';
-import { FindAllQueryDTO } from '../presentation/dto/find-all-query.dto';
+} from '../infrastructure/schema/kyc-attachment.schema';
+import { FindAllQueryDTO } from '../presentation/contract/find-all-query.dto';
 
 @Injectable()
 export class CustomersService {

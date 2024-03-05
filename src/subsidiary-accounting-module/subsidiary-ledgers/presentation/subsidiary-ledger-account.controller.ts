@@ -3,7 +3,7 @@ import { UUID } from 'src/common/utils/uuid.util';
 import { EmailMessagingService } from 'src/messaging-module/infrastructure/email-messaging.service';
 import { SMSMessagingService } from 'src/messaging-module/infrastructure/sms-messaging.service';
 import { SubsidiaryLedgerAccountService } from '../application/subsidiary-ledger-account.service';
-import { SubsidiaryLedgerAccountDTO } from './contract/dto/subsidiary-ledger-account.dto';
+import { CreateSubsidiaryLedgerDTO } from './contract/create-subsidiary-ledger.dto';
 
 @Controller('SubsidiaryLedgerAccount')
 export class SubsidiaryLedgerAccountController {
@@ -15,7 +15,7 @@ export class SubsidiaryLedgerAccountController {
   ) {}
 
   @Post()
-  async create(@Body() subsidiaryLedgerAccountDTO: SubsidiaryLedgerAccountDTO) {
+  async create(@Body() subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO) {
     const emailMessage = {
       from: '"CCU_CFS" <noreply@domain.com>',
       to: 'newtonmitro@gmail.com',

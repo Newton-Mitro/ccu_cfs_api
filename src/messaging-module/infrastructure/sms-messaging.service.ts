@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AxiosRequestConfig } from 'axios';
 import { map } from 'rxjs';
-import { ISendSMSOptions } from '../core/send-sms-options.interface';
+import { ISendSMSOptions } from '../domain/send-sms-options.interface';
 
 @Injectable()
 export class SMSMessagingService {

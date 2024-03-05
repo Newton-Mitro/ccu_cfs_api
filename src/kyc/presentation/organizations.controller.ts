@@ -8,8 +8,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { OrganizationsService } from '../application/organizations.service';
-import { CreateOrganizationDTO } from './dto/create-organization.dto';
-import { UpdateOrganizationDTO } from './dto/update-organization.dto';
+import { CreateOrganizationDTO } from './contract/create-organization.dto';
+import { UpdateOrganizationDTO } from './contract/update-organization.dto';
 
 @Controller('organizations')
 export class OrganizationsController {

@@ -4,13 +4,13 @@ import mongoose, { Model } from 'mongoose';
 import {
   KYC_ATTACHMENT_MODEL,
   KycAttachmentDocument,
-} from '../infrastructure/schemas/kyc-attachment.schema';
+} from '../infrastructure/schema/kyc-attachment.schema';
 import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
-} from '../infrastructure/schemas/organization.schema';
-import { CreateOrganizationDTO } from '../presentation/dto/create-organization.dto';
-import { UpdateOrganizationDTO } from '../presentation/dto/update-organization.dto';
+} from '../infrastructure/schema/organization.schema';
+import { CreateOrganizationDTO } from '../presentation/contract/create-organization.dto';
+import { UpdateOrganizationDTO } from '../presentation/contract/update-organization.dto';
 
 @Injectable()
 export class OrganizationsService {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateKycAttachmentDTO } from '../presentation/dto/create-kyc-attachment.dto';
-import { UpdateKycAttachmentDTO } from '../presentation/dto/update-kyc-attachment.dto';
+import { CreateKycAttachmentDTO } from '../presentation/contract/create-kyc-attachment.dto';
+import { UpdateKycAttachmentDTO } from '../presentation/contract/update-kyc-attachment.dto';
 
 @Injectable()
 export class KycAttachmentsService {

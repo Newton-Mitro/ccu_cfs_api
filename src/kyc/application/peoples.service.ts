@@ -9,13 +9,13 @@ import mongoose, { Model } from 'mongoose';
 import {
   KYC_ATTACHMENT_MODEL,
   KycAttachmentDocument,
-} from '../infrastructure/schemas/kyc-attachment.schema';
+} from '../infrastructure/schema/kyc-attachment.schema';
 import {
   PERSON_MODEL,
   PersonDocument,
-} from '../infrastructure/schemas/person.schema';
-import { CreatePeopleDTO } from '../presentation/dto/create-people.dto';
-import { UpdatePeopleDTO } from '../presentation/dto/update-people.dto';
+} from '../infrastructure/schema/person.schema';
+import { CreatePeopleDTO } from '../presentation/contract/create-people.dto';
+import { UpdatePeopleDTO } from '../presentation/contract/update-people.dto';
 
 @Injectable()
 export class PeoplesService {
