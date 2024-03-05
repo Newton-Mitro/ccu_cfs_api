@@ -1,11 +1,11 @@
 import { BadRequestException } from '@nestjs/common';
 import { DateUtil } from 'src/common/utils/date.util';
-import { CustomerType } from 'src/subsidiary-accounting-module/kyc/core/enum/customer-type.enum';
-import { Religion } from 'src/subsidiary-accounting-module/kyc/core/enum/religion.enum';
 import { CustomerSubstitute } from '../enum/customer-substitute.enum';
 import { BaseCustomerModel } from '../model/base-customer.model';
 import { HumanCustomerModel } from '../model/human-customer.model';
 import { NomineeModel } from '../model/nominee.model';
+import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
+import { Religion } from 'src/kyc/core/enum/religion.enum';
 
 export class CustomerPolicy {
   public static CustomerTypeCheck(

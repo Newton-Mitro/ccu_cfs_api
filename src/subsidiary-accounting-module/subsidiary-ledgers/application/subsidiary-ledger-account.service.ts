@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CustomerType } from 'src/subsidiary-accounting-module/kyc/core/enum/customer-type.enum';
+import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
 import { IOpenableSubsidiaryLedger } from '../core/interface/strategy/openable-subsidiary-ledger.interface';
 import { BaseCustomerModel } from '../core/model/base-customer.model';
 import { CollateralModel } from '../core/model/collateral.model';

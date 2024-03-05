@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Relationship } from 'src/subsidiary-accounting-module/kyc/core/enum/relationship.enum';
+import { Relationship } from 'src/kyc/core/enum/relationship.enum';
 import { CustomerDTO } from './customer.dto';
 
 export class NomineeDTO extends CustomerDTO {

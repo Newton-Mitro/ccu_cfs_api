@@ -5,11 +5,11 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { CustomerType } from 'src/subsidiary-accounting-module/kyc/core/enum/customer-type.enum';
-import { Gender } from 'src/subsidiary-accounting-module/kyc/core/enum/gender.enum';
-import { MaritalStatus } from 'src/subsidiary-accounting-module/kyc/core/enum/marital-status.enum';
-import { Profession } from 'src/subsidiary-accounting-module/kyc/core/enum/profession.enum';
-import { Religion } from 'src/subsidiary-accounting-module/kyc/core/enum/religion.enum';
+import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
+import { Gender } from 'src/kyc/core/enum/gender.enum';
+import { MaritalStatus } from 'src/kyc/core/enum/marital-status.enum';
+import { Profession } from 'src/kyc/core/enum/profession.enum';
+import { Religion } from 'src/kyc/core/enum/religion.enum';
 
 export class CustomerDTO {
   @IsOptional()

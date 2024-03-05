@@ -4,7 +4,6 @@ import { AddressType } from '../../core/enum/address-type.enum';
 @Schema()
 export class Address {
   @Prop({
-    require: true,
     type: String,
     enum: Object.values(AddressType),
     default: AddressType.Permanent_Address,

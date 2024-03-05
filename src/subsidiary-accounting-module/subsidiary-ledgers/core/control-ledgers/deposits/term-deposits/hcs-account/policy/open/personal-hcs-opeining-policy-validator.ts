@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import { DateUtil } from 'src/common/utils/date.util';
-import { CustomerType } from 'src/subsidiary-accounting-module/kyc/core/enum/customer-type.enum';
-import { Religion } from 'src/subsidiary-accounting-module/kyc/core/enum/religion.enum';
+import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
+import { Religion } from 'src/kyc/core/enum/religion.enum';
 import { AccountType } from 'src/subsidiary-accounting-module/subsidiary-ledgers/core/enum/account-type.enum';
 import { Branch } from 'src/subsidiary-accounting-module/subsidiary-ledgers/core/enum/branch.enum';
 import { ControlLedger } from 'src/subsidiary-accounting-module/subsidiary-ledgers/core/enum/control-ledger';

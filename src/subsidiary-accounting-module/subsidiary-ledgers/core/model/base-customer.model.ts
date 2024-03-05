@@ -1,4 +1,4 @@
-import { CustomerType } from 'src/subsidiary-accounting-module/kyc/core/enum/customer-type.enum';
+import { CustomerType } from 'src/kyc/core/enum/customer-type.enum';
 import { v4 as uuidv4 } from 'uuid';
 export class BaseCustomerModel {
   Id: string = uuidv4();

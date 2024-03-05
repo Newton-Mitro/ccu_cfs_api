@@ -1,21 +1,15 @@
 import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import {
-  CUSTOMER_MODEL,
-  CustomerSchema,
-} from 'src/subsidiary-accounting-module/kyc/infrastructure/schemas/customer.schema';
+import { CUSTOMER_MODEL, CustomerSchema } from './schemas/customer.schema';
 import {
   KYC_ATTACHMENT_MODEL,
   KycAttachmentSchema,
-} from 'src/subsidiary-accounting-module/kyc/infrastructure/schemas/kyc-attachment.schema';
+} from './schemas/kyc-attachment.schema';
 import {
   ORGANIZATION_MODEL,
   OrganizationSchema,
-} from 'src/subsidiary-accounting-module/kyc/infrastructure/schemas/organization.schema';
-import {
-  PERSON_MODEL,
-  PersonSchema,
-} from 'src/subsidiary-accounting-module/kyc/infrastructure/schemas/person.schema';
+} from './schemas/organization.schema';
+import { PERSON_MODEL, PersonSchema } from './schemas/person.schema';
 
 const MODELS = [
   {
