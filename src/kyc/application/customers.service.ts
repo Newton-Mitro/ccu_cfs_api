@@ -1,14 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import {
   CUSTOMER_MODEL,
   CustomerDocument,
 } from '../infrastructure/schema/customer.schema';
-import {
-  KYC_ATTACHMENT_MODEL,
-  KycAttachmentDocument,
-} from '../infrastructure/schema/kyc-attachment.schema';
 import { FindAllQueryDTO } from '../presentation/contract/find-all-query.dto';
 
 @Injectable()
@@ -16,9 +12,6 @@ export class CustomersService {
   constructor(
     @InjectModel(CUSTOMER_MODEL)
     private readonly customerModel: Model<CustomerDocument>,
-    @InjectModel(KYC_ATTACHMENT_MODEL)
-    private readonly kycAttachmentModel: Model<KycAttachmentDocument>,
-    @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
   async search(searchText: string, findAllQueryDto: FindAllQueryDTO) {

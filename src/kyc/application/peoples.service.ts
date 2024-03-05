@@ -4,12 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
-import {
-  KYC_ATTACHMENT_MODEL,
-  KycAttachmentDocument,
-} from '../infrastructure/schema/kyc-attachment.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -22,9 +18,6 @@ export class PeoplesService {
   constructor(
     @InjectModel(PERSON_MODEL)
     private readonly personModel: Model<PersonDocument>,
-    @InjectModel(KYC_ATTACHMENT_MODEL)
-    private readonly kycAttachmentModel: Model<KycAttachmentDocument>,
-    @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
   async create(createPeopleDTO: CreatePeopleDTO) {

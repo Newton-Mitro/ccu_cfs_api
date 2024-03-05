@@ -6,7 +6,6 @@ import { Profession } from '../enum/profession.enum';
 import { Religion } from '../enum/religion.enum';
 import { EducationModel } from './education.model';
 import { EmploymentHistoryModel } from './employment-history.model';
-import { FamilyAndRelativeModel } from './family-and-relative.model';
 import { TrainingModel } from './training.model';
 
 export class Person extends Customer {
@@ -20,7 +19,6 @@ export class Person extends Customer {
   maritalStatus: MaritalStatus;
   alive: boolean;
   photo: string;
-  familyAndRelatives: FamilyAndRelativeModel[];
   educations: EducationModel[];
   trainings: TrainingModel[];
   employmentHistories: EmploymentHistoryModel[];
