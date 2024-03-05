@@ -2,7 +2,8 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class ContactPersonDTO {
   @IsOptional()
-  contactPerson?: string;
+  @IsString()
+  contactPersonPIN: string;
 
   @IsString()
   @IsNotEmpty()
@@ -13,8 +14,10 @@ export class ContactPersonDTO {
   contactNumber: string;
 
   @IsString()
+  @IsOptional()
   emergencyContactNumber: string;
 
   @IsString()
+  @IsOptional()
   email: string;
 }

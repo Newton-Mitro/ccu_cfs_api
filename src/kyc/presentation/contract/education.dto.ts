@@ -15,7 +15,7 @@ export class EducationDTO {
 
   @IsString()
   @IsOptional()
-  majorSubject?: string;
+  majorSubject: string;
 
   @IsString()
   @IsNotEmpty()

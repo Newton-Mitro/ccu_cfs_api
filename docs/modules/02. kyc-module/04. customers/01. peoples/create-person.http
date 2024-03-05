@@ -1,0 +1,29 @@
+### Create Subsidiary Ledger Account Request
+# @name createSubsidiaryLedgerAccount
+POST  http://localhost:5000/peoples
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+    "identificationNumber": "632123",
+    "nameEn": "Newton Mitro",
+    "dateOfBirth": "1988-03-13",
+    "nid": "",
+    "bloodGroup": "B (+ve)",
+    "gender": "Male",
+    "religion": "Christian",
+    "profession": "Service Holder",
+    "maritalStatus": "Married",
+    "birthRegistrationNumber": "123",
+    "registeredEmail": "newton.mitro@gmail.com",
+    "registeredMobile": "03132131631",
+    "alive": true,
+    "photo": "",
+    "addresses":[],
+    "familyAndRelatives":[],
+    "educations": [],
+    "trainings":[],
+    "employmentHistories":[],
+    "attachments": []
+}

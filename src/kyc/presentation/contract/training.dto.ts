@@ -15,22 +15,18 @@ export class TrainingDTO {
   instituteName: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   courseContent: string;
 
   @IsString()
   @IsOptional()
   result?: string;
 
-  @IsString()
-  @IsNotEmpty()
-  duration: string;
-
   @IsDateString()
-  @IsNotEmpty()
+  @IsOptional()
   startDate: Date;
 
   @IsDateString()
-  @IsNotEmpty()
+  @IsOptional()
   endDate: Date;
 }

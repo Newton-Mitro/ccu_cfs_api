@@ -1,6 +1,5 @@
 import { Type } from 'class-transformer';
 import {
-  ArrayNotEmpty,
   IsArray,
   IsNotEmpty,
   IsOptional,
@@ -24,32 +23,20 @@ export class CreateCustomerDTO {
   nameBn: string;
 
   @IsString()
-  registeredEmail: string;
+  @IsOptional()
+  email: string;
 
   @IsString()
   @IsOptional()
-  alternateEmail: string;
-
-  @IsString()
-  registeredMobile: string;
-
-  @IsString()
-  @IsOptional()
-  alternateContactNumber: string;
-
-  @IsString()
-  @IsOptional()
-  emergencyContactNumber: string;
+  contactNumber: string;
 
   @Type(() => AddressDTO)
   @IsArray()
-  @ArrayNotEmpty()
   @ValidateNested({ each: true })
   addresses: AddressDTO[];
 
   @Type(() => CreateKycAttachmentDTO)
   @IsArray()
-  @IsOptional()
   @ValidateNested({ each: true })
   attachments: CreateKycAttachmentDTO[];
 }

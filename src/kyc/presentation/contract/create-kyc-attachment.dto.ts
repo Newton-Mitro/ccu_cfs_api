@@ -1,4 +1,4 @@
-import { IsEnum, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { FileExtension } from 'src/kyc/domain/enum/file-extension.enum';
 import { KYCAttachmentType } from 'src/kyc/domain/enum/kyc-attachment-type.enum';
 
@@ -12,14 +12,18 @@ export class CreateKycAttachmentDTO {
   documentTitle: KYCAttachmentType;
 
   @IsString()
+  @IsOptional()
   documentUrl: string;
 
   @IsString()
+  @IsOptional()
   base64StringDocument: string;
 
   @IsString()
+  @IsOptional()
   createdBy: string;
 
   @IsString()
+  @IsOptional()
   updatedBy: string;
 }

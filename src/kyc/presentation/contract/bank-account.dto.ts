@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class BankAccountDTO {
   @IsString()
@@ -18,6 +18,6 @@ export class BankAccountDTO {
   accountNumber: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   accountName: string;
 }

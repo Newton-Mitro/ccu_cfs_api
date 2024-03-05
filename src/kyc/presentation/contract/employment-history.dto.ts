@@ -38,14 +38,14 @@ export class EmploymentHistoryDTO {
 
   @IsNumber()
   @IsOptional()
-  salary?: number;
+  salary: number;
 
   @IsDateString()
   @IsNotEmpty()
   startDate: Date;
 
   @IsDateString()
-  @IsNotEmpty()
+  @IsOptional()
   endDate: Date;
 
   @IsBoolean()

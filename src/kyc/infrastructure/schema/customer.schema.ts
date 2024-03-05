@@ -94,7 +94,6 @@ export class Customer {
 
   @Prop({
     type: Array(AddressSchema),
-    required: true,
   })
   addresses: Address[];
 
