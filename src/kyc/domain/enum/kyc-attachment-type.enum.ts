@@ -1,4 +1,4 @@
-export enum AttachmentType {
+export enum KYCAttachmentType {
   National_Identification_Card = 'National Identification Card',
   Birth_Registration_Certificate = 'Birth Registration Certificate',
   Marriage_Certificate = 'Marriage Certificate',

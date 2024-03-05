@@ -1,10 +1,10 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
 import { Relationship } from 'src/kyc/domain/enum/relationship.enum';
-import { HumanCustomerSchema } from './human-customer.schema';
+import { HumanCustomer } from './human-customer.schema';
 
 @Schema()
-export class NomineeSchema extends HumanCustomerSchema {
+export class Nominee extends HumanCustomer {
   constructor() {
     super();
   }
@@ -19,3 +19,7 @@ export class NomineeSchema extends HumanCustomerSchema {
   @Prop({ type: Number })
   Percent: number;
 }
+
+export type NomineeDocument = Nominee & Document;
+export const NOMINEE_MODEL = Nominee.name;
+export const NomineeSchema = SchemaFactory.createForClass(Nominee);

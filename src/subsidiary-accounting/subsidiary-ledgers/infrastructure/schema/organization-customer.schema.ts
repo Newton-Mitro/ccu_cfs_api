@@ -1,8 +1,8 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { BaseCustomerSchema } from './base-customer.schema';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { BaseCustomer } from './base-customer.schema';
 
 @Schema()
-export class OrganizationCustomerSchema extends BaseCustomerSchema {
+export class OrganizationCustomer extends BaseCustomer {
   constructor() {
     super();
   }
@@ -16,3 +16,8 @@ export class OrganizationCustomerSchema extends BaseCustomerSchema {
   @Prop({ trim: true })
   RegistrationNumber: string;
 }
+
+export type OrganizationCustomerDocument = OrganizationCustomer & Document;
+export const ORGANIZATION_CUSTOMER_MODEL = OrganizationCustomer.name;
+export const OrganizationCustomerSchema =
+  SchemaFactory.createForClass(OrganizationCustomer);

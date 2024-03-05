@@ -1,8 +1,8 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
 
 @Schema()
-export class BaseCustomerSchema {
+export class BaseCustomer {
   @Prop({ require: true, trim: true })
   IdentificationNumber: string;
 
@@ -28,3 +28,7 @@ export class BaseCustomerSchema {
   })
   CustomerType: CustomerType;
 }
+
+export type BaseCustomerDocument = BaseCustomer & Document;
+export const BASE_CUSTOMER_MODEL = BaseCustomer.name;
+export const BaseCustomerSchema = SchemaFactory.createForClass(BaseCustomer);

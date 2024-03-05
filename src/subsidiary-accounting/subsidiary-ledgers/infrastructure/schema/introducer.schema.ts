@@ -1,9 +1,13 @@
-import { Schema } from '@nestjs/mongoose';
-import { HumanCustomerSchema } from './human-customer.schema';
+import { Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HumanCustomer } from './human-customer.schema';
 
 @Schema()
-export class IntroducerSchema extends HumanCustomerSchema {
+export class Introducer extends HumanCustomer {
   constructor() {
     super();
   }
 }
+
+export type IntroducerDocument = Introducer & Document;
+export const INTRODUCER_MODEL = Introducer.name;
+export const IntroducerSchema = SchemaFactory.createForClass(Introducer);

@@ -1,16 +1,16 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AccountStatus } from '../../domain/enum/account-status.enum';
 import { AccountType } from '../../domain/enum/account-type.enum';
 import { Branch } from '../../domain/enum/branch.enum';
 import { ControlLedger } from '../../domain/enum/control-ledger';
 import { DefaulterType } from '../../domain/enum/defaulter-type.enum';
-import { BaseCustomerSchema } from './base-customer.schema';
-import { IntroducerSchema } from './introducer.schema';
-import { NomineeSchema } from './nominee.schema';
-import { OperatorSchema } from './operator.schema';
+import { BaseCustomer, BaseCustomerSchema } from './base-customer.schema';
+import { Introducer, IntroducerSchema } from './introducer.schema';
+import { Nominee, NomineeSchema } from './nominee.schema';
+import { Operator, OperatorSchema } from './operator.schema';
 
 @Schema()
-export class SubsidiaryLedgerAccountSchema {
+export class SubsidiaryLedgerAccount {
   @Prop({
     type: String,
     enum: Object.values(AccountType),
@@ -60,16 +60,16 @@ export class SubsidiaryLedgerAccountSchema {
   private NumberOfInstallment: number;
 
   @Prop({ type: Array(IntroducerSchema) })
-  private Introducers: IntroducerSchema[];
+  private Introducers: Introducer[];
 
   @Prop({ type: Array(BaseCustomerSchema) })
-  private Holders: BaseCustomerSchema[];
+  private Holders: BaseCustomer[];
 
   @Prop({ type: Array(OperatorSchema) })
-  private Operators: OperatorSchema[];
+  private Operators: Operator[];
 
   @Prop({ type: Array(NomineeSchema) })
-  private Nominees: NomineeSchema[];
+  private Nominees: Nominee[];
 
   @Prop({ type: String, trim: true })
   private OpeningDate: string;
@@ -118,3 +118,10 @@ export class SubsidiaryLedgerAccountSchema {
   @Prop({ type: String, trim: true })
   private UpdatedBy: string;
 }
+
+export type SubsidiaryLedgerAccountDocument = SubsidiaryLedgerAccount &
+  Document;
+export const SUBSIDIARY_LEDGER_ACCOUNT_MODEL = SubsidiaryLedgerAccount.name;
+export const SubsidiaryLedgerAccountSchema = SchemaFactory.createForClass(
+  SubsidiaryLedgerAccount,
+);

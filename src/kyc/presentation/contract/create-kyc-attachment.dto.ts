@@ -1,18 +1,25 @@
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { BloodGroup } from 'src/kyc/domain/enum/blood-group.enum';
+import { IsEnum, IsString } from 'class-validator';
+import { FileExtension } from 'src/kyc/domain/enum/file-extension.enum';
+import { KYCAttachmentType } from 'src/kyc/domain/enum/kyc-attachment-type.enum';
 
 export class CreateKycAttachmentDTO {
-  @IsString()
-  @IsNotEmpty()
-  customerId: string;
-
-  @IsString()
-  attachmentType: string;
+  @IsString({ each: true })
+  @IsEnum(FileExtension)
+  documentExtension: FileExtension;
 
   @IsString({ each: true })
-  @IsEnum(BloodGroup)
-  fileExtension: string;
+  @IsEnum(KYCAttachmentType)
+  documentTitle: KYCAttachmentType;
 
   @IsString()
-  fileContent: string;
+  documentUrl: string;
+
+  @IsString()
+  base64StringDocument: string;
+
+  @IsString()
+  createdBy: string;
+
+  @IsString()
+  updatedBy: string;
 }

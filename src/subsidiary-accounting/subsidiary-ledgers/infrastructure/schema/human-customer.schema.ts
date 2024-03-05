@@ -1,12 +1,12 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Gender } from 'src/kyc/domain/enum/gender.enum';
 import { MaritalStatus } from 'src/kyc/domain/enum/marital-status.enum';
 import { Profession } from 'src/kyc/domain/enum/profession.enum';
 import { Religion } from 'src/kyc/domain/enum/religion.enum';
-import { BaseCustomerSchema } from './base-customer.schema';
+import { BaseCustomer } from './base-customer.schema';
 
 @Schema()
-export class HumanCustomerSchema extends BaseCustomerSchema {
+export class HumanCustomer extends BaseCustomer {
   constructor() {
     super();
   }
@@ -48,3 +48,7 @@ export class HumanCustomerSchema extends BaseCustomerSchema {
   })
   MaritalStatus: MaritalStatus;
 }
+
+export type HumanCustomerDocument = HumanCustomer & Document;
+export const HUMAN_CUSTOMER_MODEL = HumanCustomer.name;
+export const HumanCustomerSchema = SchemaFactory.createForClass(HumanCustomer);

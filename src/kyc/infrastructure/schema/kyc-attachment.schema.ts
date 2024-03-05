@@ -1,21 +1,32 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AttachmentType } from 'src/kyc/domain/enum/attachment-type.enum';
-import { FileExtension } from 'src/kyc/domain/enum/file-extension.enum';
+import { KYCAttachmentType } from 'src/kyc/domain/enum/kyc-attachment-type.enum';
 
 @Schema()
 export class KycAttachment {
   @Prop({
     require: true,
     type: String,
-    enum: Object.values(AttachmentType),
+    enum: Object.values(KYCAttachmentType),
   })
-  attachmentType: AttachmentType;
+  documentTitle: KYCAttachmentType;
 
-  @Prop({ require: true, type: String, enum: Object.values(FileExtension) })
-  fileExtension: FileExtension;
+  @Prop()
+  documentUrl: string;
 
-  @Prop({ require: true })
-  fileContent: string;
+  @Prop()
+  base64StringDocument: string;
+
+  @Prop()
+  createdAt: string;
+
+  @Prop()
+  updatedAt: string;
+
+  @Prop()
+  createdBy: string;
+
+  @Prop()
+  updatedBy: string;
 }
 
 export type KycAttachmentDocument = KycAttachment & Document;
