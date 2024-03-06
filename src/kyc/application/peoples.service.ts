@@ -43,6 +43,17 @@ export class PeoplesService {
 
     // Unique BirthRegistrationNumber Check
 
+    try {
+      const person = await createdPerson.save();
+      return person;
+    } catch (error) {
+      throw new BadRequestException({
+        message: error.message,
+        error: error.name,
+        statusCode: 400,
+      });
+    }
+
     const person = await createdPerson.save();
     return person;
   }
