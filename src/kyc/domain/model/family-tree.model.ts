@@ -3,9 +3,9 @@ import { Relationship } from '../enum/relationship.enum';
 import { FamilyAndRelativeModel } from './family-and-relative.model';
 
 export class FamilyTreeModel {
-  firstPerson: FamilyAndRelativeModel;
-  secondPersonRelationshipWithFirstPerson: Relationship;
-  secondPerson: FamilyAndRelativeModel;
-  firstPersonRelationshipWithSecondPerson: Relationship;
-  status: FamilyTreeStatus;
+  FirstPerson: FamilyAndRelativeModel;
+  SecondPersonRelationshipWithFirstPerson: Relationship;
+  SecondPerson: FamilyAndRelativeModel;
+  FirstPersonRelationshipWithSecondPerson: Relationship;
+  Status: FamilyTreeStatus;
 }

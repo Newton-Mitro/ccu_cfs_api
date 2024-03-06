@@ -1,7 +1,7 @@
 export class BankAccountModel {
-  bankName: string;
-  branch: string;
-  routingNumber: string;
-  accountNumber: string;
-  accountName: string;
+  BankName: string;
+  Branch: string;
+  RoutingNumber: string;
+  AccountNumber: string;
+  AccountName: string;
 }

@@ -1,5 +1,4 @@
 import { BadRequestException } from '@nestjs/common';
-import { UUID } from 'src/common/utils/uuid.util';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountStatus } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-status.enum';
@@ -140,7 +139,7 @@ export class OpenLikeShortTimeDepositAccount
     }
 
     const accountModel = new SubsidiaryLedgerAccountModel();
-    accountModel.setAccountNumber('STD-' + UUID.makeAccountId(6)); // How to generate Account Number???
+
     accountModel.setAccountType(accountType);
     accountModel.setProductType(controlLedger);
     accountModel.setAccountName(accountName);

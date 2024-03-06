@@ -21,8 +21,11 @@ export class PeoplesService {
   ) {}
 
   async create(createPeopleDTO: CreatePeopleDTO) {
-    // throw new BadRequestException('Custom exception');
     const createdPerson = new this.personModel(createPeopleDTO);
+    createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
+      7,
+      13,
+    );
     const errors = createdPerson.validateSync();
 
     if (errors) {

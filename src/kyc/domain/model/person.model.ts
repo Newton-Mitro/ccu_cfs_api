@@ -9,17 +9,17 @@ import { EmploymentHistoryModel } from './employment-history.model';
 import { TrainingModel } from './training.model';
 
 export class Person extends Customer {
-  dateOfBirth: Date;
-  nid: string;
-  birthRegistrationNumber: string;
-  bloodGroup: BloodGroup;
-  gender: Gender;
-  religion: Religion;
-  profession: Profession;
-  maritalStatus: MaritalStatus;
-  alive: boolean;
-  photo: string;
-  educations: EducationModel[];
-  trainings: TrainingModel[];
-  employmentHistories: EmploymentHistoryModel[];
+  DateOfBirth: Date;
+  NID: string;
+  BirthRegistrationNumber: string;
+  BloodGroup: BloodGroup;
+  Gender: Gender;
+  Religion: Religion;
+  Profession: Profession;
+  MaritalStatus: MaritalStatus;
+  Alive: boolean;
+  Photo: string;
+  Educations: EducationModel[];
+  Trainings: TrainingModel[];
+  EmploymentHistories: EmploymentHistoryModel[];
 }

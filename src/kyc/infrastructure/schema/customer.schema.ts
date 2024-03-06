@@ -12,25 +12,23 @@ export class Customer {
     require: true,
     unique: true,
     minLength: 6,
-    maxLength: 10,
+    maxLength: 13,
     trim: true,
   })
-  identificationNumber: string;
+  IdentificationNumber: string;
 
   @Prop({ require: true, trim: true })
-  nameEn: string;
+  NameEn: string;
 
   @Prop()
-  nameBn: string;
+  NameBn: string;
 
   @Prop({
     trim: true,
     validate: {
-      validator: (registeredEmail) => {
-        if (registeredEmail !== '') {
-          return /[a-z0-9._%+-]+@[a-z0-9.-]+([.]{1})+[a-z]{2,}$/.test(
-            registeredEmail,
-          );
+      validator: (Email) => {
+        if (Email !== '') {
+          return /[a-z0-9._%+-]+@[a-z0-9.-]+([.]{1})+[a-z]{2,}$/.test(Email);
         } else {
           return true;
         }
@@ -38,67 +36,18 @@ export class Customer {
       message: (props) => `${props.value} is not a valid email address!`,
     },
   })
-  registeredEmail: string;
-
-  @Prop({
-    validate: {
-      validator: (alternateEmail) => {
-        if (alternateEmail) {
-          return /[a-z0-9._%+-]+@[a-z0-9.-]+([.]{1})+[a-z]{2,}$/.test(
-            alternateEmail,
-          );
-        } else {
-          return true;
-        }
-      },
-      message: (props) => `${props.value} is not a valid email address!`,
-    },
-  })
-  alternateEmail: string;
-
-  @Prop({
-    trim: true,
-    validate: {
-      validator: (registeredMobile) => {
-        if (registeredMobile) {
-          return /(^(([+]{1}|[0]{2})([0-9]{2}))?([0]{1})([-]{1})?([0-9]{4})([-]{1})?([0-9]{6}))$/.test(
-            registeredMobile,
-          );
-        } else {
-          return true;
-        }
-      },
-      message: (props) => `${props.value} is not a valid mobile number!`,
-    },
-  })
-  registeredMobile: string;
-
-  @Prop({
-    validate: {
-      validator: (alternateContactNumber) => {
-        if (alternateContactNumber) {
-          return /(^(([+]{1}|[0]{2})([0-9]{2}))?([0]{1})([-]{1})?([0-9]{4})([-]{1})?([0-9]{6}))$/.test(
-            alternateContactNumber,
-          );
-        } else {
-          return true;
-        }
-      },
-      message: (props) => `${props.value} is not a valid mobile number!`,
-    },
-  })
-  alternateContactNumber: string;
+  Email: string;
 
   @Prop()
-  emergencyContactNumber: string;
+  ContactNumber: string;
 
   @Prop({
     type: Array(AddressSchema),
   })
-  addresses: Address[];
+  Addresses: Address[];
 
   @Prop({ type: Array(KycAttachmentSchema) })
-  attachments: KycAttachment[];
+  Attachments: KycAttachment[];
 }
 
 export type CustomerDocument = Customer & Document;

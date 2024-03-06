@@ -46,7 +46,7 @@ export class SubsidiaryLedgerAccountModel {
     this.AccountId = uuidv4();
     this.AccountType = AccountType.Personal;
     this.ControlLedger = ControlLedger.SavingAccount;
-    this.AccountNumber = '';
+    this.AccountNumber = new Date().valueOf().toString();
     this.AccountName = '';
     this.Branch = Branch.HeadOffice;
     this.Duration = 0.0;

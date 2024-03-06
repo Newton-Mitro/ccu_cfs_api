@@ -1,8 +1,8 @@
 export class TrainingModel {
-  courseTitle: string;
-  instituteName: string;
-  courseContent: string;
-  result: string;
-  startDate: string;
-  endDate: string;
+  CourseTitle: string;
+  InstituteName: string;
+  CourseContent: string;
+  Result: string;
+  StartDate: string;
+  EndDate: string;
 }

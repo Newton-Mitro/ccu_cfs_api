@@ -8,25 +8,25 @@ export class KycAttachment {
     type: String,
     enum: Object.values(KYCAttachmentType),
   })
-  documentTitle: KYCAttachmentType;
+  DocumentTitle: KYCAttachmentType;
 
   @Prop()
-  documentUrl: string;
+  DocumentUrl: string;
 
   @Prop()
-  base64StringDocument: string;
+  Base64StringDocument: string;
 
   @Prop()
-  createdAt: string;
+  CreatedAt: string;
 
   @Prop()
-  updatedAt: string;
+  UpdatedAt: string;
 
   @Prop()
-  createdBy: string;
+  CreatedBy: string;
 
   @Prop()
-  updatedBy: string;
+  UpdatedBy: string;
 }
 
 export type KycAttachmentDocument = KycAttachment & Document;

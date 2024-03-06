@@ -12,10 +12,6 @@ import { CreateKycAttachmentDTO } from './create-kyc-attachment.dto';
 export class CreateCustomerDTO {
   @IsString()
   @IsNotEmpty()
-  identificationNumber: string;
-
-  @IsString()
-  @IsNotEmpty()
   nameEn: string;
 
   @IsString()

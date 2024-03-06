@@ -2,11 +2,11 @@ import { StorageDocumentModel } from 'src/storage/domain/model/storage-document.
 import { AddressModel } from './address.model';
 
 export class CustomerModel {
-  identificationNumber: string;
-  nameEn: string;
-  nameBn: string;
-  email: string;
-  contactNumber: string;
-  addresses: AddressModel[];
-  attachments: StorageDocumentModel[];
+  IdentificationNumber: string;
+  NameEn: string;
+  NameBn: string;
+  Email: string;
+  ContactNumber: string;
+  Addresses: AddressModel[];
+  Attachments: StorageDocumentModel[];
 }

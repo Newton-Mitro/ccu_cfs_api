@@ -34,8 +34,8 @@ export class SubsidiaryLedgerAccountController {
     //   html: '<h1>Hello world.</h1>',
     // };
 
-    const res = await this.emailService.sendMail(emailMessage);
-    return res;
+    // const res = await this.emailService.sendMail(emailMessage);
+    // return res;
 
     const smsMessage = {
       mobileNumber: '01704687376',

@@ -3,37 +3,37 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class EmploymentHistory {
   @Prop({ require: true })
-  organizationName: string;
+  OrganizationName: string;
 
   @Prop()
-  position: string;
+  Position: string;
 
   @Prop({ require: true })
-  address: string;
+  Address: string;
 
   @Prop()
-  supervisorName: string;
+  SupervisorName: string;
 
   @Prop()
-  supervisorDesignation: string;
+  SupervisorDesignation: string;
 
   @Prop()
-  supervisorPhone: string;
+  SupervisorPhone: string;
 
   @Prop()
-  jobResponsibilities: string;
+  JobResponsibilities: string;
 
   @Prop()
-  salary: string;
+  Salary: string;
 
   @Prop()
-  startDate: string;
+  StartDate: string;
 
   @Prop()
-  endDate: string;
+  EndDate: string;
 
   @Prop()
-  tillNow: string;
+  TillNow: string;
 }
 
 export const EmploymentHistorySchema =

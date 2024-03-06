@@ -1,7 +1,7 @@
 export class ContactPersonModel {
-  contactPersonPIN: string;
-  contactPersonName: string;
-  contactNumber: string;
-  emergencyContactNumber: string;
-  email: string;
+  ContactPersonPIN: string;
+  ContactPersonName: string;
+  ContactNumber: string;
+  EmergencyContactNumber: string;
+  Email: string;
 }

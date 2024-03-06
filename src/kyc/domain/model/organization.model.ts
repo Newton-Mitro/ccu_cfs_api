@@ -3,12 +3,11 @@ import { ContactPersonModel } from './contact-person.model';
 import { CustomerModel } from './customer.model';
 
 export class OrganizationModel extends CustomerModel {
-  parentOrganization: string;
-  phoneNumber: string;
-  faxNumber: string;
-  website: string;
-  logo: string;
-  branches: string[];
-  contactPeoples: ContactPersonModel[];
-  bankAccounts: BankAccountModel[];
+  ParentOrganization: string;
+  PhoneNumber: string;
+  FaxNumber: string;
+  Website: string;
+  Logo: string;
+  ContactPeoples: ContactPersonModel[];
+  BankAccounts: BankAccountModel[];
 }

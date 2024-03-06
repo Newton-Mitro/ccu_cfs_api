@@ -1,13 +1,13 @@
 export class EmploymentHistoryModel {
-  organizationName: string;
-  position: string;
-  address: string;
-  supervisorName: string;
-  supervisorDesignation: string;
-  supervisorPhone: string;
-  jobResponsibilities: string;
-  salary: string;
-  startDate: string;
-  endDate: string;
-  tillNow: string;
+  OrganizationName: string;
+  Position: string;
+  Address: string;
+  SupervisorName: string;
+  SupervisorDesignation: string;
+  SupervisorPhone: string;
+  JobResponsibilities: string;
+  Salary: string;
+  StartDate: string;
+  EndDate: string;
+  TillNow: string;
 }

@@ -11,10 +11,6 @@ import {
   EmploymentHistory,
   EmploymentHistorySchema,
 } from './employment-history.schema';
-import {
-  FamilyAndRelative,
-  FamilyAndRelativeSchema,
-} from './family-and-relative.schema';
 import { Training, TrainingSchema } from './training.schema';
 
 @Schema()
@@ -23,50 +19,47 @@ export class Person extends Customer {
     super();
   }
   @Prop({ require: true })
-  dateOfBirth: Date;
+  DateOfBirth: Date;
 
   @Prop({ trim: true })
-  nid: string;
+  NID: string;
 
   @Prop({ trim: true })
-  birthRegistrationNumber: string;
+  BirthRegistrationNumber: string;
 
   @Prop({ type: String, enum: Object.values(BloodGroup) })
-  bloodGroup: BloodGroup;
+  BloodGroup: BloodGroup;
 
   @Prop({ require: true, type: String, enum: Object.values(Gender) })
-  gender: Gender;
+  Gender: Gender;
 
   @Prop({ require: true, type: String, enum: Object.values(Religion) })
-  religion: Religion;
+  Religion: Religion;
 
   @Prop({
     type: String,
     default: Profession.Rather_Not_Say,
     enum: Object.values(Profession),
   })
-  profession: Profession;
+  Profession: Profession;
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
-  maritalStatus: MaritalStatus;
+  MaritalStatus: MaritalStatus;
 
   @Prop({ default: true })
-  alive: boolean;
+  Alive: boolean;
 
   @Prop()
-  photo: string;
-
-  @Prop({ type: Array(FamilyAndRelativeSchema) })
-  familyAndRelatives: FamilyAndRelative[];
+  Photo: string;
 
   @Prop({ type: Array(EducationSchema) })
-  educations: Education[];
+  Educations: Education[];
 
   @Prop({ type: Array(TrainingSchema) })
-  trainings: Training[];
+  Trainings: Training[];
 
   @Prop({ type: Array(EmploymentHistorySchema) })
-  employmentHistories: EmploymentHistory[];
+  EmploymentHistories: EmploymentHistory[];
 }
 
 export type PersonDocument = Person & Document;
@@ -75,7 +68,7 @@ export const PERSON_MODEL = Person.name;
 export const PersonSchema = SchemaFactory.createForClass(Person);
 
 PersonSchema.pre('validate', function (next) {
-  if (this.nid === '' && this.birthRegistrationNumber === '') {
+  if (this.NID === '' && this.BirthRegistrationNumber === '') {
     const result = {
       message: 'Please provide NID or Birth Registration Number',
       error: 'Bad request',

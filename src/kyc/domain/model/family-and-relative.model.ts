@@ -6,20 +6,20 @@ import { Religion } from '../enum/religion.enum';
 import { AddressModel } from './address.model';
 
 export class FamilyAndRelativeModel {
-  identificationNumber: string;
-  nameEn: string;
-  nameBn: string;
-  email: string;
-  contactNumber: string;
-  dateOfBirth: Date;
-  nid: string;
-  birthRegistrationNumber: string;
-  bloodGroup: BloodGroup;
-  gender: Gender;
-  religion: Religion;
-  profession: Profession;
-  maritalStatus: MaritalStatus;
-  alive: boolean;
-  photo: string;
-  addresses: AddressModel[];
+  IdentificationNumber: string;
+  NameEn: string;
+  NameBn: string;
+  Email: string;
+  ContactNumber: string;
+  DateOfBirth: Date;
+  Nid: string;
+  BirthRegistrationNumber: string;
+  BloodGroup: BloodGroup;
+  Gender: Gender;
+  Religion: Religion;
+  Profession: Profession;
+  MaritalStatus: MaritalStatus;
+  Alive: boolean;
+  Photo: string;
+  Addresses: AddressModel[];
 }
