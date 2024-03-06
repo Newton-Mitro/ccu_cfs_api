@@ -5,6 +5,7 @@ export class AddressModel {
   addressLineOne: string;
   addressLineTwo: string;
   country: string;
+  state: string;
   city: string;
   division: string;
   district: string;

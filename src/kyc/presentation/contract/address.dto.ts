@@ -14,10 +14,6 @@ export class AddressDTO {
   @IsString()
   addressLineTwo: string;
 
-  @IsString()
-  @IsNotEmpty()
-  city: string;
-
   @IsEnum(Country)
   @IsNotEmpty()
   country: string;
@@ -25,6 +21,10 @@ export class AddressDTO {
   @IsString()
   @IsOptional()
   state: string;
+
+  @IsString()
+  @IsNotEmpty()
+  city: string;
 
   @IsString()
   @IsNotEmpty()

@@ -20,7 +20,7 @@ export class TrainingDTO {
 
   @IsString()
   @IsOptional()
-  result?: string;
+  result: string;
 
   @IsDateString()
   @IsOptional()

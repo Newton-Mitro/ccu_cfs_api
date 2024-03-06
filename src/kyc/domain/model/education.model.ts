@@ -3,5 +3,6 @@ export class EducationModel {
   educationDegree: string;
   instituteName: string;
   majorSubject: string;
+  passingYear: string;
   grade: string;
 }

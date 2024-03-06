@@ -3,7 +3,6 @@ export class TrainingModel {
   instituteName: string;
   courseContent: string;
   result: string;
-  duration: string;
   startDate: string;
   endDate: string;
 }

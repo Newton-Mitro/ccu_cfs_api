@@ -5,11 +5,8 @@ export class CustomerModel {
   identificationNumber: string;
   nameEn: string;
   nameBn: string;
-  registeredEmail: string;
-  alternateEmail: string;
-  registeredMobile: string;
-  alternateContactNumber: string;
-  emergencyContactNumber: string;
+  email: string;
+  contactNumber: string;
   addresses: AddressModel[];
   attachments: StorageDocumentModel[];
 }

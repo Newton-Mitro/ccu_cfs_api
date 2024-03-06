@@ -7,7 +7,6 @@ export class OrganizationModel extends CustomerModel {
   phoneNumber: string;
   faxNumber: string;
   website: string;
-  bankrupt: boolean;
   logo: string;
   branches: string[];
   contactPeoples: ContactPersonModel[];

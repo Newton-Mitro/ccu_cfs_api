@@ -19,5 +19,9 @@ export class EducationDTO {
 
   @IsString()
   @IsNotEmpty()
+  passingYear: string;
+
+  @IsString()
+  @IsNotEmpty()
   grade: string;
 }

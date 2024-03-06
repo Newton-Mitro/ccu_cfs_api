@@ -1,5 +1,5 @@
 export class ContactPersonModel {
-  contactPerson: string;
+  contactPersonPIN: string;
   contactPersonName: string;
   contactNumber: string;
   emergencyContactNumber: string;

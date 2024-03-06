@@ -17,7 +17,6 @@ import { Religion } from 'src/kyc/domain/enum/religion.enum';
 import { CreateCustomerDTO } from './create-customer.dto';
 import { EducationDTO } from './education.dto';
 import { EmploymentHistoryDTO } from './employment-history.dto';
-import { FamilyAndRelativeDTO } from './family-and-relative.dto';
 import { TrainingDTO } from './training.dto';
 
 export class CreatePeopleDTO extends CreateCustomerDTO {
@@ -48,7 +47,7 @@ export class CreatePeopleDTO extends CreateCustomerDTO {
   @IsString()
   @IsEnum(Profession)
   @IsOptional()
-  profession?: string;
+  profession: string;
 
   @IsString()
   @IsEnum(MaritalStatus)
@@ -61,11 +60,6 @@ export class CreatePeopleDTO extends CreateCustomerDTO {
   @IsString()
   @IsOptional()
   photo: string;
-
-  @Type(() => FamilyAndRelativeDTO)
-  @IsArray()
-  @ValidateNested({ each: true })
-  familyAndRelatives: FamilyAndRelativeDTO[];
 
   @Type(() => EducationDTO)
   @IsArray()
