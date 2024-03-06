@@ -21,6 +21,7 @@ export class PeoplesService {
   ) {}
 
   async create(createPeopleDTO: CreatePeopleDTO) {
+    // throw new BadRequestException('Custom exception');
     const createdPerson = new this.personModel(createPeopleDTO);
     const errors = createdPerson.validateSync();
 

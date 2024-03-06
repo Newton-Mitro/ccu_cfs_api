@@ -3,7 +3,6 @@ import {
   BadRequestException,
   Catch,
   ExceptionFilter,
-  HttpException,
   HttpStatus,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -17,11 +16,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message: any = exception.message;
-    if (exception instanceof HttpException) {
-      console.log('HttpException');
-      status = exception.getStatus();
-      message = exception.message;
-    }
 
     if (exception instanceof BadRequestException) {
       console.log('BadRequestException');
@@ -37,7 +31,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     response.status(status).json({
       message,
-      error: exception.message,
+      error: exception.name,
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
