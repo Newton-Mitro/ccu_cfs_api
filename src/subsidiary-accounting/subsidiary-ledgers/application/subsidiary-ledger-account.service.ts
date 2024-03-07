@@ -9,9 +9,8 @@ import { IntroducerModel } from '../domain/model/introducer.model';
 import { NomineeModel } from '../domain/model/nominee.model';
 import { OperatorModel } from '../domain/model/operator.model';
 import { OrganizationCustomerModel } from '../domain/model/organization-customer.model';
-import { SubsidiaryLedgerAccountModel } from '../domain/model/subsidiary-ledger-account.model';
 import { SubsidiaryLedgerCreatorFactory } from '../domain/subsidiary-ledger-creator-factory';
-import { CreateSubsidiaryLedgerDTO } from '../presentation/contract/create-subsidiary-ledger.dto';
+import { CreateSubsidiaryLedgerDTO } from './contract/create-subsidiary-ledger.dto';
 
 @Injectable()
 export class SubsidiaryLedgerAccountService {
@@ -19,9 +18,7 @@ export class SubsidiaryLedgerAccountService {
     private readonly subsidiaryLedgerCreatorFactory: SubsidiaryLedgerCreatorFactory,
   ) {}
 
-  CreateAccount(
-    subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO,
-  ): SubsidiaryLedgerAccountModel {
+  CreateAccount(subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO) {
     const iOpenableSubsidiaryLedger: IOpenableSubsidiaryLedger =
       this.subsidiaryLedgerCreatorFactory.Create(
         subsidiaryLedgerAccountDTO.ControlLedger,

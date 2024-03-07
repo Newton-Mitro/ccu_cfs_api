@@ -9,8 +9,8 @@ import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
 } from '../infrastructure/schema/organization.schema';
-import { CreateOrganizationDTO } from '../presentation/contract/create-organization.dto';
-import { UpdateOrganizationDTO } from '../presentation/contract/update-organization.dto';
+import { CreateOrganizationDTO } from '../contract/create-organization.dto';
+import { UpdateOrganizationDTO } from '../contract/update-organization.dto';
 
 @Injectable()
 export class OrganizationsService {

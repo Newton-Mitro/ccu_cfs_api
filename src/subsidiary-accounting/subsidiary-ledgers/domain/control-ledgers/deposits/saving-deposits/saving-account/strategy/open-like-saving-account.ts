@@ -138,24 +138,24 @@ export class OpenLikeSavingAccount implements IOpenableSubsidiaryLedger {
 
     const accountModel = new SubsidiaryLedgerAccountModel();
 
-    accountModel.setAccountType(accountType);
-    accountModel.setProductType(controlLedger);
-    accountModel.setAccountName(accountName);
-    accountModel.setBranch(branch);
-    accountModel.setInterestRate(interestRate);
-    accountModel.setOpeningDate(new Date().toUTCString());
-    accountModel.setDefaulterType(DefaulterType.Regular);
-    accountModel.setAccountStatus(AccountStatus.Inactive);
-    accountModel.setDuration(duration); // Optional and set default value
-    accountModel.setStock(stock); // Optional and set default value
-    accountModel.setProtectionSchemePercent(protectionSchemePercent); // Optional and set default value
-    accountModel.setOpeningAmount(openingAmount); // Optional and set default value
-    accountModel.setInstallmentAmount(installmentAmount); // Optional and set default value
-    accountModel.setNumberOfInstallment(numberOfInstallment); // Optional and set default value
-    accountModel.setHolders(holders);
-    accountModel.setIntroducers(introducers);
-    accountModel.setOperators(operators);
-    accountModel.setNominees(nominees);
+    accountModel.AccountType = accountType;
+    accountModel.ProductType = controlLedger;
+    accountModel.AccountName = accountName;
+    accountModel.Branch = branch;
+    accountModel.InterestRate = interestRate;
+    accountModel.OpeningDate = new Date().toUTCString();
+    accountModel.DefaulterType = DefaulterType.Regular;
+    accountModel.AccountStatus = AccountStatus.Inactive;
+    accountModel.Duration = duration; // Optional and set default value
+    accountModel.Stock = stock; // Optional and set default value
+    accountModel.ProtectionSchemePercent = protectionSchemePercent; // Optional and set default value
+    accountModel.OpeningAmount = openingAmount; // Optional and set default value
+    accountModel.InstallmentAmount = installmentAmount; // Optional and set default value
+    accountModel.NumberOfInstallment = numberOfInstallment; // Optional and set default value
+    accountModel.Holders = holders;
+    accountModel.Introducers = introducers;
+    accountModel.Operators = operators;
+    accountModel.Nominees = nominees;
     return accountModel;
   }
 }

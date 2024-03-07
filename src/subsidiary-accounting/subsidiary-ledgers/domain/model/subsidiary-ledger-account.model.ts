@@ -11,365 +11,365 @@ import { NomineeModel } from './nominee.model';
 import { OperatorModel } from './operator.model';
 
 export class SubsidiaryLedgerAccountModel {
-  private AccountId: string;
-  private AccountType: AccountType;
-  private ControlLedger: ControlLedger;
-  private AccountNumber: string;
-  private AccountName: string;
-  private Branch: Branch;
-  private Duration: number;
-  private InterestRate: number;
-  private Stock: number;
-  private ProtectionSchemePercent: number;
-  private OpeningAmount: number;
-  private InstallmentAmount: number;
-  private NumberOfInstallment: number;
-  private Introducers: IntroducerModel[];
-  private Holders: BaseCustomerModel[];
-  private Operators: OperatorModel[];
-  private Nominees: NomineeModel[];
-  private OpeningDate: string;
-  private MaturityDate: string;
-  private ClosingDate: string;
-  private DefaulterType: DefaulterType;
-  private AccountStatus: AccountStatus;
-  private RunningBalance: number;
-  private TotalTakenSuretyAmount: number;
-  private TotalGivenSuretyAmount: number;
-  private TotalScheduleDefaultMonth: number;
-  private CreatedAt: string;
-  private UpdatedAt: string;
-  private CreatedBy: string;
-  private UpdatedBy: string;
+  private _AccountId: string;
+  private _AccountType: AccountType;
+  private _ControlLedger: ControlLedger;
+  private _AccountNumber: string;
+  private _AccountName: string;
+  private _Branch: Branch;
+  private _Duration: number;
+  private _InterestRate: number;
+  private _Stock: number;
+  private _ProtectionSchemePercent: number;
+  private _OpeningAmount: number;
+  private _InstallmentAmount: number;
+  private _NumberOfInstallment: number;
+  private _Introducers: IntroducerModel[];
+  private _Holders: BaseCustomerModel[];
+  private _Operators: OperatorModel[];
+  private _Nominees: NomineeModel[];
+  private _OpeningDate: string;
+  private _MaturityDate: string;
+  private _ClosingDate: string;
+  private _DefaulterType: DefaulterType;
+  private _AccountStatus: AccountStatus;
+  private _RunningBalance: number;
+  private _TotalTakenSuretyAmount: number;
+  private _TotalGivenSuretyAmount: number;
+  private _TotalScheduleDefaultMonth: number;
+  private _CreatedAt: string;
+  private _UpdatedAt: string;
+  private _CreatedBy: string;
+  private _UpdatedBy: string;
 
   public constructor() {
-    this.AccountId = uuidv4();
-    this.AccountType = AccountType.Personal;
-    this.ControlLedger = ControlLedger.SavingAccount;
-    this.AccountNumber = new Date().valueOf().toString();
-    this.AccountName = '';
-    this.Branch = Branch.HeadOffice;
-    this.Duration = 0.0;
-    this.Stock = 0;
-    this.InterestRate = 0.0;
-    this.ProtectionSchemePercent = 0.0;
-    this.OpeningAmount = 0.0;
-    this.InstallmentAmount = 0.0;
-    this.NumberOfInstallment = 0;
-    this.Introducers = [];
-    this.Holders = [];
-    this.Operators = [];
-    this.Nominees = [];
-    this.OpeningDate = new Date().toUTCString();
-    this.MaturityDate = '';
-    this.ClosingDate = '';
-    this.DefaulterType = DefaulterType.Regular;
-    this.AccountStatus = AccountStatus.Inactive;
-    this.RunningBalance = 0.0;
-    this.TotalTakenSuretyAmount = 0.0;
-    this.TotalGivenSuretyAmount = 0.0;
-    this.TotalScheduleDefaultMonth = 0;
-    this.CreatedAt = new Date().toUTCString();
-    this.UpdatedAt = new Date().toUTCString();
-    this.CreatedBy = '';
-    this.UpdatedBy = '';
+    this._AccountId = uuidv4();
+    this._AccountType = AccountType.Personal;
+    this._ControlLedger = ControlLedger.SavingAccount;
+    this._AccountNumber = new Date().valueOf().toString();
+    this._AccountName = '';
+    this._Branch = Branch.HeadOffice;
+    this._Duration = 0.0;
+    this._Stock = 0;
+    this._InterestRate = 0.0;
+    this._ProtectionSchemePercent = 0.0;
+    this._OpeningAmount = 0.0;
+    this._InstallmentAmount = 0.0;
+    this._NumberOfInstallment = 0;
+    this._Introducers = [];
+    this._Holders = [];
+    this._Operators = [];
+    this._Nominees = [];
+    this._OpeningDate = new Date().toUTCString();
+    this._MaturityDate = '';
+    this._ClosingDate = '';
+    this._DefaulterType = DefaulterType.Regular;
+    this._AccountStatus = AccountStatus.Inactive;
+    this._RunningBalance = 0.0;
+    this._TotalTakenSuretyAmount = 0.0;
+    this._TotalGivenSuretyAmount = 0.0;
+    this._TotalScheduleDefaultMonth = 0;
+    this._CreatedAt = new Date().toUTCString();
+    this._UpdatedAt = new Date().toUTCString();
+    this._CreatedBy = '';
+    this._UpdatedBy = '';
   }
 
-  public getAccountId(): string {
-    return this.AccountId;
+  public get AccountId(): string {
+    return this._AccountId;
   }
 
-  public setAccountId(accountId: string): void {
+  public set AccountId(accountId: string) {
     if (accountId === '') {
       throw new BadRequestException('Invalid account id.');
     }
-    this.AccountId = accountId;
+    this._AccountId = accountId;
   }
 
-  public getAccountType(): AccountType {
-    return this.AccountType;
+  public get AccountType(): AccountType {
+    return this._AccountType;
   }
 
-  public setAccountType(accountType: AccountType): void {
+  public set AccountType(accountType: AccountType) {
     if (Object.values(AccountType).includes(accountType)) {
-      this.AccountType = accountType;
+      this._AccountType = accountType;
     } else {
       throw new BadRequestException('Invalid account type.');
     }
   }
 
-  public getProductType(): ControlLedger {
-    return this.ControlLedger;
+  public get ProductType(): ControlLedger {
+    return this._ControlLedger;
   }
 
-  public setProductType(controlLedger: ControlLedger): void {
+  public set ProductType(controlLedger: ControlLedger) {
     if (Object.values(ControlLedger).includes(controlLedger)) {
-      this.ControlLedger = controlLedger;
+      this._ControlLedger = controlLedger;
     } else {
       throw new BadRequestException('Invalid product type.');
     }
   }
 
-  public getAccountNumber(): string {
-    return this.AccountNumber;
+  public get AccountNumber(): string {
+    return this._AccountNumber;
   }
 
-  public setAccountNumber(accountNumber: string): void {
+  public set AccountNumber(accountNumber: string) {
     if (accountNumber === '') {
       throw new BadRequestException('Invalid account number.');
     }
     if (accountNumber.length < 6) {
       throw new BadRequestException('Invalid account number.');
     }
-    this.AccountNumber = accountNumber;
+    this._AccountNumber = accountNumber;
   }
 
-  public getAccountName(): string {
-    return this.AccountName;
+  public get AccountName(): string {
+    return this._AccountName;
   }
 
-  public setAccountName(accountName: string): void {
+  public set AccountName(accountName: string) {
     if (accountName === '') {
       throw new BadRequestException('Invalid account name.');
     }
-    this.AccountName = accountName;
+    this._AccountName = accountName;
   }
 
-  public getBranch(): Branch {
-    return this.Branch;
+  public get Branch(): Branch {
+    return this._Branch;
   }
 
-  public setBranch(branch: Branch): void {
+  public set Branch(branch: Branch) {
     if (Object.values(Branch).includes(branch)) {
-      this.Branch = branch;
+      this._Branch = branch;
     } else {
       throw new BadRequestException('Invalid branch.');
     }
   }
 
-  public getDuration(): number {
-    return this.Duration;
+  public get Duration(): number {
+    return this._Duration;
   }
 
-  public setDuration(duration: number): void {
+  public set Duration(duration: number) {
     if (duration < 0) {
       throw new BadRequestException("Duration can't be negative.");
     }
-    this.Duration = duration;
+    this._Duration = duration;
   }
 
-  public getStock(): number {
-    return this.Stock;
+  public get Stock(): number {
+    return this._Stock;
   }
 
-  public setStock(Stock: number): void {
+  public set Stock(Stock: number) {
     if (Stock < 0) {
       throw new BadRequestException("Stock can't be negative.");
     }
-    this.Stock = Stock;
+    this._Stock = Stock;
   }
 
-  public getInterestRate(): number {
-    return this.InterestRate;
+  public get InterestRate(): number {
+    return this._InterestRate;
   }
 
-  public setInterestRate(interestRate: number): void {
+  public set InterestRate(interestRate: number) {
     if (interestRate < 0) {
       throw new BadRequestException("Interest rate can't be negative.");
     }
-    this.InterestRate = interestRate;
+    this._InterestRate = interestRate;
   }
 
-  public getProtectionSchemePercent(): number {
-    return this.ProtectionSchemePercent;
+  public get ProtectionSchemePercent(): number {
+    return this._ProtectionSchemePercent;
   }
 
-  public setProtectionSchemePercent(protectionSchemePercent: number): void {
+  public set ProtectionSchemePercent(protectionSchemePercent: number) {
     if (protectionSchemePercent < 0) {
       throw new BadRequestException(
         "Protection Scheme Percent rate can't be negative.",
       );
     }
-    this.ProtectionSchemePercent = protectionSchemePercent;
+    this._ProtectionSchemePercent = protectionSchemePercent;
   }
 
-  public getOpeningAmount(): number {
-    return this.OpeningAmount;
+  public get OpeningAmount(): number {
+    return this._OpeningAmount;
   }
 
-  public setOpeningAmount(openingAmount: number): void {
+  public set OpeningAmount(openingAmount: number) {
     if (openingAmount < 0) {
       throw new BadRequestException("Opening Amount can't be negative.");
     }
-    this.OpeningAmount = openingAmount;
+    this._OpeningAmount = openingAmount;
   }
 
-  public getInstallmentAmount(): number {
-    return this.InstallmentAmount;
+  public get InstallmentAmount(): number {
+    return this._InstallmentAmount;
   }
 
-  public setInstallmentAmount(installmentAmount: number): void {
+  public set InstallmentAmount(installmentAmount: number) {
     if (installmentAmount < 0) {
       throw new BadRequestException("Installment Amount can't be negative.");
     }
-    this.InstallmentAmount = installmentAmount;
+    this._InstallmentAmount = installmentAmount;
   }
 
-  public getNumberOfInstallment(): number {
-    return this.NumberOfInstallment;
+  public get NumberOfInstallment(): number {
+    return this._NumberOfInstallment;
   }
 
-  public setNumberOfInstallment(numberOfInstallment: number): void {
+  public set NumberOfInstallment(numberOfInstallment: number) {
     if (numberOfInstallment < 0) {
       throw new BadRequestException("Number Of Installment can't be negative.");
     }
-    this.NumberOfInstallment = numberOfInstallment;
+    this._NumberOfInstallment = numberOfInstallment;
   }
 
-  public getIntroducers(): IntroducerModel[] {
-    return this.Introducers;
+  public get Introducers(): IntroducerModel[] {
+    return this._Introducers;
   }
 
-  public setIntroducers(introducers: IntroducerModel[]): void {
-    this.Introducers = introducers;
+  public set Introducers(introducers: IntroducerModel[]) {
+    this._Introducers = introducers;
   }
 
-  public getHolders(): BaseCustomerModel[] {
-    return this.Holders;
+  public get Holders(): BaseCustomerModel[] {
+    return this._Holders;
   }
 
-  public setHolders(holders: BaseCustomerModel[]): void {
-    this.Holders = holders;
+  public set Holders(holders: BaseCustomerModel[]) {
+    this._Holders = holders;
   }
 
-  public getOperators(): OperatorModel[] {
-    return this.Operators;
+  public get Operators(): OperatorModel[] {
+    return this._Operators;
   }
 
-  public setOperators(operators: OperatorModel[]): void {
-    this.Operators = operators;
+  public set Operators(operators: OperatorModel[]) {
+    this._Operators = operators;
   }
 
-  public getNominees(): NomineeModel[] {
-    return this.Nominees;
+  public get Nominees(): NomineeModel[] {
+    return this._Nominees;
   }
 
-  public setNominees(nominees: NomineeModel[]): void {
-    this.Nominees = nominees;
+  public set Nominees(nominees: NomineeModel[]) {
+    this._Nominees = nominees;
   }
 
-  public getOpeningDate(): string {
-    return this.OpeningDate;
+  public get OpeningDate(): string {
+    return this._OpeningDate;
   }
 
-  public setOpeningDate(openingDate: string): void {
+  public set OpeningDate(openingDate: string) {
     if (openingDate === null) {
       throw new BadRequestException('Invalid opening date.');
     }
-    this.OpeningDate = openingDate;
+    this._OpeningDate = openingDate;
   }
 
-  public getMaturityDate(): string {
-    return this.MaturityDate;
+  public get MaturityDate(): string {
+    return this._MaturityDate;
   }
 
-  public setMaturityDate(maturityDate: string): void {
-    this.MaturityDate = maturityDate;
+  public set MaturityDate(maturityDate: string) {
+    this._MaturityDate = maturityDate;
   }
 
-  public getClosingDate(): string {
-    return this.ClosingDate;
+  public get ClosingDate(): string {
+    return this._ClosingDate;
   }
 
-  public setClosingDate(closingDate: string): void {
-    this.ClosingDate = closingDate;
+  public set ClosingDate(closingDate: string) {
+    this._ClosingDate = closingDate;
   }
 
-  public getDefaulterType(): string {
-    return this.DefaulterType;
+  public get DefaulterType(): string {
+    return this._DefaulterType;
   }
 
-  public setDefaulterType(defaulterType: DefaulterType): void {
+  public set DefaulterType(defaulterType: DefaulterType) {
     if (Object.values(DefaulterType).includes(defaulterType)) {
-      this.DefaulterType = defaulterType;
+      this._DefaulterType = defaulterType;
     } else {
       throw new BadRequestException('Invalid defaulter type.');
     }
   }
 
-  public getAccountStatus(): string {
-    return this.AccountStatus;
+  public get AccountStatus(): string {
+    return this._AccountStatus;
   }
 
-  public setAccountStatus(accountStatus: AccountStatus): void {
+  public set AccountStatus(accountStatus: AccountStatus) {
     if (Object.values(AccountStatus).includes(accountStatus)) {
-      this.AccountStatus = accountStatus;
+      this._AccountStatus = accountStatus;
     } else {
       throw new BadRequestException('Invalid account status.');
     }
   }
 
-  public getRunningBalance(): number {
-    return this.RunningBalance;
+  public get RunningBalance(): number {
+    return this._RunningBalance;
   }
 
-  public setRunningBalance(runningBalance: number): void {
-    this.RunningBalance = runningBalance;
+  public set RunningBalance(runningBalance: number) {
+    this._RunningBalance = runningBalance;
   }
 
-  public getTotalTakenSuretyAmount(): number {
-    return this.TotalTakenSuretyAmount;
+  public get TotalTakenSuretyAmount(): number {
+    return this._TotalTakenSuretyAmount;
   }
 
-  public setTotalTakenSuretyAmount(totalTakenSuretyAmount: number): void {
-    this.TotalTakenSuretyAmount = totalTakenSuretyAmount;
+  public set TotalTakenSuretyAmount(totalTakenSuretyAmount: number) {
+    this._TotalTakenSuretyAmount = totalTakenSuretyAmount;
   }
 
-  public getTotalGivenSuretyAmount(): number {
-    return this.TotalGivenSuretyAmount;
+  public get TotalGivenSuretyAmount(): number {
+    return this._TotalGivenSuretyAmount;
   }
 
-  public setTotalGivenSuretyAmount(totalGivenSuretyAmount: number): void {
-    this.TotalGivenSuretyAmount = totalGivenSuretyAmount;
+  public set TotalGivenSuretyAmount(totalGivenSuretyAmount: number) {
+    this._TotalGivenSuretyAmount = totalGivenSuretyAmount;
   }
 
-  public getTotalScheduleDefaultMonth(): number {
-    return this.TotalScheduleDefaultMonth;
+  public get TotalScheduleDefaultMonth(): number {
+    return this._TotalScheduleDefaultMonth;
   }
 
-  public setTotalScheduleDefaultMonth(totalScheduleDefaultMonth: number): void {
-    this.TotalScheduleDefaultMonth = totalScheduleDefaultMonth;
+  public set TotalScheduleDefaultMonth(totalScheduleDefaultMonth: number) {
+    this._TotalScheduleDefaultMonth = totalScheduleDefaultMonth;
   }
 
-  public getCreatedBy(): string {
-    return this.CreatedBy;
+  public get CreatedBy(): string {
+    return this._CreatedBy;
   }
 
-  public setCreatedBy(CreatedBy: string): void {
-    this.CreatedBy = CreatedBy;
+  public set CreatedBy(CreatedBy: string) {
+    this._CreatedBy = CreatedBy;
   }
 
-  public getUpdatedBy(): string {
-    return this.UpdatedBy;
+  public get UpdatedBy(): string {
+    return this._UpdatedBy;
   }
 
-  public setUpdatedBy(UpdatedBy: string): void {
-    this.UpdatedBy = UpdatedBy;
+  public set UpdatedBy(UpdatedBy: string) {
+    this._UpdatedBy = UpdatedBy;
   }
 
-  public getCreatedAt(): string {
-    return this.CreatedAt;
+  public get CreatedAt(): string {
+    return this._CreatedAt;
   }
 
-  public setCreatedAt(CreatedAt: string): void {
-    this.CreatedAt = CreatedAt;
+  public set CreatedAt(CreatedAt: string) {
+    this._CreatedAt = CreatedAt;
   }
 
-  public getUpdatedAt(): string {
-    return this.UpdatedAt;
+  public get UpdatedAt(): string {
+    return this._UpdatedAt;
   }
 
-  public setUpdatedAt(UpdatedAt: string): void {
-    this.UpdatedAt = UpdatedAt;
+  public set UpdatedAt(UpdatedAt: string) {
+    this._UpdatedAt = UpdatedAt;
   }
 }

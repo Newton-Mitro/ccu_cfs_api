@@ -15,13 +15,13 @@ export class Customer {
     maxLength: 13,
     trim: true,
   })
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ require: true, trim: true })
-  NameEn: string;
+  nameEn: string;
 
   @Prop()
-  NameBn: string;
+  nameBn: string;
 
   @Prop({
     trim: true,
@@ -36,18 +36,18 @@ export class Customer {
       message: (props) => `${props.value} is not a valid email address!`,
     },
   })
-  Email: string;
+  email: string;
 
   @Prop()
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop({
     type: Array(AddressSchema),
   })
-  Addresses: Address[];
+  addresses: Address[];
 
   @Prop({ type: Array(KycAttachmentSchema) })
-  Attachments: KycAttachment[];
+  attachments: KycAttachment[];
 }
 
 export type CustomerDocument = Customer & Document;

@@ -19,47 +19,47 @@ export class Person extends Customer {
     super();
   }
   @Prop({ require: true })
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @Prop({ trim: true })
-  NID: string;
+  nid: string;
 
   @Prop({ trim: true })
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @Prop({ type: String, enum: Object.values(BloodGroup) })
-  BloodGroup: BloodGroup;
+  bloodGroup: BloodGroup;
 
   @Prop({ require: true, type: String, enum: Object.values(Gender) })
-  Gender: Gender;
+  gender: Gender;
 
   @Prop({ require: true, type: String, enum: Object.values(Religion) })
-  Religion: Religion;
+  religion: Religion;
 
   @Prop({
     type: String,
     default: Profession.Rather_Not_Say,
     enum: Object.values(Profession),
   })
-  Profession: Profession;
+  profession: Profession;
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 
   @Prop({ default: true })
-  Alive: boolean;
+  alive: boolean;
 
   @Prop()
-  Photo: string;
+  photo: string;
 
   @Prop({ type: Array(EducationSchema) })
-  Educations: Education[];
+  educations: Education[];
 
   @Prop({ type: Array(TrainingSchema) })
-  Trainings: Training[];
+  trainings: Training[];
 
   @Prop({ type: Array(EmploymentHistorySchema) })
-  EmploymentHistories: EmploymentHistory[];
+  employmentHistories: EmploymentHistory[];
 }
 
 export type PersonDocument = Person & Document;
@@ -68,7 +68,7 @@ export const PERSON_MODEL = Person.name;
 export const PersonSchema = SchemaFactory.createForClass(Person);
 
 PersonSchema.pre('validate', function (next) {
-  if (this.NID === '' && this.BirthRegistrationNumber === '') {
+  if (this.nid === '' && this.birthRegistrationNumber === '') {
     const result = {
       message: 'Please provide NID or Birth Registration Number',
       error: 'Bad request',

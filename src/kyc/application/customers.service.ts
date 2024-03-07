@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { FindAllQueryDTO } from '../contract/find-all-query.dto';
 import {
   CUSTOMER_MODEL,
   CustomerDocument,
 } from '../infrastructure/schema/customer.schema';
-import { FindAllQueryDTO } from '../presentation/contract/find-all-query.dto';
 
 @Injectable()
 export class CustomersService {

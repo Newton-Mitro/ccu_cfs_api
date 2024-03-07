@@ -3,22 +3,22 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class Training {
   @Prop({ require: true })
-  CourseTitle: string;
+  courseTitle: string;
 
   @Prop()
-  InstituteName: string;
+  instituteName: string;
 
   @Prop({ require: true })
-  CourseContent: string;
+  courseContent: string;
 
   @Prop()
-  Result: string;
+  result: string;
 
   @Prop()
-  StartDate: string;
+  startDate: string;
 
   @Prop()
-  EndDate: string;
+  endDate: string;
 }
 
 export const TrainingSchema = SchemaFactory.createForClass(Training);

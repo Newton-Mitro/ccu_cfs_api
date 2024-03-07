@@ -7,25 +7,25 @@ import { Customer } from './customer.schema';
 @Schema()
 export class Organization extends Customer {
   @Prop({ require: true, type: Types.ObjectId })
-  ParentOrganization: string;
+  parentOrganization: string;
 
   @Prop({ require: true })
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @Prop()
-  FaxNumber: string;
+  faxNumber: string;
 
   @Prop()
-  Website: string;
+  website: string;
 
   @Prop()
-  Logo: string;
+  logo: string;
 
   @Prop({ type: Array(ContactPersonSchema) })
-  ContactPeoples: ContactPerson;
+  contactPeoples: ContactPerson;
 
   @Prop({ type: Array(BankAccountSchema) })
-  BankAccounts: BankAccount;
+  bankAccounts: BankAccount;
 }
 
 export type OrganizationDocument = Organization & Document;

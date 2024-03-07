@@ -8,34 +8,34 @@ export class Address {
     enum: Object.values(AddressType),
     default: AddressType.Permanent_Address,
   })
-  AddressType: AddressType;
+  addressType: AddressType;
 
   @Prop({ require: true })
-  AddressLineOne: string;
+  addressLineOne: string;
 
   @Prop()
-  AddressLineTwo: string;
+  addressLineTwo: string;
 
   @Prop({ require: true })
-  Country: string;
+  country: string;
 
   @Prop()
-  State: string;
+  state: string;
 
   @Prop()
-  City: string;
+  city: string;
 
   @Prop()
-  Division: string;
+  division: string;
 
   @Prop()
-  District: string;
+  district: string;
 
   @Prop()
-  SubDistrict: string;
+  subDistrict: string;
 
   @Prop()
-  ZipCode: string;
+  zipCode: string;
 }
 
 export const AddressSchema = SchemaFactory.createForClass(Address);

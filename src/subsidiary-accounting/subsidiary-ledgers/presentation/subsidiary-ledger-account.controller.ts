@@ -3,7 +3,7 @@ import { UUID } from 'src/common/utils/uuid.util';
 import { EmailMessagingService } from 'src/messaging/infrastructure/email-messaging.service';
 import { SMSMessagingService } from 'src/messaging/infrastructure/sms-messaging.service';
 import { SubsidiaryLedgerAccountService } from '../application/subsidiary-ledger-account.service';
-import { CreateSubsidiaryLedgerDTO } from './contract/create-subsidiary-ledger.dto';
+import { CreateSubsidiaryLedgerDTO } from '../application/contract/create-subsidiary-ledger.dto';
 
 @Controller('SubsidiaryLedgerAccount')
 export class SubsidiaryLedgerAccountController {

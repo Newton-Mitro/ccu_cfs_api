@@ -10,8 +10,8 @@ import {
   PERSON_MODEL,
   PersonDocument,
 } from '../infrastructure/schema/person.schema';
-import { CreatePeopleDTO } from '../presentation/contract/create-people.dto';
-import { UpdatePeopleDTO } from '../presentation/contract/update-people.dto';
+import { CreatePeopleDTO } from '../contract/create-people.dto';
+import { UpdatePeopleDTO } from '../contract/update-people.dto';
 
 @Injectable()
 export class PeoplesService {
@@ -22,8 +22,8 @@ export class PeoplesService {
 
   async create(createPeopleDTO: CreatePeopleDTO) {
     const createdPerson = new this.personModel(createPeopleDTO);
-    createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
-      7,
+    createdPerson.identificationNumber = String(new Date().valueOf()).substring(
+      3,
       13,
     );
     const errors = createdPerson.validateSync();
@@ -45,17 +45,6 @@ export class PeoplesService {
     // Unique NID Check
 
     // Unique BirthRegistrationNumber Check
-
-    try {
-      const person = await createdPerson.save();
-      return person;
-    } catch (error) {
-      throw new BadRequestException({
-        message: error.message,
-        error: error.name,
-        statusCode: 400,
-      });
-    }
 
     const person = await createdPerson.save();
     return person;
