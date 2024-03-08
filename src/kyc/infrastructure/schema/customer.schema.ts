@@ -5,7 +5,7 @@ import { KycAttachment, KycAttachmentSchema } from './kyc-attachment.schema';
 @Schema({
   timestamps: true,
   versionKey: false,
-  discriminatorKey: 'customerType',
+  discriminatorKey: 'CustomerType',
 })
 export class Customer {
   @Prop({
@@ -15,13 +15,13 @@ export class Customer {
     maxLength: 13,
     trim: true,
   })
-  identificationNumber: string;
+  IdentificationNumber: string;
 
   @Prop({ require: true, trim: true })
-  nameEn: string;
+  NameEn: string;
 
   @Prop()
-  nameBn: string;
+  NameBn: string;
 
   @Prop({
     trim: true,
@@ -36,18 +36,18 @@ export class Customer {
       message: (props) => `${props.value} is not a valid email address!`,
     },
   })
-  email: string;
+  Email: string;
 
   @Prop()
-  contactNumber: string;
+  ContactNumber: string;
 
   @Prop({
     type: Array(AddressSchema),
   })
-  addresses: Address[];
+  Addresses: Address[];
 
   @Prop({ type: Array(KycAttachmentSchema) })
-  attachments: KycAttachment[];
+  Attachments: KycAttachment[];
 }
 
 export type CustomerDocument = Customer & Document;

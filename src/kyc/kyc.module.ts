@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { CustomersService } from './application/customers.service';
 import { OrganizationsService } from './application/organizations.service';
 import { PeoplesService } from './application/peoples.service';
-import { CustomersController } from './presentation/customers.controller';
-import { OrganizationsController } from './presentation/organizations.controller';
-import { PeoplesController } from './presentation/peoples.controller';
+import { CustomersController } from './presentation/controllers/customers.controller';
+import { OrganizationsController } from './presentation/controllers/organizations.controller';
+import { PeoplesController } from './presentation/controllers/peoples.controller';
 
 @Module({
   imports: [],

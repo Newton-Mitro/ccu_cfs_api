@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-type.enum';
@@ -52,7 +52,7 @@ export class PersonalShareAccountOpeningPolicyValidator
       // [ ] 02. Introducer need to be a person.
       CustomerPolicy.CustomerTypeCheck(
         introducer,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountIntroducer,
       );
 
@@ -60,7 +60,7 @@ export class PersonalShareAccountOpeningPolicyValidator
         // [ ] 03. Introducer need to be christian?
         CustomerPolicy.ReligionCheck(
           introducer,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountIntroducer,
         );
 
@@ -88,7 +88,7 @@ export class PersonalShareAccountOpeningPolicyValidator
       // [ ] 07. Account holder must be a person.
       CustomerPolicy.CustomerTypeCheck(
         holder,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountHolder,
       );
 
@@ -96,7 +96,7 @@ export class PersonalShareAccountOpeningPolicyValidator
         // [ ] 08. Account holder must be christian.
         CustomerPolicy.ReligionCheck(
           holder,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountHolder,
         );
 
@@ -133,7 +133,7 @@ export class PersonalShareAccountOpeningPolicyValidator
       // [ ] 13. Account operator need to be a person.
       CustomerPolicy.CustomerTypeCheck(
         operator,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountOperator,
       );
 
@@ -141,7 +141,7 @@ export class PersonalShareAccountOpeningPolicyValidator
         // [ ] 14. Account operator must be christian
         CustomerPolicy.ReligionCheck(
           operator,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountOperator,
         );
 

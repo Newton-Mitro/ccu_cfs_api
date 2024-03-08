@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-type.enum';
@@ -50,7 +50,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
       // [ ] 08. PAP - Check if account introducer is a person?
       CustomerPolicy.CustomerTypeCheck(
         introducer,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountIntroducer,
       );
 
@@ -58,7 +58,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
         // [ ] 09. PAP - Check if account introducer religion is christian?
         CustomerPolicy.ReligionCheck(
           introducer,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountIntroducer,
         );
 
@@ -86,7 +86,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
       // [ ] 02. JAP - Check if account holder is a person
       CustomerPolicy.CustomerTypeCheck(
         holder,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountHolder,
       );
 
@@ -94,7 +94,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
         // [ ] 03. JAP - Check if account holder is christian
         CustomerPolicy.ReligionCheck(
           holder,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountHolder,
         );
 
@@ -130,7 +130,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
       // [ ] 09. JAP - Check if account operator is a person.
       CustomerPolicy.CustomerTypeCheck(
         operator,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountOperator,
       );
 
@@ -138,7 +138,7 @@ export class JointHCSAccountOpeningPolicyValidator implements IPolicyValidator {
         // [ ] 10. JAP - Check if account operator is christian.
         CustomerPolicy.ReligionCheck(
           operator,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountOperator,
         );
 

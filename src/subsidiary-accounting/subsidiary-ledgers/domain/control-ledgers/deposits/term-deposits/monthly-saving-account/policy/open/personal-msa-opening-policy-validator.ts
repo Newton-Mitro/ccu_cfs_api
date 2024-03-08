@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { DateUtil } from 'src/common/utils/date.util';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-type.enum';
@@ -47,7 +47,7 @@ export class PersonalMSAOpeningPolicyValidator implements IPolicyValidator {
       // [ ] 02. PAP - Check if account holder is a person?
       CustomerPolicy.CustomerTypeCheck(
         holder,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountHolder,
       );
 
@@ -55,7 +55,7 @@ export class PersonalMSAOpeningPolicyValidator implements IPolicyValidator {
         // [ ] 03. PAP - Check if account holder religion is christian?
         CustomerPolicy.ReligionCheck(
           holder,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountHolder,
         );
 
@@ -94,7 +94,7 @@ export class PersonalMSAOpeningPolicyValidator implements IPolicyValidator {
       // [ ] 02. PAP - Check if account holder is a person?
       CustomerPolicy.CustomerTypeCheck(
         operator,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountOperator,
       );
 
@@ -102,7 +102,7 @@ export class PersonalMSAOpeningPolicyValidator implements IPolicyValidator {
         // [ ] 07. PAP - Check if account operator is christian
         CustomerPolicy.ReligionCheck(
           operator,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountOperator,
         );
 

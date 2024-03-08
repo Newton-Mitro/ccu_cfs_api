@@ -4,19 +4,19 @@ import { Types } from 'mongoose';
 @Schema()
 export class ContactPerson {
   @Prop({ type: Types.ObjectId })
-  contactPersonPIN: string;
+  ContactPersonPIN: string;
 
   @Prop({ require: true })
-  contactPersonName: string;
+  ContactPersonName: string;
 
   @Prop({ require: true })
-  contactNumber: string;
+  ContactNumber: string;
 
   @Prop()
-  emergencyContactNumber: string;
+  EmergencyContactNumber: string;
 
   @Prop()
-  email: string;
+  Email: string;
 }
 
 export const ContactPersonSchema = SchemaFactory.createForClass(ContactPerson);

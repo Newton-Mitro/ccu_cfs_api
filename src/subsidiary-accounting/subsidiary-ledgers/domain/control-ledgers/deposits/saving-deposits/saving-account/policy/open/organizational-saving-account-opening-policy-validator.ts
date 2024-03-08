@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-type.enum';
@@ -52,7 +52,7 @@ export class OrganizationalSavingAccountOpeningPolicyValidator
       // [ ] 02. Account introducer need to be a person.
       CustomerPolicy.CustomerTypeCheck(
         introducer,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountIntroducer,
       );
 
@@ -60,7 +60,7 @@ export class OrganizationalSavingAccountOpeningPolicyValidator
         // [ ] 03. Account introducer need to be christian.
         CustomerPolicy.ReligionCheck(
           introducer,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountIntroducer,
         );
 
@@ -88,7 +88,7 @@ export class OrganizationalSavingAccountOpeningPolicyValidator
       // [ ] 07. Account holder need to be an organization?
       CustomerPolicy.CustomerTypeCheck(
         holder,
-        CustomerType.Organization,
+        CustomerType.ORGANIZATION,
         CustomerSubstitute.AccountHolder,
       );
     });
@@ -102,7 +102,7 @@ export class OrganizationalSavingAccountOpeningPolicyValidator
       // [ ] 09. Account operator need to be a person?
       CustomerPolicy.CustomerTypeCheck(
         operator,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountOperator,
       );
 
@@ -110,7 +110,7 @@ export class OrganizationalSavingAccountOpeningPolicyValidator
         // [ ] 10. Account operator need to be christian.
         CustomerPolicy.ReligionCheck(
           operator,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountOperator,
         );
 

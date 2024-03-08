@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
 import {
@@ -9,8 +14,8 @@ import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
 } from '../infrastructure/schema/organization.schema';
-import { CreateOrganizationDTO } from '../contract/create-organization.dto';
-import { UpdateOrganizationDTO } from '../contract/update-organization.dto';
+import { CreateOrganizationRequest } from '../presentation/contract/organization/create-organization.request';
+import { UpdateOrganizationRequest } from '../presentation/contract/organization/update-organization.request';
 
 @Injectable()
 export class OrganizationsService {
@@ -22,12 +27,35 @@ export class OrganizationsService {
     @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
-  async create(createOrganizationDto: CreateOrganizationDTO) {
-    const createdOrganization = await this.organizationModel.create(
+  async create(createOrganizationDto: CreateOrganizationRequest) {
+    const createOrganizationModel = new this.organizationModel(
       createOrganizationDto,
     );
+    createOrganizationModel.IdentificationNumber = String(
+      new Date().valueOf(),
+    ).substring(3, 13);
+    const errors = createOrganizationModel.validateSync();
 
-    return createdOrganization;
+    if (errors) {
+      const invalidFields = Object.keys(errors.errors);
+      const validationErrors = invalidFields.map(
+        (fieldName) => errors.errors[fieldName].message,
+      );
+
+      const result = {
+        message: validationErrors,
+        error: errors.name,
+        statusCode: HttpStatus.BAD_REQUEST,
+      };
+      throw new BadRequestException(result);
+    }
+
+    // Unique NID Check
+
+    // Unique BirthRegistrationNumber Check
+
+    const person = await createOrganizationModel.save();
+    return person;
   }
 
   async findAll() {
@@ -70,7 +98,7 @@ export class OrganizationsService {
     return existingOrganization;
   }
 
-  async update(id: string, updateOrganizationDto: UpdateOrganizationDTO) {
+  async update(id: string, updateOrganizationDto: UpdateOrganizationRequest) {
     const updatedOrganization = await this.organizationModel.findByIdAndUpdate(
       id,
       updateOrganizationDto,

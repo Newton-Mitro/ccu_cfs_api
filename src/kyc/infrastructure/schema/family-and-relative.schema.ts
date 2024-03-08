@@ -1,29 +1,45 @@
-import { Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BloodGroup } from 'src/kyc/domain/enum/blood-group.enum';
-import { Gender } from 'src/kyc/domain/enum/gender.enum';
-import { MaritalStatus } from 'src/kyc/domain/enum/marital-status.enum';
-import { Profession } from 'src/kyc/domain/enum/profession.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
-import { AddressModel } from 'src/kyc/domain/model/address.model';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { BloodGroup } from 'src/common/enums/blood-group.enum';
+import { Gender } from 'src/common/enums/gender.enum';
+import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
+import { Religion } from 'src/common/enums/religion.enum';
+import { AddressEntity } from 'src/kyc/domain/common/entities/address.entity';
 
 @Schema()
 export class FamilyAndRelative {
-  identificationNumber: string;
-  nameEn: string;
-  nameBn: string;
-  email: string;
-  contactNumber: string;
-  dateOfBirth: Date;
-  nid: string;
-  birthRegistrationNumber: string;
-  bloodGroup: BloodGroup;
-  gender: Gender;
-  religion: Religion;
-  profession: Profession;
-  maritalStatus: MaritalStatus;
-  alive: boolean;
-  photo: string;
-  addresses: AddressModel[];
+  @Prop()
+  IdentificationNumber: string;
+  @Prop()
+  NameEn: string;
+  @Prop()
+  NameBn: string;
+  @Prop()
+  Email: string;
+  @Prop()
+  ContactNumber: string;
+  @Prop()
+  DateOfBirth: Date;
+  @Prop()
+  Nid: string;
+  @Prop()
+  BirthRegistrationNumber: string;
+  @Prop()
+  BloodGroup: BloodGroup;
+  @Prop()
+  Gender: Gender;
+  @Prop()
+  Religion: Religion;
+  @Prop()
+  Profession: Profession;
+  @Prop()
+  MaritalStatus: MaritalStatus;
+  @Prop()
+  Alive: boolean;
+  @Prop()
+  Photo: string;
+  @Prop()
+  Addresses: AddressEntity[];
 }
 
 export const FamilyAndRelativeSchema =

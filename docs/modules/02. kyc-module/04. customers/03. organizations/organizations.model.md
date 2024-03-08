@@ -1,45 +1,58 @@
 ```json
 {
-  "_id": "",
-  "identificationNumber": "", // Unique
-  "customerNameEn": "",
-  "customerNameBn": "",
-  "tin": "",
-  "registrationNumber": "",
-  "registeredMobile": "",
-  "mobileNumber": "",
-  "phoneNumber": "",
-  "faxNumber": "",
-  "registeredEmail": "",
-  "email": "",
-  "address": "",
-  "status": "",
-  "logo": "",
-  "parentOrganization": "", // Parent Reference
-  "contactPeoples": [
+  "IdentificationNumber": "",
+  "NameEn": "",
+  "NameBn": "",
+  "TIN": "",
+  "ContactNumber": "",
+  "MobileNumber": "",
+  "PhoneNumber": "",
+  "Fax": "",
+  "Website": "",
+  "Email": "",
+  "Logo": {
+    "DocumentExtension": "",
+    "DocumentTitle": "",
+    "Base64StringDocument": ""
+  },
+  "ParentOrganization": "",
+  "Addresses": [
     {
-      "contactPersonPin": "",
-      "contactPersonName": "",
-      "contactNumber": "",
-      "emergencyContactNumber": "",
-      "email": ""
+      "AddressType": "Present Address",
+      "AddressLineOne": "sdfds",
+      "AddressLineTwo": "",
+      "Country": "Bangladesh",
+      "State": "sdfsd",
+      "City": "sfsf",
+      "Division": "sdfdsf",
+      "District": "sfsdf",
+      "SubDistrict": "sdfdsf",
+      "ZipCode": "sfsdf"
     }
   ],
-  "bankInformation": [
+  "ContactPeoples": [
     {
-      "accountNumber": "",
-      "accountName": "",
-      "branch": "",
-      "routingNumber": ""
+      "ContactPersonPIN": "",
+      "ContactPersonName": "",
+      "ContactNumber": "",
+      "EmergencyContactNumber": "",
+      "Email": ""
     }
   ],
-  "attachments": [
+  "BankAccounts": [
     {
-      "_id": "",
-      "customerId": "", // Parent Reference
-      "attachmentType": "National ID",
-      "attachmentUrl": "",
-      "status": "Pending"
+      "BankName": "",
+      "Branch": "",
+      "RoutingNumber": "",
+      "AccountNumber": "",
+      "AccountName": ""
+    }
+  ],
+  "Attachments": [
+    {
+      "DocumentExtension": "",
+      "DocumentTitle": "",
+      "Base64StringDocument": ""
     }
   ]
 }

@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Gender } from 'src/kyc/domain/enum/gender.enum';
-import { MaritalStatus } from 'src/kyc/domain/enum/marital-status.enum';
-import { Profession } from 'src/kyc/domain/enum/profession.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
+import { Gender } from 'src/common/enums/gender.enum';
+import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { BaseCustomer } from './base-customer.schema';
 
 @Schema()
@@ -23,28 +23,28 @@ export class HumanCustomer extends BaseCustomer {
   @Prop({
     type: String,
     enum: Object.values(Gender),
-    default: Gender.Male,
+    default: Gender.MALE,
   })
   Gender: Gender;
 
   @Prop({
     type: String,
     enum: Object.values(Religion),
-    default: Religion.Christian,
+    default: Religion.CHRISTIAN,
   })
   Religion: Religion;
 
   @Prop({
     type: String,
     enum: Object.values(Profession),
-    default: Profession.Rather_Not_Say,
+    default: Profession.RATHER_NOT_SAY,
   })
   Profession: Profession;
 
   @Prop({
     type: String,
     enum: Object.values(MaritalStatus),
-    default: MaritalStatus.Single,
+    default: MaritalStatus.SINGLE,
   })
   MaritalStatus: MaritalStatus;
 }

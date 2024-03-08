@@ -1,39 +1,99 @@
-### Create Subsidiary Ledger Account Request
-# @name createSubsidiaryLedgerAccount
+### Create Person Request
+# @name createPerson
 POST  http://localhost:5000/peoples
 Content-Type: application/json
 Accept: application/json
 
 ## Request Body
 {
-    "NameEn": "Newton Mitro",
-    "DateOfBirth": "1988-03-13",
-    "Nid": "",
-    "BloodGroup": "B (+ve)",
-    "Gender": "Male",
-    "Religion": "Christian",
-    "Profession": "Service Holder",
-    "MaritalStatus": "Married",
-    "BirthRegistrationNumber": "123",
-    "RegisteredEmail": "newton.mitro@gmail.com",
-    "RegisteredMobile": "03132131631",
-    "Alive": true,
-    "Photo": "",
-    "Addresses":[{
-        "AddressType": "Present Address",
-        "AddressLineOne": "sdfds",
-        "AddressLineTwo": "",
-        "Country": "Bangladesh",
-        "State": "sdfsd",
-        "City": "sfsf",
-        "Division": "sdfdsf",
-        "District": "sfsdf",
-        "SubDistrict": "sdfdsf",
-        "ZipCode": "sfsdf"
-    }],
-    "FamilyAndRelatives":[],
-    "Educations": [],
-    "Trainings":[],
-    "EmploymentHistories":[],
-    "Attachments": []
+  "NameEn": "Newton Mitro",
+  "NameBn": "",
+  "DateOfBirth": "1988-03-13",
+  "Gender": "Male",
+  "BloodGroup": "B (+ve)",
+  "Religion": "Christian",
+  "NID": "",
+  "BirthRegistrationNumber": "123",
+  "MaritalStatus": "Married",
+  "ContactNumber": "",
+  "MobileNumber": "",
+  "PhoneNumber": "",
+  "Email": "",
+  "Profession": "Service Holder",
+  "Addresses": [
+    {
+      "AddressType": "Present Address",
+      "AddressLineOne": "sdfds",
+      "AddressLineTwo": "",
+      "Country": "Bangladesh",
+      "State": "sdfsd",
+      "City": "sfsf",
+      "Division": "sdfdsf",
+      "District": "sfsdf",
+      "SubDistrict": "sdfdsf",
+      "ZipCode": "sfsdf"
+    }
+  ],
+  "FamilyTree": [
+    {
+      "NameEn": "Newton Mitro",
+      "NameBn": "",
+      "DateOfBirth": "1988-03-13",
+      "NID": "",
+      "BloodGroup": "B (+ve)",
+      "Gender": "Male",
+      "Religion": "Christian",
+      "Profession": "Service Holder",
+      "MaritalStatus": "Married",
+      "BirthRegistrationNumber": "123",
+      "ContactNumber": "",
+      "MobileNumber": "",
+      "PhoneNumber": "",
+      "Email": "",
+      "Relationship": "",
+      "Status": ""
+    }
+  ],
+  "Educations": [
+    {
+      "EducationLevel": "",
+      "EducationDegree": "",
+      "InstituteName": "",
+      "MajorSubject": "",
+      "PassingYear": "",
+      "Grade": ""
+    }
+  ],
+  "Trainings": [
+    {
+      "CourseTitle": "",
+      "InstituteName": "",
+      "CourseContent": "",
+      "Result": "",
+      "StartDate": "",
+      "EndDate": ""
+    }
+  ],
+  "EmploymentHistories": [
+    {
+      "OrganizationName": "",
+      "Position": "",
+      "Address": "",
+      "SupervisorName": "",
+      "SupervisorDesignation": "",
+      "SupervisorPhone": "",
+      "JobResponsibilities": "",
+      "Salary": "",
+      "StartDate": "",
+      "EndDate": "",
+      "TillNow": ""
+    }
+  ],
+  "Attachments": [
+    {
+      "DocumentExtension": "jpeg",
+      "DocumentTitle": "Photo",
+      "Base64StringDocument": ""
+    }
+  ]
 }

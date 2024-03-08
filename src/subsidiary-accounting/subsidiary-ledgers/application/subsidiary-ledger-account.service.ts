@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { IOpenableSubsidiaryLedger } from '../domain/interface/strategy/openable-subsidiary-ledger.interface';
@@ -33,7 +33,7 @@ export class SubsidiaryLedgerAccountService {
     subsidiaryLedgerAccountDTO?.Holders?.forEach((holderDTO) => {
       let holder;
 
-      if (holderDTO.CustomerType === CustomerType.Person) {
+      if (holderDTO.CustomerType === CustomerType.PERSON) {
         holder = new HumanCustomerModel();
         holder.IdentificationNumber = holderDTO.IdentificationNumber;
         holder.NameEn = holderDTO.NameEn;
@@ -52,7 +52,7 @@ export class SubsidiaryLedgerAccountService {
         holders.push(holder);
       }
 
-      if (holderDTO.CustomerType === CustomerType.Organization) {
+      if (holderDTO.CustomerType === CustomerType.ORGANIZATION) {
         holder = new OrganizationCustomerModel();
         holder.IdentificationNumber = holderDTO.IdentificationNumber;
         holder.NameEn = holderDTO.NameEn;

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { FindAllQueryDTO } from '../contract/find-all-query.dto';
+import { FindAllQueryDTO } from '../../common/contract/find-all-query.dto';
 import {
   CUSTOMER_MODEL,
   CustomerDocument,
@@ -28,31 +28,29 @@ export class CustomersService {
     const customers = await this.customerModel
       .find({
         $or: [
-          { nameEn: regex },
-          { identificationNumber: regex },
-          { nid: regex },
-          { birthRegistrationNumber: regex },
+          { NameEn: regex },
+          { IdentificationNumber: regex },
+          { NID: regex },
+          { BirthRegistrationNumber: regex },
         ],
       })
       .select([
         '_id',
-        'identificationNumber',
-        'nameEn',
-        'nameBn',
-        'registeredEmail',
-        'alternateEmail',
-        'registeredMobile',
-        'alternateContactNumber',
-        'emergencyContactNumber',
-        'dateOfBirth',
-        'nid',
-        'birthRegistrationNumber',
-        'bloodGroup',
-        'gender',
-        'religion',
-        'profession',
-        'maritalStatus',
-        'customerType',
+        'IdentificationNumber',
+        'NameEn',
+        'NameBn',
+        'Email',
+        'ContactNumber',
+        'DateOfBirth',
+        'NID',
+        'BirthRegistrationNumber',
+        'BloodGroup',
+        'Gender',
+        'Religion',
+        'Profession',
+        'MaritalStatus',
+        'Photo',
+        'CustomerType',
       ])
       .sort({ [sort_by]: order_by })
       .limit(limit)
@@ -68,23 +66,21 @@ export class CustomersService {
       .find()
       .select([
         '_id',
-        'identificationNumber',
-        'nameEn',
-        'nameBn',
-        'registeredEmail',
-        'alternateEmail',
-        'registeredMobile',
-        'alternateContactNumber',
-        'emergencyContactNumber',
-        'dateOfBirth',
-        'nid',
-        'birthRegistrationNumber',
-        'bloodGroup',
-        'gender',
-        'religion',
-        'profession',
-        'maritalStatus',
-        'customerType',
+        'IdentificationNumber',
+        'NameEn',
+        'NameBn',
+        'Email',
+        'ContactNumber',
+        'DateOfBirth',
+        'NID',
+        'BirthRegistrationNumber',
+        'BloodGroup',
+        'Gender',
+        'Religion',
+        'Profession',
+        'MaritalStatus',
+        'Photo',
+        'CustomerType',
       ])
       .sort({ [sort_by]: order_by })
       .limit(limit)

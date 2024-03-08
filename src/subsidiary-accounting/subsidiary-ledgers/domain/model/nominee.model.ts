@@ -1,4 +1,4 @@
-import { Relationship } from 'src/kyc/domain/enum/relationship.enum';
+import { Relationship } from 'src/common/enums/relationship.enum';
 import { HumanCustomerModel } from './human-customer.model';
 
 export class NomineeModel extends HumanCustomerModel {

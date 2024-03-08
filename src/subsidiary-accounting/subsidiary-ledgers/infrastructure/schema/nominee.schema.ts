@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Relationship } from 'src/kyc/domain/enum/relationship.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Relationship } from 'src/common/enums/relationship.enum';
 import { HumanCustomer } from './human-customer.schema';
 
 @Schema()
@@ -12,7 +12,7 @@ export class Nominee extends HumanCustomer {
   @Prop({
     type: String,
     enum: Object.values(CustomerType),
-    default: CustomerType.Person,
+    default: CustomerType.PERSON,
   })
   Relationship: Relationship;
 

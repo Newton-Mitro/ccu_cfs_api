@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { CollateralModel } from 'src/subsidiary-accounting/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/subsidiary-accounting/schedules/domain/model/schedule.model';
 import { AccountType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/account-type.enum';
@@ -46,7 +46,7 @@ export class OrganizationalMSAOpeningPolicyValidator
       // [ ] 02. OAP - Check if account holder is an organization?
       CustomerPolicy.CustomerTypeCheck(
         holder,
-        CustomerType.Organization,
+        CustomerType.ORGANIZATION,
         CustomerSubstitute.AccountHolder,
       );
     });
@@ -60,7 +60,7 @@ export class OrganizationalMSAOpeningPolicyValidator
       // [ ] 04. OAP - Check if account operator is an person?
       CustomerPolicy.CustomerTypeCheck(
         operator,
-        CustomerType.Person,
+        CustomerType.PERSON,
         CustomerSubstitute.AccountOperator,
       );
 
@@ -68,7 +68,7 @@ export class OrganizationalMSAOpeningPolicyValidator
         // [ ] 05. OAP - Check if account operator is christian.
         CustomerPolicy.ReligionCheck(
           operator,
-          Religion.Christian,
+          Religion.CHRISTIAN,
           CustomerSubstitute.AccountOperator,
         );
 

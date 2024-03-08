@@ -1,4 +1,4 @@
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
 import { v4 as uuidv4 } from 'uuid';
 export class BaseCustomerModel {
   private _CustomerId: string = uuidv4();

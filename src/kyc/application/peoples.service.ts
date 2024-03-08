@@ -10,8 +10,8 @@ import {
   PERSON_MODEL,
   PersonDocument,
 } from '../infrastructure/schema/person.schema';
-import { CreatePeopleDTO } from '../contract/create-people.dto';
-import { UpdatePeopleDTO } from '../contract/update-people.dto';
+import { CreatePersonRequest } from '../presentation/contract/person/create-person.request';
+import { UpdatePeopleRequest } from '../presentation/contract/person/update-person.request';
 
 @Injectable()
 export class PeoplesService {
@@ -20,9 +20,9 @@ export class PeoplesService {
     private readonly personModel: Model<PersonDocument>,
   ) {}
 
-  async create(createPeopleDTO: CreatePeopleDTO) {
-    const createdPerson = new this.personModel(createPeopleDTO);
-    createdPerson.identificationNumber = String(new Date().valueOf()).substring(
+  async create(createPersonDTO: CreatePersonRequest) {
+    const createdPerson = new this.personModel(createPersonDTO);
+    createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
       3,
       13,
     );
@@ -57,23 +57,21 @@ export class PeoplesService {
       .find({})
       .select([
         '_id',
-        'identificationNumber',
-        'nameEn',
-        'nameBn',
-        'registeredEmail',
-        'alternateEmail',
-        'registeredMobile',
-        'alternateContactNumber',
-        'emergencyContactNumber',
-        'dateOfBirth',
-        'nid',
-        'birthRegistrationNumber',
-        'bloodGroup',
-        'gender',
-        'religion',
-        'profession',
-        'maritalStatus',
-        'customerType',
+        'IdentificationNumber',
+        'NameEn',
+        'NameBn',
+        'Email',
+        'ContactNumber',
+        'DateOfBirth',
+        'NID',
+        'BirthRegistrationNumber',
+        'BloodGroup',
+        'Gender',
+        'Religion',
+        'Profession',
+        'MaritalStatus',
+        'Photo',
+        'CustomerType',
       ])
       .sort({ nameEn: 'asc' })
       .limit(resultPerPage)
@@ -90,7 +88,7 @@ export class PeoplesService {
     return existingPerson;
   }
 
-  async update(id: string, updatePeopleDto: UpdatePeopleDTO) {
+  async update(id: string, updatePeopleDto: UpdatePeopleRequest) {
     const updatedPerson = await this.personModel.findByIdAndUpdate(
       id,
       updatePeopleDto,

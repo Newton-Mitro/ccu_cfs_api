@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { Religion } from 'src/common/enums/religion.enum';
 import { DateUtil } from 'src/common/utils/date.util';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
-import { Religion } from 'src/kyc/domain/enum/religion.enum';
 import { CustomerSubstitute } from '../enum/customer-substitute.enum';
 import { BaseCustomerModel } from '../model/base-customer.model';
 import { HumanCustomerModel } from '../model/human-customer.model';

@@ -1,41 +1,41 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AddressType } from 'src/kyc/domain/enum/address-type.enum';
+import { PersonAddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
 
 @Schema()
 export class Address {
   @Prop({
     type: String,
-    enum: Object.values(AddressType),
-    default: AddressType.Permanent_Address,
+    enum: Object.values(PersonAddressType),
+    default: PersonAddressType.PERMANENT_ADDRESS,
   })
-  addressType: AddressType;
+  addressType: PersonAddressType;
 
   @Prop({ require: true })
-  addressLineOne: string;
+  AddressLineOne: string;
 
   @Prop()
-  addressLineTwo: string;
+  AddressLineTwo: string;
 
   @Prop({ require: true })
-  country: string;
+  Country: string;
 
   @Prop()
-  state: string;
+  State: string;
 
   @Prop()
-  city: string;
+  City: string;
 
   @Prop()
-  division: string;
+  Division: string;
 
   @Prop()
-  district: string;
+  District: string;
 
   @Prop()
-  subDistrict: string;
+  SubDistrict: string;
 
   @Prop()
-  zipCode: string;
+  ZipCode: string;
 }
 
 export const AddressSchema = SchemaFactory.createForClass(Address);

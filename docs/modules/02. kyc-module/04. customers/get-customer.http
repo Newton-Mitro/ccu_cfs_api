@@ -1,0 +1,5 @@
+### Get Customer Request
+# @name getCustomer
+GET  http://localhost:5000/customers/65eb18d1f8c78414564842f0
+Content-Type: application/json
+Accept: application/json

@@ -106,6 +106,7 @@ Accept: application/json
     }
   ],
   "Collaterals": [],
+  "Sureties": [],
   "Schedules": [],
   "Signature": "",
   "TotalCollateralAmount": 0.00,

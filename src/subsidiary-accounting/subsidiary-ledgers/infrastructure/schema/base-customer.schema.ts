@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CustomerType } from 'src/kyc/domain/enum/customer-type.enum';
+import { CustomerType } from 'src/common/enums/customer-type.enum';
 
 @Schema()
 export class BaseCustomer {
@@ -24,7 +24,7 @@ export class BaseCustomer {
   @Prop({
     type: String,
     enum: Object.values(CustomerType),
-    default: CustomerType.Person,
+    default: CustomerType.PERSON,
   })
   CustomerType: CustomerType;
 }

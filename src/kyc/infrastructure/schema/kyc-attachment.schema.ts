@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { KYCAttachmentType } from 'src/kyc/domain/enum/kyc-attachment-type.enum';
+import { KYCAttachmentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
 
 @Schema()
 export class KycAttachment {
