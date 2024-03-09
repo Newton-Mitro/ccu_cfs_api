@@ -33,7 +33,7 @@ Accept: application/json
       "SubDistrict": "sdfdsf",
       "ZipCode": "sfsdf"
     }
-  ],
+  ], // Address events
   "FamilyTree": [
     {
       "NameEn": "Jane Doe",
@@ -53,7 +53,7 @@ Accept: application/json
       "Relationship": "Sister",
       "Status": "Pending"
     }
-  ],
+  ], // Family tree events
   "Educations": [
     {
       "EducationLevel": "Education Level",
