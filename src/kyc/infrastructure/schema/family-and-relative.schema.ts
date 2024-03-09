@@ -38,8 +38,5 @@ export class FamilyAndRelative {
   Addresses: AddressEntity[];
 }
 
-export type FamilyAndRelativeDocument = FamilyAndRelative & Document;
-export const FAMILY_AND_RELATIVE_MODEL = FamilyAndRelative.name;
-
 export const FamilyAndRelativeSchema =
   SchemaFactory.createForClass(FamilyAndRelative);

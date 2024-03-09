@@ -4,8 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, Types } from 'mongoose';
 import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
@@ -18,13 +18,13 @@ export class OrganizationsService {
   constructor(
     @InjectModel(ORGANIZATION_MODEL)
     private readonly organizationModel: Model<OrganizationDocument>,
-    @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
   async create(createOrganizationDto: CreateOrganizationRequest) {
     const createOrganizationModel = new this.organizationModel(
       createOrganizationDto,
     );
+    createOrganizationModel._id = new Types.ObjectId();
     createOrganizationModel.IdentificationNumber = String(
       new Date().valueOf(),
     ).substring(3, 13);

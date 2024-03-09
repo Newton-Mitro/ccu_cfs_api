@@ -6,7 +6,7 @@ Accept: application/json
 
 ## Request Body
 {
-
+  "NameEn": "John Doe",
   "NameBn": null,
   "DateOfBirth": "1996-06-13",
   "Gender": "Male",
