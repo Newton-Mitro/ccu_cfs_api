@@ -8,6 +8,7 @@ import { AddressEntity } from '../common/entities/address.entity';
 import { KYCAttachmentEntity } from '../common/entities/kyc-attachment.entity';
 import { EducationEntity } from './entities/education.entity';
 import { EmploymentHistoryEntity } from './entities/employment-history.entity';
+import { FamilyAndRelativeEntity } from './entities/family-and-relative.entity';
 import { TrainingEntity } from './entities/training.entity';
 
 @Schema()
@@ -53,6 +54,20 @@ export class PersonAggregate {
   }
   public set ContactNumber(value: string) {
     this._ContactNumber = value;
+  }
+  private _PhoneNumber: string;
+  public get PhoneNumber(): string {
+    return this._PhoneNumber;
+  }
+  public set PhoneNumber(value: string) {
+    this._PhoneNumber = value;
+  }
+  private _MobileNumber: string;
+  public get MobileNumber(): string {
+    return this._MobileNumber;
+  }
+  public set MobileNumber(value: string) {
+    this._MobileNumber = value;
   }
   private _Addresses: AddressEntity[];
   public get Addresses(): AddressEntity[] {
@@ -124,19 +139,12 @@ export class PersonAggregate {
   public set MaritalStatus(value: MaritalStatus) {
     this._MaritalStatus = value;
   }
-  private _Alive: boolean;
-  public get Alive(): boolean {
-    return this._Alive;
+  private _FamilyTree: FamilyAndRelativeEntity[];
+  public get FamilyTree(): FamilyAndRelativeEntity[] {
+    return this._FamilyTree;
   }
-  public set Alive(value: boolean) {
-    this._Alive = value;
-  }
-  private _Photo: string;
-  public get Photo(): string {
-    return this._Photo;
-  }
-  public set Photo(value: string) {
-    this._Photo = value;
+  public set FamilyTree(value: FamilyAndRelativeEntity[]) {
+    this._FamilyTree = value;
   }
   private _Educations: EducationEntity[];
   public get Educations(): EducationEntity[] {

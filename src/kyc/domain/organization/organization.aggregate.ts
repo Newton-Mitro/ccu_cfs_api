@@ -46,6 +46,13 @@ export class OrganizationAggregate {
   public set ContactNumber(value: string) {
     this._ContactNumber = value;
   }
+  private _MobileNumber: string;
+  public get MobileNumber(): string {
+    return this._MobileNumber;
+  }
+  public set MobileNumber(value: string) {
+    this._MobileNumber = value;
+  }
   private _Addresses: AddressEntity[];
   public get Addresses(): AddressEntity[] {
     return this._Addresses;
@@ -87,13 +94,6 @@ export class OrganizationAggregate {
   }
   public set Website(value: string) {
     this._Website = value;
-  }
-  private _Logo: string;
-  public get Logo(): string {
-    return this._Logo;
-  }
-  public set Logo(value: string) {
-    this._Logo = value;
   }
   private _ContactPeoples: ContactPersonEntity[];
   public get ContactPeoples(): ContactPersonEntity[] {
