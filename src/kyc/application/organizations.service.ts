@@ -7,10 +7,6 @@ import {
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
 import {
-  KYC_ATTACHMENT_MODEL,
-  KycAttachmentDocument,
-} from '../infrastructure/schema/kyc-attachment.schema';
-import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
 } from '../infrastructure/schema/organization.schema';
@@ -22,8 +18,6 @@ export class OrganizationsService {
   constructor(
     @InjectModel(ORGANIZATION_MODEL)
     private readonly organizationModel: Model<OrganizationDocument>,
-    @InjectModel(KYC_ATTACHMENT_MODEL)
-    private readonly kycAttachmentModel: Model<KycAttachmentDocument>,
     @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 

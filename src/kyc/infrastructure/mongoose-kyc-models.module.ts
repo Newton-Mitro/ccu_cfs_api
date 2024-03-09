@@ -2,10 +2,6 @@ import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CUSTOMER_MODEL, CustomerSchema } from './schema/customer.schema';
 import {
-  KYC_ATTACHMENT_MODEL,
-  KycAttachmentSchema,
-} from './schema/kyc-attachment.schema';
-import {
   ORGANIZATION_MODEL,
   OrganizationSchema,
 } from './schema/organization.schema';
@@ -19,10 +15,6 @@ const MODELS = [
       { name: PERSON_MODEL, schema: PersonSchema },
       { name: ORGANIZATION_MODEL, schema: OrganizationSchema },
     ],
-  },
-  {
-    name: KYC_ATTACHMENT_MODEL,
-    schema: KycAttachmentSchema,
   },
 ];
 

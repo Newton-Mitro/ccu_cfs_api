@@ -11,7 +11,10 @@ import {
   EmploymentHistory,
   EmploymentHistorySchema,
 } from './employment-history.schema';
-import { FamilyAndRelative } from './family-and-relative.schema';
+import {
+  FamilyAndRelative,
+  FamilyAndRelativeSchema,
+} from './family-and-relative.schema';
 import { Training, TrainingSchema } from './training.schema';
 
 @Schema()
@@ -47,10 +50,7 @@ export class Person extends Customer {
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
 
-  @Prop()
-  Photo: string;
-
-  @Prop({ type: Array(EducationSchema) })
+  @Prop({ type: Array(FamilyAndRelativeSchema) })
   FamilyTree: FamilyAndRelative[];
 
   @Prop({ type: Array(EducationSchema) })

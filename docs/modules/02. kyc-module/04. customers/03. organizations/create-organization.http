@@ -9,7 +9,7 @@ Accept: application/json
   "NameEn": "Bangle Co-operative",
   "NameBn": null,
   "TIN": null,
-  "ContactNumber": "",
+  "ContactNumber": null,
   "MobileNumber": "01704666666",
   "PhoneNumber": null,
   "Fax":null,
@@ -32,7 +32,7 @@ Accept: application/json
   ],
   "ContactPeoples": [
     {
-      "NameEn": "Newton Mitro",
+      "NameEn": "John Doe",
       "NameBn": "",
       "DateOfBirth": "1988-03-13",
       "NID": "",
@@ -42,10 +42,10 @@ Accept: application/json
       "Profession": "Service Holder",
       "MaritalStatus": "Married",
       "BirthRegistrationNumber": "123",
-      "ContactNumber": "",
-      "MobileNumber": "0170455555555",
-      "PhoneNumber": "",
-      "Email": null
+      "ContactNumber": "0170455555555",
+      "MobileNumber":null,
+      "PhoneNumber": null,
+      "Email": "john@emal.com"
     }
   ],
   "BankAccounts": [

@@ -41,6 +41,12 @@ export class Customer {
   @Prop()
   ContactNumber: string;
 
+  @Prop()
+  PhoneNumber: string;
+
+  @Prop()
+  MobileNumber: string;
+
   @Prop({
     type: Array(AddressSchema),
   })

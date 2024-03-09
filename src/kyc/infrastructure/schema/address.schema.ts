@@ -8,7 +8,7 @@ export class Address {
     enum: Object.values(PersonAddressType),
     default: PersonAddressType.PERMANENT_ADDRESS,
   })
-  addressType: PersonAddressType;
+  AddressType: PersonAddressType;
 
   @Prop({ require: true })
   AddressLineOne: string;

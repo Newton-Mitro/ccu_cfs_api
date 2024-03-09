@@ -1,21 +1,47 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Types } from 'mongoose';
 
 @Schema()
 export class ContactPerson {
-  @Prop({ type: Types.ObjectId })
-  ContactPersonPIN: string;
+  @Prop()
+  IdentificationNumber: string;
 
-  @Prop({ require: true })
-  ContactPersonName: string;
+  @Prop({ required: true, trim: true })
+  NameEn: string;
 
-  @Prop({ require: true })
+  @Prop()
+  NameBn: string;
+
+  @Prop()
+  DateOfBirth: Date;
+
+  @Prop()
+  Gender: string;
+
+  @Prop()
+  BloodGroup: string;
+
+  @Prop()
+  Religion: string;
+
+  @Prop()
+  NID: string;
+
+  @Prop()
+  BirthRegistrationNumber: string;
+
+  @Prop()
+  MaritalStatus: string;
+
+  @Prop({ required: true, trim: true })
   ContactNumber: string;
 
   @Prop()
-  EmergencyContactNumber: string;
+  MobileNumber: string;
 
   @Prop()
+  PhoneNumber: string;
+
+  @Prop({ required: true, trim: true })
   Email: string;
 }
 

@@ -8,13 +8,10 @@ export class KycAttachment {
     type: String,
     enum: Object.values(KYCAttachmentType),
   })
-  documentTitle: KYCAttachmentType;
+  DocumentTitle: KYCAttachmentType;
 
   @Prop()
-  documentUrl: string;
-
-  @Prop()
-  base64StringDocument: string;
+  DocumentUrl: string;
 }
 
 export type KycAttachmentDocument = KycAttachment & Document;

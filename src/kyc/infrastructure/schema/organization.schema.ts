@@ -9,17 +9,11 @@ export class Organization extends Customer {
   @Prop({ require: true, type: Types.ObjectId })
   ParentOrganization: string;
 
-  @Prop({ require: true })
-  PhoneNumber: string;
-
   @Prop()
   FaxNumber: string;
 
   @Prop()
   Website: string;
-
-  @Prop()
-  Logo: string;
 
   @Prop({ type: Array(ContactPersonSchema) })
   ContactPeoples: ContactPerson;

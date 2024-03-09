@@ -21,7 +21,7 @@ export class FamilyAndRelative {
   @Prop()
   DateOfBirth: Date;
   @Prop()
-  Nid: string;
+  NID: string;
   @Prop()
   BirthRegistrationNumber: string;
   @Prop()
@@ -35,12 +35,11 @@ export class FamilyAndRelative {
   @Prop()
   MaritalStatus: MaritalStatus;
   @Prop()
-  Alive: boolean;
-  @Prop()
-  Photo: string;
-  @Prop()
   Addresses: AddressEntity[];
 }
+
+export type FamilyAndRelativeDocument = FamilyAndRelative & Document;
+export const FAMILY_AND_RELATIVE_MODEL = FamilyAndRelative.name;
 
 export const FamilyAndRelativeSchema =
   SchemaFactory.createForClass(FamilyAndRelative);

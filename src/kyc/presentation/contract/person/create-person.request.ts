@@ -248,6 +248,7 @@ class FamilyTreeDTO {
   Gender: string;
 
   @IsString()
+  @IsOptional()
   @IsEnum(BloodGroup)
   // @Expose({ name: 'blood_group' })
   BloodGroup: string;
@@ -268,6 +269,7 @@ class FamilyTreeDTO {
   BirthRegistrationNumber: string;
 
   @IsString()
+  @IsOptional()
   @IsEnum(MaritalStatus)
   // @Expose({ name: 'marital_status' })
   MaritalStatus: string;

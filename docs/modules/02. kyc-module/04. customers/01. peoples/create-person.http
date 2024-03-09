@@ -6,19 +6,19 @@ Accept: application/json
 
 ## Request Body
 {
-  "NameEn": "Newton Mitro",
-  "NameBn": "",
-  "DateOfBirth": "1988-03-13",
+  "NameEn": "John Doe",
+  "NameBn": null,
+  "DateOfBirth": "1996-06-13",
   "Gender": "Male",
   "BloodGroup": "B (+ve)",
   "Religion": "Christian",
-  "NID": "",
-  "BirthRegistrationNumber": "123",
+  "NID": "123456789",
+  "BirthRegistrationNumber": null,
   "MaritalStatus": "Married",
-  "ContactNumber": "",
-  "MobileNumber": "",
-  "PhoneNumber": "",
-  "Email": "",
+  "ContactNumber": null,
+  "MobileNumber": null,
+  "PhoneNumber": "123456789",
+  "Email": "john@email.com",
   "Profession": "Service Holder",
   "Addresses": [
     {
@@ -36,12 +36,12 @@ Accept: application/json
   ],
   "FamilyTree": [
     {
-      "NameEn": "Newton Mitro",
+      "NameEn": "Jane Doe",
       "NameBn": "",
-      "DateOfBirth": "1988-03-13",
+      "DateOfBirth": "2000-04-21",
       "NID": "",
       "BloodGroup": "B (+ve)",
-      "Gender": "Male",
+      "Gender": "Female",
       "Religion": "Christian",
       "Profession": "Service Holder",
       "MaritalStatus": "Married",
@@ -49,51 +49,51 @@ Accept: application/json
       "ContactNumber": "",
       "MobileNumber": "",
       "PhoneNumber": "",
-      "Email": "",
-      "Relationship": "",
-      "Status": ""
+      "Email": null,
+      "Relationship": "Sister",
+      "Status": "Pending"
     }
   ],
   "Educations": [
     {
-      "EducationLevel": "",
-      "EducationDegree": "",
-      "InstituteName": "",
-      "MajorSubject": "",
-      "PassingYear": "",
-      "Grade": ""
+      "EducationLevel": "Education Level",
+      "EducationDegree": "EducationDegree",
+      "InstituteName": "InstituteName",
+      "MajorSubject": "MajorSubject",
+      "PassingYear": "PassingYear",
+      "Grade": "Grade"
     }
   ],
   "Trainings": [
     {
-      "CourseTitle": "",
-      "InstituteName": "",
-      "CourseContent": "",
+      "CourseTitle": "CourseTitle",
+      "InstituteName": "InstituteName",
+      "CourseContent": "CourseContent",
       "Result": "",
-      "StartDate": "",
-      "EndDate": ""
+      "StartDate": "2000-04-21",
+      "EndDate": "2000-04-21"
     }
   ],
   "EmploymentHistories": [
     {
-      "OrganizationName": "",
-      "Position": "",
-      "Address": "",
-      "SupervisorName": "",
-      "SupervisorDesignation": "",
-      "SupervisorPhone": "",
-      "JobResponsibilities": "",
-      "Salary": "",
-      "StartDate": "",
-      "EndDate": "",
-      "TillNow": ""
+      "OrganizationName": "CCCUL",
+      "Position": "Software Engineer",
+      "Address": "Address",
+      "SupervisorName": "SupervisorName",
+      "SupervisorDesignation": "SupervisorDesignation",
+      "SupervisorPhone": "SupervisorPhone",
+      "JobResponsibilities": "JobResponsibilities",
+      "Salary": null,
+      "StartDate": "2000-04-21",
+      "EndDate": null,
+      "TillNow": true
     }
   ],
   "Attachments": [
     {
-      "DocumentExtension": "jpeg",
-      "DocumentTitle": "Photo",
-      "Base64StringDocument": ""
+      "FileExtension": "jpeg",
+      "DocumentTitle": "Passport",
+      "Base64StringDocument": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
     }
   ]
 }
