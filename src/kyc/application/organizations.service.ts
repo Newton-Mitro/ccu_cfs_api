@@ -9,7 +9,7 @@ import { Model, Types } from 'mongoose';
 import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
-} from '../infrastructure/schema/organization.schema';
+} from '../infrastructure/schema/organization/organization.schema';
 import { CreateOrganizationRequest } from '../presentation/contract/organization/create-organization.request';
 import { UpdateOrganizationRequest } from '../presentation/contract/organization/update-organization.request';
 

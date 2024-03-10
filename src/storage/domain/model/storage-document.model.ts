@@ -1,10 +1,4 @@
-export class StorageDocumentModel {
-  id: string;
+export class StorageDocument {
   documentTitle: string;
   documentUrl: string;
-  base64StringDocument: string;
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
 }

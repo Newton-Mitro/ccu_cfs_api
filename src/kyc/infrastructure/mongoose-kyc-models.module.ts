@@ -1,11 +1,14 @@
 import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CUSTOMER_MODEL, CustomerSchema } from './schema/customer.schema';
+import {
+  CUSTOMER_MODEL,
+  CustomerSchema,
+} from './schema/common/customer.schema';
 import {
   ORGANIZATION_MODEL,
   OrganizationSchema,
-} from './schema/organization.schema';
-import { PERSON_MODEL, PersonSchema } from './schema/person.schema';
+} from './schema/organization/organization.schema';
+import { PERSON_MODEL, PersonSchema } from './schema/person/person.schema';
 
 const MODELS = [
   {

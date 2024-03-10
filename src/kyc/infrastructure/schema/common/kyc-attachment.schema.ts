@@ -10,9 +10,8 @@ export class KYCAttachment {
   })
   DocumentTitle: KYCAttachmentType;
 
-  @Prop()
+  @Prop({ required: true, type: String })
   DocumentUrl: string;
 }
-
 
 export const KYCAttachmentSchema = SchemaFactory.createForClass(KYCAttachment);

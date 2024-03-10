@@ -1,3 +1,3 @@
-import { StorageDocumentModel } from 'src/storage/domain/model/storage-document.model';
+import { StorageDocument } from 'src/storage/domain/model/storage-document.model';
 
-export class KYCAttachmentEntity extends StorageDocumentModel {}
+export class KYCAttachment extends StorageDocument {}

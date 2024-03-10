@@ -5,7 +5,7 @@ import { FindAllQueryDTO } from '../../common/contract/find-all-query.dto';
 import {
   CUSTOMER_MODEL,
   CustomerDocument,
-} from '../infrastructure/schema/customer.schema';
+} from '../infrastructure/schema/common/customer.schema';
 
 @Injectable()
 export class CustomersService {

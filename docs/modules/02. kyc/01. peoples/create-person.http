@@ -50,6 +50,11 @@ Accept: application/json
       "MobileNumber": "",
       "PhoneNumber": "",
       "Email": null,
+      "Photo": {
+        "FileExtension": "jpeg",
+        "DocumentTitle": "Photo",
+        "Base64StringDocument": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+      },
       "Relationship": "Sister",
       "Status": "Pending"
     }

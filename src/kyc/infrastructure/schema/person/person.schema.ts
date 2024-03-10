@@ -5,7 +5,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { Customer } from './customer.schema';
+import { Customer } from '../common/customer.schema';
 import { Education, EducationSchema } from './education.schema';
 import {
   EmploymentHistory,

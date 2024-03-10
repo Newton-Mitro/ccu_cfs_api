@@ -5,6 +5,7 @@ import { Gender } from '../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
+import { KYCAttachment } from '../../common/entities/kyc-attachment.entity';
 import { FamilyTreeStatus } from '../../common/enums/family-tree-status.enum';
 
 export class FamilyAndRelative extends BaseEntity {
@@ -25,6 +26,7 @@ export class FamilyAndRelative extends BaseEntity {
   private _BirthRegistrationNumber: string;
   private _Relationship: Relationship;
   private _Status: FamilyTreeStatus;
+  private _Photo: KYCAttachment;
 
   constructor(
     familyTreeId: string,
@@ -43,6 +45,7 @@ export class FamilyAndRelative extends BaseEntity {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
+    photo: KYCAttachment,
   ) {
     super(familyTreeId);
     this._IdentificationNumber = identificationNumber;
@@ -60,6 +63,7 @@ export class FamilyAndRelative extends BaseEntity {
     this._Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
+    this._Photo = photo;
   }
 
   public get IdentificationNumber(): string {
@@ -196,5 +200,13 @@ export class FamilyAndRelative extends BaseEntity {
 
   public set Status(value: FamilyTreeStatus) {
     this._Status = value;
+  }
+
+  public get Photo(): KYCAttachment {
+    return this._Photo;
+  }
+
+  public set Photo(value: KYCAttachment) {
+    this._Photo = value;
   }
 }

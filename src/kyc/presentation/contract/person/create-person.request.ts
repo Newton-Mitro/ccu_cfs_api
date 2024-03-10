@@ -3,10 +3,13 @@ import {
   IsArray,
   IsBoolean,
   IsDateString,
+  IsDefined,
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsNotEmptyObject,
   IsNumber,
+  IsObject,
   IsOptional,
   IsString,
   ValidateNested,
@@ -294,6 +297,14 @@ class FamilyTreeDTO {
   @IsEmail()
   // @Expose({ name: 'email' })
   Email: string;
+
+  @IsDefined()
+  @IsNotEmptyObject()
+  @IsObject()
+  @ValidateNested()
+  @Type(() => KYCAttachmentDTO)
+  // @Expose({ name: 'photo' })
+  Photo: Object;
 
   @IsEnum(Relationship)
   @IsNotEmpty()

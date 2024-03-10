@@ -7,7 +7,7 @@ import { KYCAttachment, KYCAttachmentSchema } from './kyc-attachment.schema';
   versionKey: false,
   discriminatorKey: 'CustomerType',
 })
-export class Customer   {
+export class Customer {
   @Prop({
     require: true,
     unique: true,

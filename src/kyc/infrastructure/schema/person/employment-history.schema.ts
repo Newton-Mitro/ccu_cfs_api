@@ -5,19 +5,19 @@ export class EmploymentHistory {
   @Prop({ require: true })
   OrganizationName: string;
 
-  @Prop()
+  @Prop({ require: true })
   Position: string;
 
   @Prop({ require: true })
   Address: string;
 
-  @Prop()
+  @Prop({ require: true })
   SupervisorName: string;
 
-  @Prop()
+  @Prop({ require: true })
   SupervisorDesignation: string;
 
-  @Prop()
+  @Prop({ require: true })
   SupervisorPhone: string;
 
   @Prop()
@@ -26,7 +26,7 @@ export class EmploymentHistory {
   @Prop()
   Salary: string;
 
-  @Prop()
+  @Prop({ require: true })
   StartDate: string;
 
   @Prop()

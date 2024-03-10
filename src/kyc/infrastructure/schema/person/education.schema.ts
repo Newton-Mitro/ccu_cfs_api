@@ -5,7 +5,7 @@ export class Education {
   @Prop({ require: true })
   EducationLevel: string;
 
-  @Prop()
+  @Prop({ require: true })
   EducationDegree: string;
 
   @Prop({ require: true })
@@ -14,7 +14,7 @@ export class Education {
   @Prop()
   MajorSubject: string;
 
-  @Prop()
+  @Prop({ require: true })
   PassingYear: string;
 
   @Prop()

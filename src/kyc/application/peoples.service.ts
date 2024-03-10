@@ -9,7 +9,7 @@ import { Model, Types } from 'mongoose';
 import {
   PERSON_MODEL,
   PersonDocument,
-} from '../infrastructure/schema/person.schema';
+} from '../infrastructure/schema/person/person.schema';
 import { CreatePersonRequest } from '../presentation/contract/person/create-person.request';
 import { UpdatePeopleRequest } from '../presentation/contract/person/update-person.request';
 

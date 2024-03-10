@@ -5,7 +5,7 @@ import { MaritalStatus } from '../../../common/enums/marital-status.enum';
 import { Profession } from '../../../common/enums/profession.enum';
 import { Religion } from '../../../common/enums/religion.enum';
 import { AddressEntity } from '../common/entities/address.entity';
-import { KYCAttachmentEntity } from '../common/entities/kyc-attachment.entity';
+import { KYCAttachment } from '../common/entities/kyc-attachment.entity';
 import { Education } from './entities/education.entity';
 import { EmploymentHistory } from './entities/employment-history.entity';
 import { FamilyAndRelative } from './entities/family-and-relative.entity';
@@ -32,7 +32,7 @@ export class Person extends BaseEntity {
   private _Educations: Education[];
   private _Trainings: Training[];
   private _EmploymentHistories: EmploymentHistory[];
-  private _Attachments: KYCAttachmentEntity[];
+  private _Photo: KYCAttachment;
 
   constructor(
     customerId: string,
@@ -56,7 +56,7 @@ export class Person extends BaseEntity {
     educations: Education[],
     trainings: Training[],
     employmentHistories: EmploymentHistory[],
-    attachments: KYCAttachmentEntity[],
+    photo: KYCAttachment,
   ) {
     super(customerId);
     this._IdentificationNumber = identificationNumber;
@@ -79,7 +79,7 @@ export class Person extends BaseEntity {
     this._Educations = educations;
     this._Trainings = trainings;
     this._EmploymentHistories = employmentHistories;
-    this._Attachments = attachments;
+    this._Photo = photo;
   }
 
   public updateBasicInformation(
@@ -131,7 +131,7 @@ export class Person extends BaseEntity {
     // Publish Event: FamilyAndRelativeRemovedEvent
   }
 
-  public addAttachment(attachment: KYCAttachmentEntity) {
+  public addAttachment(attachment: KYCAttachment) {
     // Publish Event: PersonsAttachmentAddedEvent
   }
 
@@ -219,7 +219,7 @@ export class Person extends BaseEntity {
     return this._EmploymentHistories;
   }
 
-  public get Attachments(): KYCAttachmentEntity[] {
-    return this._Attachments;
+  public get Photo(): KYCAttachment {
+    return this._Photo;
   }
 }

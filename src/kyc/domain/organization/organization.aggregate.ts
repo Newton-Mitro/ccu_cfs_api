@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
 import { AddressEntity } from '../common/entities/address.entity';
-import { KYCAttachmentEntity } from '../common/entities/kyc-attachment.entity';
+import { KYCAttachment } from '../common/entities/kyc-attachment.entity';
 import { BankAccount } from './entities/bank-account.entity';
 import { ContactPerson } from './entities/contact-person.entity';
 
@@ -16,7 +16,7 @@ export class Organization extends BaseEntity {
   private _Website: string;
   private _ParentOrganization: string;
   private _Addresses: AddressEntity[];
-  private _Attachments: KYCAttachmentEntity[];
+  private _Attachments: KYCAttachment[];
   private _ContactPeoples: ContactPerson[];
   private _BankAccounts: BankAccount[];
 
@@ -33,7 +33,7 @@ export class Organization extends BaseEntity {
     website: string,
     parentOrganization: string,
     addresses: AddressEntity[],
-    attachments: KYCAttachmentEntity[],
+    attachments: KYCAttachment[],
     contactPeoples: ContactPerson[],
     bankAccounts: BankAccount[],
   ) {
@@ -110,11 +110,11 @@ export class Organization extends BaseEntity {
     this._Addresses = value;
   }
 
-  public get Attachments(): KYCAttachmentEntity[] {
+  public get Attachments(): KYCAttachment[] {
     return this._Attachments;
   }
 
-  public set Attachments(value: KYCAttachmentEntity[]) {
+  public set Attachments(value: KYCAttachment[]) {
     this._Attachments = value;
   }
 

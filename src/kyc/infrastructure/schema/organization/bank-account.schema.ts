@@ -8,13 +8,13 @@ export class BankAccount {
   @Prop({ require: true })
   Branch: string;
 
-  @Prop({ require: true })
+  @Prop()
   RoutingNumber: string;
 
   @Prop({ require: true })
   AccountNumber: string;
 
-  @Prop({ require: true })
+  @Prop()
   AccountName: string;
 }
 
