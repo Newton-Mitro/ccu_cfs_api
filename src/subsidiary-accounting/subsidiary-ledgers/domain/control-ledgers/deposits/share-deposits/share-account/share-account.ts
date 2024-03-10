@@ -25,8 +25,6 @@ export class ShareAccount
 
   constructor() {
     this.iOpenableSubsidiaryLedger = new OpenLikeShareAccount();
-    this.iCloseableSubsidiaryLedger = null;
-    this.iDepositAbleSubsidiaryLedger = null;
   }
 
   OpenSubsidiaryLedgerAccount(
@@ -36,17 +34,17 @@ export class ShareAccount
     branch: Branch,
     holders: BaseCustomerModel[],
     operators: OperatorModel[],
-    interestRate?: number,
-    duration?: number,
-    protectionSchemePercent?: number,
-    openingAmount?: number,
-    installmentAmount?: number,
-    numberOfInstallment?: number,
-    stock?: number,
-    nominees?: NomineeModel[],
-    introducers?: IntroducerModel[],
-    collaterals?: CollateralModel[],
-    schedules?: ScheduleModel[],
+    interestRate: number,
+    duration: number,
+    protectionSchemePercent: number,
+    openingAmount: number,
+    installmentAmount: number,
+    numberOfInstallment: number,
+    stock: number,
+    nominees: NomineeModel[],
+    introducers: IntroducerModel[],
+    collaterals: CollateralModel[],
+    schedules: ScheduleModel[],
   ): SubsidiaryLedgerAccountModel {
     // Check If Account Holder Has Saving Account
     // Check If Saving Account Age >= Then 6 Month

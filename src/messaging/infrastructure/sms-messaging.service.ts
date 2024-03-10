@@ -21,7 +21,7 @@ export class SMSMessagingService {
 
     return this.httpService
       .post(
-        this.config.get('SMS_HOST'),
+        this.config.get('SMS_HOST')!,
         JSON.stringify({
           username: this.config.get('SMS_USER'),
           password: this.config.get('SMS_PASSWORD'),
@@ -50,7 +50,7 @@ export class SMSMessagingService {
     };
     return this.httpService
       .post(
-        this.config.get('SMS_HOST'),
+        this.config.get('SMS_HOST')!,
         JSON.stringify({
           username: this.config.get('SMS_USER'),
           password: this.config.get('SMS_PASSWORD'),
@@ -77,7 +77,7 @@ export class SMSMessagingService {
         'Content-Type': 'application/json',
       },
     };
-    return this.httpService.post(this.config.get('SMS_HOST'), {
+    return this.httpService.post(this.config.get('SMS_HOST')!, {
       username: this.config.get('SMS_USER'),
       password: this.config.get('SMS_PASSWORD'),
       apicode: sendSMSOptions.apiCodeOrEndpoint,

@@ -37,7 +37,7 @@ export class HumanCustomer extends BaseCustomer {
   @Prop({
     type: String,
     enum: Object.values(Profession),
-    default: Profession.RATHER_NOT_SAY,
+    default: Profession.UNWILLING_TO_REVEAL,
   })
   Profession: Profession;
 

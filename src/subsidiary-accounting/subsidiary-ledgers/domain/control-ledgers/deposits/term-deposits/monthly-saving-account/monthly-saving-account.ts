@@ -25,8 +25,6 @@ export class MonthlySavingAccount
 
   constructor() {
     this.iOpenableSubsidiaryLedger = new OpenLikeMonthlySavingAccount();
-    this.iCloseableSubsidiaryLedger = null;
-    this.iDepositAbleSubsidiaryLedger = null;
   }
 
   OpenSubsidiaryLedgerAccount(
@@ -36,17 +34,17 @@ export class MonthlySavingAccount
     branch: Branch,
     holders: BaseCustomerModel[],
     operators: OperatorModel[],
-    interestRate?: number,
-    duration?: number,
-    protectionSchemePercent?: number,
-    openingAmount?: number,
-    installmentAmount?: number,
-    numberOfInstallment?: number,
-    stock?: number,
-    nominees?: NomineeModel[],
-    introducers?: IntroducerModel[],
-    collaterals?: CollateralModel[],
-    schedules?: ScheduleModel[],
+    interestRate: number,
+    duration: number,
+    protectionSchemePercent: number,
+    openingAmount: number,
+    installmentAmount: number,
+    numberOfInstallment: number,
+    stock: number,
+    nominees: NomineeModel[],
+    introducers: IntroducerModel[],
+    collaterals: CollateralModel[],
+    schedules: ScheduleModel[],
   ): SubsidiaryLedgerAccountModel {
     const subsidiaryLedgerAccountModel =
       this.iOpenableSubsidiaryLedger.OpenSubsidiaryLedgerAccount(

@@ -42,7 +42,7 @@ export class Person extends Customer {
 
   @Prop({
     type: String,
-    default: Profession.RATHER_NOT_SAY,
+    default: Profession.UNWILLING_TO_REVEAL,
     enum: Object.values(Profession),
   })
   Profession: Profession;

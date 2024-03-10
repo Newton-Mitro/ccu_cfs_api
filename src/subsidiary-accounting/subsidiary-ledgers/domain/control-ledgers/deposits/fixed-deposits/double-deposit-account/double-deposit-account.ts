@@ -31,10 +31,6 @@ export class DoubleDepositAccount
 
   constructor() {
     this.iOpenableSubsidiaryLedger = new OpenLikeDoubleDepositAccount();
-    this.iCloseableSubsidiaryLedger = null;
-    this.iDepositAbleSubsidiaryLedger = null;
-    this.iTransferableSubsidiaryLedger = null;
-    this.iWithdrawableSubsidiaryLedger = null;
   }
 
   OpenSubsidiaryLedgerAccount(
@@ -44,17 +40,17 @@ export class DoubleDepositAccount
     branch: Branch,
     holders: BaseCustomerModel[],
     operators: OperatorModel[],
-    interestRate?: number,
-    duration?: number,
-    protectionSchemePercent?: number,
-    openingAmount?: number,
-    installmentAmount?: number,
-    numberOfInstallment?: number,
-    stock?: number,
-    nominees?: NomineeModel[],
-    introducers?: IntroducerModel[],
-    collaterals?: CollateralModel[],
-    schedules?: ScheduleModel[],
+    interestRate: number,
+    duration: number,
+    protectionSchemePercent: number,
+    openingAmount: number,
+    installmentAmount: number,
+    numberOfInstallment: number,
+    stock: number,
+    nominees: NomineeModel[],
+    introducers: IntroducerModel[],
+    collaterals: CollateralModel[],
+    schedules: ScheduleModel[],
   ): SubsidiaryLedgerAccountModel {
     const subsidiaryLedgerAccountModel =
       this.iOpenableSubsidiaryLedger.OpenSubsidiaryLedgerAccount(

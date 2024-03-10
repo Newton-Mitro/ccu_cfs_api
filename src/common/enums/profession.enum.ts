@@ -1,4 +1,4 @@
 export enum Profession {
   SERVICE_HOLDER = 'Service Holder',
-  RATHER_NOT_SAY = 'Rather Not Say',
+  UNWILLING_TO_REVEAL = 'Unwilling to reveal',
 }

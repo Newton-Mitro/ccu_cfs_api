@@ -17,10 +17,7 @@ export class TellerCash
   private iOpenableSubsidiaryLedger: IOpenableSubsidiaryLedger;
   private iCloseableSubsidiaryLedger: ICloseableSubsidiaryLedger;
 
-  constructor() {
-    this.iOpenableSubsidiaryLedger = null;
-    this.iCloseableSubsidiaryLedger = null;
-  }
+  constructor() {}
 
   OpenSubsidiaryLedgerAccount(
     accountType: AccountType,
@@ -29,17 +26,17 @@ export class TellerCash
     branch: Branch,
     holders: BaseCustomerModel[],
     operators: OperatorModel[],
-    interestRate?: number,
-    duration?: number,
-    protectionSchemePercent?: number,
-    openingAmount?: number,
-    installmentAmount?: number,
-    numberOfInstallment?: number,
-    stock?: number,
-    nominees?: NomineeModel[],
-    introducers?: IntroducerModel[],
-    collaterals?: CollateralModel[],
-    schedules?: ScheduleModel[],
+    interestRate: number,
+    duration: number,
+    protectionSchemePercent: number,
+    openingAmount: number,
+    installmentAmount: number,
+    numberOfInstallment: number,
+    stock: number,
+    nominees: NomineeModel[],
+    introducers: IntroducerModel[],
+    collaterals: CollateralModel[],
+    schedules: ScheduleModel[],
   ): SubsidiaryLedgerAccountModel {
     const subsidiaryLedgerAccountModel =
       this.iOpenableSubsidiaryLedger.OpenSubsidiaryLedgerAccount(

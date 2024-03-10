@@ -31,7 +31,7 @@ export class CreatePersonRequest {
   @IsString()
   @IsOptional()
   // @Expose({ name: 'name_bn' })
-  NameBn: string;
+  NameBn: string = '';
 
   @IsDateString()
   @IsNotEmpty()
@@ -41,59 +41,59 @@ export class CreatePersonRequest {
   @IsString()
   @IsEnum(Gender)
   // @Expose({ name: 'gender' })
-  Gender: string;
+  Gender: string = Gender.MALE;
 
   @IsString()
   @IsEnum(BloodGroup)
   // @Expose({ name: 'blood_group' })
-  BloodGroup: string;
+  BloodGroup: string = BloodGroup.UNKNOWN;
 
   @IsString()
   @IsEnum(Religion)
   // @Expose({ name: 'religion' })
-  Religion: string;
+  Religion: string = Religion.UNWILLING_TO_REVEAL;
 
   @IsString()
   @IsOptional()
   // @Expose({ name: 'nid' })
-  NID: string;
+  NID: string = '';
 
   @IsString()
   @IsOptional()
   // @Expose({ name: 'birth_registration_number' })
-  BirthRegistrationNumber: string;
+  BirthRegistrationNumber: string = '';
 
   @IsString()
   @IsEnum(MaritalStatus)
   // @Expose({ name: 'marital_status' })
-  MaritalStatus: string;
+  MaritalStatus: string = MaritalStatus.SINGLE;
 
   @IsString()
   @IsOptional()
   // @Expose({ name: 'contact_number' })
-  ContactNumber: string;
+  ContactNumber: string = '';
 
   @IsString()
   @IsOptional()
   // @Expose({ name: 'mobile_number' })
-  MobileNumber: string;
+  MobileNumber: string = '';
 
   @IsString()
   @IsOptional()
   // @Expose({ name: 'phone_number' })
-  PhoneNumber: string;
+  PhoneNumber: string = '';
 
   @IsString()
   @IsOptional()
   @IsEmail()
   // @Expose({ name: 'email' })
-  Email: string;
+  Email: string = '';
 
   @IsString()
   @IsEnum(Profession)
   @IsOptional()
   // @Expose({ name: 'profession' })
-  Profession: string;
+  Profession: string = Profession.UNWILLING_TO_REVEAL;
 
   @Type(() => AddressDTO)
   @IsArray()

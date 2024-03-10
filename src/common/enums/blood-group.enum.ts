@@ -7,4 +7,5 @@ export enum BloodGroup {
   AB_NEGATIVE = 'AB (-ve)',
   O_POSITIVE = 'O (+ve)',
   O_NEGATIVE = 'O (-ve)',
+  UNKNOWN = 'Unknown',
 }

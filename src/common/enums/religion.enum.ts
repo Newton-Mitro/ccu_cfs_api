@@ -4,5 +4,5 @@ export enum Religion {
   HINDU = 'Hindu',
   BUDDHIST = 'Buddhist',
   OTHERS = 'Others',
-  NOT_APPLICABLE = 'Not Applicable',
+  UNWILLING_TO_REVEAL = 'Unwilling to reveal',
 }

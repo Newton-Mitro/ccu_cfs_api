@@ -15,25 +15,25 @@ export const mongooseTransactionHandler = async <T = any>(
   let error;
   let result: T;
   try {
-    result = await method(session);
+    result = await method(session!);
 
     if (isSessionFurnished === false) {
-      await session.commitTransaction();
+      await session?.commitTransaction();
     }
   } catch (err) {
     error = err;
     if (isSessionFurnished === false) {
-      await session.abortTransaction();
+      await session?.abortTransaction();
     }
   } finally {
     if (isSessionFurnished === false) {
-      await session.endSession();
+      await session?.endSession();
     }
 
     if (error) {
       onError(error);
     }
 
-    return result;
+    return result!;
   }
 };
