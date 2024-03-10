@@ -367,11 +367,6 @@ class KYCAttachmentDTO {
 }
 
 class AddressDTO {
-  @IsString()
-  @IsOptional()
-  // @Expose({ name: 'address_id' })
-  AddressId: string;
-
   @IsEnum(PersonAddressType)
   @IsNotEmpty()
   // @Expose({ name: 'address_type' })

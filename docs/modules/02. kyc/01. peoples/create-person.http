@@ -20,6 +20,11 @@ Accept: application/json
   "PhoneNumber": "123456789",
   "Email": "john@email.com",
   "Profession": "Service Holder",
+  "Photo": {
+    "FileExtension": "jpeg",
+    "DocumentTitle": "Photo",
+    "Base64StringDocument": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+  },
   "Addresses": [
     {
       "AddressType": "Present Address",
