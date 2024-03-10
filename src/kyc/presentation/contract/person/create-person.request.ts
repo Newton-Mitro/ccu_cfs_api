@@ -98,6 +98,13 @@ export class CreatePersonRequest {
   // @Expose({ name: 'profession' })
   Profession: string = Profession.UNWILLING_TO_REVEAL;
 
+  @IsOptional()
+  @IsObject()
+  @ValidateNested()
+  @Type(() => KYCAttachmentDTO)
+  // @Expose({ name: 'photo' })
+  Photo: Object;
+
   @Type(() => AddressDTO)
   @IsArray()
   @ValidateNested({ each: true })
