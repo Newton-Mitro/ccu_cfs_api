@@ -1,7 +1,7 @@
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { FamilyTreeStatus } from 'src/kyc/domain/common/enums/family-tree-status.enum';
-import { KYCAttachmentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
-import { PersonAddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
+import { PersonalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
+import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
 
 export class CreatePersonCommand {
   constructor(
@@ -81,13 +81,13 @@ class TrainingDTO {
 
 class KYCAttachmentDTO {
   FileExtension: string;
-  DocumentTitle: KYCAttachmentType;
+  DocumentTitle: PersonalDocumentType;
   Base64StringDocument: string;
 }
 
 class AddressDTO {
   AddressId: string;
-  AddressType: PersonAddressType;
+  AddressType: AddressType;
   AddressLineOne: string;
   AddressLineTwo: string;
   Country: string;

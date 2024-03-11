@@ -4,14 +4,14 @@ import { Gender } from '../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../common/enums/marital-status.enum';
 import { Profession } from '../../../common/enums/profession.enum';
 import { Religion } from '../../../common/enums/religion.enum';
-import { AddressEntity } from '../common/entities/address.entity';
-import { KYCAttachment } from '../common/entities/kyc-attachment.entity';
-import { Education } from './entities/education.entity';
-import { EmploymentHistory } from './entities/employment-history.entity';
-import { FamilyAndRelative } from './entities/family-and-relative.entity';
-import { Training } from './entities/training.entity';
+import { AddressModel } from '../common/entities/address.entity';
+import { EducationModel } from './entities/education.entity';
+import { EmploymentHistoryModel } from './entities/employment-history.entity';
+import { FamilyAndRelativeModel } from './entities/family-and-relative.entity';
+import { PersonAttachmentModel } from './entities/person-attachment.entity';
+import { TrainingModel } from './entities/training.entity';
 
-export class Person extends BaseEntity {
+export class PersonModel extends BaseEntity {
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -27,12 +27,13 @@ export class Person extends BaseEntity {
   private _Email: string;
   private _NID: string;
   private _BirthRegistrationNumber: string;
-  private _Addresses: AddressEntity[];
-  private _FamilyTree: FamilyAndRelative[];
-  private _Educations: Education[];
-  private _Trainings: Training[];
-  private _EmploymentHistories: EmploymentHistory[];
-  private _Photo: KYCAttachment;
+  private _Addresses: AddressModel[];
+  private _FamilyTree: FamilyAndRelativeModel[];
+  private _Educations: EducationModel[];
+  private _Trainings: TrainingModel[];
+  private _EmploymentHistories: EmploymentHistoryModel[];
+  private _Attachments: PersonAttachmentModel[];
+  private _Photo: PersonAttachmentModel;
 
   constructor(
     customerId: string,
@@ -51,12 +52,13 @@ export class Person extends BaseEntity {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
-    addresses: AddressEntity[],
-    familyTree: FamilyAndRelative[],
-    educations: Education[],
-    trainings: Training[],
-    employmentHistories: EmploymentHistory[],
-    photo: KYCAttachment,
+    addresses: AddressModel[],
+    familyTree: FamilyAndRelativeModel[],
+    educations: EducationModel[],
+    trainings: TrainingModel[],
+    employmentHistories: EmploymentHistoryModel[],
+    attachments: PersonAttachmentModel[],
+    photo: PersonAttachmentModel,
   ) {
     super(customerId);
     this._IdentificationNumber = identificationNumber;
@@ -79,6 +81,7 @@ export class Person extends BaseEntity {
     this._Educations = educations;
     this._Trainings = trainings;
     this._EmploymentHistories = employmentHistories;
+    this._Attachments = attachments;
     this._Photo = photo;
   }
 
@@ -115,7 +118,7 @@ export class Person extends BaseEntity {
     // Publish Event: PersonsBasicInformationUpdatedEvent
   }
 
-  public addAddress(address: AddressEntity) {
+  public addAddress(address: AddressModel) {
     // Publish Event: PersonsAddressAddedEvent
   }
 
@@ -123,7 +126,7 @@ export class Person extends BaseEntity {
     // Publish Event: PersonsAddressRemovedEvent
   }
 
-  public addToFamilyTree(familyAndRelative: FamilyAndRelative) {
+  public addToFamilyTree(familyAndRelative: FamilyAndRelativeModel) {
     // Publish Event: FamilyAndRelativeAddedEvent
   }
 
@@ -131,7 +134,7 @@ export class Person extends BaseEntity {
     // Publish Event: FamilyAndRelativeRemovedEvent
   }
 
-  public addAttachment(attachment: KYCAttachment) {
+  public addAttachment(attachment: PersonAttachmentModel) {
     // Publish Event: PersonsAttachmentAddedEvent
   }
 
@@ -199,27 +202,31 @@ export class Person extends BaseEntity {
     return this._MaritalStatus;
   }
 
-  public get Addresses(): AddressEntity[] {
+  public get Addresses(): AddressModel[] {
     return this._Addresses;
   }
 
-  public get FamilyTree(): FamilyAndRelative[] {
+  public get FamilyTree(): FamilyAndRelativeModel[] {
     return this._FamilyTree;
   }
 
-  public get Educations(): Education[] {
+  public get Educations(): EducationModel[] {
     return this._Educations;
   }
 
-  public get Trainings(): Training[] {
+  public get Trainings(): TrainingModel[] {
     return this._Trainings;
   }
 
-  public get EmploymentHistories(): EmploymentHistory[] {
+  public get EmploymentHistories(): EmploymentHistoryModel[] {
     return this._EmploymentHistories;
   }
 
-  public get Photo(): KYCAttachment {
+  public get Attachments(): PersonAttachmentModel[] {
+    return this._Attachments;
+  }
+
+  public get Photo(): PersonAttachmentModel {
     return this._Photo;
   }
 }

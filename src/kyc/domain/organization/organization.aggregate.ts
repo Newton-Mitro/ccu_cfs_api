@@ -1,10 +1,10 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
-import { AddressEntity } from '../common/entities/address.entity';
-import { KYCAttachment } from '../common/entities/kyc-attachment.entity';
-import { BankAccount } from './entities/bank-account.entity';
-import { ContactPerson } from './entities/contact-person.entity';
+import { AddressModel } from '../common/entities/address.entity';
+import { BankAccountModel } from './entities/bank-account.entity';
+import { ContactPersonModel } from './entities/contact-person.entity';
+import { OrganizationAttachmentModel } from './entities/organization-attachment.entity';
 
-export class Organization extends BaseEntity {
+export class OrganizationModel extends BaseEntity {
   private _IdentificationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
@@ -15,10 +15,10 @@ export class Organization extends BaseEntity {
   private _FaxNumber: string;
   private _Website: string;
   private _ParentOrganization: string;
-  private _Addresses: AddressEntity[];
-  private _Attachments: KYCAttachment[];
-  private _ContactPeoples: ContactPerson[];
-  private _BankAccounts: BankAccount[];
+  private _Addresses: AddressModel[];
+  private _Attachments: OrganizationAttachmentModel[];
+  private _ContactPeoples: ContactPersonModel[];
+  private _BankAccounts: BankAccountModel[];
 
   constructor(
     customerId: string,
@@ -32,10 +32,10 @@ export class Organization extends BaseEntity {
     faxNumber: string,
     website: string,
     parentOrganization: string,
-    addresses: AddressEntity[],
-    attachments: KYCAttachment[],
-    contactPeoples: ContactPerson[],
-    bankAccounts: BankAccount[],
+    addresses: AddressModel[],
+    attachments: OrganizationAttachmentModel[],
+    contactPeoples: ContactPersonModel[],
+    bankAccounts: BankAccountModel[],
   ) {
     super(customerId);
     this._IdentificationNumber = identificationNumber;
@@ -102,19 +102,19 @@ export class Organization extends BaseEntity {
     this._MobileNumber = value;
   }
 
-  public get Addresses(): AddressEntity[] {
+  public get Addresses(): AddressModel[] {
     return this._Addresses;
   }
 
-  public set Addresses(value: AddressEntity[]) {
+  public set Addresses(value: AddressModel[]) {
     this._Addresses = value;
   }
 
-  public get Attachments(): KYCAttachment[] {
+  public get Attachments(): OrganizationAttachmentModel[] {
     return this._Attachments;
   }
 
-  public set Attachments(value: KYCAttachment[]) {
+  public set Attachments(value: OrganizationAttachmentModel[]) {
     this._Attachments = value;
   }
 
@@ -149,19 +149,19 @@ export class Organization extends BaseEntity {
     this._Website = value;
   }
 
-  public get ContactPeoples(): ContactPerson[] {
+  public get ContactPeoples(): ContactPersonModel[] {
     return this._ContactPeoples;
   }
 
-  public set ContactPeoples(value: ContactPerson[]) {
+  public set ContactPeoples(value: ContactPersonModel[]) {
     this._ContactPeoples = value;
   }
 
-  public get BankAccounts(): BankAccount[] {
+  public get BankAccounts(): BankAccountModel[] {
     return this._BankAccounts;
   }
 
-  public set BankAccounts(value: BankAccount[]) {
+  public set BankAccounts(value: BankAccountModel[]) {
     this._BankAccounts = value;
   }
 }

@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
 
-export class EmploymentHistory extends BaseEntity {
+export class EmploymentHistoryModel extends BaseEntity {
   private _OrganizationName: string;
   private _Position: string;
   private _Address: string;

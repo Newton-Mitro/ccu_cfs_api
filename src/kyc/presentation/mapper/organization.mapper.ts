@@ -1,5 +1,5 @@
 import { CreateOrganizationCommand } from 'src/kyc/application/commands/create-organization/create-organization.command';
-import { CreateOrganizationRequest } from '../contract/organization/create-organization.request';
+import { CreateOrganizationRequest } from '../contract/organization/request/create-organization/create-organization.request';
 
 export class PersonMapper {
   getCreateOrganizationDTO(

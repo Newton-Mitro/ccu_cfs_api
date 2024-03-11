@@ -8,8 +8,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { PeoplesService } from '../../application/peoples.service';
-import { CreatePersonRequest } from '../contract/person/create-person.request';
-import { UpdatePeopleRequest } from '../contract/person/update-person.request';
+import { UpdatePeopleRequest } from '../contract/person/request/update-person-general-info.request';
+import { CreatePersonRequest } from '../contract/person/request/create-person/create-person.request';
 
 @Controller('peoples')
 export class PeoplesController {

@@ -5,7 +5,7 @@ import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 
-export class ContactPerson extends BaseEntity {
+export class ContactPersonModel extends BaseEntity {
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;

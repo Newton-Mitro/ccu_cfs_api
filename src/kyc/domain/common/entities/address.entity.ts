@@ -1,11 +1,11 @@
-import { PersonAddressType } from '../enums/person-address-type.enum';
+import { AddressType } from '../enums/person-address-type.enum';
 
-export class AddressEntity {
-  private _AddressType: PersonAddressType;
-  public get AddressType(): PersonAddressType {
+export class AddressModel {
+  private _AddressType: AddressType;
+  public get AddressType(): AddressType {
     return this._AddressType;
   }
-  public set AddressType(value: PersonAddressType) {
+  public set AddressType(value: AddressType) {
     this._AddressType = value;
   }
   private _AddressLineOne: string;

@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Address, AddressSchema } from './address.schema';
-import { KYCAttachment, KYCAttachmentSchema } from './kyc-attachment.schema';
 
 @Schema({
   timestamps: true,
@@ -51,9 +50,6 @@ export class Customer {
     type: Array(AddressSchema),
   })
   Addresses: Address[];
-
-  @Prop({ type: Array(KYCAttachmentSchema) })
-  Attachments: KYCAttachment[];
 }
 
 export type CustomerDocument = Customer & Document;

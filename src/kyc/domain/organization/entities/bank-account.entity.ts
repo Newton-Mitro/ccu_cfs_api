@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
 
-export class BankAccount extends BaseEntity {
+export class BankAccountModel extends BaseEntity {
   private _BankName: string;
   private _Branch: string;
   private _RoutingNumber: string;

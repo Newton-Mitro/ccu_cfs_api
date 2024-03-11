@@ -10,8 +10,8 @@ import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
 } from '../infrastructure/schema/organization/organization.schema';
-import { CreateOrganizationRequest } from '../presentation/contract/organization/create-organization.request';
-import { UpdateOrganizationRequest } from '../presentation/contract/organization/update-organization.request';
+import { CreateOrganizationRequest } from '../presentation/contract/organization/request/create-organization/create-organization.request';
+import { UpdateOrganizationRequest } from '../presentation/contract/organization/request/update-organization.request';
 
 @Injectable()
 export class OrganizationsService {

@@ -1,4 +1,4 @@
-export class StorageDocument {
-  documentTitle: string;
-  documentUrl: string;
+export class StorageDocumentModel {
+  DocumentTitle: string;
+  DocumentUrl: string;
 }

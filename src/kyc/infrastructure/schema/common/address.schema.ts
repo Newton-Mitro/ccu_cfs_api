@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { PersonAddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
+import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
 
 @Schema()
 export class Address {
   @Prop({
     type: String,
-    enum: Object.values(PersonAddressType),
-    default: PersonAddressType.PERMANENT_ADDRESS,
+    enum: Object.values(AddressType),
+    default: AddressType.PERMANENT_ADDRESS,
   })
-  AddressType: PersonAddressType;
+  AddressType: AddressType;
 
   @Prop({ require: true })
   AddressLineOne: string;

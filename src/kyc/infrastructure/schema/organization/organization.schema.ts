@@ -1,8 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 import { Customer } from '../common/customer.schema';
-import { ContactPerson, ContactPersonSchema } from './contact-person.schema';
 import { BankAccount, BankAccountSchema } from './bank-account.schema';
+import { ContactPerson, ContactPersonSchema } from './contact-person.schema';
+import {
+  OrganizationAttachment,
+  OrganizationAttachmentSchema,
+} from './organization-attachment.schema';
 
 @Schema()
 export class Organization extends Customer {
@@ -20,6 +24,9 @@ export class Organization extends Customer {
 
   @Prop({ type: Array(BankAccountSchema) })
   BankAccounts: BankAccount;
+
+  @Prop({ type: Array(OrganizationAttachmentSchema) })
+  Attachments: OrganizationAttachment[];
 }
 
 export type OrganizationDocument = Organization & Document;
