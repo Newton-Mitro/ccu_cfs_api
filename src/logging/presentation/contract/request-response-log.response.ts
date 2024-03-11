@@ -1,13 +1,15 @@
 export class RequestResponseLogResponse {
+  User: Object;
   UserAgent: string;
-  RequestedAt: string;
+  RequestedSent: any;
+  RequestedReceived: string;
   IP: string;
   RequestMethod: string;
   Path: string;
-  RequestQuery: any;
-  RequestBody: any;
+  RequestQuery: Object;
+  RequestBody: Object;
   ExceptionType: string;
-  Response: any;
-  ResponseTime: string;
-  Status: any;
+  ResponseTime: number;
+  StatusCode: number;
+  ErrorMessage: any;
 }

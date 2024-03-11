@@ -1,5 +1,5 @@
 ### Get Customers Request
 # @name getCustomers
-GET  http://localhost:5000/customers
+GET  http://localhost:5000/customers?name=john
 Content-Type: application/json
 Accept: application/json

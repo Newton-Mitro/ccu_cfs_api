@@ -1,12 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema()
+@Schema({
+  versionKey: false,
+  collection: 'request_response_logs',
+})
 export class RequestResponseLog {
+  @Prop({ type: Object })
+  User: Object;
+
   @Prop()
   UserAgent: string;
 
-  @Prop()
-  RequestedAt: string;
+  @Prop({ type: Date })
+  RequestedSent: Date;
+
+  @Prop({ type: Date })
+  RequestedReceived: Date;
 
   @Prop()
   IP: string;
@@ -17,23 +26,23 @@ export class RequestResponseLog {
   @Prop()
   Path: string;
 
-  @Prop()
-  RequestQuery: any;
+  @Prop({ type: Object })
+  RequestQuery: Object;
 
-  @Prop()
-  RequestBody: any;
+  @Prop({ type: Object })
+  RequestBody: Object;
 
   @Prop()
   ExceptionType: string;
 
-  @Prop()
-  Response: any;
+  @Prop({ type: Number })
+  ResponseTime: number;
 
-  @Prop()
-  ResponseTime: string;
+  @Prop({ type: Number })
+  StatusCode: number;
 
-  @Prop()
-  Status: any;
+  @Prop({ type: Object })
+  ErrorMessage: any;
 }
 
 export type RequestResponseLogDocument = RequestResponseLog & Document;
