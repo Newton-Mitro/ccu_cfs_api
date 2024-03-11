@@ -36,7 +36,12 @@ export class RequestResponseInterceptor implements NestInterceptor {
         const responseTime = endTime - startTime;
 
         const logObject = new RequestResponseLogModel();
-        logObject.User = {};
+        logObject.User = {
+          UserId: 'a2d3f3a3s5f5',
+          UserName: 'john.doe@email.com',
+          FullName: 'John Doe',
+          Roles: ['User', 'Administrator', 'Collector'],
+        };
         logObject.RequestMethod = request.method;
         logObject.UserAgent = request.headers['user-agent'];
         logObject.RequestedSent = requestedAt;

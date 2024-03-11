@@ -41,6 +41,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     const logObject = new RequestResponseLogModel();
+    logObject.User = {
+      UserId: 'a2d3f3a3s5f5',
+      UserName: 'john.doe@email.com',
+      FullName: 'John Doe',
+      Roles: ['User', 'Administrator', 'Collector'],
+    };
     logObject.ExceptionType = exception.name;
     logObject.RequestMethod = request.method;
     logObject.UserAgent = request.headers['user-agent']!;
