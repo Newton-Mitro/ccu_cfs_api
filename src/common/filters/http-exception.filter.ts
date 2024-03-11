@@ -28,6 +28,20 @@ export class HttpExceptionFilter implements ExceptionFilter {
       status = exception.getStatus();
     }
 
+    console.log({
+      UserAgent: request.headers['user-agent'],
+      RequestedAt: null,
+      IP: request['ip'],
+      RequestMethod: request.method,
+      Path: request.url,
+      RequestQuery: request['query'],
+      RequestBody: request?.body,
+      ExceptionType: exception.name,
+      Response: message,
+      ResponseTime: null,
+      Status: status,
+    });
+
     response.status(status).json({
       message,
       error: exception.name,

@@ -1,10 +1,11 @@
-import { BaseEntity } from 'src/common/entities/base-entity';
+import { AggregateRoot } from '@nestjs/cqrs';
 import { AddressModel } from '../common/entities/address.entity';
 import { BankAccountModel } from './entities/bank-account.entity';
 import { ContactPersonModel } from './entities/contact-person.entity';
 import { OrganizationAttachmentModel } from './entities/organization-attachment.entity';
 
-export class OrganizationModel extends BaseEntity {
+export class OrganizationModel extends AggregateRoot {
+  private _id: string;
   private _IdentificationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
@@ -37,7 +38,8 @@ export class OrganizationModel extends BaseEntity {
     contactPeoples: ContactPersonModel[],
     bankAccounts: BankAccountModel[],
   ) {
-    super(customerId);
+    super();
+    this._id = customerId;
     this._IdentificationNumber = identificationNumber;
     this._NameEn = nameEn;
     this._NameBn = nameBn;
@@ -52,6 +54,10 @@ export class OrganizationModel extends BaseEntity {
     this._Attachments = attachments;
     this._ContactPeoples = contactPeoples;
     this._BankAccounts = bankAccounts;
+  }
+
+  public get CustomerId(): string {
+    return this._id;
   }
 
   public get IdentificationNumber(): string {

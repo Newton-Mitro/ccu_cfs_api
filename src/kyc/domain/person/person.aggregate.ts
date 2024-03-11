@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/common/entities/base-entity';
+import { AggregateRoot } from '@nestjs/cqrs';
 import { BloodGroup } from '../../../common/enums/blood-group.enum';
 import { Gender } from '../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../common/enums/marital-status.enum';
@@ -11,7 +11,8 @@ import { FamilyAndRelativeModel } from './entities/family-and-relative.entity';
 import { PersonAttachmentModel } from './entities/person-attachment.entity';
 import { TrainingModel } from './entities/training.entity';
 
-export class PersonModel extends BaseEntity {
+export class PersonModel extends AggregateRoot {
+  private _id: string;
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -60,7 +61,8 @@ export class PersonModel extends BaseEntity {
     attachments: PersonAttachmentModel[],
     photo: PersonAttachmentModel,
   ) {
-    super(customerId);
+    super();
+    this._id = customerId;
     this._IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -140,6 +142,10 @@ export class PersonModel extends BaseEntity {
 
   public removeAttachment(attachmentId: string) {
     // Publish Event: PersonsAttachmentRemovedEvent
+  }
+
+  public get CustomerId(): string {
+    return this._id;
   }
 
   public get IdentificationNumber(): string {
