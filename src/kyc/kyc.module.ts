@@ -5,9 +5,10 @@ import { PeoplesService } from './application/peoples.service';
 import { CustomersController } from './presentation/controllers/customers.controller';
 import { OrganizationsController } from './presentation/controllers/organizations.controller';
 import { PeoplesController } from './presentation/controllers/peoples.controller';
+import { MongooseKYCModelsModule } from './infrastructure/mongoose-kyc-models.module';
 
 @Module({
-  imports: [],
+  imports: [MongooseKYCModelsModule],
   controllers: [
     CustomersController,
     PeoplesController,
@@ -15,4 +16,4 @@ import { PeoplesController } from './presentation/controllers/peoples.controller
   ],
   providers: [PeoplesService, OrganizationsService, CustomersService],
 })
-export class KycModule {}
+export class KYCModule {}

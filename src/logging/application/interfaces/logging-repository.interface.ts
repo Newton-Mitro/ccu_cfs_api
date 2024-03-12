@@ -1,5 +1,28 @@
-import { RequestResponseLogModel } from 'src/logging/domain/entities/request-response-log.entity';
-
 export interface ILoggingRepository {
-  createLog(requestResponseLogModel: RequestResponseLogModel);
+  createSuccessLog(
+    user: Object,
+    userAgent: string,
+    requestedAt: any,
+    receivedAt: string,
+    ip: string,
+    requestMethod: string,
+    path: string,
+    requestQuery: Object,
+    requestBody: Object,
+    responseTime: number,
+    statusCode: number,
+  );
+  createErrorLog(
+    user: Object,
+    userAgent: string,
+    receivedAt: string,
+    ip: string,
+    requestMethod: string,
+    path: string,
+    requestQuery: Object,
+    requestBody: Object,
+    exceptionType: string,
+    statusCode: number,
+    errorMessage: any,
+  );
 }

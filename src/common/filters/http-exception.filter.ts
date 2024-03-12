@@ -8,9 +8,8 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { RequestResponseLogModel } from 'src/logging/domain/entities/request-response-log.entity';
 import { LoggerType } from 'src/logging/domain/enums/logger-type.enum';
-import { DatabaseLoggingRepository } from 'src/logging/infrastructure/database-logging.repository';
+import { DatabaseLoggingRepository } from 'src/logging/infrastructure/repositories/database-logging.repository';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -31,49 +30,45 @@ export class HttpExceptionFilter implements ExceptionFilter {
     // const message: any = exception.message;
 
     if (exception instanceof BadRequestException) {
-      console.log('BadRequestException');
       status = exception.getStatus();
     }
 
     if (exception instanceof InternalServerErrorException) {
-      console.log('InternalServerErrorException');
       status = exception.getStatus();
     }
 
-    const logObject = new RequestResponseLogModel();
-    logObject.User = {
-      UserId: 'a2d3f3a3s5f5',
-      UserName: 'john.doe@email.com',
-      FullName: 'John Doe',
-      Roles: ['User', 'Administrator', 'Collector'],
-    };
-    logObject.ExceptionType = exception.name;
-    logObject.RequestMethod = request.method;
-    logObject.UserAgent = request.headers['user-agent']!;
-    logObject.RequestedSent = request.headers['RequestedSent'];
-    logObject.IP = request['ip'];
-    logObject.Path = request.url;
-    logObject.RequestQuery = request['query'];
-    logObject.RequestBody = request?.body;
-    logObject.ErrorMessage = message;
-    logObject.RequestedReceived = new Date().toISOString();
-    logObject.StatusCode = status;
+    try {
+      const user = {
+        UserId: 'a2d3f3a3s5f5',
+        UserName: 'john.doe@email.com',
+        FullName: 'John Doe',
+        Roles: ['User', 'Administrator', 'Collector'],
+      };
+      const requestMethod = request.method;
+      const userAgent = request.headers['user-agent']!;
+      const requestedReceived = new Date().toISOString();
+      const ip = request['ip'];
+      const path = request.url;
+      const requestQuery = request['query'];
+      const requestBody = request?.body;
+      const exceptionType = exception.name;
+      const statusCode = status;
+      const errorMessage = message;
 
-    this._databaseLoggingRepository.createLog(logObject);
-
-    // console.log({
-    //   UserAgent: request.headers['user-agent'],
-    //   RequestedAt: null,
-    //   IP: request['ip'],
-    //   RequestMethod: request.method,
-    //   Path: request.url,
-    //   RequestQuery: request['query'],
-    //   RequestBody: request?.body,
-    //   ExceptionType: exception.name,
-    //   Response: message,
-    //   ResponseTime: null,
-    //   Status: status,
-    // });
+      this._databaseLoggingRepository.createErrorLog(
+        user,
+        userAgent,
+        requestedReceived,
+        ip,
+        requestMethod,
+        path,
+        requestQuery,
+        requestBody,
+        exceptionType,
+        statusCode,
+        errorMessage,
+      );
+    } catch {}
 
     response.status(status).json({
       message,

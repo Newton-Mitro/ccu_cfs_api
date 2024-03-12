@@ -5,6 +5,7 @@ import { Address, AddressSchema } from './address.schema';
   timestamps: true,
   versionKey: false,
   discriminatorKey: 'CustomerType',
+  collection: 'Customers',
 })
 export class Customer {
   @Prop({

@@ -8,7 +8,7 @@ async function bootstrap() {
   const port = process.env.SERVER_PORT || 3000;
   app.use(json({ limit: '50mb' }));
   app.use(urlencoded({ extended: true, limit: '50mb' }));
-  // app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalFilters(new HttpExceptionFilter()); // Alternative technique
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -47,6 +47,5 @@ async function bootstrap() {
   );
 
   await app.listen(port);
-  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

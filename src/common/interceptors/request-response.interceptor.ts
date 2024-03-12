@@ -6,9 +6,8 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
-import { RequestResponseLogModel } from 'src/logging/domain/entities/request-response-log.entity';
 import { LoggerType } from 'src/logging/domain/enums/logger-type.enum';
-import { DatabaseLoggingRepository } from 'src/logging/infrastructure/database-logging.repository';
+import { DatabaseLoggingRepository } from 'src/logging/infrastructure/repositories/database-logging.repository';
 
 @Injectable()
 export class RequestResponseInterceptor implements NestInterceptor {
@@ -28,45 +27,45 @@ export class RequestResponseInterceptor implements NestInterceptor {
     const response = ctx.getResponse<Response>();
 
     const startTime = Date.now();
-    const requestedAt = new Date();
+    const _requestedAt = new Date();
 
     return next.handle().pipe(
       tap((body) => {
         const endTime = Date.now();
-        const responseTime = endTime - startTime;
+        const _responseTime = endTime - startTime;
 
-        const logObject = new RequestResponseLogModel();
-        logObject.User = {
-          UserId: 'a2d3f3a3s5f5',
-          UserName: 'john.doe@email.com',
-          FullName: 'John Doe',
-          Roles: ['User', 'Administrator', 'Collector'],
-        };
-        logObject.RequestMethod = request.method;
-        logObject.UserAgent = request.headers['user-agent'];
-        logObject.RequestedSent = requestedAt;
-        logObject.RequestedReceived = new Date().toISOString();
-        logObject.IP = request['ip'];
-        logObject.Path = request.url;
-        logObject.RequestQuery = request['query'];
-        logObject.RequestBody = request?.body ? request.body : {};
-        logObject.ResponseTime = responseTime;
-        logObject.StatusCode = response['statusCode'];
+        try {
+          const user = {
+            UserId: 'a2d3f3a3s5f5',
+            UserName: 'john.doe@email.com',
+            FullName: 'John Doe',
+            Roles: ['User', 'Administrator', 'Collector'],
+          };
+          const requestMethod = request.method;
+          const UserAgent = request.headers['user-agent'];
+          const requestedAt = _requestedAt;
+          const receivedAt = new Date().toISOString();
+          const ip = request['ip'];
+          const path = request.url;
+          const requestQuery = request['query'];
+          const requestBody = request?.body!;
+          const responseTime = _responseTime;
+          const statusCode = response['statusCode'];
 
-        this._databaseLoggingRepository.createLog(logObject);
-
-        // console.log({
-        //   UserAgent: request.headers['user-agent'],
-        //   RequestedAt: requestedAt,
-        //   IP: request['ip'],
-        //   RequestMethod: request.method,
-        //   Path: request.url,
-        //   RequestQuery: request['query'],
-        //   RequestBody: request?.body,
-        //   Response: body,
-        //   ResponseTime: responseTime,
-        //   Status: response['statusCode'],
-        // });
+          this._databaseLoggingRepository.createSuccessLog(
+            user,
+            UserAgent,
+            requestedAt,
+            receivedAt,
+            ip,
+            requestMethod,
+            path,
+            requestQuery,
+            requestBody,
+            responseTime,
+            statusCode,
+          );
+        } catch (error) {}
       }),
     );
   }

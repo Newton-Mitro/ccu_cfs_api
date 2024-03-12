@@ -1,4 +1,4 @@
-export class RequestResponseLogResponse {
+export class LogRecordResponse {
   User: Object;
   UserAgent: string;
   RequestedSent: any;

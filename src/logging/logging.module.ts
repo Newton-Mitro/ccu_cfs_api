@@ -1,17 +1,18 @@
 import { Module } from '@nestjs/common';
-import { RequestResponseLogService } from './application/request-response-log.service';
+import { LoggingService } from './application/logging.service';
 import { LoggerType } from './domain/enums/logger-type.enum';
-import { DatabaseLoggingRepository } from './infrastructure/database-logging.repository';
+import { MongooseLoggingModelsModule } from './infrastructure/mongoose-logging-model.module';
+import { DatabaseLoggingRepository } from './infrastructure/repositories/database-logging.repository';
 
 @Module({
-  imports: [],
+  imports: [MongooseLoggingModelsModule],
   exports: [],
   providers: [
     {
       provide: LoggerType.DatabaseLogger,
       useClass: DatabaseLoggingRepository,
     },
-    { provide: RequestResponseLogService, useClass: RequestResponseLogService },
+    { provide: LoggingService, useClass: LoggingService },
   ],
 })
 export class LoggingModule {}
