@@ -1,11 +1,12 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema({
   versionKey: false,
   collection: 'Logs',
   discriminatorKey: 'LogType',
 })
-export class BaseLogRecord {
+export class BaseLogRecordSchema extends IdentifiableEntitySchema {
   @Prop({ type: Object })
   User: Object;
 
@@ -34,7 +35,5 @@ export class BaseLogRecord {
   StatusCode: number;
 }
 
-export type BaseLogRecordDocument = BaseLogRecord & Document;
-export const BASE_LOG_RECORD_MODEL = BaseLogRecord.name;
-
-export const BaseLogRecordSchema = SchemaFactory.createForClass(BaseLogRecord);
+export type BaseLogRecordDocument = BaseLogRecordSchema & Document;
+export const BASE_LOG_RECORD_MODEL = BaseLogRecordSchema.name;

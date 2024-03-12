@@ -1,4 +1,7 @@
-export class LogRecordModel {
+import { AggregateRoot } from '@nestjs/cqrs';
+
+export class LogRecordModel extends AggregateRoot {
+  private _id: string;
   private _User: Object;
   private _UserAgent: string;
   private _ReceivedAt: string;
@@ -10,9 +13,10 @@ export class LogRecordModel {
   private _StatusCode: number;
 
   constructor(
+    id: string,
     user: Object,
     userAgent: string,
-    ReceivedAt: string,
+    receivedAt: string,
     ip: string,
     requestMethod: string,
     path: string,
@@ -20,15 +24,21 @@ export class LogRecordModel {
     requestBody: Object,
     statusCode: number,
   ) {
+    super();
+    this._id = id;
     this._User = user;
     this._UserAgent = userAgent;
-    this._ReceivedAt = ReceivedAt;
+    this._ReceivedAt = receivedAt;
     this._IP = ip;
     this._RequestMethod = requestMethod;
     this._Path = path;
     this._RequestQuery = requestQuery;
     this._RequestBody = requestBody;
     this._StatusCode = statusCode;
+  }
+
+  public get id(): string {
+    return this._id;
   }
 
   public get User(): Object {

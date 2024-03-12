@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { OrganizationalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
 
 @Schema()
-export class OrganizationAttachment {
+export class OrganizationAttachmentSchema {
   @Prop({
     require: true,
     type: String,
@@ -13,7 +13,3 @@ export class OrganizationAttachment {
   @Prop({ required: true, type: String })
   DocumentUrl: string;
 }
-
-export const OrganizationAttachmentSchema = SchemaFactory.createForClass(
-  OrganizationAttachment,
-);

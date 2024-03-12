@@ -5,6 +5,7 @@ export class ErrorLogRecordModel extends LogRecordModel {
   private _ErrorMessage: any;
 
   constructor(
+    id: string,
     user: Object,
     userAgent: string,
     ReceivedAt: string,
@@ -18,6 +19,7 @@ export class ErrorLogRecordModel extends LogRecordModel {
     errorMessage: any,
   ) {
     super(
+      id,
       user,
       userAgent,
       ReceivedAt,

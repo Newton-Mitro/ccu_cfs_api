@@ -5,6 +5,7 @@ export class SuccessLogRecordModel extends LogRecordModel {
   private _ResponseTime: number;
 
   constructor(
+    id: string,
     user: Object,
     userAgent: string,
     ReceivedAt: string,
@@ -18,6 +19,7 @@ export class SuccessLogRecordModel extends LogRecordModel {
     responseTime: number,
   ) {
     super(
+      id,
       user,
       userAgent,
       ReceivedAt,

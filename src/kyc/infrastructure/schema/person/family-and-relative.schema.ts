@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
@@ -8,7 +8,7 @@ import { Religion } from 'src/common/enums/religion.enum';
 import { FamilyTreeStatus } from 'src/kyc/domain/common/enums/family-tree-status.enum';
 
 @Schema()
-export class FamilyAndRelative {
+export class FamilyAndRelativeSchema {
   @Prop()
   IdentificationNumber: string;
 
@@ -65,6 +65,3 @@ export class FamilyAndRelative {
   })
   Status: FamilyTreeStatus;
 }
-
-export const FamilyAndRelativeSchema =
-  SchemaFactory.createForClass(FamilyAndRelative);

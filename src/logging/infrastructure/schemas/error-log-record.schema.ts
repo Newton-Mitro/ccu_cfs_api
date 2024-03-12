@@ -1,11 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseLogRecord } from './base-log-record.schema';
+import { Prop, Schema } from '@nestjs/mongoose';
+import { BaseLogRecordSchema } from './base-log-record.schema';
 
 @Schema()
-export class ErrorLogRecord extends BaseLogRecord {
-  @Prop({ type: Date })
-  RequestedSent: Date;
-
+export class ErrorLogRecordSchema extends BaseLogRecordSchema {
   @Prop()
   ExceptionType: string;
 
@@ -13,8 +10,5 @@ export class ErrorLogRecord extends BaseLogRecord {
   ErrorMessage: any;
 }
 
-export type ErrorLogRecordDocument = ErrorLogRecord & Document;
-export const ERROR_LOG_RECORD_MODEL = ErrorLogRecord.name;
-
-export const ErrorLogRecordSchema =
-  SchemaFactory.createForClass(ErrorLogRecord);
+export type ErrorLogRecordDocument = ErrorLogRecordSchema & Document;
+export const ERROR_LOG_RECORD_MODEL = ErrorLogRecordSchema.name;

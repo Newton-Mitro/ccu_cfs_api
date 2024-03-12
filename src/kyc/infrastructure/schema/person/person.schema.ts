@@ -1,28 +1,18 @@
-import { BadRequestException, HttpStatus } from '@nestjs/common';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { Customer } from '../common/customer.schema';
-import { Education, EducationSchema } from './education.schema';
-import {
-  EmploymentHistory,
-  EmploymentHistorySchema,
-} from './employment-history.schema';
-import {
-  FamilyAndRelative,
-  FamilyAndRelativeSchema,
-} from './family-and-relative.schema';
-import {
-  PersonAttachment,
-  PersonAttachmentSchema,
-} from './person-attachment.schema';
-import { Training, TrainingSchema } from './training.schema';
+import { CustomerSchema } from '../common/customer.schema';
+import { EducationSchema } from './education.schema';
+import { EmploymentHistorySchema } from './employment-history.schema';
+import { FamilyAndRelativeSchema } from './family-and-relative.schema';
+import { PersonAttachmentSchema } from './person-attachment.schema';
+import { TrainingSchema } from './training.schema';
 
 @Schema()
-export class Person extends Customer {
+export class PersonSchema extends CustomerSchema {
   constructor() {
     super();
   }
@@ -57,35 +47,21 @@ export class Person extends Customer {
   @Prop({ type: PersonAttachmentSchema })
   Photo: Object;
 
-  @Prop({ type: Array(FamilyAndRelativeSchema) })
-  FamilyTree: FamilyAndRelative[];
+  @Prop({ type: Array() })
+  FamilyTree: FamilyAndRelativeSchema[];
 
-  @Prop({ type: Array(EducationSchema) })
-  Educations: Education[];
+  @Prop({ type: Array() })
+  Educations: EducationSchema[];
 
-  @Prop({ type: Array(TrainingSchema) })
-  Trainings: Training[];
+  @Prop({ type: Array() })
+  Trainings: TrainingSchema[];
 
-  @Prop({ type: Array(EmploymentHistorySchema) })
-  EmploymentHistories: EmploymentHistory[];
+  @Prop({ type: Array() })
+  EmploymentHistories: EmploymentHistorySchema[];
 
-  @Prop({ type: Array(PersonAttachmentSchema) })
-  Attachments: PersonAttachment[];
+  @Prop({ type: Array() })
+  Attachments: PersonAttachmentSchema[];
 }
 
-export type PersonDocument = Person & Document;
-export const PERSON_MODEL = Person.name;
-
-export const PersonSchema = SchemaFactory.createForClass(Person);
-
-PersonSchema.pre('validate', function (next) {
-  if (this.NID === '' && this.BirthRegistrationNumber === '') {
-    const result = {
-      message: 'Please provide NID or Birth Registration Number',
-      error: 'Bad request',
-      statusCode: HttpStatus.BAD_REQUEST,
-    };
-    throw new BadRequestException(result);
-  }
-  next();
-});
+export type PersonDocument = PersonSchema & Document;
+export const PERSON_MODEL = PersonSchema.name;

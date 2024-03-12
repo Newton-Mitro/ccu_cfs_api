@@ -1,17 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { ErrorLogRecordModel } from 'src/logging/domain/entities/error-log-record.entity';
 import { SuccessLogRecordModel } from 'src/logging/domain/entities/success-log-record.entity';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
 import {
   ERROR_LOG_RECORD_MODEL,
-  ErrorLogRecord,
   ErrorLogRecordDocument,
 } from '../schemas/error-log-record.schema';
 import {
   SUCCESS_LOG_RECORD_MODEL,
-  SuccessLogRecord,
   SuccessLogRecordDocument,
 } from '../schemas/success-log-record.schema';
 
@@ -38,6 +36,7 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     statusCode: number,
   ) {
     const successLogRecordObject = new SuccessLogRecordModel(
+      new Types.ObjectId().toHexString(),
       user,
       userAgent,
       receivedAt,
@@ -51,23 +50,21 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       responseTime,
     );
 
-    const successLogRecordSchemaObject = new SuccessLogRecord();
-    successLogRecordSchemaObject.User = successLogRecordObject.User;
-    successLogRecordSchemaObject.UserAgent = successLogRecordObject.UserAgent;
-    successLogRecordSchemaObject.ReceivedAt = successLogRecordObject.ReceivedAt;
-    successLogRecordSchemaObject.IP = successLogRecordObject.IP;
-    successLogRecordSchemaObject.RequestMethod =
-      successLogRecordObject.RequestMethod;
-    successLogRecordSchemaObject.Path = successLogRecordObject.Path;
-    successLogRecordSchemaObject.RequestQuery =
-      successLogRecordObject.RequestQuery;
-    successLogRecordSchemaObject.RequestBody =
-      successLogRecordObject.RequestBody;
-    successLogRecordSchemaObject.StatusCode = successLogRecordObject.StatusCode;
-    successLogRecordSchemaObject.RequestedAt =
-      successLogRecordObject.RequestedAt;
-    successLogRecordSchemaObject.ResponseTime =
-      successLogRecordObject.ResponseTime;
+    // const successLogRecordSchemaObject = new SuccessLogRecordSchema();
+    const successLogRecordSchemaObject = {
+      _id: new Types.ObjectId(),
+      User: {},
+      UserAgent: successLogRecordObject.UserAgent,
+      ReceivedAt: successLogRecordObject.ReceivedAt,
+      IP: successLogRecordObject.IP,
+      RequestMethod: successLogRecordObject.RequestMethod,
+      Path: successLogRecordObject.Path,
+      RequestQuery: successLogRecordObject.RequestQuery,
+      RequestBody: successLogRecordObject.RequestBody,
+      StatusCode: successLogRecordObject.StatusCode,
+      RequestedAt: successLogRecordObject.RequestedAt,
+      ResponseTime: successLogRecordObject.ResponseTime,
+    };
 
     const successLogRecord = new this.successLogRecordModel(
       successLogRecordSchemaObject,
@@ -90,6 +87,7 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     errorMessage: any,
   ) {
     const errorLogRecordObject = new ErrorLogRecordModel(
+      new Types.ObjectId().toHexString(),
       user,
       userAgent,
       receivedAt,
@@ -103,20 +101,21 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       errorMessage,
     );
 
-    const errorLogRecordSchemaObject = new ErrorLogRecord();
-    errorLogRecordSchemaObject.User = errorLogRecordObject.User;
-    errorLogRecordSchemaObject.UserAgent = errorLogRecordObject.UserAgent;
-    errorLogRecordSchemaObject.ReceivedAt = errorLogRecordObject.ReceivedAt;
-    errorLogRecordSchemaObject.IP = errorLogRecordObject.IP;
-    errorLogRecordSchemaObject.RequestMethod =
-      errorLogRecordObject.RequestMethod;
-    errorLogRecordSchemaObject.Path = errorLogRecordObject.Path;
-    errorLogRecordSchemaObject.RequestQuery = errorLogRecordObject.RequestQuery;
-    errorLogRecordSchemaObject.RequestBody = errorLogRecordObject.RequestBody;
-    errorLogRecordSchemaObject.StatusCode = errorLogRecordObject.StatusCode;
-    errorLogRecordSchemaObject.ExceptionType =
-      errorLogRecordObject.ExceptionType;
-    errorLogRecordSchemaObject.ErrorMessage = errorLogRecordObject.ErrorMessage;
+    // const errorLogRecordSchemaObject = new ErrorLogRecordSchema();
+    const errorLogRecordSchemaObject = {
+      _id: new Types.ObjectId(),
+      User: errorLogRecordObject.User,
+      UserAgent: errorLogRecordObject.UserAgent,
+      ReceivedAt: errorLogRecordObject.ReceivedAt,
+      IP: errorLogRecordObject.IP,
+      RequestMethod: errorLogRecordObject.RequestMethod,
+      Path: errorLogRecordObject.Path,
+      RequestQuery: errorLogRecordObject.RequestQuery,
+      RequestBody: errorLogRecordObject.RequestBody,
+      StatusCode: errorLogRecordObject.StatusCode,
+      ExceptionType: errorLogRecordObject.ExceptionType,
+      ErrorMessage: errorLogRecordObject.ErrorMessage,
+    };
 
     const errorLogRecord = new this.errorLogRecordModel(
       errorLogRecordSchemaObject,

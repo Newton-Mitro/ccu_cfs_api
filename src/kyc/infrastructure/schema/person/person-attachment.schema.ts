@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { PersonalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
 
 @Schema()
-export class PersonAttachment {
+export class PersonAttachmentSchema {
   @Prop({
     require: true,
     type: String,
@@ -13,6 +13,3 @@ export class PersonAttachment {
   @Prop({ required: true, type: String })
   DocumentUrl: string;
 }
-
-export const PersonAttachmentSchema =
-  SchemaFactory.createForClass(PersonAttachment);

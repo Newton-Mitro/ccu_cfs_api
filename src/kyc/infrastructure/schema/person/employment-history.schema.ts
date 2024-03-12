@@ -1,7 +1,7 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 
 @Schema()
-export class EmploymentHistory {
+export class EmploymentHistorySchema {
   @Prop({ require: true })
   OrganizationName: string;
 
@@ -35,6 +35,3 @@ export class EmploymentHistory {
   @Prop()
   TillNow: string;
 }
-
-export const EmploymentHistorySchema =
-  SchemaFactory.createForClass(EmploymentHistory);

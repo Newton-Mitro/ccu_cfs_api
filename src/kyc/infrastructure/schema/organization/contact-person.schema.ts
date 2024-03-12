@@ -1,11 +1,11 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 
 @Schema()
-export class ContactPerson {
+export class ContactPersonSchema {
   @Prop()
   IdentificationNumber: string;
 
@@ -48,5 +48,3 @@ export class ContactPerson {
   @Prop({ required: true, trim: true })
   Email: string;
 }
-
-export const ContactPersonSchema = SchemaFactory.createForClass(ContactPerson);

@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import {
   BASE_LOG_RECORD_MODEL,
   BaseLogRecordSchema,
@@ -19,10 +19,16 @@ import {
     MongooseModule.forFeature([
       {
         name: BASE_LOG_RECORD_MODEL,
-        schema: BaseLogRecordSchema,
+        schema: SchemaFactory.createForClass(BaseLogRecordSchema),
         discriminators: [
-          { name: SUCCESS_LOG_RECORD_MODEL, schema: SuccessLogRecordSchema },
-          { name: ERROR_LOG_RECORD_MODEL, schema: ErrorLogRecordSchema },
+          {
+            name: SUCCESS_LOG_RECORD_MODEL,
+            schema: SchemaFactory.createForClass(SuccessLogRecordSchema),
+          },
+          {
+            name: ERROR_LOG_RECORD_MODEL,
+            schema: SchemaFactory.createForClass(ErrorLogRecordSchema),
+          },
         ],
       },
     ]),

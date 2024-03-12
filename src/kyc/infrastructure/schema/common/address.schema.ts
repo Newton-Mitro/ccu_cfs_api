@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
 
 @Schema()
-export class Address {
+export class AddressSchema {
   @Prop({
     type: String,
     enum: Object.values(AddressType),
@@ -37,5 +37,3 @@ export class Address {
   @Prop()
   ZipCode: string;
 }
-
-export const AddressSchema = SchemaFactory.createForClass(Address);
