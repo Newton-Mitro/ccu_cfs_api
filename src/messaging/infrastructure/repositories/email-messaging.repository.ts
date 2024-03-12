@@ -1,11 +1,13 @@
-import { ISendMailOptions, MailerService } from '@nestjs-modules/mailer';
+import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
+import { ISendEmailOptions } from 'src/messaging/presentation/contract/send-email-options';
+import { ISendableEmail } from '../../application/interfaces/sendable-email.interface';
 
 @Injectable()
-export class EmailMessagingService {
+export class EmailMessagingRepository implements ISendableEmail {
   constructor(private mailerService: MailerService) {}
 
-  async sendMail(sendMailOptions: ISendMailOptions) {
+  async sendEmail(sendMailOptions: ISendEmailOptions) {
     const res = sendMailOptions.template
       ? await this.mailerService.sendMail({
           to: sendMailOptions.to,
@@ -24,6 +26,4 @@ export class EmailMessagingService {
 
     return res;
   }
-
-  async sendOTP(sendMailOptions: ISendMailOptions) {}
 }

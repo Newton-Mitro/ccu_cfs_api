@@ -1,4 +1,4 @@
-export interface ISendSMSOptions {
+export class SendSMSOptions {
   mobileNumber: string;
   countryCode: string;
   message: string;

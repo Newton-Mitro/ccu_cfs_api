@@ -1,17 +1,17 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common';
 import { UUID } from 'src/common/utils/uuid.util';
-import { EmailMessagingService } from 'src/messaging/infrastructure/email-messaging.service';
-import { SMSMessagingService } from 'src/messaging/infrastructure/sms-messaging.service';
-import { SubsidiaryLedgerAccountService } from '../application/subsidiary-ledger-account.service';
+import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
+import { SMSMessagingRepository } from 'src/messaging/infrastructure/repositories/sms-messaging.repository';
 import { CreateSubsidiaryLedgerDTO } from '../application/contract/create-subsidiary-ledger.dto';
+import { SubsidiaryLedgerAccountService } from '../application/subsidiary-ledger-account.service';
 
 @Controller('SubsidiaryLedgerAccount')
 export class SubsidiaryLedgerAccountController {
   private readonly logger = new Logger(SubsidiaryLedgerAccountController.name);
   constructor(
     private readonly subsidiaryLedgerAccountService: SubsidiaryLedgerAccountService,
-    private readonly emailService: EmailMessagingService,
-    private readonly smsService: SMSMessagingService,
+    private readonly emailService: EmailMessagingRepository,
+    private readonly smsService: SMSMessagingRepository,
   ) {}
 
   @Post()

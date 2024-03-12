@@ -4,6 +4,7 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsNotEmptyObject,
   IsOptional,
   IsString,
   ValidateNested,
@@ -91,8 +92,8 @@ export class CreateFamilyAndRelativeRequest {
   Email: string;
 
   @Type(() => CreatePersonAttachmentRequest)
-  @IsOptional()
   @ValidateNested()
+  @IsNotEmptyObject()
   // @Expose({ name: 'photo' })
   Photo: CreatePersonAttachmentRequest;
 

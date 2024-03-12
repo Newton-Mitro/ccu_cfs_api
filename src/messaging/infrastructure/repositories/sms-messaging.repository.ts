@@ -3,16 +3,17 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AxiosRequestConfig } from 'axios';
 import { map } from 'rxjs';
-import { ISendSMSOptions } from '../domain/send-sms-options.interface';
+import { ISendableSMS } from '../../application/interfaces/sendable-sms.interface';
+import { SendSMSOptions } from '../../presentation/contract/send-sms-options';
 
 @Injectable()
-export class SMSMessagingService {
+export class SMSMessagingRepository implements ISendableSMS {
   constructor(
     private readonly config: ConfigService,
     private readonly httpService: HttpService,
   ) {}
 
-  async sendSMS(sendSMSOptions: ISendSMSOptions) {
+  async sendSMS(sendSMSOptions: SendSMSOptions) {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ export class SMSMessagingService {
       );
   }
 
-  async checkSMSCreditBalance(sendSMSOptions: ISendSMSOptions) {
+  async checkSMSCreditBalance(sendSMSOptions: SendSMSOptions) {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +72,7 @@ export class SMSMessagingService {
       );
   }
 
-  async checkSMSDeliveryReport(sendSMSOptions: ISendSMSOptions) {
+  async checkSMSDeliveryReport(sendSMSOptions: SendSMSOptions) {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         'Content-Type': 'application/json',

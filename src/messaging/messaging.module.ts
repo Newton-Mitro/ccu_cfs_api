@@ -4,8 +4,8 @@ import { HttpModule, HttpService } from '@nestjs/axios';
 import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
-import { EmailMessagingService } from './infrastructure/email-messaging.service';
-import { SMSMessagingService } from './infrastructure/sms-messaging.service';
+import { EmailMessagingRepository } from './infrastructure/repositories/email-messaging.repository';
+import { SMSMessagingRepository } from './infrastructure/repositories/sms-messaging.repository';
 
 @Global()
 @Module({
@@ -40,15 +40,15 @@ import { SMSMessagingService } from './infrastructure/sms-messaging.service';
     HttpModule,
   ],
   providers: [
-    EmailMessagingService,
+    EmailMessagingRepository,
     {
-      provide: SMSMessagingService,
+      provide: SMSMessagingRepository,
       useFactory: async (config: ConfigService, httpService: HttpService) => {
-        return new SMSMessagingService(config, httpService);
+        return new SMSMessagingRepository(config, httpService);
       },
       inject: [ConfigService, HttpService],
     },
   ],
-  exports: [EmailMessagingService, SMSMessagingService],
+  exports: [EmailMessagingRepository, SMSMessagingRepository],
 })
 export class MessagingModule {}
