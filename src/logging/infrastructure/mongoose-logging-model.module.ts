@@ -4,14 +4,8 @@ import {
   BASE_LOG_RECORD_MODEL,
   BaseLogRecordSchema,
 } from './schemas/base-log-record.schema';
-import {
-  ERROR_LOG_RECORD_MODEL,
-  ErrorLogRecordSchema,
-} from './schemas/error-log-record.schema';
-import {
-  SUCCESS_LOG_RECORD_MODEL,
-  SuccessLogRecordSchema,
-} from './schemas/success-log-record.schema';
+import { ErrorLogRecordSchema } from './schemas/error-log-record.schema';
+import { SuccessLogRecordSchema } from './schemas/success-log-record.schema';
 
 @Global()
 @Module({
@@ -22,11 +16,11 @@ import {
         schema: SchemaFactory.createForClass(BaseLogRecordSchema),
         discriminators: [
           {
-            name: SUCCESS_LOG_RECORD_MODEL,
+            name: 'SuccessLog',
             schema: SchemaFactory.createForClass(SuccessLogRecordSchema),
           },
           {
-            name: ERROR_LOG_RECORD_MODEL,
+            name: 'ErrorLog',
             schema: SchemaFactory.createForClass(ErrorLogRecordSchema),
           },
         ],

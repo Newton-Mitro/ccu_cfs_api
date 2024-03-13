@@ -4,21 +4,15 @@ import { Model, Types } from 'mongoose';
 import { ErrorLogRecordModel } from 'src/logging/domain/entities/error-log-record.entity';
 import { SuccessLogRecordModel } from 'src/logging/domain/entities/success-log-record.entity';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
-import {
-  ERROR_LOG_RECORD_MODEL,
-  ErrorLogRecordDocument,
-} from '../schemas/error-log-record.schema';
-import {
-  SUCCESS_LOG_RECORD_MODEL,
-  SuccessLogRecordDocument,
-} from '../schemas/success-log-record.schema';
+import { ErrorLogRecordDocument } from '../schemas/error-log-record.schema';
+import { SuccessLogRecordDocument } from '../schemas/success-log-record.schema';
 
 @Injectable()
 export class DatabaseLoggingRepository implements ILoggingRepository {
   constructor(
-    @InjectModel(SUCCESS_LOG_RECORD_MODEL)
+    @InjectModel('SuccessLog')
     private readonly successLogRecordModel: Model<SuccessLogRecordDocument>,
-    @InjectModel(ERROR_LOG_RECORD_MODEL)
+    @InjectModel('ErrorLog')
     private readonly errorLogRecordModel: Model<ErrorLogRecordDocument>,
   ) {}
 

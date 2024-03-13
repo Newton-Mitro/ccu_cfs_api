@@ -11,4 +11,3 @@ export class ErrorLogRecordSchema extends BaseLogRecordSchema {
 }
 
 export type ErrorLogRecordDocument = ErrorLogRecordSchema & Document;
-export const ERROR_LOG_RECORD_MODEL = ErrorLogRecordSchema.name;

@@ -11,4 +11,3 @@ export class SuccessLogRecordSchema extends BaseLogRecordSchema {
 }
 
 export type SuccessLogRecordDocument = SuccessLogRecordSchema & Document;
-export const SUCCESS_LOG_RECORD_MODEL = SuccessLogRecordSchema.name;
