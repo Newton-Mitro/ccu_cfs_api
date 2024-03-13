@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
 import { DatabaseModule } from './common/mongoose/database.module';
@@ -17,6 +19,9 @@ import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiar
     KYCModule,
     SubsidiaryLedgerAccountModule,
     LoggingModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+    }),
   ],
   providers: [
     {
