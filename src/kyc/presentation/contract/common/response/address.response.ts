@@ -1,5 +1,5 @@
 import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
+import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 export interface AddressResponse {
   // @Expose({ name: 'address_id' })

@@ -1,12 +1,15 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
-import { CustomerSchema } from '../common/customer.schema';
-import { BankAccountSchema } from './bank-account.schema';
-import { ContactPersonSchema } from './contact-person.schema';
-import { OrganizationAttachmentSchema } from './organization-attachment.schema';
+import { Customer } from '../common/customer.schema';
+import { BankAccount, BankAccountSchema } from './bank-account.schema';
+import { ContactPerson, ContactPersonSchema } from './contact-person.schema';
+import {
+  OrganizationAttachment,
+  OrganizationAttachmentSchema,
+} from './organization-attachment.schema';
 
 @Schema()
-export class OrganizationSchema extends CustomerSchema {
+export class Organization extends Customer {
   @Prop({ require: true, type: Types.ObjectId })
   ParentOrganization: string;
 
@@ -16,15 +19,20 @@ export class OrganizationSchema extends CustomerSchema {
   @Prop()
   Website: string;
 
-  @Prop({ type: Array() })
-  ContactPeoples: ContactPersonSchema;
+  @Prop({ type: Object(OrganizationAttachmentSchema) })
+  Logo: Object;
 
-  @Prop({ type: Array() })
-  BankAccounts: BankAccountSchema;
+  @Prop({ type: Array(ContactPersonSchema) })
+  ContactPeoples: ContactPerson;
 
-  @Prop({ type: Array() })
-  Attachments: OrganizationAttachmentSchema[];
+  @Prop({ type: Array(BankAccountSchema) })
+  BankAccounts: BankAccount;
+
+  @Prop({ type: Array(OrganizationAttachmentSchema) })
+  Attachments: OrganizationAttachment[];
 }
 
-export type OrganizationDocument = OrganizationSchema & Document;
-export const ORGANIZATION_MODEL = OrganizationSchema.name;
+export const OrganizationSchema = SchemaFactory.createForClass(Organization);
+
+export type OrganizationDocument = Organization & Document;
+export const ORGANIZATION_MODEL = Organization.name;

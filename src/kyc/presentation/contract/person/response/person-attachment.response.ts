@@ -1,4 +1,4 @@
-import { PersonalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
+import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
 export class PersonAttachmentResponse {
   // @Expose({ name: 'attachment_id' })
@@ -7,6 +7,9 @@ export class PersonAttachmentResponse {
   // @Expose({ name: 'document_title' })
   DocumentTitle: PersonalDocumentType;
 
-  // @Expose({ name: 'base64_string_document' })
-  DocumentUrl: string;
+  // @Expose({ name: 'file_extension' })
+  FileExtension: string;
+
+  // @Expose({ name: 'document_url' })
+  Base64Document: string;
 }

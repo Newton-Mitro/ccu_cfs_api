@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
-import { LogRecordModel } from '../../domain/entities/log-record.entity';
+import { LogRecordModel } from 'src/logging/domain/models/log-record.entity';
 
 @Injectable()
 export class EmailLoggingService implements ILoggingRepository {

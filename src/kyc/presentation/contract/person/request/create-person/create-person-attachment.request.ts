@@ -1,5 +1,5 @@
 import { IsBase64, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { PersonalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
+import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
 export class CreatePersonAttachmentRequest {
   @IsString()
@@ -15,6 +15,6 @@ export class CreatePersonAttachmentRequest {
   @IsString()
   @IsNotEmpty()
   @IsBase64()
-  // @Expose({ name: 'base64_string_document' })
-  Base64StringDocument: string;
+  // @Expose({ name: 'base64_document' })
+  Base64Document: string;
 }

@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import {
   CUSTOMER_MODEL,
   CustomerSchema,
@@ -13,15 +13,15 @@ import { PERSON_MODEL, PersonSchema } from './schema/person/person.schema';
 const MODELS = [
   {
     name: CUSTOMER_MODEL,
-    schema: SchemaFactory.createForClass(CustomerSchema),
+    schema: CustomerSchema,
     discriminators: [
       {
         name: PERSON_MODEL,
-        schema: SchemaFactory.createForClass(PersonSchema),
+        schema: PersonSchema,
       },
       {
         name: ORGANIZATION_MODEL,
-        schema: SchemaFactory.createForClass(OrganizationSchema),
+        schema: OrganizationSchema,
       },
     ],
   },

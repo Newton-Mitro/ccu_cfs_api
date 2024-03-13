@@ -1,7 +1,7 @@
 import { Relationship } from 'src/common/enums/relationship.enum';
-import { FamilyTreeStatus } from 'src/kyc/domain/common/enums/family-tree-status.enum';
-import { PersonalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
-import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
+import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
+import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
+import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 export class CreatePersonCommand {
   constructor(

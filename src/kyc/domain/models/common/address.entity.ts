@@ -1,70 +1,113 @@
-import { AddressType } from '../enums/person-address-type.enum';
+import { BaseEntity } from 'src/common/entities/base-entity';
+import { AddressType } from '../../enums/person-address-type.enum';
 
-export class AddressModel {
+export class AddressEntity extends BaseEntity {
+  private _AddressId: string;
   private _AddressType: AddressType;
+  private _AddressLineOne: string;
+  private _AddressLineTwo: string;
+  private _Country: string;
+  private _State: string;
+  private _City: string;
+  private _Division: string;
+  private _District: string;
+  private _SubDistrict: string;
+  private _ZipCode: string;
+
+  constructor(
+    addressId: string,
+    addressType: AddressType,
+    addressLineOne: string,
+    addressLineTwo: string,
+    country: string,
+    state: string,
+    city: string,
+    division: string,
+    district: string,
+    subDistrict: string,
+    zipCode: string,
+  ) {
+    super(addressId);
+    this._AddressId = addressId;
+    this._AddressType = addressType;
+    this._AddressLineOne = addressLineOne;
+    this._AddressLineTwo = addressLineTwo;
+    this._Country = country;
+    this._State = state;
+    this._City = city;
+    this._Division = division;
+    this._District = district;
+    this._SubDistrict = subDistrict;
+    this._ZipCode = zipCode;
+  }
+
+  public get AddressId(): string {
+    return this._AddressId;
+  }
+
   public get AddressType(): AddressType {
     return this._AddressType;
   }
   public set AddressType(value: AddressType) {
     this._AddressType = value;
   }
-  private _AddressLineOne: string;
+
   public get AddressLineOne(): string {
     return this._AddressLineOne;
   }
   public set AddressLineOne(value: string) {
     this._AddressLineOne = value;
   }
-  private _AddressLineTwo: string;
+
   public get AddressLineTwo(): string {
     return this._AddressLineTwo;
   }
   public set AddressLineTwo(value: string) {
     this._AddressLineTwo = value;
   }
-  private _Country: string;
+
   public get Country(): string {
     return this._Country;
   }
   public set Country(value: string) {
     this._Country = value;
   }
-  private _State: string;
+
   public get State(): string {
     return this._State;
   }
   public set State(value: string) {
     this._State = value;
   }
-  private _City: string;
+
   public get City(): string {
     return this._City;
   }
   public set City(value: string) {
     this._City = value;
   }
-  private _Division: string;
+
   public get Division(): string {
     return this._Division;
   }
   public set Division(value: string) {
     this._Division = value;
   }
-  private _District: string;
+
   public get District(): string {
     return this._District;
   }
   public set District(value: string) {
     this._District = value;
   }
-  private _SubDistrict: string;
+
   public get SubDistrict(): string {
     return this._SubDistrict;
   }
   public set SubDistrict(value: string) {
     this._SubDistrict = value;
   }
-  private _ZipCode: string;
+
   public get ZipCode(): string {
     return this._ZipCode;
   }

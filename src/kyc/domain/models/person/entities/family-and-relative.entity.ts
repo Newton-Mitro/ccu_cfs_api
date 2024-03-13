@@ -1,14 +1,14 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
+import { BloodGroup } from 'src/common/enums/blood-group.enum';
+import { Gender } from 'src/common/enums/gender.enum';
+import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
-import { BloodGroup } from '../../../../common/enums/blood-group.enum';
-import { Gender } from '../../../../common/enums/gender.enum';
-import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
-import { Profession } from '../../../../common/enums/profession.enum';
-import { Religion } from '../../../../common/enums/religion.enum';
-import { FamilyTreeStatus } from '../../common/enums/family-tree-status.enum';
-import { PersonAttachmentModel } from './person-attachment.entity';
+import { Religion } from 'src/common/enums/religion.enum';
+import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
+import { PersonAttachmentEntity } from './person-attachment.entity';
 
-export class FamilyAndRelativeModel extends BaseEntity {
+export class FamilyAndRelativeEntity extends BaseEntity {
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -26,7 +26,7 @@ export class FamilyAndRelativeModel extends BaseEntity {
   private _BirthRegistrationNumber: string;
   private _Relationship: Relationship;
   private _Status: FamilyTreeStatus;
-  private _Photo: PersonAttachmentModel;
+  private _Photo: PersonAttachmentEntity;
 
   constructor(
     familyTreeId: string,
@@ -45,7 +45,7 @@ export class FamilyAndRelativeModel extends BaseEntity {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
-    photo: PersonAttachmentModel,
+    photo: PersonAttachmentEntity,
   ) {
     super(familyTreeId);
     this._IdentificationNumber = identificationNumber;
@@ -202,11 +202,11 @@ export class FamilyAndRelativeModel extends BaseEntity {
     this._Status = value;
   }
 
-  public get Photo(): PersonAttachmentModel {
+  public get Photo(): PersonAttachmentEntity {
     return this._Photo;
   }
 
-  public set Photo(value: PersonAttachmentModel) {
+  public set Photo(value: PersonAttachmentEntity) {
     this._Photo = value;
   }
 }

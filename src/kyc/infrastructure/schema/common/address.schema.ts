@@ -1,8 +1,9 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { AddressType } from 'src/kyc/domain/common/enums/person-address-type.enum';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
+import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 @Schema()
-export class AddressSchema {
+export class Address extends IdentifiableEntitySchema {
   @Prop({
     type: String,
     enum: Object.values(AddressType),
@@ -37,3 +38,5 @@ export class AddressSchema {
   @Prop()
   ZipCode: string;
 }
+
+export const AddressSchema = SchemaFactory.createForClass(Address);

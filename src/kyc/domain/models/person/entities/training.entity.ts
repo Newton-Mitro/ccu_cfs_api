@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
 
-export class TrainingModel extends BaseEntity {
+export class TrainingEntity extends BaseEntity {
   private _CourseTitle: string;
   private _InstituteName: string;
   private _CourseContent: string;

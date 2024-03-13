@@ -1,11 +1,17 @@
 import { Global, Module } from '@nestjs/common';
-import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import {
   BASE_LOG_RECORD_MODEL,
   BaseLogRecordSchema,
 } from './schemas/base-log-record.schema';
-import { ErrorLogRecordSchema } from './schemas/error-log-record.schema';
-import { SuccessLogRecordSchema } from './schemas/success-log-record.schema';
+import {
+  ERROR_LOG_RECORD_MODEL,
+  ErrorLogRecordSchema,
+} from './schemas/error-log-record.schema';
+import {
+  SUCCESS_LOG_RECORD_MODEL,
+  SuccessLogRecordSchema,
+} from './schemas/success-log-record.schema';
 
 @Global()
 @Module({
@@ -13,15 +19,15 @@ import { SuccessLogRecordSchema } from './schemas/success-log-record.schema';
     MongooseModule.forFeature([
       {
         name: BASE_LOG_RECORD_MODEL,
-        schema: SchemaFactory.createForClass(BaseLogRecordSchema),
+        schema: BaseLogRecordSchema,
         discriminators: [
           {
-            name: 'SuccessLog',
-            schema: SchemaFactory.createForClass(SuccessLogRecordSchema),
+            name: SUCCESS_LOG_RECORD_MODEL,
+            schema: SuccessLogRecordSchema,
           },
           {
-            name: 'ErrorLog',
-            schema: SchemaFactory.createForClass(ErrorLogRecordSchema),
+            name: ERROR_LOG_RECORD_MODEL,
+            schema: ErrorLogRecordSchema,
           },
         ],
       },

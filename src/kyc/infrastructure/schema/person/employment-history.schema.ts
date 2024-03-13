@@ -1,7 +1,8 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema()
-export class EmploymentHistorySchema {
+export class EmploymentHistory extends IdentifiableEntitySchema {
   @Prop({ require: true })
   OrganizationName: string;
 
@@ -35,3 +36,6 @@ export class EmploymentHistorySchema {
   @Prop()
   TillNow: string;
 }
+
+export const EmploymentHistorySchema =
+  SchemaFactory.createForClass(EmploymentHistory);

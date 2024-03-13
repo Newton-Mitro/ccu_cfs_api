@@ -27,6 +27,7 @@ export class PeoplesService {
       3,
       13,
     );
+
     const errors = createdPerson.validateSync();
 
     if (errors) {

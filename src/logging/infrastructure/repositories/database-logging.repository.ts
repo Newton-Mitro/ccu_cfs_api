@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { ErrorLogRecordModel } from 'src/logging/domain/entities/error-log-record.entity';
-import { SuccessLogRecordModel } from 'src/logging/domain/entities/success-log-record.entity';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
 import { ErrorLogRecordDocument } from '../schemas/error-log-record.schema';
 import { SuccessLogRecordDocument } from '../schemas/success-log-record.schema';
+import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
+import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 
 @Injectable()
 export class DatabaseLoggingRepository implements ILoggingRepository {

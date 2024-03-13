@@ -1,7 +1,8 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema()
-export class EducationSchema {
+export class Education extends IdentifiableEntitySchema {
   @Prop({ require: true })
   EducationLevel: string;
 
@@ -20,3 +21,5 @@ export class EducationSchema {
   @Prop()
   Grade: string;
 }
+
+export const EducationSchema = SchemaFactory.createForClass(Education);

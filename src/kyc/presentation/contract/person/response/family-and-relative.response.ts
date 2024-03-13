@@ -4,7 +4,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { FamilyTreeStatus } from 'src/kyc/domain/common/enums/family-tree-status.enum';
+import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
 
 export class FamilyAndRelativeResponse {
   // @Expose({ name: 'family_tree_id' })

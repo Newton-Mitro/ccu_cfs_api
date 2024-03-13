@@ -1,11 +1,12 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema()
-export class ContactPersonSchema {
+export class ContactPerson extends IdentifiableEntitySchema {
   @Prop()
   IdentificationNumber: string;
 
@@ -48,3 +49,5 @@ export class ContactPersonSchema {
   @Prop({ required: true, trim: true })
   Email: string;
 }
+
+export const ContactPersonSchema = SchemaFactory.createForClass(ContactPerson);

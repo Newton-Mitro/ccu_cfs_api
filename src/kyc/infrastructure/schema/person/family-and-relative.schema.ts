@@ -1,14 +1,16 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { FamilyTreeStatus } from 'src/kyc/domain/common/enums/family-tree-status.enum';
+import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
+import { PersonAttachmentSchema } from './person-attachment.schema';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema()
-export class FamilyAndRelativeSchema {
+export class FamilyAndRelative extends IdentifiableEntitySchema {
   @Prop()
   IdentificationNumber: string;
 
@@ -52,6 +54,9 @@ export class FamilyAndRelativeSchema {
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
 
+  @Prop({ type: Object(PersonAttachmentSchema) })
+  Photo: Object;
+
   @Prop({
     type: String,
     enum: Object.values(Relationship),
@@ -65,3 +70,6 @@ export class FamilyAndRelativeSchema {
   })
   Status: FamilyTreeStatus;
 }
+
+export const FamilyAndRelativeSchema =
+  SchemaFactory.createForClass(FamilyAndRelative);

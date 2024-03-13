@@ -1,8 +1,9 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { OrganizationalDocumentType } from 'src/kyc/domain/common/enums/kyc-attachment-type.enum';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
+import { OrganizationalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
 @Schema()
-export class OrganizationAttachmentSchema {
+export class OrganizationAttachment extends IdentifiableEntitySchema {
   @Prop({
     require: true,
     type: String,
@@ -11,5 +12,12 @@ export class OrganizationAttachmentSchema {
   DocumentTitle: OrganizationalDocumentType;
 
   @Prop({ required: true, type: String })
-  DocumentUrl: string;
+  Base64Document: string;
+
+  @Prop({ required: true, type: String })
+  FileExtension: string;
 }
+
+export const OrganizationAttachmentSchema = SchemaFactory.createForClass(
+  OrganizationAttachment,
+);

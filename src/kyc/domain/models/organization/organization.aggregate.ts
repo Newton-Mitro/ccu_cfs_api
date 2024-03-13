@@ -1,11 +1,11 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { AddressModel } from '../common/entities/address.entity';
-import { BankAccountModel } from './entities/bank-account.entity';
-import { ContactPersonModel } from './entities/contact-person.entity';
-import { OrganizationAttachmentModel } from './entities/organization-attachment.entity';
+import { AddressEntity } from '../common/address.entity';
+import { BankAccountEntity } from './entities/bank-account.entity';
+import { ContactPersonEntity } from './entities/contact-person.entity';
+import { OrganizationAttachmentEntity } from './entities/organization-attachment.entity';
 
 export class OrganizationModel extends AggregateRoot {
-  private _id: string;
+  private _OrganizationId: string;
   private _IdentificationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
@@ -16,13 +16,13 @@ export class OrganizationModel extends AggregateRoot {
   private _FaxNumber: string;
   private _Website: string;
   private _ParentOrganization: string;
-  private _Addresses: AddressModel[];
-  private _Attachments: OrganizationAttachmentModel[];
-  private _ContactPeoples: ContactPersonModel[];
-  private _BankAccounts: BankAccountModel[];
+  private _Addresses: AddressEntity[];
+  private _Attachments: OrganizationAttachmentEntity[];
+  private _ContactPeoples: ContactPersonEntity[];
+  private _BankAccounts: BankAccountEntity[];
 
   constructor(
-    customerId: string,
+    organizationId: string,
     identificationNumber: string,
     nameEn: string,
     nameBn: string,
@@ -33,13 +33,13 @@ export class OrganizationModel extends AggregateRoot {
     faxNumber: string,
     website: string,
     parentOrganization: string,
-    addresses: AddressModel[],
-    attachments: OrganizationAttachmentModel[],
-    contactPeoples: ContactPersonModel[],
-    bankAccounts: BankAccountModel[],
+    addresses: AddressEntity[],
+    attachments: OrganizationAttachmentEntity[],
+    contactPeoples: ContactPersonEntity[],
+    bankAccounts: BankAccountEntity[],
   ) {
     super();
-    this._id = customerId;
+    this._OrganizationId = organizationId;
     this._IdentificationNumber = identificationNumber;
     this._NameEn = nameEn;
     this._NameBn = nameBn;
@@ -56,8 +56,8 @@ export class OrganizationModel extends AggregateRoot {
     this._BankAccounts = bankAccounts;
   }
 
-  public get CustomerId(): string {
-    return this._id;
+  public get OrganizationId(): string {
+    return this._OrganizationId;
   }
 
   public get IdentificationNumber(): string {
@@ -108,19 +108,19 @@ export class OrganizationModel extends AggregateRoot {
     this._MobileNumber = value;
   }
 
-  public get Addresses(): AddressModel[] {
+  public get Addresses(): AddressEntity[] {
     return this._Addresses;
   }
 
-  public set Addresses(value: AddressModel[]) {
+  public set Addresses(value: AddressEntity[]) {
     this._Addresses = value;
   }
 
-  public get Attachments(): OrganizationAttachmentModel[] {
+  public get Attachments(): OrganizationAttachmentEntity[] {
     return this._Attachments;
   }
 
-  public set Attachments(value: OrganizationAttachmentModel[]) {
+  public set Attachments(value: OrganizationAttachmentEntity[]) {
     this._Attachments = value;
   }
 
@@ -155,19 +155,19 @@ export class OrganizationModel extends AggregateRoot {
     this._Website = value;
   }
 
-  public get ContactPeoples(): ContactPersonModel[] {
+  public get ContactPeoples(): ContactPersonEntity[] {
     return this._ContactPeoples;
   }
 
-  public set ContactPeoples(value: ContactPersonModel[]) {
+  public set ContactPeoples(value: ContactPersonEntity[]) {
     this._ContactPeoples = value;
   }
 
-  public get BankAccounts(): BankAccountModel[] {
+  public get BankAccounts(): BankAccountEntity[] {
     return this._BankAccounts;
   }
 
-  public set BankAccounts(value: BankAccountModel[]) {
+  public set BankAccounts(value: BankAccountEntity[]) {
     this._BankAccounts = value;
   }
 }

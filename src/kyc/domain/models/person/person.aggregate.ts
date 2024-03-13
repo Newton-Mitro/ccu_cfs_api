@@ -1,18 +1,18 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { BloodGroup } from '../../../common/enums/blood-group.enum';
-import { Gender } from '../../../common/enums/gender.enum';
-import { MaritalStatus } from '../../../common/enums/marital-status.enum';
-import { Profession } from '../../../common/enums/profession.enum';
-import { Religion } from '../../../common/enums/religion.enum';
-import { AddressModel } from '../common/entities/address.entity';
-import { EducationModel } from './entities/education.entity';
-import { EmploymentHistoryModel } from './entities/employment-history.entity';
-import { FamilyAndRelativeModel } from './entities/family-and-relative.entity';
-import { PersonAttachmentModel } from './entities/person-attachment.entity';
-import { TrainingModel } from './entities/training.entity';
+import { BloodGroup } from 'src/common/enums/blood-group.enum';
+import { Gender } from 'src/common/enums/gender.enum';
+import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
+import { Religion } from 'src/common/enums/religion.enum';
+import { AddressEntity } from '../common/address.entity';
+import { EducationEntity } from './entities/education.entity';
+import { EmploymentHistoryEntity } from './entities/employment-history.entity';
+import { FamilyAndRelativeEntity } from './entities/family-and-relative.entity';
+import { PersonAttachmentEntity } from './entities/person-attachment.entity';
+import { TrainingEntity } from './entities/training.entity';
 
 export class PersonModel extends AggregateRoot {
-  private _id: string;
+  private _PersonId: string;
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -28,16 +28,16 @@ export class PersonModel extends AggregateRoot {
   private _Email: string;
   private _NID: string;
   private _BirthRegistrationNumber: string;
-  private _Addresses: AddressModel[];
-  private _FamilyTree: FamilyAndRelativeModel[];
-  private _Educations: EducationModel[];
-  private _Trainings: TrainingModel[];
-  private _EmploymentHistories: EmploymentHistoryModel[];
-  private _Attachments: PersonAttachmentModel[];
-  private _Photo: PersonAttachmentModel;
+  private _Addresses: AddressEntity[];
+  private _FamilyTree: FamilyAndRelativeEntity[];
+  private _Educations: EducationEntity[];
+  private _Trainings: TrainingEntity[];
+  private _EmploymentHistories: EmploymentHistoryEntity[];
+  private _Attachments: PersonAttachmentEntity[];
+  private _Photo: PersonAttachmentEntity;
 
   constructor(
-    customerId: string,
+    personId: string,
     identificationNumber: string,
     dateOfBirth: string,
     gender: Gender,
@@ -53,16 +53,16 @@ export class PersonModel extends AggregateRoot {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
-    addresses: AddressModel[],
-    familyTree: FamilyAndRelativeModel[],
-    educations: EducationModel[],
-    trainings: TrainingModel[],
-    employmentHistories: EmploymentHistoryModel[],
-    attachments: PersonAttachmentModel[],
-    photo: PersonAttachmentModel,
+    addresses: AddressEntity[],
+    familyTree: FamilyAndRelativeEntity[],
+    educations: EducationEntity[],
+    trainings: TrainingEntity[],
+    employmentHistories: EmploymentHistoryEntity[],
+    attachments: PersonAttachmentEntity[],
+    photo: PersonAttachmentEntity,
   ) {
     super();
-    this._id = customerId;
+    this._PersonId = personId;
     this._IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -120,7 +120,7 @@ export class PersonModel extends AggregateRoot {
     // Publish Event: PersonsBasicInformationUpdatedEvent
   }
 
-  public addAddress(address: AddressModel) {
+  public addAddress(address: AddressEntity) {
     // Publish Event: PersonsAddressAddedEvent
   }
 
@@ -128,7 +128,7 @@ export class PersonModel extends AggregateRoot {
     // Publish Event: PersonsAddressRemovedEvent
   }
 
-  public addToFamilyTree(familyAndRelative: FamilyAndRelativeModel) {
+  public addToFamilyTree(familyAndRelative: FamilyAndRelativeEntity) {
     // Publish Event: FamilyAndRelativeAddedEvent
   }
 
@@ -136,7 +136,7 @@ export class PersonModel extends AggregateRoot {
     // Publish Event: FamilyAndRelativeRemovedEvent
   }
 
-  public addAttachment(attachment: PersonAttachmentModel) {
+  public addAttachment(attachment: PersonAttachmentEntity) {
     // Publish Event: PersonsAttachmentAddedEvent
   }
 
@@ -144,8 +144,8 @@ export class PersonModel extends AggregateRoot {
     // Publish Event: PersonsAttachmentRemovedEvent
   }
 
-  public get CustomerId(): string {
-    return this._id;
+  public get PersonId(): string {
+    return this._PersonId;
   }
 
   public get IdentificationNumber(): string {
@@ -208,31 +208,31 @@ export class PersonModel extends AggregateRoot {
     return this._MaritalStatus;
   }
 
-  public get Addresses(): AddressModel[] {
+  public get Addresses(): AddressEntity[] {
     return this._Addresses;
   }
 
-  public get FamilyTree(): FamilyAndRelativeModel[] {
+  public get FamilyTree(): FamilyAndRelativeEntity[] {
     return this._FamilyTree;
   }
 
-  public get Educations(): EducationModel[] {
+  public get Educations(): EducationEntity[] {
     return this._Educations;
   }
 
-  public get Trainings(): TrainingModel[] {
+  public get Trainings(): TrainingEntity[] {
     return this._Trainings;
   }
 
-  public get EmploymentHistories(): EmploymentHistoryModel[] {
+  public get EmploymentHistories(): EmploymentHistoryEntity[] {
     return this._EmploymentHistories;
   }
 
-  public get Attachments(): PersonAttachmentModel[] {
+  public get Attachments(): PersonAttachmentEntity[] {
     return this._Attachments;
   }
 
-  public get Photo(): PersonAttachmentModel {
+  public get Photo(): PersonAttachmentEntity {
     return this._Photo;
   }
 }

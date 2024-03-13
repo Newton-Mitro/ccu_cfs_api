@@ -1,13 +1,16 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { BaseLogRecordSchema } from './base-log-record.schema';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { BaseLogRecord } from './base-log-record.schema';
 
 @Schema()
-export class SuccessLogRecordSchema extends BaseLogRecordSchema {
+export class SuccessLogRecord extends BaseLogRecord {
   @Prop({ type: String })
   RequestedAt: string;
 
   @Prop({ type: Number })
   ResponseTime: number;
 }
+export const SuccessLogRecordSchema =
+  SchemaFactory.createForClass(SuccessLogRecord);
+export type SuccessLogRecordDocument = SuccessLogRecord & Document;
 
-export type SuccessLogRecordDocument = SuccessLogRecordSchema & Document;
+export const SUCCESS_LOG_RECORD_MODEL = 'SuccessLog';

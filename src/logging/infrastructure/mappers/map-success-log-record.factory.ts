@@ -1,12 +1,12 @@
 import { Types } from 'mongoose';
 import { EntitySchemaFactory } from 'src/common/mongoose/entity-schema.factory';
-import { SuccessLogRecordModel } from 'src/logging/domain/entities/success-log-record.entity';
-import { SuccessLogRecordSchema } from '../schemas/success-log-record.schema';
+import { SuccessLogRecord } from '../schemas/success-log-record.schema';
+import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 
 export class MapSuccessLogRecordFactory
-  implements EntitySchemaFactory<SuccessLogRecordSchema, SuccessLogRecordModel>
+  implements EntitySchemaFactory<SuccessLogRecord, SuccessLogRecordModel>
 {
-  create(entity: SuccessLogRecordModel): SuccessLogRecordSchema {
+  create(entity: SuccessLogRecordModel): SuccessLogRecord {
     return {
       _id: new Types.ObjectId(),
       User: entity.User,
@@ -23,9 +23,7 @@ export class MapSuccessLogRecordFactory
     };
   }
 
-  createFromSchema(
-    entitySchema: SuccessLogRecordSchema,
-  ): SuccessLogRecordModel {
+  createFromSchema(entitySchema: SuccessLogRecord): SuccessLogRecordModel {
     return new SuccessLogRecordModel(
       entitySchema._id.toHexString(),
       entitySchema.User,

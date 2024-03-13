@@ -1,6 +1,6 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
-import { AddressSchema } from './address.schema';
+import { Address, AddressSchema } from './address.schema';
 
 @Schema({
   timestamps: true,
@@ -8,7 +8,7 @@ import { AddressSchema } from './address.schema';
   discriminatorKey: 'CustomerType',
   collection: 'Customers',
 })
-export class CustomerSchema extends IdentifiableEntitySchema {
+export class Customer extends IdentifiableEntitySchema {
   @Prop({
     require: true,
     unique: true,
@@ -49,10 +49,13 @@ export class CustomerSchema extends IdentifiableEntitySchema {
   MobileNumber: string;
 
   @Prop({
-    type: Array(),
+    type: Array(AddressSchema),
   })
-  Addresses: AddressSchema[];
+  Addresses: Address[];
 }
 
-export type CustomerDocument = CustomerSchema & Document;
-export const CUSTOMER_MODEL = CustomerSchema.name;
+export const CustomerSchema = SchemaFactory.createForClass(Customer);
+
+export type CustomerDocument = Customer & Document;
+// export type CustomerDocument = HydratedDocument<Customer>;
+export const CUSTOMER_MODEL = Customer.name;

@@ -1,12 +1,12 @@
 import { Types } from 'mongoose';
 import { EntitySchemaFactory } from 'src/common/mongoose/entity-schema.factory';
-import { ErrorLogRecordModel } from 'src/logging/domain/entities/error-log-record.entity';
-import { ErrorLogRecordSchema } from '../schemas/error-log-record.schema';
+import { ErrorLogRecord } from '../schemas/error-log-record.schema';
+import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
 
 export class MapErrorLogRecordFactory
-  implements EntitySchemaFactory<ErrorLogRecordSchema, ErrorLogRecordModel>
+  implements EntitySchemaFactory<ErrorLogRecord, ErrorLogRecordModel>
 {
-  create(entity: ErrorLogRecordModel): ErrorLogRecordSchema {
+  create(entity: ErrorLogRecordModel): ErrorLogRecord {
     return {
       _id: new Types.ObjectId(entity.id),
       User: entity.User,
@@ -23,7 +23,7 @@ export class MapErrorLogRecordFactory
     };
   }
 
-  createFromSchema(entitySchema: ErrorLogRecordSchema): ErrorLogRecordModel {
+  createFromSchema(entitySchema: ErrorLogRecord): ErrorLogRecordModel {
     return new ErrorLogRecordModel(
       entitySchema._id.toHexString(),
       entitySchema.User,

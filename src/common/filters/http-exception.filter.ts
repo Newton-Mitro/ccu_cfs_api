@@ -26,8 +26,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message: any = exception['response']['message'];
+    let message: any;
+    // let message: any = exception['response']['message'];
     // const message: any = exception.message;
+
+    try {
+      message = exception['response']['message'];
+    } catch (error) {
+      message = exception.message;
+    }
 
     if (exception instanceof BadRequestException) {
       status = exception.getStatus();

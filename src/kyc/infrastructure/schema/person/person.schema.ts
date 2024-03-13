@@ -1,18 +1,27 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { CustomerSchema } from '../common/customer.schema';
-import { EducationSchema } from './education.schema';
-import { EmploymentHistorySchema } from './employment-history.schema';
-import { FamilyAndRelativeSchema } from './family-and-relative.schema';
-import { PersonAttachmentSchema } from './person-attachment.schema';
-import { TrainingSchema } from './training.schema';
+import { Customer } from '../common/customer.schema';
+import { Education, EducationSchema } from './education.schema';
+import {
+  EmploymentHistory,
+  EmploymentHistorySchema,
+} from './employment-history.schema';
+import {
+  FamilyAndRelative,
+  FamilyAndRelativeSchema,
+} from './family-and-relative.schema';
+import {
+  PersonAttachment,
+  PersonAttachmentSchema,
+} from './person-attachment.schema';
+import { Training, TrainingSchema } from './training.schema';
 
 @Schema()
-export class PersonSchema extends CustomerSchema {
+export class Person extends Customer {
   constructor() {
     super();
   }
@@ -44,24 +53,25 @@ export class PersonSchema extends CustomerSchema {
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
 
-  @Prop({ type: PersonAttachmentSchema })
+  @Prop({ type: Object(PersonAttachmentSchema) })
   Photo: Object;
 
-  @Prop({ type: Array() })
-  FamilyTree: FamilyAndRelativeSchema[];
+  @Prop({ type: Array(FamilyAndRelativeSchema) })
+  FamilyTree: FamilyAndRelative[];
 
-  @Prop({ type: Array() })
-  Educations: EducationSchema[];
+  @Prop({ type: Array(EducationSchema) })
+  Educations: Education[];
 
-  @Prop({ type: Array() })
-  Trainings: TrainingSchema[];
+  @Prop({ type: Array(TrainingSchema) })
+  Trainings: Training[];
 
-  @Prop({ type: Array() })
-  EmploymentHistories: EmploymentHistorySchema[];
+  @Prop({ type: Array(EmploymentHistorySchema) })
+  EmploymentHistories: EmploymentHistory[];
 
-  @Prop({ type: Array() })
-  Attachments: PersonAttachmentSchema[];
+  @Prop({ type: Array(PersonAttachmentSchema) })
+  Attachments: PersonAttachment[];
 }
 
-export type PersonDocument = PersonSchema & Document;
-export const PERSON_MODEL = PersonSchema.name;
+export const PersonSchema = SchemaFactory.createForClass(Person);
+export type PersonDocument = Person & Document;
+export const PERSON_MODEL = Person.name;

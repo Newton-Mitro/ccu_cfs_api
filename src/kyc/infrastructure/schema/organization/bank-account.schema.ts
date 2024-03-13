@@ -1,7 +1,8 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
 
 @Schema()
-export class BankAccountSchema {
+export class BankAccount extends IdentifiableEntitySchema {
   @Prop({ require: true })
   BankName: string;
 
@@ -17,3 +18,5 @@ export class BankAccountSchema {
   @Prop()
   AccountName: string;
 }
+
+export const BankAccountSchema = SchemaFactory.createForClass(BankAccount);
