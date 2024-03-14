@@ -10,8 +10,8 @@ import {
   PERSON_MODEL,
   PersonDocument,
 } from '../infrastructure/schema/person/person.schema';
-import { CreatePersonRequest } from '../presentation/contract/person/request/create-person/create-person.request';
-import { UpdatePeopleRequest } from '../presentation/contract/person/request/update-person-general-info.request';
+import { CreatePersonRequest } from '../presentation/contract/person/request/create-person.request';
+import { UpdatePersonRequest } from '../presentation/contract/person/request/update-person.request';
 
 @Injectable()
 export class PeoplesService {
@@ -90,7 +90,7 @@ export class PeoplesService {
     return existingPerson;
   }
 
-  async update(id: string, updatePeopleDto: UpdatePeopleRequest) {
+  async update(id: string, updatePeopleDto: UpdatePersonRequest) {
     const updatedPerson = await this.personModel.findByIdAndUpdate(
       id,
       updatePeopleDto,

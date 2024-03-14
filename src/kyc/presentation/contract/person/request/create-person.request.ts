@@ -1,6 +1,5 @@
 import { Type } from 'class-transformer';
 import {
-  IsArray,
   IsDateString,
   IsEmail,
   IsEnum,
@@ -14,12 +13,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { CreateAddressRequest } from '../../../common/request/create-address.request';
-import { CreateEducationRequest } from './create-education.request';
-import { CreateEmploymentHistoryRequest } from './create-employment-history.request';
-import { CreateFamilyAndRelativeRequest } from './create-family-and-relative.request';
-import { CreatePersonAttachmentRequest } from './create-person-attachment.request';
-import { CreateTrainingRequest } from './create-training.request';
+import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 
 export class CreatePersonRequest {
   @IsString()
@@ -94,45 +88,9 @@ export class CreatePersonRequest {
   // @Expose({ name: 'profession' })
   Profession: string = Profession.UNWILLING_TO_REVEAL;
 
-  @Type(() => CreatePersonAttachmentRequest)
+  @Type(() => AddPersonAttachmentRequest)
   @IsOptional()
   @ValidateNested()
   // @Expose({ name: 'photo' })
-  Photo: CreatePersonAttachmentRequest;
-
-  @Type(() => CreateAddressRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'addresses' })
-  Addresses: CreateAddressRequest[];
-
-  @Type(() => CreateFamilyAndRelativeRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'family_tree' })
-  FamilyTree: CreateFamilyAndRelativeRequest[];
-
-  @Type(() => CreateEducationRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'educations' })
-  Educations: CreateEducationRequest[];
-
-  @Type(() => CreateTrainingRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'trainings' })
-  Trainings: CreateTrainingRequest[];
-
-  @Type(() => CreateEmploymentHistoryRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'employment_histories' })
-  EmploymentHistories: CreateEmploymentHistoryRequest[];
-
-  @Type(() => CreatePersonAttachmentRequest)
-  @IsArray()
-  @ValidateNested({ each: true })
-  // @Expose({ name: 'attachments' })
-  Attachments: CreatePersonAttachmentRequest[];
+  Photo: AddPersonAttachmentRequest;
 }

@@ -1,11 +1,11 @@
 import {
-  IsString,
+  IsDateString,
   IsNotEmpty,
   IsOptional,
-  IsDateString,
+  IsString,
 } from 'class-validator';
 
-export class CreateTrainingRequest {
+export class AddTrainingRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'course_title' })

@@ -1,7 +1,7 @@
 import { IsBase64, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
-export class CreatePersonAttachmentRequest {
+export class AddPersonAttachmentRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'file_extension' })

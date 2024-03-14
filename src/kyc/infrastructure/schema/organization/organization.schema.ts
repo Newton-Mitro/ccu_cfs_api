@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Types } from 'mongoose';
 import { Customer } from '../common/customer.schema';
 import { BankAccount, BankAccountSchema } from './bank-account.schema';
 import { ContactPerson, ContactPersonSchema } from './contact-person.schema';
@@ -10,9 +9,6 @@ import {
 
 @Schema()
 export class Organization extends Customer {
-  @Prop({ require: true, type: Types.ObjectId })
-  ParentOrganization: string;
-
   @Prop()
   FaxNumber: string;
 

@@ -7,6 +7,9 @@ export class ContactPersonResponse {
   // @Expose({ name: 'contact_person_id' })
   ContactPersonId: string;
 
+  // @Expose({ name: 'person_id' })
+  PersonId: string;
+
   // @Expose({ name: 'identification_number' })
   IdentificationNumber: string;
 

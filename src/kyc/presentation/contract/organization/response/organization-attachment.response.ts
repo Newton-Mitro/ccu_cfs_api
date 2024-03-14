@@ -7,9 +7,6 @@ export class OrganizationAttachmentResponse {
   // @Expose({ name: 'document_title' })
   DocumentTitle: OrganizationalDocumentType;
 
-  // @Expose({ name: 'file_extension' })
-  FileExtension: string;
-
-  // @Expose({ name: 'document_url' })
-  Base64Document: string;
+  // @Expose({ name: 'file_url' })
+  FileUrl: string;
 }

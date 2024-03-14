@@ -12,10 +12,7 @@ export class OrganizationAttachment extends IdentifiableEntitySchema {
   DocumentTitle: OrganizationalDocumentType;
 
   @Prop({ required: true, type: String })
-  Base64Document: string;
-
-  @Prop({ required: true, type: String })
-  FileExtension: string;
+  FileUrl: string;
 }
 
 export const OrganizationAttachmentSchema = SchemaFactory.createForClass(

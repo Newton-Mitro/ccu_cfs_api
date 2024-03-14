@@ -7,9 +7,6 @@ export class PersonAttachmentResponse {
   // @Expose({ name: 'document_title' })
   DocumentTitle: PersonalDocumentType;
 
-  // @Expose({ name: 'file_extension' })
-  FileExtension: string;
-
-  // @Expose({ name: 'document_url' })
-  Base64Document: string;
+  // @Expose({ name: 'file_url' })
+  FileUrl: string;
 }

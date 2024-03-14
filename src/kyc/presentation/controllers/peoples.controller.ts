@@ -8,8 +8,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { PeoplesService } from '../../application/peoples.service';
-import { UpdatePeopleRequest } from '../contract/person/request/update-person-general-info.request';
-import { CreatePersonRequest } from '../contract/person/request/create-person/create-person.request';
+import { CreatePersonRequest } from '../contract/person/request/create-person.request';
+import { UpdatePersonRequest } from '../contract/person/request/update-person.request';
 
 @Controller('peoples')
 export class PeoplesController {
@@ -33,7 +33,7 @@ export class PeoplesController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updatePeopleDto: UpdatePeopleRequest,
+    @Body() updatePeopleDto: UpdatePersonRequest,
   ) {
     return this.peoplesService.update(id, updatePeopleDto);
   }

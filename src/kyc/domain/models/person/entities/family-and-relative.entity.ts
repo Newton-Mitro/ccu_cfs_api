@@ -9,6 +9,7 @@ import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
 import { PersonAttachmentEntity } from './person-attachment.entity';
 
 export class FamilyAndRelativeEntity extends BaseEntity {
+  private _CustomerId: string;
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -29,6 +30,7 @@ export class FamilyAndRelativeEntity extends BaseEntity {
   private _Photo: PersonAttachmentEntity;
 
   constructor(
+    customerId: string,
     familyTreeId: string,
     identificationNumber: string,
     dateOfBirth: string,
@@ -48,6 +50,7 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     photo: PersonAttachmentEntity,
   ) {
     super(familyTreeId);
+    this._CustomerId = customerId;
     this._IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -64,6 +67,13 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
     this._Photo = photo;
+  }
+
+  public get CustomerId(): string {
+    return this._CustomerId;
+  }
+  public set CustomerId(value: string) {
+    this._CustomerId = value;
   }
 
   public get IdentificationNumber(): string {

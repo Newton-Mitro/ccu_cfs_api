@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateEducationRequest {
+export class AddEducationRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'education_level' })

@@ -14,10 +14,15 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { CreatePersonAttachmentRequest } from './create-person-attachment.request';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
+import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 
-export class CreateFamilyAndRelativeRequest {
+export class AddFamilyAndRelativeRequest {
+  @IsString()
+  @IsOptional()
+  // @Expose({ name: 'customer_id' })
+  CustomerId: string;
+
   @IsString()
   @IsOptional()
   // @Expose({ name: 'identification_number' })
@@ -91,11 +96,11 @@ export class CreateFamilyAndRelativeRequest {
   // @Expose({ name: 'email' })
   Email: string;
 
-  @Type(() => CreatePersonAttachmentRequest)
+  @Type(() => AddPersonAttachmentRequest)
   @ValidateNested()
   @IsNotEmptyObject()
   // @Expose({ name: 'photo' })
-  Photo: CreatePersonAttachmentRequest;
+  Photo: AddPersonAttachmentRequest;
 
   @IsEnum(Relationship)
   @IsNotEmpty()

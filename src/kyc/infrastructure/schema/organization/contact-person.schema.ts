@@ -8,6 +8,9 @@ import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entit
 @Schema()
 export class ContactPerson extends IdentifiableEntitySchema {
   @Prop()
+  PersonId: string;
+
+  @Prop()
   IdentificationNumber: string;
 
   @Prop({ required: true, trim: true })

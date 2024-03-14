@@ -7,7 +7,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateEmploymentHistoryRequest {
+export class AddEmploymentHistoryRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'organization_name' })

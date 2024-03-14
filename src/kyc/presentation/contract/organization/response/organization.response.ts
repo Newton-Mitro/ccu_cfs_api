@@ -1,11 +1,12 @@
 import { AddressResponse } from '../../common/response/address.response';
 import { BankAccountResponse } from './bank-account.response';
+import { BranchResponse } from './branch.response';
 import { ContactPersonResponse } from './contact-person.response';
 import { OrganizationAttachmentResponse } from './organization-attachment.response';
 
 export class OrganizationResponse {
-  // @Expose({ name: 'customer_id' })
-  CustomerId: string;
+  // @Expose({ name: 'organization_id' })
+  OrganizationId: string;
 
   // @Expose({ name: 'identification_number' })
   IdentificationNumber: string;
@@ -37,11 +38,11 @@ export class OrganizationResponse {
   // @Expose({ name: 'website' })
   Website: string;
 
-  // @Expose({ name: 'parent_organization' })
-  ParentOrganization: string;
-
   // @Expose({ name: 'logo' })
   Logo: string;
+
+  // @Expose({ name: 'branches' })
+  Branches: BranchResponse[];
 
   // @Expose({ name: 'addresses' })
   Addresses: AddressResponse[];
