@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateBankAccountRequest {
+export class AddBankAccountRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'bank_name' })

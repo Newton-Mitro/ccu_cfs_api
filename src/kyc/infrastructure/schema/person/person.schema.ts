@@ -54,7 +54,7 @@ export class Person extends Customer {
   MaritalStatus: MaritalStatus;
 
   @Prop({ type: Object(PersonAttachmentSchema) })
-  Photo: Object;
+  Photo: PersonAttachment;
 
   @Prop({ type: Array(FamilyAndRelativeSchema) })
   FamilyTree: FamilyAndRelative[];

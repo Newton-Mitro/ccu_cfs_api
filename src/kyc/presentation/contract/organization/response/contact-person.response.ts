@@ -2,6 +2,7 @@ import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { AddPersonAttachmentRequest } from '../../person/request/add-person-attachment.request';
 
 export class ContactPersonResponse {
   // @Expose({ name: 'contact_person_id' })
@@ -53,5 +54,5 @@ export class ContactPersonResponse {
   Email: string;
 
   // @Expose({ name: 'photo' })
-  Photo: string;
+  Photo: AddPersonAttachmentRequest;
 }

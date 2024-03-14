@@ -1,9 +1,14 @@
+import { OrganizationAttachmentResponse } from './organization-attachment.response';
+
 export class ListOrganizationResponse {
   // @Expose({ name: 'organization_id' })
   OrganizationId: string;
 
   // @Expose({ name: 'identification_number' })
   IdentificationNumber: string;
+
+  // @Expose({ name: 'registration_number' })
+  RegistrationNumber: string;
 
   // @Expose({ name: 'name_en' })
   NameEn: string;
@@ -32,9 +37,6 @@ export class ListOrganizationResponse {
   // @Expose({ name: 'website' })
   Website: string;
 
-  // @Expose({ name: 'parent_organization' })
-  ParentOrganization: string;
-
   // @Expose({ name: 'logo' })
-  Logo: string;
+  Logo: OrganizationAttachmentResponse;
 }

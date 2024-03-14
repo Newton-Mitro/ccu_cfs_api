@@ -1,7 +1,7 @@
 import { IsBase64, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { OrganizationalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
-export class CreateOrganizationAttachmentRequest {
+export class AddOrganizationAttachmentRequest {
   @IsString()
   @IsNotEmpty()
   // @Expose({ name: 'file_extension' })

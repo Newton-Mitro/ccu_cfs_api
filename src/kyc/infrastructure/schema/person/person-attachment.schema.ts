@@ -11,10 +11,7 @@ export class PersonAttachment extends IdentifiableEntitySchema {
   DocumentTitle: PersonalDocumentType;
 
   @Prop({ required: true, type: String })
-  Base64Document: string;
-
-  @Prop({ required: true, type: String })
-  FileExtension: string;
+  FileUrl: string;
 }
 
 export const PersonAttachmentSchema =

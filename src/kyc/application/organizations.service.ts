@@ -6,11 +6,12 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
+import { StoreBase64File } from 'src/common/utils/store-base64-file';
 import {
   ORGANIZATION_MODEL,
   OrganizationDocument,
 } from '../infrastructure/schema/organization/organization.schema';
-import { CreateOrganizationRequest } from '../presentation/contract/organization/request/create-organization/create-organization.request';
+import { CreateOrganizationRequest } from '../presentation/contract/organization/request/create-organization.request';
 import { UpdateOrganizationRequest } from '../presentation/contract/organization/request/update-organization.request';
 
 @Injectable()
@@ -28,6 +29,18 @@ export class OrganizationsService {
     createOrganizationModel.IdentificationNumber = String(
       new Date().valueOf(),
     ).substring(3, 13);
+
+    createOrganizationModel.Logo = {
+      _id: new Types.ObjectId(),
+      DocumentTitle: createOrganizationModel.Logo.DocumentTitle,
+      FileUrl: StoreBase64File.store(
+        'organizations/logo',
+        createOrganizationModel.NameEn,
+        createOrganizationDto.Logo.FileExtension,
+        createOrganizationDto.Logo.Base64Document,
+      ),
+    };
+
     const errors = createOrganizationModel.validateSync();
 
     if (errors) {

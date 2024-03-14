@@ -24,19 +24,7 @@ export class Customer extends IdentifiableEntitySchema {
   @Prop()
   NameBn: string;
 
-  @Prop({
-    trim: true,
-    validate: {
-      validator: (Email) => {
-        if (Email !== '') {
-          return /[a-z0-9._%+-]+@[a-z0-9.-]+([.]{1})+[a-z]{2,}$/.test(Email);
-        } else {
-          return true;
-        }
-      },
-      message: (props) => `${props.value} is not a valid email address!`,
-    },
-  })
+  @Prop({ trim: true })
   Email: string;
 
   @Prop()

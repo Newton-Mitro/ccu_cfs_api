@@ -1,7 +1,7 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
 
 export class BranchEntity extends BaseEntity {
-  private _CustomerId: string;
+  private _OrganizationId: string;
   private _IdentificationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
@@ -14,7 +14,7 @@ export class BranchEntity extends BaseEntity {
 
   constructor(
     branchId: string,
-    customerId: string,
+    organizationId: string,
     identificationNumber: string,
     nameEn: string,
     nameBn: string,
@@ -26,7 +26,7 @@ export class BranchEntity extends BaseEntity {
     website: string,
   ) {
     super(branchId);
-    this._CustomerId = customerId;
+    this._OrganizationId = organizationId;
     this._IdentificationNumber = identificationNumber;
     this._NameEn = nameEn;
     this._NameBn = nameBn;
@@ -38,11 +38,11 @@ export class BranchEntity extends BaseEntity {
     this._Website = website;
   }
 
-  public get CustomerId(): string {
-    return this._CustomerId;
+  public get OrganizationId(): string {
+    return this._OrganizationId;
   }
-  public set CustomerId(value: string) {
-    this._CustomerId = value;
+  public set OrganizationId(value: string) {
+    this._OrganizationId = value;
   }
 
   public get IdentificationNumber(): string {

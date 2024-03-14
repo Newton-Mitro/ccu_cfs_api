@@ -5,7 +5,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
+import { StoreBase64File } from 'src/common/utils/store-base64-file';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -22,11 +23,22 @@ export class PeoplesService {
 
   async create(createPersonDTO: CreatePersonRequest) {
     const createdPerson = new this.personModel(createPersonDTO);
-    // createdPerson._id = new Types.ObjectId();
+    createdPerson._id = new Types.ObjectId();
     createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
       3,
       13,
     );
+
+    createdPerson.Photo = {
+      _id: new Types.ObjectId(),
+      DocumentTitle: createPersonDTO.Photo.DocumentTitle,
+      FileUrl: StoreBase64File.store(
+        'persons/photo',
+        createPersonDTO.NameEn,
+        createPersonDTO.Photo.FileExtension,
+        createPersonDTO.Photo.Base64Document,
+      ),
+    };
 
     const errors = createdPerson.validateSync();
 

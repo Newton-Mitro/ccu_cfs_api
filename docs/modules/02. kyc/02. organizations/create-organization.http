@@ -6,6 +6,7 @@ Accept: application/json
 
 ## Request Body
 {
+  "RegistrationNumber":"12456",
   "NameEn": "Bangle Co-operative",
   "NameBn": null,
   "TIN": null,
@@ -15,53 +16,59 @@ Accept: application/json
   "Fax":null,
   "Website": null,
   "Email": "bangle.cooperative@email.com",
-  "ParentOrganization": null,
-  "Addresses": [
-    {
-      "AddressType": "Present Address",
-      "AddressLineOne": "sdfds",
-      "AddressLineTwo": "",
-      "Country": "Bangladesh",
-      "State": "sdfsd",
-      "City": "sfsf",
-      "Division": "sdfdsf",
-      "District": "sfsdf",
-      "SubDistrict": "sdfdsf",
-      "ZipCode": "sfsdf"
-    }
-  ],
-  "ContactPeoples": [
-    {
-      "NameEn": "John Doe",
-      "NameBn": "",
-      "DateOfBirth": "1988-03-13",
-      "NID": "",
-      "BloodGroup": "B (+ve)",
-      "Gender": "Male",
-      "Religion": "Christian",
-      "Profession": "Service Holder",
-      "MaritalStatus": "Married",
-      "BirthRegistrationNumber": "123",
-      "ContactNumber": "0170455555555",
-      "MobileNumber":null,
-      "PhoneNumber": null,
-      "Email": "john@emal.com"
-    }
-  ],
-  "BankAccounts": [
-    {
-      "BankName": "ABC Bank",
-      "Branch": "Dhaka",
-      "RoutingNumber": null,
-      "AccountNumber": "123123123",
-      "AccountName": "Bangle Co"
-    }
-  ],
-  "Attachments": [
-    {
+  "Logo": {
       "FileExtension": "png",
-      "DocumentTitle": "Registration Certificate",
-      "Base64StringDocument": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+      "DocumentTitle": "Logo",
+      "Base64Document": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
     }
-  ]
 }
+
+#  "Addresses": [
+#     {
+#       "AddressType": "Present Address",
+#       "AddressLineOne": "sdfds",
+#       "AddressLineTwo": "",
+#       "Country": "Bangladesh",
+#       "State": "sdfsd",
+#       "City": "sfsf",
+#       "Division": "sdfdsf",
+#       "District": "sfsdf",
+#       "SubDistrict": "sdfdsf",
+#       "ZipCode": "sfsdf"
+#     }
+#   ],
+#   "ContactPeoples": [
+#     {
+#       "NameEn": "John Doe",
+#       "NameBn": "",
+#       "DateOfBirth": "1988-03-13",
+#       "NID": "",
+#       "BloodGroup": "B (+ve)",
+#       "Gender": "Male",
+#       "Religion": "Christian",
+#       "Profession": "Service Holder",
+#       "MaritalStatus": "Married",
+#       "BirthRegistrationNumber": "123",
+#       "ContactNumber": "0170455555555",
+#       "MobileNumber":null,
+#       "PhoneNumber": null,
+#       "Email": "john@emal.com"
+#     }
+#   ],
+#   "BankAccounts": [
+#     {
+#       "BankName": "ABC Bank",
+#       "Branch": "Dhaka",
+#       "RoutingNumber": null,
+#       "AccountNumber": "123123123",
+#       "AccountName": "Bangle Co"
+#     }
+#   ],
+#   "Attachments": [
+#     {
+#       "FileExtension": "png",
+#       "DocumentTitle": "Registration Certificate",
+#       "Base64StringDocument": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+#     }
+#   ]
+

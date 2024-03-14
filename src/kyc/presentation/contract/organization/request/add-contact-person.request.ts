@@ -1,4 +1,3 @@
-import { Type } from 'class-transformer';
 import {
   IsDateString,
   IsEmail,
@@ -6,15 +5,18 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  ValidateNested,
 } from 'class-validator';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { AddPersonAttachmentRequest } from '../../../person/request/add-person-attachment.request';
 
-export class CreateContactPersonRequest {
+export class AddContactPersonRequest {
+  @IsString()
+  @IsOptional()
+  // @Expose({ name: 'person_id' })
+  PersonId: string;
+
   @IsString()
   @IsOptional()
   // @Expose({ name: 'identification_number' })
@@ -85,10 +87,4 @@ export class CreateContactPersonRequest {
   @IsEmail()
   // @Expose({ name: 'email' })
   Email: string;
-
-  @Type(() => AddPersonAttachmentRequest)
-  @IsOptional()
-  @ValidateNested()
-  // @Expose({ name: 'photo' })
-  Photo: AddPersonAttachmentRequest;
 }
