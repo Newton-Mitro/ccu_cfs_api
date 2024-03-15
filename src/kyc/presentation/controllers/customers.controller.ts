@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Param, Query } from '@nestjs/common';
 import { FindAllQueryDTO } from '../../../common/contract/find-all-query.dto';
-import { CustomersService } from '../../application/customers.service';
+import { CustomersService } from '../../application/services/customers.service';
 
 @Controller('customers')
 export class CustomersController {

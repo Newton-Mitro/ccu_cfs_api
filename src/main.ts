@@ -1,23 +1,22 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { json, urlencoded } from 'express';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.SERVER_PORT || 3000;
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('Credit Union - Core Financial Solution')
+    .setDescription('Description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('cu_cfs')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   app.use(json({ limit: '50mb' }));
   app.use(urlencoded({ extended: true, limit: '50mb' }));
-  // app.useGlobalFilters(new HttpExceptionFilter()); // Alternative technique
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

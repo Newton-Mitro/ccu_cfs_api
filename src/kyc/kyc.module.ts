@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { CustomersService } from './application/customers.service';
-import { OrganizationsService } from './application/organizations.service';
-import { PeoplesService } from './application/peoples.service';
+import { CustomersService } from './application/services/customers.service';
+import { OrganizationsService } from './application/services/organizations.service';
+import { PeoplesService } from './application/services/peoples.service';
+import { MongooseKYCModelsModule } from './infrastructure/mongoose-kyc-models.module';
 import { CustomersController } from './presentation/controllers/customers.controller';
 import { OrganizationsController } from './presentation/controllers/organizations.controller';
 import { PeoplesController } from './presentation/controllers/peoples.controller';
-import { MongooseKYCModelsModule } from './infrastructure/mongoose-kyc-models.module';
 
 @Module({
   imports: [MongooseKYCModelsModule],

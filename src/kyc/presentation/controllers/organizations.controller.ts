@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { OrganizationsService } from '../../application/organizations.service';
+import { OrganizationsService } from '../../application/services/organizations.service';
 import { CreateOrganizationRequest } from '../contract/organization/request/create-organization.request';
 import { UpdateOrganizationRequest } from '../contract/organization/request/update-organization.request';
 

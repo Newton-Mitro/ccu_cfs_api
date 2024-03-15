@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { PeoplesService } from '../../application/peoples.service';
+import { PeoplesService } from '../../application/services/peoples.service';
 import { CreatePersonRequest } from '../contract/person/request/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/request/update-person.request';
 

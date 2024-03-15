@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
 import { DatabaseModule } from './common/mongoose/database.module';
@@ -11,17 +13,21 @@ import { LoggerType } from './logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from './logging/infrastructure/repositories/database-logging.repository';
 import { LoggingModule } from './logging/logging.module';
 import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiary-ledgers/subsidiary-ledger-account.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    DatabaseModule,
-    KYCModule,
-    SubsidiaryLedgerAccountModule,
-    LoggingModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
     }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    SubsidiaryLedgerAccountModule,
+    DatabaseModule,
+    KYCModule,
+    LoggingModule,
+    AuthModule,
+    UsersModule,
   ],
   providers: [
     {

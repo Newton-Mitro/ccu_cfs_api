@@ -1,4 +1,4 @@
-import { CreateOrganizationCommand } from 'src/kyc/application/commands/create-organization/create-organization.command';
+import { CreateOrganizationCommand } from 'src/kyc/application/commands/organization/create-organization/create-organization.command';
 import { CreateOrganizationRequest } from '../contract/organization/request/create-organization.request';
 
 export class PersonMapper {
