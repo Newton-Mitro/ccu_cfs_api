@@ -5,7 +5,7 @@ import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
 import { PersonAttachmentSchema } from './person-attachment.schema';
 

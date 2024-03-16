@@ -3,7 +3,7 @@ import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { IdentifiableEntitySchema } from 'src/common/mongoose/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 
 @Schema()
 export class ContactPerson extends IdentifiableEntitySchema {

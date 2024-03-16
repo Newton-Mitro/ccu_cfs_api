@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
-import { EntitySchemaFactory } from 'src/common/mongoose/entity-schema.factory';
-import { SuccessLogRecord } from '../schemas/success-log-record.schema';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
+import { SuccessLogRecord } from '../schemas/success-log-record.schema';
+import { EntitySchemaFactory } from 'src/config/database/mongoose/entity-schema.factory';
 
 export class MapSuccessLogRecordFactory
   implements EntitySchemaFactory<SuccessLogRecord, SuccessLogRecordModel>

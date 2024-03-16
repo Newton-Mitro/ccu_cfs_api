@@ -7,7 +7,7 @@ import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
-import { DatabaseModule } from './common/mongoose/database.module';
+import { DatabaseModule } from './config/database/mongoose/database.module';
 import { KYCModule } from './kyc/kyc.module';
 import { LoggerType } from './logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from './logging/infrastructure/repositories/database-logging.repository';
