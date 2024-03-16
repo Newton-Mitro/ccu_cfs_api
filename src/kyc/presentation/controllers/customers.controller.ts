@@ -17,7 +17,7 @@ export class CustomersController {
   }
 
   @Get()
-  @RequirePermissions(Permission.Admin)
+  @RequirePermissions(Permission.ListCustomers)
   findAll(@Query() findAllQueryDto: FindAllQueryDTO) {
     return this.customerService.findAll(findAllQueryDto);
   }

@@ -34,17 +34,17 @@ export class CreatePersonRequest {
   @IsString()
   @IsEnum(Gender)
   // @Expose({ name: 'gender' })
-  Gender: string = Gender.MALE;
+  Gender: Gender = Gender.MALE;
 
   @IsString()
   @IsEnum(BloodGroup)
   // @Expose({ name: 'blood_group' })
-  BloodGroup: string = BloodGroup.UNKNOWN;
+  BloodGroup: BloodGroup = BloodGroup.UNKNOWN;
 
   @IsString()
   @IsEnum(Religion)
   // @Expose({ name: 'religion' })
-  Religion: string = Religion.UNWILLING_TO_REVEAL;
+  Religion: Religion = Religion.UNWILLING_TO_REVEAL;
 
   @IsString()
   @IsOptional()
@@ -59,7 +59,7 @@ export class CreatePersonRequest {
   @IsString()
   @IsEnum(MaritalStatus)
   // @Expose({ name: 'marital_status' })
-  MaritalStatus: string = MaritalStatus.SINGLE;
+  MaritalStatus: MaritalStatus = MaritalStatus.SINGLE;
 
   @IsString()
   @IsOptional()
@@ -86,7 +86,7 @@ export class CreatePersonRequest {
   @IsEnum(Profession)
   @IsOptional()
   // @Expose({ name: 'profession' })
-  Profession: string = Profession.UNWILLING_TO_REVEAL;
+  Profession: Profession = Profession.UNWILLING_TO_REVEAL;
 
   @Type(() => AddPersonAttachmentRequest)
   @IsOptional()

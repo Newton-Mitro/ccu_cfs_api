@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
 import { MessagingModule } from 'src/messaging/messaging.module';
 import { CustomersService } from './application/services/customers.service';
 import { OrganizationsService } from './application/services/organizations.service';
@@ -9,7 +10,7 @@ import { OrganizationsController } from './presentation/controllers/organization
 import { PeoplesController } from './presentation/controllers/peoples.controller';
 
 @Module({
-  imports: [MongooseKYCModelsModule, MessagingModule],
+  imports: [MongooseKYCModelsModule, MessagingModule, CqrsModule],
   controllers: [
     CustomersController,
     PeoplesController,

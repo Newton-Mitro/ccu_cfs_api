@@ -1,12 +1,7 @@
-import {
-  BadRequestException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CommandBus } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
-import { StoreBase64File } from 'src/common/utils/store-base64-file';
+import { Model } from 'mongoose';
 import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
 import {
   PERSON_MODEL,
@@ -14,78 +9,101 @@ import {
 } from '../../infrastructure/schema/person/person.schema';
 import { CreatePersonRequest } from '../../presentation/contract/person/request/create-person.request';
 import { UpdatePersonRequest } from '../../presentation/contract/person/request/update-person.request';
+import { CreatePersonCommand } from '../commands/person/create-person/create-person.command';
 
 @Injectable()
 export class PeoplesService {
   constructor(
+    private commandBus: CommandBus,
+
     @InjectModel(PERSON_MODEL)
     private readonly personModel: Model<PersonDocument>,
     private readonly emailService: EmailMessagingRepository,
   ) {}
 
-  async create(createPersonDTO: CreatePersonRequest) {
-    const createdPerson = new this.personModel(createPersonDTO);
-    createdPerson._id = new Types.ObjectId();
-    createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
-      3,
-      13,
+  async create(createPersonRequest: CreatePersonRequest) {
+    return this.commandBus.execute(
+      new CreatePersonCommand(
+        createPersonRequest.NameEn,
+        createPersonRequest.NameBn,
+        createPersonRequest.DateOfBirth,
+        createPersonRequest.Gender,
+        createPersonRequest.BloodGroup,
+        createPersonRequest.Religion,
+        createPersonRequest.NID,
+        createPersonRequest.BirthRegistrationNumber,
+        createPersonRequest.MaritalStatus,
+        createPersonRequest.ContactNumber,
+        createPersonRequest.MobileNumber,
+        createPersonRequest.PhoneNumber,
+        createPersonRequest.Email,
+        createPersonRequest.Profession,
+        createPersonRequest.Photo,
+      ),
     );
 
-    createdPerson.Photo = {
-      _id: new Types.ObjectId(),
-      DocumentTitle: createPersonDTO.Photo.DocumentTitle,
-      FileUrl: StoreBase64File.store(
-        'persons/photo',
-        createPersonDTO.NameEn,
-        createPersonDTO.Photo.FileExtension,
-        createPersonDTO.Photo.Base64Document,
-      ),
-    };
+    // const createdPerson = new this.personModel(createPersonRequest);
+    // createdPerson._id = new Types.ObjectId();
+    // createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
+    //   3,
+    //   13,
+    // );
 
-    const errors = createdPerson.validateSync();
-
-    if (errors) {
-      const invalidFields = Object.keys(errors.errors);
-      const validationErrors = invalidFields.map(
-        (fieldName) => errors.errors[fieldName].message,
-      );
-
-      const result = {
-        message: validationErrors,
-        error: errors.name,
-        statusCode: HttpStatus.BAD_REQUEST,
-      };
-      throw new BadRequestException(result);
-    }
-
-    // Unique NID Check
-
-    // Unique BirthRegistrationNumber Check
-
-    const person = await createdPerson.save();
-
-    const per = JSON.stringify(person);
-    const emailMessage = {
-      from: '"CCU_CFS" <noreply@domain.com>',
-      to: 'newtonmitro@gmail.com',
-      subject: 'Person Created',
-      // text: 'Test Body',
-      // html: '<h1>Hello world.</h1>',
-      template: 'person-created',
-      context: { name: createPersonDTO.NameEn, per },
-    };
-
-    // const emailMessage = {
-    //   from: '"Credit Solution" <info@cccul.com>',
-    //   to: 'newtonmitro@gmail.com',
-    //   subject: 'Test Subject',
-    //   text: 'Test Body',
-    //   html: '<h1>Hello world.</h1>',
+    // createdPerson.Photo = {
+    //   _id: new Types.ObjectId(),
+    //   DocumentTitle: createPersonRequest.Photo.DocumentTitle,
+    //   FileUrl: StoreBase64File.store(
+    //     'persons/photo',
+    //     createPersonRequest.NameEn,
+    //     createPersonRequest.Photo.FileExtension,
+    //     createPersonRequest.Photo.Base64Document,
+    //   ),
     // };
 
-    const res = await this.emailService.sendEmail(emailMessage);
+    // const errors = createdPerson.validateSync();
 
-    return person;
+    // if (errors) {
+    //   const invalidFields = Object.keys(errors.errors);
+    //   const validationErrors = invalidFields.map(
+    //     (fieldName) => errors.errors[fieldName].message,
+    //   );
+
+    //   const result = {
+    //     message: validationErrors,
+    //     error: errors.name,
+    //     statusCode: HttpStatus.BAD_REQUEST,
+    //   };
+    //   throw new BadRequestException(result);
+    // }
+
+    // // Unique NID Check
+
+    // // Unique BirthRegistrationNumber Check
+
+    // const person = await createdPerson.save();
+
+    // const per = JSON.stringify(person);
+    // const emailMessage = {
+    //   from: '"CCU_CFS" <noreply@domain.com>',
+    //   to: 'newtonmitro@gmail.com',
+    //   subject: 'Person Created',
+    //   // text: 'Test Body',
+    //   // html: '<h1>Hello world.</h1>',
+    //   template: 'person-created',
+    //   context: { name: createPersonRequest.NameEn, per },
+    // };
+
+    // // const emailMessage = {
+    // //   from: '"Credit Solution" <info@cccul.com>',
+    // //   to: 'newtonmitro@gmail.com',
+    // //   subject: 'Test Subject',
+    // //   text: 'Test Body',
+    // //   html: '<h1>Hello world.</h1>',
+    // // };
+
+    // const res = await this.emailService.sendEmail(emailMessage);
+
+    // return person;
   }
 
   async findAll() {
