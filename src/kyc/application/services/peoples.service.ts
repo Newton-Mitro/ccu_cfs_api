@@ -7,6 +7,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { StoreBase64File } from 'src/common/utils/store-base64-file';
+import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -19,6 +20,7 @@ export class PeoplesService {
   constructor(
     @InjectModel(PERSON_MODEL)
     private readonly personModel: Model<PersonDocument>,
+    private readonly emailService: EmailMessagingRepository,
   ) {}
 
   async create(createPersonDTO: CreatePersonRequest) {
@@ -61,6 +63,28 @@ export class PeoplesService {
     // Unique BirthRegistrationNumber Check
 
     const person = await createdPerson.save();
+
+    const per = JSON.stringify(person);
+    const emailMessage = {
+      from: '"CCU_CFS" <noreply@domain.com>',
+      to: 'newtonmitro@gmail.com',
+      subject: 'Person Created',
+      // text: 'Test Body',
+      // html: '<h1>Hello world.</h1>',
+      template: 'person-created',
+      context: { name: createPersonDTO.NameEn, per },
+    };
+
+    // const emailMessage = {
+    //   from: '"Credit Solution" <info@cccul.com>',
+    //   to: 'newtonmitro@gmail.com',
+    //   subject: 'Test Subject',
+    //   text: 'Test Body',
+    //   html: '<h1>Hello world.</h1>',
+    // };
+
+    const res = await this.emailService.sendEmail(emailMessage);
+
     return person;
   }
 

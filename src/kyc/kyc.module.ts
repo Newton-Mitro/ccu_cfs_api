@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { MessagingModule } from 'src/messaging/messaging.module';
 import { CustomersService } from './application/services/customers.service';
 import { OrganizationsService } from './application/services/organizations.service';
 import { PeoplesService } from './application/services/peoples.service';
@@ -8,7 +9,7 @@ import { OrganizationsController } from './presentation/controllers/organization
 import { PeoplesController } from './presentation/controllers/peoples.controller';
 
 @Module({
-  imports: [MongooseKYCModelsModule],
+  imports: [MongooseKYCModelsModule, MessagingModule],
   controllers: [
     CustomersController,
     PeoplesController,
