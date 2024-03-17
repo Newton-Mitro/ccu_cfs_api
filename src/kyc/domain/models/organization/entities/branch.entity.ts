@@ -3,6 +3,7 @@ import { BaseEntity } from 'src/common/entities/base-entity';
 export class BranchEntity extends BaseEntity {
   private _OrganizationId: string;
   private _IdentificationNumber: string;
+  private _RegistrationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
   private _Email: string;
@@ -16,6 +17,7 @@ export class BranchEntity extends BaseEntity {
     branchId: string,
     organizationId: string,
     identificationNumber: string,
+    registrationNumber: string,
     nameEn: string,
     nameBn: string,
     email: string,
@@ -28,6 +30,7 @@ export class BranchEntity extends BaseEntity {
     super(branchId);
     this._OrganizationId = organizationId;
     this._IdentificationNumber = identificationNumber;
+    this._RegistrationNumber = registrationNumber;
     this._NameEn = nameEn;
     this._NameBn = nameBn;
     this._Email = email;
@@ -50,6 +53,13 @@ export class BranchEntity extends BaseEntity {
   }
   public set IdentificationNumber(value: string) {
     this._IdentificationNumber = value;
+  }
+
+  public get RegistrationNumber(): string {
+    return this._RegistrationNumber;
+  }
+  public set RegistrationNumber(value: string) {
+    this._RegistrationNumber = value;
   }
 
   public get NameEn(): string {

@@ -1,4 +1,3 @@
-import { AggregateRoot } from '@nestjs/cqrs';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
@@ -6,32 +5,24 @@ import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { PersonalDocumentType } from '../../enums/kyc-attachment-type.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
-import { AddressEntity } from '../common/address.entity';
+import { CustomerModel } from '../common/customer.model';
 import { EducationEntity } from './entities/education.entity';
 import { EmploymentHistoryEntity } from './entities/employment-history.entity';
 import { FamilyAndRelativeEntity } from './entities/family-and-relative.entity';
 import { PersonAttachmentEntity } from './entities/person-attachment.entity';
 import { TrainingEntity } from './entities/training.entity';
 
-export class PersonModel extends AggregateRoot {
+export class PersonModel extends CustomerModel {
   private _PersonId: string;
-  private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
-  private _NameEn: string;
-  private _NameBn: string;
   private _BloodGroup: BloodGroup;
   private _Religion: Religion;
   private _MaritalStatus: MaritalStatus;
   private _Profession: Profession;
-  private _ContactNumber: string;
-  private _MobileNumber: string;
-  private _PhoneNumber: string;
-  private _Email: string;
   private _NID: string;
   private _BirthRegistrationNumber: string;
   private _Photo: PersonAttachmentEntity;
-  private _Addresses: AddressEntity[];
   private _FamilyTree: FamilyAndRelativeEntity[];
   private _Educations: EducationEntity[];
   private _Trainings: TrainingEntity[];
@@ -61,19 +52,19 @@ export class PersonModel extends AggregateRoot {
     birthRegistrationNumber: string,
   ) {
     this._PersonId = personId;
-    this._IdentificationNumber = identificationNumber;
+    this.IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
+    this.NameEn = nameEn;
+    this.NameBn = nameBn;
     this._BloodGroup = bloodGroup;
     this._Religion = religion;
     this._MaritalStatus = maritalStatus;
     this._Profession = profession;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._Email = email;
+    this.ContactNumber = contactNumber;
+    this.MobileNumber = mobileNumber;
+    this.PhoneNumber = phoneNumber;
+    this.Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
     // Publish Event: PersonCreatedEvent
@@ -98,16 +89,16 @@ export class PersonModel extends AggregateRoot {
   ) {
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
+    this.NameEn = nameEn;
+    this.NameBn = nameBn;
     this._BloodGroup = bloodGroup;
     this._Religion = religion;
     this._MaritalStatus = maritalStatus;
     this._Profession = profession;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._Email = email;
+    this.ContactNumber = contactNumber;
+    this.MobileNumber = mobileNumber;
+    this.PhoneNumber = phoneNumber;
+    this.Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
     // Publish Event: PersonUpdatedEvent
@@ -242,13 +233,6 @@ export class PersonModel extends AggregateRoot {
     this._PersonId = value;
   }
 
-  public get IdentificationNumber(): string {
-    return this._IdentificationNumber;
-  }
-  public set IdentificationNumber(value: string) {
-    this._IdentificationNumber = value;
-  }
-
   public get DateOfBirth(): string {
     return this._DateOfBirth;
   }
@@ -261,20 +245,6 @@ export class PersonModel extends AggregateRoot {
   }
   public set Gender(value: Gender) {
     this._Gender = value;
-  }
-
-  public get NameEn(): string {
-    return this._NameEn;
-  }
-  public set NameEn(value: string) {
-    this._NameEn = value;
-  }
-
-  public get NameBn(): string {
-    return this._NameBn;
-  }
-  public set NameBn(value: string) {
-    this._NameBn = value;
   }
 
   public get BloodGroup(): BloodGroup {
@@ -305,34 +275,6 @@ export class PersonModel extends AggregateRoot {
     this._Profession = value;
   }
 
-  public get ContactNumber(): string {
-    return this._ContactNumber;
-  }
-  public set ContactNumber(value: string) {
-    this._ContactNumber = value;
-  }
-
-  public get MobileNumber(): string {
-    return this._MobileNumber;
-  }
-  public set MobileNumber(value: string) {
-    this._MobileNumber = value;
-  }
-
-  public get PhoneNumber(): string {
-    return this._PhoneNumber;
-  }
-  public set PhoneNumber(value: string) {
-    this._PhoneNumber = value;
-  }
-
-  public get Email(): string {
-    return this._Email;
-  }
-  public set Email(value: string) {
-    this._Email = value;
-  }
-
   public get NID(): string {
     return this._NID;
   }
@@ -345,13 +287,6 @@ export class PersonModel extends AggregateRoot {
   }
   public set BirthRegistrationNumber(value: string) {
     this._BirthRegistrationNumber = value;
-  }
-
-  public get Addresses(): AddressEntity[] {
-    return this._Addresses;
-  }
-  public set Addresses(value: AddressEntity[]) {
-    this._Addresses = value;
   }
 
   public get FamilyTree(): FamilyAndRelativeEntity[] {

@@ -1,10 +1,10 @@
 import { Types } from 'mongoose';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
 import { ErrorLogRecord } from '../schemas/error-log-record.schema';
-import { EntitySchemaFactory } from 'src/config/database/mongoose/entity-schema.factory';
+import { ModelSchemaFactory } from 'src/config/database/mongoose/entity-schema.factory';
 
 export class MapErrorLogRecordFactory
-  implements EntitySchemaFactory<ErrorLogRecord, ErrorLogRecordModel>
+  implements ModelSchemaFactory<ErrorLogRecord, ErrorLogRecordModel>
 {
   create(entity: ErrorLogRecordModel): ErrorLogRecord {
     return {

@@ -6,7 +6,7 @@ import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 
 export class ContactPersonEntity extends BaseEntity {
-  private _CustomerId: string;
+  private _PersonId: string;
   private _IdentificationNumber: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
@@ -25,7 +25,7 @@ export class ContactPersonEntity extends BaseEntity {
 
   constructor(
     contactPersonId: string,
-    customerId: string,
+    personId: string,
     identificationNumber: string,
     dateOfBirth: string,
     gender: Gender,
@@ -43,7 +43,7 @@ export class ContactPersonEntity extends BaseEntity {
     birthRegistrationNumber: string,
   ) {
     super(contactPersonId);
-    this._CustomerId = customerId;
+    this._PersonId = personId;
     this._IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -61,11 +61,11 @@ export class ContactPersonEntity extends BaseEntity {
     this._BirthRegistrationNumber = birthRegistrationNumber;
   }
 
-  public get CustomerId(): string {
-    return this._CustomerId;
+  public get PersonId(): string {
+    return this._PersonId;
   }
-  public set CustomerId(value: string) {
-    this._CustomerId = value;
+  public set PersonId(value: string) {
+    this._PersonId = value;
   }
 
   public get IdentificationNumber(): string {

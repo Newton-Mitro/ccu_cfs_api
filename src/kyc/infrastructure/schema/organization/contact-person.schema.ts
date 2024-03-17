@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 
@@ -39,6 +40,9 @@ export class ContactPerson extends IdentifiableEntitySchema {
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
+
+  @Prop({ require: true, type: String, enum: Object.values(Profession) })
+  Profession: Profession;
 
   @Prop({ required: true, trim: true })
   ContactNumber: string;

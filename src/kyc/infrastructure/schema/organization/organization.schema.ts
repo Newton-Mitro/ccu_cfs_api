@@ -27,13 +27,13 @@ export class Organization extends Customer {
   Logo: OrganizationAttachment;
 
   @Prop({ type: Array(BranchSchema) })
-  Branches: Branch;
+  Branches: Branch[];
 
   @Prop({ type: Array(ContactPersonSchema) })
-  ContactPeoples: ContactPerson;
+  ContactPeoples: ContactPerson[];
 
   @Prop({ type: Array(BankAccountSchema) })
-  BankAccounts: BankAccount;
+  BankAccounts: BankAccount[];
 
   @Prop({ type: Array(OrganizationAttachmentSchema) })
   Attachments: OrganizationAttachment[];

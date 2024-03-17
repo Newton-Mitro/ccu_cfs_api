@@ -25,7 +25,7 @@ export class EmploymentHistory extends IdentifiableEntitySchema {
   JobResponsibilities: string;
 
   @Prop()
-  Salary: string;
+  Salary: number;
 
   @Prop({ require: true })
   StartDate: string;
@@ -34,7 +34,7 @@ export class EmploymentHistory extends IdentifiableEntitySchema {
   EndDate: string;
 
   @Prop()
-  TillNow: string;
+  TillNow: boolean;
 }
 
 export const EmploymentHistorySchema =
