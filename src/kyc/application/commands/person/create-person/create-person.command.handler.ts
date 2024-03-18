@@ -5,7 +5,7 @@ import { CreatePersonCommand } from './create-person.command';
 export class CreatePersonHandler
   implements ICommandHandler<CreatePersonCommand>
 {
-  //   constructor(private repository: PersonRepository) {}
+  // constructor(private repository: PersonRepository) {}
 
   execute(command: CreatePersonCommand): Promise<any> {
     throw new Error('Method not implemented.');

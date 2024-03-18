@@ -1,11 +1,15 @@
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
-import { Profession } from 'src/common/enums/profession.enum';
+import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
+import { PersonPhotoAttachment } from '../create-person/create-person.command';
 
-export class CreatePersonCommand {
+export class AddPersonToFamilyTreeCommand {
   constructor(
+    public readonly customerId: string,
+    public readonly identificationNumber: string,
     public readonly nameEn: string,
     public readonly nameBn: string,
     public readonly dateOfBirth: Date,
@@ -19,15 +23,8 @@ export class CreatePersonCommand {
     public readonly mobileNumber: string,
     public readonly phoneNumber: string,
     public readonly email: string,
-    public readonly profession: Profession,
     public readonly photo: PersonPhotoAttachment,
-  ) {}
-}
-
-export class PersonPhotoAttachment {
-  constructor(
-    public readonly base64Document: string,
-    public readonly fileExtension: string,
-    public readonly documentTitle: string = 'Photo',
+    public readonly relationship: Relationship,
+    public readonly status: FamilyTreeStatus,
   ) {}
 }

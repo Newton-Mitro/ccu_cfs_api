@@ -1,16 +1,28 @@
 export abstract class BaseEntity {
-  Id: string;
-  CreatedAt: Date;
-  UpdatedAt: Date;
+  protected _Id: string;
+  protected _CreatedAt: Date;
+  protected _UpdatedAt: Date;
 
   constructor(id: string) {
-    this.Id = id;
-    this.CreatedAt = new Date();
-    this.UpdatedAt = new Date();
+    this._Id = id;
+    this._CreatedAt = new Date();
+    this._UpdatedAt = new Date();
   }
 
   // Method to update the entity's 'updatedAt' property
   touch(): void {
-    this.UpdatedAt = new Date();
+    this._UpdatedAt = new Date();
+  }
+
+  public get Id(): string {
+    return this._Id;
+  }
+
+  public get CreatedAt(): Date {
+    return this._CreatedAt;
+  }
+
+  public get UpdatedAt(): Date {
+    return this._UpdatedAt;
   }
 }

@@ -7,7 +7,10 @@ import {
   PERSON_MODEL,
   PersonDocument,
 } from '../../infrastructure/schema/person/person.schema';
-import { CreatePersonCommand } from '../commands/person/create-person/create-person.command';
+import {
+  CreatePersonCommand,
+  PersonPhotoAttachment,
+} from '../commands/person/create-person/create-person.command';
 import { CreatePersonRequest } from '../contract/person/request/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/request/update-person.request';
 
@@ -38,7 +41,10 @@ export class PeoplesService {
         createPersonRequest.PhoneNumber,
         createPersonRequest.Email,
         createPersonRequest.Profession,
-        createPersonRequest.Photo,
+        new PersonPhotoAttachment(
+          createPersonRequest.Photo.Base64Document,
+          createPersonRequest.Photo.FileExtension,
+        ),
       ),
     );
 

@@ -2,7 +2,6 @@ import { BaseEntity } from 'src/common/entities/base-entity';
 import { AddressType } from '../../enums/person-address-type.enum';
 
 export class AddressEntity extends BaseEntity {
-  private _AddressId: string;
   private _AddressType: AddressType;
   private _AddressLineOne: string;
   private _AddressLineTwo: string;
@@ -28,7 +27,6 @@ export class AddressEntity extends BaseEntity {
     zipCode: string,
   ) {
     super(addressId);
-    this._AddressId = addressId;
     this._AddressType = addressType;
     this._AddressLineOne = addressLineOne;
     this._AddressLineTwo = addressLineTwo;
@@ -42,7 +40,7 @@ export class AddressEntity extends BaseEntity {
   }
 
   public get AddressId(): string {
-    return this._AddressId;
+    return this._Id;
   }
 
   public get AddressType(): AddressType {

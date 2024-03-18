@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MessagingModule } from 'src/messaging/messaging.module';
+import { CreatePersonHandler } from './application/commands/person/create-person/create-person.command.handler';
 import { CustomersService } from './application/services/customers.service';
 import { OrganizationsService } from './application/services/organizations.service';
 import { PeoplesService } from './application/services/peoples.service';
@@ -14,6 +15,24 @@ import { CustomersController } from './presentation/controllers/customers.contro
 import { OrganizationsController } from './presentation/controllers/organizations.controller';
 import { PeoplesController } from './presentation/controllers/peoples.controller';
 
+export const CommandHandlers = [CreatePersonHandler];
+export const EventHandlers = [];
+export const Mappers = [
+  CustomerSchemaMapper,
+  CustomerBusinessModelMapper,
+  PersonSchemaMapper,
+  PersonBusinessModelMapper,
+  CustomerSchemaMapper,
+  CustomerBusinessModelMapper,
+];
+export const Services = [
+  PeoplesService,
+  OrganizationsService,
+  CustomersService,
+];
+
+export const Repositories = [CustomerRepository];
+
 @Module({
   imports: [MongooseKYCModelsModule, MessagingModule, CqrsModule],
   controllers: [
@@ -22,16 +41,11 @@ import { PeoplesController } from './presentation/controllers/peoples.controller
     OrganizationsController,
   ],
   providers: [
-    PeoplesService,
-    OrganizationsService,
-    CustomersService,
-    CustomerRepository,
-    CustomerSchemaMapper,
-    CustomerBusinessModelMapper,
-    PersonSchemaMapper,
-    PersonBusinessModelMapper,
-    CustomerSchemaMapper,
-    CustomerBusinessModelMapper,
+    ...Services,
+    ...Repositories,
+    ...Mappers,
+    ...CommandHandlers,
+    ...EventHandlers,
   ],
 })
 export class KYCModule {}
