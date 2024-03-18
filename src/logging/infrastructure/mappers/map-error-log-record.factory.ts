@@ -1,12 +1,15 @@
 import { Types } from 'mongoose';
+import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
+import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
 import { ErrorLogRecord } from '../schemas/error-log-record.schema';
-import { ModelSchemaFactory } from 'src/config/database/mongoose/entity-schema.factory';
 
 export class MapErrorLogRecordFactory
-  implements ModelSchemaFactory<ErrorLogRecord, ErrorLogRecordModel>
+  implements
+    ISchemaMapper<ErrorLogRecord, ErrorLogRecordModel>,
+    IBusinessModelMapper<ErrorLogRecord, ErrorLogRecordModel>
 {
-  create(entity: ErrorLogRecordModel): ErrorLogRecord {
+  mapBusinessModelToSchema(entity: ErrorLogRecordModel): ErrorLogRecord {
     return {
       _id: new Types.ObjectId(entity.id),
       User: entity.User,
@@ -23,7 +26,7 @@ export class MapErrorLogRecordFactory
     };
   }
 
-  createFromSchema(entitySchema: ErrorLogRecord): ErrorLogRecordModel {
+  mapSchemaToBusinessModel(entitySchema: ErrorLogRecord): ErrorLogRecordModel {
     return new ErrorLogRecordModel(
       entitySchema._id.toHexString(),
       entitySchema.User,

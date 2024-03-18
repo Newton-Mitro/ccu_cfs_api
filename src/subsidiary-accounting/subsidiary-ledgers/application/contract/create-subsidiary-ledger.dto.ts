@@ -12,14 +12,14 @@ import {
 import { AccountType } from '../../domain/enum/account-type.enum';
 import { Branch } from '../../domain/enum/branch.enum';
 import { ControlLedger } from '../../domain/enum/control-ledger';
-import { CollateralDTO } from './collateral.dto';
-import { CustomerDTO } from './customer.dto';
-import { IntroducerDTO } from './introducer.dto';
-import { NomineeDTO } from './nominee.dto';
-import { OperatorDTO } from './operator.dto';
-import { ScheduleDTO } from './schedule.dto';
+import { CollateralRequest } from './collateral.dto';
+import { CustomerRequest } from './customer.dto';
+import { IntroducerRequest } from './introducer.dto';
+import { NomineeRequest } from './nominee.dto';
+import { OperatorRequest } from './operator.dto';
+import { ScheduleRequest } from './schedule.dto';
 
-export class CreateSubsidiaryLedgerDTO {
+export class CreateSubsidiaryLedgerRequest {
   @IsNotEmpty()
   @IsString()
   @IsEnum(AccountType)
@@ -71,41 +71,41 @@ export class CreateSubsidiaryLedgerDTO {
   // @Expose({ name: 'number_of_installment' })
   NumberOfInstallment: number;
 
-  @Type(() => IntroducerDTO)
+  @Type(() => IntroducerRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'introducers' })
-  Introducers: IntroducerDTO[];
+  Introducers: IntroducerRequest[];
 
-  @Type(() => CustomerDTO)
+  @Type(() => CustomerRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'holders' })
-  Holders: CustomerDTO[];
+  Holders: CustomerRequest[];
 
-  @Type(() => OperatorDTO)
+  @Type(() => OperatorRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'operators' })
-  Operators: OperatorDTO[];
+  Operators: OperatorRequest[];
 
-  @Type(() => NomineeDTO)
+  @Type(() => NomineeRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'nominees' })
-  Nominees: NomineeDTO[];
+  Nominees: NomineeRequest[];
 
-  @Type(() => CollateralDTO)
+  @Type(() => CollateralRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'collaterals' })
-  Collaterals: CollateralDTO[];
+  Collaterals: CollateralRequest[];
 
-  @Type(() => ScheduleDTO)
+  @Type(() => ScheduleRequest)
   @IsArray()
   @ValidateNested({ each: true })
   // @Expose({ name: 'schedules' })
-  Schedules: ScheduleDTO[];
+  Schedules: ScheduleRequest[];
 
   @IsOptional()
   @IsDateString()

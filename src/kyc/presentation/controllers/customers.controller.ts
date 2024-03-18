@@ -1,7 +1,7 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { Permission } from 'src/auth/enums/permissions.enum';
 import { RequirePermissions } from 'src/auth/util/permissions.decorator';
-import { FindAllQueryDTO } from '../../../common/contract/find-all-query.dto';
+import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 import { CustomersService } from '../../application/services/customers.service';
 
 @Controller('customers')
@@ -18,14 +18,14 @@ export class CustomersController {
 
   @Get()
   @RequirePermissions(Permission.ListCustomers)
-  findAll(@Query() findAllQueryDto: FindAllQueryDTO) {
-    return this.customerService.findAll(findAllQueryDto);
+  findAll(@Query() findAllQueryRequest: FindAllQueryRequest) {
+    return this.customerService.findAll(findAllQueryRequest);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.customerService.findOne(id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.customerService.findOne(id);
+  }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {

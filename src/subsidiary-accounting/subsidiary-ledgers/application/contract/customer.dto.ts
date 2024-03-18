@@ -11,7 +11,7 @@ import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 
-export class CustomerDTO {
+export class CustomerRequest {
   @IsNotEmpty()
   @IsString()
   // @Expose({ name: 'identification_number' })

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CustomerRepository } from 'src/kyc/infrastructure/repositories/customer.repository';
-import { FindAllQueryDTO } from '../../../common/contract/find-all-query.dto';
+import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 
 @Injectable()
 export class CustomersService {
@@ -51,17 +51,17 @@ export class CustomersService {
   //   return customers;
   // }
 
-  async findAll(findAllQueryDto: FindAllQueryDTO) {
-    return this.customerRepository.findAll(findAllQueryDto);
+  async findAll(findAllQueryRequest: FindAllQueryRequest) {
+    return this.customerRepository.findAll(findAllQueryRequest);
   }
 
-  // async findOne(id: string) {
-  //   const existingCustomer = await this.customerRepository.findById(id);
-  //   if (!existingCustomer) {
-  //     throw new NotFoundException(`Customer #${id} not found`);
-  //   }
-  //   return existingCustomer;
-  // }
+  async findOne(id: string) {
+    const existingCustomer = await this.customerRepository.findById(id);
+    if (!existingCustomer) {
+      throw new NotFoundException(`Customer #${id} not found`);
+    }
+    return existingCustomer;
+  }
 
   // async remove(id: string) {
   //   const deletedCustomer = await this.customerRepository.findByIdAndDelete(id);

@@ -1,8 +1,9 @@
 import { NotFoundException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { FilterQuery, Model } from 'mongoose';
-import { ModelSchemaFactory } from './entity-schema.factory';
+import { IBusinessModelMapper } from './business-model.mapper';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
+import { ISchemaMapper } from './schema.mapper';
 
 export abstract class EntityRepository<
   TSchema extends IdentifiableEntitySchema,
@@ -10,7 +11,8 @@ export abstract class EntityRepository<
 > {
   constructor(
     protected readonly entityModel: Model<TSchema>,
-    protected readonly entitySchemaFactory: ModelSchemaFactory<
+    protected readonly schemaMapper: ISchemaMapper<TSchema, TEntity>,
+    protected readonly businessModelMapper: IBusinessModelMapper<
       TSchema,
       TEntity
     >,
@@ -29,7 +31,7 @@ export abstract class EntityRepository<
       throw new NotFoundException('Entity was not found.');
     }
 
-    return this.entitySchemaFactory.createFromSchema(entityDocument);
+    return this.businessModelMapper.mapSchemaToBusinessModel(entityDocument);
   }
 
   protected async find(
@@ -37,12 +39,14 @@ export abstract class EntityRepository<
   ): Promise<TEntity[]> {
     return (await this.entityModel.find({}, { lean: true })).map(
       (entityDocument) =>
-        this.entitySchemaFactory.createFromSchema(entityDocument),
+        this.businessModelMapper.mapSchemaToBusinessModel(entityDocument),
     );
   }
 
   async create(entity: TEntity): Promise<void> {
-    await new this.entityModel(this.entitySchemaFactory.create(entity)).save();
+    await new this.entityModel(
+      this.schemaMapper.mapBusinessModelToSchema(entity),
+    ).save();
   }
 
   // protected async findOneAndReplace(

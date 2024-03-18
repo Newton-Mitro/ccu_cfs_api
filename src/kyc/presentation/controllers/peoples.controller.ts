@@ -16,8 +16,8 @@ export class PeoplesController {
   constructor(private readonly peoplesService: PeoplesService) {}
 
   @Post()
-  create(@Body() createPersonDTO: CreatePersonRequest) {
-    return this.peoplesService.create(createPersonDTO);
+  create(@Body() createPersonRequest: CreatePersonRequest) {
+    return this.peoplesService.create(createPersonRequest);
   }
 
   @Get()
@@ -33,9 +33,9 @@ export class PeoplesController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updatePeopleDto: UpdatePersonRequest,
+    @Body() updatePeopleRequest: UpdatePersonRequest,
   ) {
-    return this.peoplesService.update(id, updatePeopleDto);
+    return this.peoplesService.update(id, updatePeopleRequest);
   }
 
   @Delete(':id')

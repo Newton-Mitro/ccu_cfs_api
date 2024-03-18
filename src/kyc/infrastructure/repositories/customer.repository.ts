@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { FindAllQueryDTO } from 'src/common/contract/find-all-query.dto';
+import { Model, Types } from 'mongoose';
+import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
 import { EntityRepository } from 'src/config/database/mongoose/entity.repository';
 import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
-import { CustomerFactory } from '../factories/customer.factory';
+import { CustomerSchemaMapper } from '../mapping/business-model-mapping/customer-schema.mapper';
+import { CustomerBusinessModelMapper } from '../mapping/schema-mapping/customer-business-model.mapper';
 import {
   CUSTOMER_MODEL,
   Customer,
@@ -19,12 +20,15 @@ export class CustomerRepository extends EntityRepository<
   constructor(
     @InjectModel(CUSTOMER_MODEL)
     private readonly customerModel: Model<CustomerDocument>,
-    private readonly customerFactory: CustomerFactory,
+    private readonly customerSchemaMapper: CustomerSchemaMapper,
+    private readonly customerBusinessModelMapper: CustomerBusinessModelMapper,
   ) {
-    super(customerModel, customerFactory);
+    super(customerModel, customerSchemaMapper, customerBusinessModelMapper);
   }
 
-  async findAll(findAllQueryDto: FindAllQueryDTO): Promise<CustomerModel[]> {
+  async findAll(
+    findAllQueryDto: FindAllQueryRequest,
+  ): Promise<CustomerModel[]> {
     const { order_by, limit, page, sort_by } = findAllQueryDto;
 
     const customers = await this.customerModel
@@ -36,6 +40,9 @@ export class CustomerRepository extends EntityRepository<
         'NameBn',
         'Email',
         'ContactNumber',
+        'MobileNumber',
+        'PhoneNumber',
+        'Addresses',
         'CustomerType',
       ])
       .sort({ [sort_by]: order_by })
@@ -43,7 +50,17 @@ export class CustomerRepository extends EntityRepository<
       .skip(limit * (page - 1));
 
     return customers.map((customerSchema) =>
-      this.customerFactory.createFromSchema(customerSchema),
+      this.customerBusinessModelMapper.mapSchemaToBusinessModel(customerSchema),
     );
+  }
+
+  async findById(id: string): Promise<CustomerModel | null> {
+    const customer = await this.customerModel.findById(new Types.ObjectId(id));
+    if (customer) {
+      return this.customerBusinessModelMapper.mapSchemaToBusinessModel(
+        customer,
+      );
+    }
+    return null;
   }
 }

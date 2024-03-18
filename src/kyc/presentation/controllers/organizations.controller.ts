@@ -16,8 +16,8 @@ export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
 
   @Post()
-  create(@Body() createOrganizationDto: CreateOrganizationRequest) {
-    return this.organizationsService.create(createOrganizationDto);
+  create(@Body() createOrganizationRequest: CreateOrganizationRequest) {
+    return this.organizationsService.create(createOrganizationRequest);
   }
 
   @Get()
@@ -33,9 +33,9 @@ export class OrganizationsController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateOrganizationDto: UpdateOrganizationRequest,
+    @Body() updateOrganizationRequest: UpdateOrganizationRequest,
   ) {
-    return this.organizationsService.update(id, updateOrganizationDto);
+    return this.organizationsService.update(id, updateOrganizationRequest);
   }
 
   @Delete(':id')

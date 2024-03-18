@@ -3,6 +3,7 @@ import { AddressType } from '../../enums/person-address-type.enum';
 import { AddressEntity } from '../common/address.entity';
 
 export class CustomerModel extends AggregateRoot {
+  private _CustomerId: string;
   private _IdentificationNumber: string;
   private _NameEn: string;
   private _NameBn: string;
@@ -10,6 +11,7 @@ export class CustomerModel extends AggregateRoot {
   private _MobileNumber: string;
   private _PhoneNumber: string;
   private _Email: string;
+  private _CustomerType: string;
   private _Addresses: AddressEntity[];
 
   constructor() {
@@ -36,6 +38,13 @@ export class CustomerModel extends AggregateRoot {
   public deleteAddress(addressId: string) {
     // Business logic for deleting address
     this.apply('AddressDeletedEvent');
+  }
+
+  public get CustomerId(): string {
+    return this._CustomerId;
+  }
+  public set CustomerId(value: string) {
+    this._CustomerId = value;
   }
 
   public get IdentificationNumber(): string {
@@ -85,6 +94,13 @@ export class CustomerModel extends AggregateRoot {
   }
   public set Email(value: string) {
     this._Email = value;
+  }
+
+  public get CustomerType(): string {
+    return this._CustomerType;
+  }
+  public set CustomerType(value: string) {
+    this._CustomerType = value;
   }
 
   public get Addresses(): AddressEntity[] {

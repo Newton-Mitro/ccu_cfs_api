@@ -2,7 +2,7 @@ import { Body, Controller, Logger, Post } from '@nestjs/common';
 import { UUID } from 'src/common/utils/uuid.util';
 import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
 import { SMSMessagingRepository } from 'src/messaging/infrastructure/repositories/sms-messaging.repository';
-import { CreateSubsidiaryLedgerDTO } from '../application/contract/create-subsidiary-ledger.dto';
+import { CreateSubsidiaryLedgerRequest } from '../application/contract/create-subsidiary-ledger.dto';
 import { SubsidiaryLedgerAccountService } from '../application/subsidiary-ledger-account.service';
 
 @Controller('SubsidiaryLedgerAccount')
@@ -15,7 +15,9 @@ export class SubsidiaryLedgerAccountController {
   ) {}
 
   @Post()
-  async create(@Body() subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO) {
+  async create(
+    @Body() subsidiaryLedgerAccountRequest: CreateSubsidiaryLedgerRequest,
+  ) {
     const emailMessage = {
       from: '"CCU_CFS" <noreply@domain.com>',
       to: 'newtonmitro@gmail.com',
@@ -52,7 +54,7 @@ export class SubsidiaryLedgerAccountController {
     // return res;
 
     return this.subsidiaryLedgerAccountService.CreateAccount(
-      subsidiaryLedgerAccountDTO,
+      subsidiaryLedgerAccountRequest,
     );
   }
 }

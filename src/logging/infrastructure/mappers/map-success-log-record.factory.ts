@@ -1,12 +1,15 @@
 import { Types } from 'mongoose';
+import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
+import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 import { SuccessLogRecord } from '../schemas/success-log-record.schema';
-import { ModelSchemaFactory } from 'src/config/database/mongoose/entity-schema.factory';
 
 export class MapSuccessLogRecordFactory
-  implements ModelSchemaFactory<SuccessLogRecord, SuccessLogRecordModel>
+  implements
+    ISchemaMapper<SuccessLogRecord, SuccessLogRecordModel>,
+    IBusinessModelMapper<SuccessLogRecord, SuccessLogRecordModel>
 {
-  create(entity: SuccessLogRecordModel): SuccessLogRecord {
+  mapBusinessModelToSchema(entity: SuccessLogRecordModel): SuccessLogRecord {
     return {
       _id: new Types.ObjectId(),
       User: entity.User,
@@ -23,7 +26,9 @@ export class MapSuccessLogRecordFactory
     };
   }
 
-  createFromSchema(entitySchema: SuccessLogRecord): SuccessLogRecordModel {
+  mapSchemaToBusinessModel(
+    entitySchema: SuccessLogRecord,
+  ): SuccessLogRecordModel {
     return new SuccessLogRecordModel(
       entitySchema._id.toHexString(),
       entitySchema.User,

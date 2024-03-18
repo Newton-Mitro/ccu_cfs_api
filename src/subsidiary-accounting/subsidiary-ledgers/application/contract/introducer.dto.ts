@@ -1,3 +1,3 @@
-import { CustomerDTO } from './customer.dto';
+import { CustomerRequest } from './customer.dto';
 
-export class IntroducerDTO extends CustomerDTO {}
+export class IntroducerRequest extends CustomerRequest {}

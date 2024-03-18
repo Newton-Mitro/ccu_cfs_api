@@ -1,1 +1,1 @@
-export class GeneralLedgerDTO {}
+export class GeneralLedgerRequest {}

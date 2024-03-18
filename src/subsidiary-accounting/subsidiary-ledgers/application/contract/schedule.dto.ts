@@ -10,7 +10,7 @@ import { InstallmentType } from '../../domain/enum/installment-type.enum';
 import { ScheduleStatus } from '../../domain/enum/schedule-status.enum';
 import { ScheduleType } from '../../domain/enum/schedule-type.enum';
 
-export class ScheduleDTO {
+export class ScheduleRequest {
   @IsOptional()
   @IsString()
   // @Expose({ name: 'id' })

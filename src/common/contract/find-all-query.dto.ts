@@ -2,7 +2,7 @@ import { Type } from 'class-transformer';
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { SortBy } from 'src/common/enums/sort-by.enum';
 
-export class FindAllQueryDTO {
+export class FindAllQueryRequest {
   @IsNumber()
   @IsOptional()
   @Type(() => Number)

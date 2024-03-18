@@ -10,7 +10,7 @@ import { NomineeModel } from '../domain/model/nominee.model';
 import { OperatorModel } from '../domain/model/operator.model';
 import { OrganizationCustomerModel } from '../domain/model/organization-customer.model';
 import { SubsidiaryLedgerCreatorFactory } from '../domain/subsidiary-ledger-creator-factory';
-import { CreateSubsidiaryLedgerDTO } from './contract/create-subsidiary-ledger.dto';
+import { CreateSubsidiaryLedgerRequest } from './contract/create-subsidiary-ledger.dto';
 
 @Injectable()
 export class SubsidiaryLedgerAccountService {
@@ -18,10 +18,10 @@ export class SubsidiaryLedgerAccountService {
     private readonly subsidiaryLedgerCreatorFactory: SubsidiaryLedgerCreatorFactory,
   ) {}
 
-  CreateAccount(subsidiaryLedgerAccountDTO: CreateSubsidiaryLedgerDTO) {
+  CreateAccount(subsidiaryLedgerAccountRequest: CreateSubsidiaryLedgerRequest) {
     const iOpenableSubsidiaryLedger: IOpenableSubsidiaryLedger =
       this.subsidiaryLedgerCreatorFactory.Create(
-        subsidiaryLedgerAccountDTO.ControlLedger,
+        subsidiaryLedgerAccountRequest.ControlLedger,
       );
     const holders: BaseCustomerModel[] = [];
     const introducers: IntroducerModel[] = [];
@@ -30,7 +30,7 @@ export class SubsidiaryLedgerAccountService {
     const collaterals: CollateralModel[] = [];
     const schedules: ScheduleModel[] = [];
 
-    subsidiaryLedgerAccountDTO?.Holders?.forEach((holderDTO) => {
+    subsidiaryLedgerAccountRequest?.Holders?.forEach((holderDTO) => {
       let holder;
 
       if (holderDTO.CustomerType === CustomerType.PERSON) {
@@ -69,7 +69,7 @@ export class SubsidiaryLedgerAccountService {
       }
     });
 
-    subsidiaryLedgerAccountDTO?.Introducers?.forEach((introducerDTO) => {
+    subsidiaryLedgerAccountRequest?.Introducers?.forEach((introducerDTO) => {
       const introducer: IntroducerModel = new IntroducerModel();
       introducer.IdentificationNumber = introducerDTO.IdentificationNumber;
       introducer.NameEn = introducerDTO.NameEn;
@@ -89,7 +89,7 @@ export class SubsidiaryLedgerAccountService {
       introducers.push(introducer);
     });
 
-    subsidiaryLedgerAccountDTO?.Operators?.forEach((operatorDTO) => {
+    subsidiaryLedgerAccountRequest?.Operators?.forEach((operatorDTO) => {
       const operator: OperatorModel = new OperatorModel();
       operator.IdentificationNumber = operatorDTO.IdentificationNumber;
       operator.NameEn = operatorDTO.NameEn;
@@ -107,7 +107,7 @@ export class SubsidiaryLedgerAccountService {
       operators.push(operator);
     });
 
-    subsidiaryLedgerAccountDTO?.Nominees?.forEach((nomineeDTO) => {
+    subsidiaryLedgerAccountRequest?.Nominees?.forEach((nomineeDTO) => {
       const nominee: NomineeModel = new NomineeModel();
       nominee.IdentificationNumber = nomineeDTO.IdentificationNumber;
       nominee.NameEn = nomineeDTO.NameEn;
@@ -127,7 +127,7 @@ export class SubsidiaryLedgerAccountService {
       nominees.push(nominee);
     });
 
-    subsidiaryLedgerAccountDTO?.Collaterals?.forEach((collateralDTO) => {
+    subsidiaryLedgerAccountRequest?.Collaterals?.forEach((collateralDTO) => {
       const collateral: CollateralModel = new CollateralModel();
       collateral.CollateralType = collateralDTO.CollateralType;
       collateral.CollateralTakenFromAccount =
@@ -139,7 +139,7 @@ export class SubsidiaryLedgerAccountService {
       collaterals.push(collateral);
     });
 
-    subsidiaryLedgerAccountDTO?.Schedules?.forEach((scheduleDTO) => {
+    subsidiaryLedgerAccountRequest?.Schedules?.forEach((scheduleDTO) => {
       const schedule: ScheduleModel = new ScheduleModel();
       schedule.InstallmentNo = scheduleDTO.InstallmentNo;
       schedule.InstallmentDate = scheduleDTO.InstallmentDate;
@@ -159,19 +159,19 @@ export class SubsidiaryLedgerAccountService {
     });
 
     return iOpenableSubsidiaryLedger.OpenSubsidiaryLedgerAccount(
-      subsidiaryLedgerAccountDTO.AccountType,
-      subsidiaryLedgerAccountDTO.ControlLedger,
-      subsidiaryLedgerAccountDTO.AccountName,
-      subsidiaryLedgerAccountDTO.Branch,
+      subsidiaryLedgerAccountRequest.AccountType,
+      subsidiaryLedgerAccountRequest.ControlLedger,
+      subsidiaryLedgerAccountRequest.AccountName,
+      subsidiaryLedgerAccountRequest.Branch,
       holders,
       operators,
-      subsidiaryLedgerAccountDTO.InterestRate,
-      subsidiaryLedgerAccountDTO.Duration,
-      subsidiaryLedgerAccountDTO.ProtectionSchemePercent,
-      subsidiaryLedgerAccountDTO.OpeningAmount,
-      subsidiaryLedgerAccountDTO.InstallmentAmount,
-      subsidiaryLedgerAccountDTO.NumberOfInstallment,
-      subsidiaryLedgerAccountDTO.Stock,
+      subsidiaryLedgerAccountRequest.InterestRate,
+      subsidiaryLedgerAccountRequest.Duration,
+      subsidiaryLedgerAccountRequest.ProtectionSchemePercent,
+      subsidiaryLedgerAccountRequest.OpeningAmount,
+      subsidiaryLedgerAccountRequest.InstallmentAmount,
+      subsidiaryLedgerAccountRequest.NumberOfInstallment,
+      subsidiaryLedgerAccountRequest.Stock,
       nominees,
       introducers,
       collaterals,

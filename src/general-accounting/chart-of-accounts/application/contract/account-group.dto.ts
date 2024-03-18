@@ -1,1 +1,1 @@
-export class AccountGroupDTO {}
+export class AccountGroupRequest {}

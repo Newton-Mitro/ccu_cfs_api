@@ -3,8 +3,6 @@ import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifia
 import { Address, AddressSchema } from './address.schema';
 
 @Schema({
-  timestamps: true,
-  versionKey: false,
   discriminatorKey: 'CustomerType',
   collection: 'Customers',
 })

@@ -21,9 +21,9 @@ export class OrganizationsService {
     private readonly organizationModel: Model<OrganizationDocument>,
   ) {}
 
-  async create(createOrganizationDto: CreateOrganizationRequest) {
+  async create(createOrganizationRequest: CreateOrganizationRequest) {
     const createOrganizationModel = new this.organizationModel(
-      createOrganizationDto,
+      createOrganizationRequest,
     );
     createOrganizationModel._id = new Types.ObjectId();
     createOrganizationModel.IdentificationNumber = String(
@@ -36,8 +36,8 @@ export class OrganizationsService {
       FileUrl: StoreBase64File.store(
         'organizations/logo',
         createOrganizationModel.NameEn,
-        createOrganizationDto.Logo.FileExtension,
-        createOrganizationDto.Logo.Base64Document,
+        createOrganizationRequest.Logo.FileExtension,
+        createOrganizationRequest.Logo.Base64Document,
       ),
     };
 
@@ -105,10 +105,13 @@ export class OrganizationsService {
     return existingOrganization;
   }
 
-  async update(id: string, updateOrganizationDto: UpdateOrganizationRequest) {
+  async update(
+    id: string,
+    updateOrganizationRequest: UpdateOrganizationRequest,
+  ) {
     const updatedOrganization = await this.organizationModel.findByIdAndUpdate(
       id,
-      updateOrganizationDto,
+      updateOrganizationRequest,
       { new: true },
     );
     if (!updatedOrganization) {

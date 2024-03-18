@@ -144,10 +144,10 @@ export class PeoplesService {
     return existingPerson;
   }
 
-  async update(id: string, updatePeopleDto: UpdatePersonRequest) {
+  async update(id: string, updatePeopleRequest: UpdatePersonRequest) {
     const updatedPerson = await this.personModel.findByIdAndUpdate(
       id,
-      updatePeopleDto,
+      updatePeopleRequest,
       { new: true },
     );
     if (!updatedPerson) {

@@ -8,7 +8,7 @@ import {
 import { CollateralStatus } from '../../domain/enum/collateral-status.enum';
 import { CollateralType } from '../../domain/enum/collateral-type.enum';
 
-export class CollateralDTO {
+export class CollateralRequest {
   @IsOptional()
   @IsString()
   // @Expose({ name: 'id' })

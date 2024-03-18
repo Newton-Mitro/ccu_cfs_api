@@ -12,7 +12,6 @@ import { ContactPersonEntity } from './entities/contact-person.entity';
 import { OrganizationAttachmentEntity } from './entities/organization-attachment.entity';
 
 export class OrganizationModel extends CustomerModel {
-  private _OrganizationId: string;
   private _FaxNumber: string;
   private _RegistrationNumber: string;
   private _Website: string;
@@ -41,7 +40,7 @@ export class OrganizationModel extends CustomerModel {
     logo: OrganizationAttachmentEntity,
   ) {
     // Organization created business logic
-    this._OrganizationId = organizationId;
+    this.CustomerId = organizationId;
     this.IdentificationNumber = identificationNumber;
     this._RegistrationNumber = registrationNumber;
     this.NameEn = nameEn;
@@ -186,10 +185,7 @@ export class OrganizationModel extends CustomerModel {
   }
 
   public get OrganizationId(): string {
-    return this._OrganizationId;
-  }
-  public set OrganizationId(value: string) {
-    this._OrganizationId = value;
+    return this.CustomerId;
   }
 
   public get RegistrationNumber(): string {

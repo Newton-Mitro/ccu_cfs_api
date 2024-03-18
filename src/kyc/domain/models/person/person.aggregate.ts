@@ -13,7 +13,6 @@ import { PersonAttachmentEntity } from './entities/person-attachment.entity';
 import { TrainingEntity } from './entities/training.entity';
 
 export class PersonModel extends CustomerModel {
-  private _PersonId: string;
   private _DateOfBirth: string;
   private _Gender: Gender;
   private _BloodGroup: BloodGroup;
@@ -51,7 +50,7 @@ export class PersonModel extends CustomerModel {
     nid: string,
     birthRegistrationNumber: string,
   ) {
-    this._PersonId = personId;
+    this.CustomerId = personId;
     this.IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -227,10 +226,7 @@ export class PersonModel extends CustomerModel {
   }
 
   public get PersonId(): string {
-    return this._PersonId;
-  }
-  public set PersonId(value: string) {
-    this._PersonId = value;
+    return this.CustomerId;
   }
 
   public get DateOfBirth(): string {
