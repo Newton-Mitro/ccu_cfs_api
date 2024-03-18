@@ -7,9 +7,9 @@ import {
   PERSON_MODEL,
   PersonDocument,
 } from '../../infrastructure/schema/person/person.schema';
-import { CreatePersonRequest } from '../../presentation/contract/person/request/create-person.request';
-import { UpdatePersonRequest } from '../../presentation/contract/person/request/update-person.request';
 import { CreatePersonCommand } from '../commands/person/create-person/create-person.command';
+import { CreatePersonRequest } from '../contract/person/request/create-person.request';
+import { UpdatePersonRequest } from '../contract/person/request/update-person.request';
 
 @Injectable()
 export class PeoplesService {

@@ -40,15 +40,15 @@ export class OrganizationModel extends CustomerModel {
     logo: OrganizationAttachmentEntity,
   ) {
     // Organization created business logic
-    this.CustomerId = organizationId;
-    this.IdentificationNumber = identificationNumber;
+    this._CustomerId = organizationId;
+    this._IdentificationNumber = identificationNumber;
     this._RegistrationNumber = registrationNumber;
-    this.NameEn = nameEn;
-    this.NameBn = nameBn;
-    this.Email = email;
-    this.ContactNumber = contactNumber;
-    this.MobileNumber = mobileNumber;
-    this.PhoneNumber = phoneNumber;
+    this._NameEn = nameEn;
+    this._NameBn = nameBn;
+    this._Email = email;
+    this._ContactNumber = contactNumber;
+    this._MobileNumber = mobileNumber;
+    this._PhoneNumber = phoneNumber;
     this._FaxNumber = faxNumber;
     this._Website = website;
     this._Logo = logo;
@@ -69,12 +69,12 @@ export class OrganizationModel extends CustomerModel {
   ) {
     // Organization updated business logic
     this._RegistrationNumber = registrationNumber;
-    this.NameEn = nameEn;
-    this.NameBn = nameBn;
-    this.Email = email;
-    this.ContactNumber = contactNumber;
-    this.MobileNumber = mobileNumber;
-    this.PhoneNumber = phoneNumber;
+    this._NameEn = nameEn;
+    this._NameBn = nameBn;
+    this._Email = email;
+    this._ContactNumber = contactNumber;
+    this._MobileNumber = mobileNumber;
+    this._PhoneNumber = phoneNumber;
     this._FaxNumber = faxNumber;
     this._Website = website;
     this._Logo = logo;
@@ -185,7 +185,7 @@ export class OrganizationModel extends CustomerModel {
   }
 
   public get OrganizationId(): string {
-    return this.CustomerId;
+    return this._CustomerId;
   }
 
   public get RegistrationNumber(): string {

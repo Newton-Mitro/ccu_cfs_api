@@ -50,20 +50,20 @@ export class PersonModel extends CustomerModel {
     nid: string,
     birthRegistrationNumber: string,
   ) {
-    this.CustomerId = personId;
-    this.IdentificationNumber = identificationNumber;
+    this._CustomerId = personId;
+    this._IdentificationNumber = identificationNumber;
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
-    this.NameEn = nameEn;
-    this.NameBn = nameBn;
+    this._NameEn = nameEn;
+    this._NameBn = nameBn;
     this._BloodGroup = bloodGroup;
     this._Religion = religion;
     this._MaritalStatus = maritalStatus;
     this._Profession = profession;
-    this.ContactNumber = contactNumber;
-    this.MobileNumber = mobileNumber;
-    this.PhoneNumber = phoneNumber;
-    this.Email = email;
+    this._ContactNumber = contactNumber;
+    this._MobileNumber = mobileNumber;
+    this._PhoneNumber = phoneNumber;
+    this._Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
     // Publish Event: PersonCreatedEvent
@@ -88,16 +88,16 @@ export class PersonModel extends CustomerModel {
   ) {
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
-    this.NameEn = nameEn;
-    this.NameBn = nameBn;
+    this._NameEn = nameEn;
+    this._NameBn = nameBn;
     this._BloodGroup = bloodGroup;
     this._Religion = religion;
     this._MaritalStatus = maritalStatus;
     this._Profession = profession;
-    this.ContactNumber = contactNumber;
-    this.MobileNumber = mobileNumber;
-    this.PhoneNumber = phoneNumber;
-    this.Email = email;
+    this._ContactNumber = contactNumber;
+    this._MobileNumber = mobileNumber;
+    this._PhoneNumber = phoneNumber;
+    this._Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
     // Publish Event: PersonUpdatedEvent
@@ -226,7 +226,7 @@ export class PersonModel extends CustomerModel {
   }
 
   public get PersonId(): string {
-    return this.CustomerId;
+    return this._CustomerId;
   }
 
   public get DateOfBirth(): string {

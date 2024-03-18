@@ -1,8 +1,8 @@
 import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
 import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
-import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 import { Address } from '../../schema/common/address.schema';
 import { Customer } from '../../schema/common/customer.schema';
+import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 
 export class CustomerBusinessModelMapper
   implements IBusinessModelMapper<Customer, CustomerModel>

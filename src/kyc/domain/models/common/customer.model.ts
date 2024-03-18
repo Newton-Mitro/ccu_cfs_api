@@ -3,16 +3,16 @@ import { AddressType } from '../../enums/person-address-type.enum';
 import { AddressEntity } from '../common/address.entity';
 
 export class CustomerModel extends AggregateRoot {
-  private _CustomerId: string;
-  private _IdentificationNumber: string;
-  private _NameEn: string;
-  private _NameBn: string;
-  private _ContactNumber: string;
-  private _MobileNumber: string;
-  private _PhoneNumber: string;
-  private _Email: string;
-  private _CustomerType: string;
-  private _Addresses: AddressEntity[];
+  protected _CustomerId: string;
+  protected _IdentificationNumber: string;
+  protected _NameEn: string;
+  protected _NameBn: string;
+  protected _ContactNumber: string;
+  protected _MobileNumber: string;
+  protected _PhoneNumber: string;
+  protected _Email: string;
+  protected _CustomerType: string;
+  protected _Addresses: AddressEntity[];
 
   constructor() {
     super();

@@ -3,7 +3,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { AddPersonAttachmentRequest } from 'src/kyc/presentation/contract/person/request/add-person-attachment.request';
+import { AddPersonAttachmentRequest } from 'src/kyc/application/contract/person/request/add-person-attachment.request';
 
 export class CreatePersonCommand {
   NameEn: string;
