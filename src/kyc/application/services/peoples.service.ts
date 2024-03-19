@@ -47,69 +47,6 @@ export class PeoplesService {
         ),
       ),
     );
-
-    // const createdPerson = new this.personModel(createPersonRequest);
-    // createdPerson._id = new Types.ObjectId();
-    // createdPerson.IdentificationNumber = String(new Date().valueOf()).substring(
-    //   3,
-    //   13,
-    // );
-
-    // createdPerson.Photo = {
-    //   _id: new Types.ObjectId(),
-    //   DocumentTitle: createPersonRequest.Photo.DocumentTitle,
-    //   FileUrl: StoreBase64File.store(
-    //     'persons/photo',
-    //     createPersonRequest.NameEn,
-    //     createPersonRequest.Photo.FileExtension,
-    //     createPersonRequest.Photo.Base64Document,
-    //   ),
-    // };
-
-    // const errors = createdPerson.validateSync();
-
-    // if (errors) {
-    //   const invalidFields = Object.keys(errors.errors);
-    //   const validationErrors = invalidFields.map(
-    //     (fieldName) => errors.errors[fieldName].message,
-    //   );
-
-    //   const result = {
-    //     message: validationErrors,
-    //     error: errors.name,
-    //     statusCode: HttpStatus.BAD_REQUEST,
-    //   };
-    //   throw new BadRequestException(result);
-    // }
-
-    // // Unique NID Check
-
-    // // Unique BirthRegistrationNumber Check
-
-    // const person = await createdPerson.save();
-
-    // const per = JSON.stringify(person);
-    // const emailMessage = {
-    //   from: '"CCU_CFS" <noreply@domain.com>',
-    //   to: 'newtonmitro@gmail.com',
-    //   subject: 'Person Created',
-    //   // text: 'Test Body',
-    //   // html: '<h1>Hello world.</h1>',
-    //   template: 'person-created',
-    //   context: { name: createPersonRequest.NameEn, per },
-    // };
-
-    // // const emailMessage = {
-    // //   from: '"Credit Solution" <info@cccul.com>',
-    // //   to: 'newtonmitro@gmail.com',
-    // //   subject: 'Test Subject',
-    // //   text: 'Test Body',
-    // //   html: '<h1>Hello world.</h1>',
-    // // };
-
-    // const res = await this.emailService.sendEmail(emailMessage);
-
-    // return person;
   }
 
   async findAll() {

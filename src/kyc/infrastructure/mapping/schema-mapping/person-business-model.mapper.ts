@@ -1,5 +1,6 @@
 import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
 import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
+import { PhotoAttachmentEntity } from 'src/kyc/domain/models/common/photo-attachment.entity';
 import { EducationEntity } from 'src/kyc/domain/models/person/entities/education.entity';
 import { EmploymentHistoryEntity } from 'src/kyc/domain/models/person/entities/employment-history.entity';
 import { FamilyAndRelativeEntity } from 'src/kyc/domain/models/person/entities/family-and-relative.entity';
@@ -27,7 +28,7 @@ export class PersonBusinessModelMapper
     personModel.MobileNumber = entitySchema.MobileNumber;
     personModel.Email = entitySchema.Email;
 
-    personModel.DateOfBirth = entitySchema.DateOfBirth.toISOString();
+    personModel.DateOfBirth = entitySchema.DateOfBirth;
     personModel.NID = entitySchema.NID;
     personModel.BirthRegistrationNumber = entitySchema.BirthRegistrationNumber;
     personModel.BloodGroup = entitySchema.BloodGroup;
@@ -35,7 +36,7 @@ export class PersonBusinessModelMapper
     personModel.Religion = entitySchema.Religion;
     personModel.Profession = entitySchema.Profession;
     personModel.MaritalStatus = entitySchema.MaritalStatus;
-    personModel.Photo = new PersonAttachmentEntity(
+    personModel.Photo = new PhotoAttachmentEntity(
       entitySchema.Photo._id.toHexString(),
       entitySchema.Photo.DocumentTitle,
       entitySchema.Photo.FileUrl,
@@ -77,7 +78,7 @@ export class PersonBusinessModelMapper
           familyAndRelative.BirthRegistrationNumber,
           familyAndRelative.Relationship,
           familyAndRelative.Status,
-          new PersonAttachmentEntity(
+          new PhotoAttachmentEntity(
             familyAndRelative.Photo._id.toHexString(),
             familyAndRelative.Photo.DocumentTitle,
             familyAndRelative.Photo.FileUrl,

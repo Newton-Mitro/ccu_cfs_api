@@ -6,7 +6,7 @@ import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
-import { PersonAttachmentEntity } from './person-attachment.entity';
+import { PhotoAttachmentEntity } from '../../common/photo-attachment.entity';
 
 export class FamilyAndRelativeEntity extends BaseEntity {
   private _CustomerId: string;
@@ -27,7 +27,7 @@ export class FamilyAndRelativeEntity extends BaseEntity {
   private _BirthRegistrationNumber: string;
   private _Relationship: Relationship;
   private _Status: FamilyTreeStatus;
-  private _Photo: PersonAttachmentEntity;
+  private _Photo: PhotoAttachmentEntity;
 
   constructor(
     customerId: string,
@@ -47,7 +47,7 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
-    photo: PersonAttachmentEntity,
+    photo: PhotoAttachmentEntity,
   ) {
     super(familyTreeId);
     this._CustomerId = customerId;
@@ -212,11 +212,11 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     this._Status = value;
   }
 
-  public get Photo(): PersonAttachmentEntity {
+  public get Photo(): PhotoAttachmentEntity {
     return this._Photo;
   }
 
-  public set Photo(value: PersonAttachmentEntity) {
+  public set Photo(value: PhotoAttachmentEntity) {
     this._Photo = value;
   }
 }

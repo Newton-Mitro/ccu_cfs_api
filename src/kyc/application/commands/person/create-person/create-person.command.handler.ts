@@ -1,14 +1,18 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { PersonModelMapper } from 'src/kyc/application/mapping/business-model-mapping/person-model.mapper';
+import { PeoplesRepository } from 'src/kyc/infrastructure/repositories/peoples.repository';
 import { CreatePersonCommand } from './create-person.command';
 
 @CommandHandler(CreatePersonCommand)
 export class CreatePersonHandler
   implements ICommandHandler<CreatePersonCommand>
 {
-  // constructor(private repository: PersonRepository) {}
+  constructor(private peoplesRepository: PeoplesRepository) {}
 
   execute(command: CreatePersonCommand): Promise<any> {
-    throw new Error('Method not implemented.');
+    return this.peoplesRepository.createPerson(
+      PersonModelMapper.mapToPersonModel(command),
+    );
   }
 }
 

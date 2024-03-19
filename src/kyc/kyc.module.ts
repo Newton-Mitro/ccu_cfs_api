@@ -14,6 +14,7 @@ import { CustomerRepository } from './infrastructure/repositories/customer.repos
 import { CustomersController } from './presentation/controllers/customers.controller';
 import { OrganizationsController } from './presentation/controllers/organizations.controller';
 import { PeoplesController } from './presentation/controllers/peoples.controller';
+import { PeoplesRepository } from './infrastructure/repositories/peoples.repository';
 
 export const CommandHandlers = [CreatePersonHandler];
 export const EventHandlers = [];
@@ -31,7 +32,7 @@ export const Services = [
   CustomersService,
 ];
 
-export const Repositories = [CustomerRepository];
+export const Repositories = [CustomerRepository, PeoplesRepository];
 
 @Module({
   imports: [MongooseKYCModelsModule, MessagingModule, CqrsModule],

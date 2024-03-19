@@ -5,6 +5,7 @@ import { Address, AddressSchema } from './address.schema';
 @Schema({
   discriminatorKey: 'CustomerType',
   collection: 'Customers',
+  versionKey: false,
 })
 export class Customer extends IdentifiableEntitySchema {
   @Prop({

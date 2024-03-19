@@ -6,6 +6,7 @@ import { Religion } from 'src/common/enums/religion.enum';
 import { PersonalDocumentType } from '../../enums/kyc-attachment-type.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
 import { CustomerModel } from '../common/customer.model';
+import { PhotoAttachmentEntity } from '../common/photo-attachment.entity';
 import { EducationEntity } from './entities/education.entity';
 import { EmploymentHistoryEntity } from './entities/employment-history.entity';
 import { FamilyAndRelativeEntity } from './entities/family-and-relative.entity';
@@ -13,7 +14,7 @@ import { PersonAttachmentEntity } from './entities/person-attachment.entity';
 import { TrainingEntity } from './entities/training.entity';
 
 export class PersonModel extends CustomerModel {
-  private _DateOfBirth: string;
+  private _DateOfBirth: Date;
   private _Gender: Gender;
   private _BloodGroup: BloodGroup;
   private _Religion: Religion;
@@ -21,7 +22,7 @@ export class PersonModel extends CustomerModel {
   private _Profession: Profession;
   private _NID: string;
   private _BirthRegistrationNumber: string;
-  private _Photo: PersonAttachmentEntity;
+  private _Photo: PhotoAttachmentEntity;
   private _FamilyTree: FamilyAndRelativeEntity[];
   private _Educations: EducationEntity[];
   private _Trainings: TrainingEntity[];
@@ -35,7 +36,7 @@ export class PersonModel extends CustomerModel {
   public createPerson(
     personId: string,
     identificationNumber: string,
-    dateOfBirth: string,
+    dateOfBirth: Date,
     gender: Gender,
     nameEn: string,
     nameBn: string,
@@ -49,6 +50,7 @@ export class PersonModel extends CustomerModel {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
+    photo: PhotoAttachmentEntity,
   ) {
     this._CustomerId = personId;
     this._IdentificationNumber = identificationNumber;
@@ -66,12 +68,13 @@ export class PersonModel extends CustomerModel {
     this._Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
+    this._Photo = photo;
     // Publish Event: PersonCreatedEvent
     this.apply('PersonCreatedEvent');
   }
 
   public updatePerson(
-    dateOfBirth: string,
+    dateOfBirth: Date,
     gender: Gender,
     nameEn: string,
     nameBn: string,
@@ -85,6 +88,7 @@ export class PersonModel extends CustomerModel {
     email: string,
     nid: string,
     birthRegistrationNumber: string,
+    photo: PhotoAttachmentEntity,
   ) {
     this._DateOfBirth = dateOfBirth;
     this._Gender = gender;
@@ -100,6 +104,7 @@ export class PersonModel extends CustomerModel {
     this._Email = email;
     this._NID = nid;
     this._BirthRegistrationNumber = birthRegistrationNumber;
+    this._Photo = photo;
     // Publish Event: PersonUpdatedEvent
     this.apply('PersonUpdatedEvent');
   }
@@ -130,7 +135,7 @@ export class PersonModel extends CustomerModel {
     customerId: string,
     familyTreeId: string,
     identificationNumber: string,
-    dateOfBirth: string,
+    dateOfBirth: Date,
     gender: Gender,
     nameEn: string,
     nameBn: string,
@@ -213,8 +218,8 @@ export class PersonModel extends CustomerModel {
     supervisorPhone: string,
     jobResponsibilities: string,
     salary: number,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
     tillNow: boolean,
   ) {
     this.apply('EmploymentHistoryAddedEvent');
@@ -229,10 +234,10 @@ export class PersonModel extends CustomerModel {
     return this._CustomerId;
   }
 
-  public get DateOfBirth(): string {
+  public get DateOfBirth(): Date {
     return this._DateOfBirth;
   }
-  public set DateOfBirth(value: string) {
+  public set DateOfBirth(value: Date) {
     this._DateOfBirth = value;
   }
 
@@ -320,10 +325,10 @@ export class PersonModel extends CustomerModel {
     this._Attachments = value;
   }
 
-  public get Photo(): PersonAttachmentEntity {
+  public get Photo(): PhotoAttachmentEntity {
     return this._Photo;
   }
-  public set Photo(value: PersonAttachmentEntity) {
+  public set Photo(value: PhotoAttachmentEntity) {
     this._Photo = value;
   }
 }

@@ -12,6 +12,7 @@ import { Person } from '../../schema/person/person.schema';
 export class PersonSchemaMapper implements ISchemaMapper<Person, PersonModel> {
   mapBusinessModelToSchema(model: PersonModel): Person {
     const personSchema = new Person();
+    personSchema._id = new Types.ObjectId(model.CustomerId);
     personSchema.IdentificationNumber = model.IdentificationNumber;
     personSchema.NameEn = model.NameEn;
     personSchema.NameBn = model.NameBn;
