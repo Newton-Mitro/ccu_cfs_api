@@ -5,8 +5,8 @@ import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
 import { EntityRepository } from 'src/config/database/mongoose/entity.repository';
 import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
-import { PersonSchemaMapper } from '../mapping/business-model-mapping/person-schema.mapper';
-import { PersonBusinessModelMapper } from '../mapping/schema-mapping/person-business-model.mapper';
+import { PersonModelToSchemaMapper } from '../mapping/model-to-schema/person-model-to-schema.mapper';
+import { PersonSchemaToModelMapper } from '../mapping/schema-to-model/person-schema-to-model.mapper';
 import {
   PERSON_MODEL,
   Person,
@@ -18,8 +18,8 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
   constructor(
     @InjectModel(PERSON_MODEL)
     private readonly personDocument: Model<PersonDocument>,
-    private readonly personSchemaMapper: PersonSchemaMapper,
-    private readonly personBusinessModelMapper: PersonBusinessModelMapper,
+    private readonly personSchemaMapper: PersonModelToSchemaMapper,
+    private readonly personBusinessModelMapper: PersonSchemaToModelMapper,
   ) {
     super(personDocument, personSchemaMapper, personBusinessModelMapper);
   }
@@ -52,7 +52,6 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
     const personSchema =
       this.personSchemaMapper.mapBusinessModelToSchema(personModel);
 
-    console.log(personSchema);
     const personDoc = new this.personDocument(personSchema);
     // createdPerson._id = new Types.ObjectId();
 

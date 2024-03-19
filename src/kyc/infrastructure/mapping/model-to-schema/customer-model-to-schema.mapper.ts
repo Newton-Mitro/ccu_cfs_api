@@ -4,7 +4,7 @@ import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
 import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 import { Customer } from '../../schema/common/customer.schema';
 
-export class CustomerSchemaMapper
+export class CustomerModelToSchemaMapper
   implements ISchemaMapper<Customer, CustomerModel>
 {
   mapBusinessModelToSchema(model: CustomerModel): Customer {
@@ -31,6 +31,10 @@ export class CustomerSchemaMapper
         ZipCode: address.ZipCode,
       }),
     );
+    customerSchema.CreatedAt = model.CreatedAt;
+    customerSchema.UpdatedAt = model.UpdatedAt;
+    customerSchema.CreatedBy = model.CreatedBy;
+    customerSchema.UpdatedBy = model.UpdatedBy;
     return customerSchema;
   }
 }

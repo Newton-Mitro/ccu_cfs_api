@@ -9,6 +9,7 @@ import { EmploymentHistoryResponse } from './employment-history.response';
 import { FamilyAndRelativeResponse } from './family-and-relative.response';
 import { PersonAttachmentResponse } from './person-attachment.response';
 import { TrainingResponse } from './training.response';
+import { PhotoAttachmentResponse } from './photo-attachment.response';
 
 export class PersonResponse {
   // @Expose({ name: 'person_id' })
@@ -60,7 +61,7 @@ export class PersonResponse {
   Profession: Profession;
 
   // @Expose({ name: 'photo' })
-  Photo: string;
+  Photo: PhotoAttachmentResponse;
 
   // @Expose({ name: 'addresses' })
   Addresses: AddressResponse[];

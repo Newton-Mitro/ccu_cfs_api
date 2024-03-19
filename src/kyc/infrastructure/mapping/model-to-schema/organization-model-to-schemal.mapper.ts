@@ -8,7 +8,7 @@ import { OrganizationAttachmentEntity } from 'src/kyc/domain/models/organization
 import { OrganizationModel } from 'src/kyc/domain/models/organization/organization.aggregate';
 import { Organization } from '../../schema/organization/organization.schema';
 
-export class OrganizationSchemaMapper
+export class OrganizationModelToSchemaMapper
   implements ISchemaMapper<Organization, OrganizationModel>
 {
   mapBusinessModelToSchema(model: OrganizationModel): Organization {

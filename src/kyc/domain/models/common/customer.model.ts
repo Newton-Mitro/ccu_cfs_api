@@ -13,9 +13,15 @@ export class CustomerModel extends AggregateRoot {
   protected _Email: string;
   protected _CustomerType: string;
   protected _Addresses: AddressEntity[];
+  protected _CreatedAt: Date;
+  protected _UpdatedAt: Date;
+  protected _CreatedBy: string;
+  protected _UpdatedBy: string;
 
   constructor() {
     super();
+    this._CreatedAt = new Date();
+    this._UpdatedAt = new Date();
   }
 
   public addAddress(
@@ -108,5 +114,37 @@ export class CustomerModel extends AggregateRoot {
   }
   public set Addresses(value: AddressEntity[]) {
     this._Addresses = value;
+  }
+
+  public get CreatedAt(): Date {
+    return this._CreatedAt;
+  }
+  public set CreatedAt(value: Date) {
+    this._CreatedAt = value;
+  }
+
+  public get UpdatedAt(): Date {
+    return this._UpdatedAt;
+  }
+  public set UpdatedAt(value: Date) {
+    this._UpdatedAt = value;
+  }
+
+  public get CreatedBy(): string {
+    return this._CreatedBy;
+  }
+  public set CreatedBy(value: string) {
+    this._CreatedBy = value;
+  }
+
+  public get UpdatedBy(): string {
+    return this._UpdatedBy;
+  }
+  public set UpdatedBy(value: string) {
+    this._UpdatedBy = value;
+  }
+
+  touch(): void {
+    this._UpdatedAt = new Date();
   }
 }

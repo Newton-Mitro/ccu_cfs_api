@@ -1,8 +1,10 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { PersonModelMapper } from 'src/kyc/application/mapping/business-model-mapping/person-model.mapper';
+import { Types } from 'mongoose';
+import { StoreBase64File } from 'src/common/utils/store-base64-file';
+import { PhotoAttachmentEntity } from 'src/kyc/domain/models/common/photo-attachment.entity';
+import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
 import { PeoplesRepository } from 'src/kyc/infrastructure/repositories/peoples.repository';
 import { CreatePersonCommand } from './create-person.command';
-
 @CommandHandler(CreatePersonCommand)
 export class CreatePersonHandler
   implements ICommandHandler<CreatePersonCommand>
@@ -10,9 +12,43 @@ export class CreatePersonHandler
   constructor(private peoplesRepository: PeoplesRepository) {}
 
   execute(command: CreatePersonCommand): Promise<any> {
-    return this.peoplesRepository.createPerson(
-      PersonModelMapper.mapToPersonModel(command),
+    const personModel = new PersonModel();
+    const personId = new Types.ObjectId().toHexString();
+    const identificationNumber = String(new Date().valueOf()).substring(3, 13);
+    const fileUrl = StoreBase64File.store(
+      'persons/photo',
+      command.nameEn,
+      command.photo.fileExtension,
+      command.photo.base64Document,
     );
+
+    const photo = new PhotoAttachmentEntity(
+      new Types.ObjectId().toHexString(),
+      command.photo.documentTitle,
+      fileUrl,
+    );
+
+    personModel.createPerson(
+      personId,
+      identificationNumber,
+      command.dateOfBirth,
+      command.gender,
+      command.nameEn,
+      command.nameBn,
+      command.bloodGroup,
+      command.religion,
+      command.maritalStatus,
+      command.profession,
+      command.contactNumber,
+      command.mobileNumber,
+      command.phoneNumber,
+      command.email,
+      command.nid,
+      command.birthRegistrationNumber,
+      photo,
+    );
+    const personModelRes = this.peoplesRepository.createPerson(personModel);
+    return personModelRes;
   }
 }
 

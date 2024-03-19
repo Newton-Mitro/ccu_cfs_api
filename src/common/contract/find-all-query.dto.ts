@@ -11,7 +11,7 @@ export class FindAllQueryRequest {
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
-  limit: number = 2;
+  limit: number = 10000000;
 
   @IsString()
   @IsOptional()

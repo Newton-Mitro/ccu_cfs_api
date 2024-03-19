@@ -4,8 +4,8 @@ import { Model, Types } from 'mongoose';
 import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
 import { EntityRepository } from 'src/config/database/mongoose/entity.repository';
 import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
-import { CustomerSchemaMapper } from '../mapping/business-model-mapping/customer-schema.mapper';
-import { CustomerBusinessModelMapper } from '../mapping/schema-mapping/customer-business-model.mapper';
+import { CustomerModelToSchemaMapper } from '../mapping/model-to-schema/customer-model-to-schema.mapper';
+import { CustomerSchemaToModelMapper } from '../mapping/schema-to-model/customer-schema-to-model.mapper';
 import {
   CUSTOMER_MODEL,
   Customer,
@@ -20,8 +20,8 @@ export class CustomerRepository extends EntityRepository<
   constructor(
     @InjectModel(CUSTOMER_MODEL)
     private readonly customerModel: Model<CustomerDocument>,
-    private readonly customerSchemaMapper: CustomerSchemaMapper,
-    private readonly customerBusinessModelMapper: CustomerBusinessModelMapper,
+    private readonly customerSchemaMapper: CustomerModelToSchemaMapper,
+    private readonly customerBusinessModelMapper: CustomerSchemaToModelMapper,
   ) {
     super(customerModel, customerSchemaMapper, customerBusinessModelMapper);
   }
@@ -33,18 +33,7 @@ export class CustomerRepository extends EntityRepository<
 
     const customers = await this.customerModel
       .find()
-      .select([
-        '_id',
-        'IdentificationNumber',
-        'NameEn',
-        'NameBn',
-        'Email',
-        'ContactNumber',
-        'MobileNumber',
-        'PhoneNumber',
-        'Addresses',
-        'CustomerType',
-      ])
+
       .sort({ [sort_by]: order_by })
       .limit(limit)
       .skip(limit * (page - 1));

@@ -9,7 +9,9 @@ import { TrainingEntity } from 'src/kyc/domain/models/person/entities/training.e
 import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
 import { Person } from '../../schema/person/person.schema';
 
-export class PersonSchemaMapper implements ISchemaMapper<Person, PersonModel> {
+export class PersonModelToSchemaMapper
+  implements ISchemaMapper<Person, PersonModel>
+{
   mapBusinessModelToSchema(model: PersonModel): Person {
     const personSchema = new Person();
     personSchema._id = new Types.ObjectId(model.CustomerId);
@@ -34,6 +36,10 @@ export class PersonSchemaMapper implements ISchemaMapper<Person, PersonModel> {
       DocumentTitle: model.Photo.DocumentTitle,
       FileUrl: model.Photo.FileUrl,
     };
+    personSchema.CreatedAt = model.CreatedAt;
+    personSchema.UpdatedAt = model.UpdatedAt;
+    personSchema.CreatedBy = model.CreatedBy;
+    personSchema.UpdatedBy = model.UpdatedBy;
 
     personSchema.Addresses = model.Addresses?.map((address: AddressEntity) => ({
       _id: new Types.ObjectId(address.Id),

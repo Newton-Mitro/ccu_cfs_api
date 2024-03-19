@@ -12,7 +12,7 @@ import { ContactPerson } from '../../schema/organization/contact-person.schema';
 import { OrganizationAttachment } from '../../schema/organization/organization-attachment.schema';
 import { Organization } from '../../schema/organization/organization.schema';
 
-export class OrganizationBusinessModelMapper
+export class OrganizationSchemaModelMapper
   implements IBusinessModelMapper<Organization, OrganizationModel>
 {
   mapSchemaToBusinessModel(entitySchema: Organization): OrganizationModel {

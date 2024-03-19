@@ -10,13 +10,14 @@ export class StoreBase64File {
     base64Document: string,
   ) {
     const path = `./uploads/${storagePath}/`;
+    const file_name = fileName.toLowerCase().replace(/\s/g, '_');
 
     if (!fs.existsSync(path)) {
       fs.mkdirSync(path, { recursive: true });
     }
 
     fs.writeFile(
-      path + fileName + '.' + fileExtension,
+      path + file_name + '.' + fileExtension,
       base64Document,
       { encoding: 'base64' },
       function (err) {
@@ -29,6 +30,8 @@ export class StoreBase64File {
       },
     );
 
-    return path + fileName + '.' + fileExtension;
+    return (
+      process.env.APP_URL + storagePath + '/' + file_name + '.' + fileExtension
+    );
   }
 }

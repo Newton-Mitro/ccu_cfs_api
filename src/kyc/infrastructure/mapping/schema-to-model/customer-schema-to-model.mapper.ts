@@ -1,10 +1,10 @@
 import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
 import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
+import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 import { Address } from '../../schema/common/address.schema';
 import { Customer } from '../../schema/common/customer.schema';
-import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
 
-export class CustomerBusinessModelMapper
+export class CustomerSchemaToModelMapper
   implements IBusinessModelMapper<Customer, CustomerModel>
 {
   mapSchemaToBusinessModel(entitySchema: Customer): CustomerModel {
@@ -35,6 +35,10 @@ export class CustomerBusinessModelMapper
         return addressModel;
       },
     );
+    customerModel.CreatedAt = entitySchema.CreatedAt;
+    customerModel.UpdatedAt = entitySchema.UpdatedAt;
+    customerModel.CreatedBy = entitySchema.CreatedBy;
+    customerModel.UpdatedBy = entitySchema.UpdatedBy;
     return customerModel;
   }
 }

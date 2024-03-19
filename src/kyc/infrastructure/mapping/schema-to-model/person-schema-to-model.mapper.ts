@@ -15,7 +15,7 @@ import { PersonAttachment } from '../../schema/person/person-attachment.schema';
 import { Person } from '../../schema/person/person.schema';
 import { Training } from '../../schema/person/training.schema';
 
-export class PersonBusinessModelMapper
+export class PersonSchemaToModelMapper
   implements IBusinessModelMapper<Person, PersonModel>
 {
   mapSchemaToBusinessModel(entitySchema: Person): PersonModel {
@@ -41,6 +41,11 @@ export class PersonBusinessModelMapper
       entitySchema.Photo.DocumentTitle,
       entitySchema.Photo.FileUrl,
     );
+
+    personModel.CreatedAt = entitySchema.CreatedAt;
+    personModel.UpdatedAt = entitySchema.UpdatedAt;
+    personModel.CreatedBy = entitySchema.CreatedBy;
+    personModel.UpdatedBy = entitySchema.UpdatedBy;
 
     personModel.Addresses = entitySchema.Addresses?.map((address: Address) => {
       return new AddressEntity(
