@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { Permission } from 'src/auth/enums/permissions.enum';
-import { RequirePermissions } from 'src/auth/util/permissions.decorator';
+import { HasPermissions } from 'src/auth/util/permissions.decorator';
 import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 import { CustomersService } from '../../application/services/customers.service';
 
@@ -17,7 +17,7 @@ export class CustomersController {
   // }
 
   @Get()
-  @RequirePermissions(Permission.ListCustomers)
+  @HasPermissions(Permission.ListCustomers)
   findAll(@Query() findAllQueryRequest: FindAllQueryRequest) {
     return this.customerService.findAll(findAllQueryRequest);
   }

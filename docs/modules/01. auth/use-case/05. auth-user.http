@@ -11,12 +11,13 @@ Accept: application/json
 }
 
 ### Set Token
-@token = {{login.response.body.access_token}}
+@accessToken = {{login.response.body.accessToken}}
+@refreshToken = {{login.response.body.refreshToken}}
 
 ### Get Authenticated User Request
 # @name authUser
 GET  http://localhost:5000/auth/user
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{accessToken}}
 

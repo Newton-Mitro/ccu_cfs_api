@@ -1,0 +1,12 @@
+### Login Request
+# @name login
+POST  http://localhost:5000/auth/signup
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+    "name":"Maria",
+    "username": "maria", 
+    "password": "guess"
+}

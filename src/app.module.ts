@@ -42,7 +42,7 @@ import { UsersModule } from './users/users.module';
     },
     // {
     //   provide: APP_GUARD,
-    //   useClass: JwtAuthGuard,
+    //   useClass: PermissionGuard,
     // },
   ],
 })
