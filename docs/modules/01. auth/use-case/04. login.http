@@ -6,6 +6,6 @@ Accept: application/json
 
 ## Request Body
 {
-    "username": "john", 
-    "password": "changeme"
+    "username": "newtonmitro@gmail.com", 
+    "password": "password"
 }
