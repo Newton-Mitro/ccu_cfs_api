@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
@@ -16,7 +15,6 @@ import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiar
 import { UsersModule } from './users/users.module';
 
 @Module({
-  controllers: [AppController],
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
