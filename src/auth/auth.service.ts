@@ -16,7 +16,7 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findByUsername(username);
-    // console.log(user);
+    if (!user) throw new BadRequestException('User does not exist');
     const passwordMatches = await argon2.verify(user.password, pass);
     if (passwordMatches) {
       const { password, refreshToken, ...result } = user;
