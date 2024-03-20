@@ -43,7 +43,12 @@ export class AuthService {
     );
     if (!passwordMatches)
       throw new BadRequestException('Password is incorrect');
-    const tokens = await this.getTokens(user._id, user.username, user.roles);
+    const tokens = await this.getTokens(
+      user._id,
+      user.username,
+      user.roles,
+      user.permissions,
+    );
     await this.updateRefreshToken(user._id, tokens.refreshToken);
     return tokens;
   }
@@ -67,6 +72,7 @@ export class AuthService {
       newUser._id,
       newUser.username,
       newUser.roles,
+      newUser.permissions,
     );
     await this.updateRefreshToken(newUser._id, tokens.refreshToken);
     return tokens;
@@ -84,7 +90,12 @@ export class AuthService {
     );
     if (!passwordMatches)
       throw new BadRequestException('Password is incorrect');
-    const tokens = await this.getTokens(user._id, user.username, user.roles);
+    const tokens = await this.getTokens(
+      user._id,
+      user.username,
+      user.roles,
+      user.permissions,
+    );
     await this.updateRefreshToken(user._id, tokens.refreshToken);
     return tokens;
   }
@@ -104,13 +115,19 @@ export class AuthService {
     });
   }
 
-  async getTokens(userId: string, username: string, roles: string[]) {
+  async getTokens(
+    userId: string,
+    username: string,
+    roles: string[],
+    permissions: string[],
+  ) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
           sub: userId,
           username,
           roles,
+          permissions,
         },
         {
           secret: this.configService.get<string>('JWT_ACCESS_SECRET'),

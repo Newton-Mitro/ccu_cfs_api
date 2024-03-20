@@ -6,8 +6,8 @@ Accept: application/json
 
 ## Request Body
 {
-    "username": "maria", 
-    "password": "guess"
+    "username": "newtonmitro@gmail.com", 
+    "password": "password"
 }
 
 ### Set Token
