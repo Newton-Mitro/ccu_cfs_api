@@ -38,7 +38,9 @@ export class UsersService {
     updateRefreshToken: { refreshToken: string | null },
   ): Promise<any> {
     return this.userModel
-      .findByIdAndUpdate(id, updateRefreshToken, { new: true })
+      .findByIdAndUpdate(id, updateRefreshToken, {
+        new: true,
+      })
       .exec();
   }
 
