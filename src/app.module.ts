@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './access-control/auth/auth.module';
+import { UsersModule } from './access-control/users/users.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
 import { DatabaseModule } from './config/database/mongoose/database.module';
@@ -12,7 +13,6 @@ import { LoggerType } from './logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from './logging/infrastructure/repositories/database-logging.repository';
 import { LoggingModule } from './logging/logging.module';
 import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiary-ledgers/subsidiary-ledger-account.module';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [

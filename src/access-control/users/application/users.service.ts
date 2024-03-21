@@ -10,7 +10,11 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(createUserRequest: CreateUserRequest): Promise<UserDocument> {
-    const user = { ...createUserRequest, roles: ['User'] };
+    const user = {
+      ...createUserRequest,
+      roles: ['User'],
+      userSecret: Date.now(),
+    };
     const createdUser = new this.userModel(user);
     return createdUser.save();
   }
@@ -35,7 +39,10 @@ export class UsersService {
 
   async updateRefreshToken(
     id: string,
-    updateRefreshToken: { refreshToken: string | null },
+    updateRefreshToken: {
+      refreshToken: string | null;
+      userSecret: string | null;
+    },
   ): Promise<any> {
     return this.userModel
       .findByIdAndUpdate(id, updateRefreshToken, {

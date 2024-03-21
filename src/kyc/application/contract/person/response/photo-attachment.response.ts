@@ -1,5 +1,5 @@
 export class PhotoAttachmentResponse {
-  Id: string;
-  DocumentTitle: string;
-  FileUrl: string;
+  id: string;
+  documentTitle: string;
+  fileUrl: string;
 }

@@ -3,26 +3,21 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class AddBankAccountRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'bank_name' })
-  BankName: string;
+  bankName: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'branch' })
-  Branch: string;
+  branch: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'routing_number' })
-  RoutingNumber: string;
+  routingNumber: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'account_number' })
-  AccountNumber: string;
+  accountNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'account_name' })
-  AccountName: string;
+  accountName: string;
 }

@@ -3,31 +3,25 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class AddEducationRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'education_level' })
-  EducationLevel: string;
+  educationLevel: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'education_degree' })
-  EducationDegree: string;
+  educationDegree: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'institute_name' })
-  InstituteName: string;
+  instituteName: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'major_subject' })
-  MajorSubject: string;
+  majorSubject: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'passing_year' })
-  PassingYear: string;
+  passingYear: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'grade' })
-  Grade: string;
+  grade: string;
 }

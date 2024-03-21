@@ -1,0 +1,22 @@
+### Login Request
+# @name login
+POST  http://localhost:5000/auth/login
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+    "username": "newtonmitro@gmail.com", 
+    "password": "password"
+}
+
+### Set Token
+@token = {{login.response.body.accessToken}}
+
+### Get Authenticated User Request
+# @name authUser
+GET  http://localhost:5000/auth/user
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+

@@ -36,8 +36,8 @@ export class OrganizationsService {
       FileUrl: StoreBase64File.store(
         'organizations/logo',
         createOrganizationModel.NameEn,
-        createOrganizationRequest.Logo.FileExtension,
-        createOrganizationRequest.Logo.Base64Document,
+        createOrganizationRequest.logo.fileExtension,
+        createOrganizationRequest.logo.base64Document,
       ),
     };
 

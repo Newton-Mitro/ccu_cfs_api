@@ -12,7 +12,13 @@ Accept: application/json
 
 ### Set Token
 @accessToken = {{login.response.body.accessToken}}
-@refreshToken = {{login.response.body.refreshToken}}
+
+### Get Authenticated User Request
+# @name logout
+GET  http://localhost:5000/auth/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{accessToken}}
 
 ### Get Authenticated User Request
 # @name authUser
@@ -20,4 +26,6 @@ GET  http://localhost:5000/auth/user
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{accessToken}}
+
+
 

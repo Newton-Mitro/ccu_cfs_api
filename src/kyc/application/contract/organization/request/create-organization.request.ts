@@ -12,59 +12,48 @@ import { AddOrganizationAttachmentRequest } from './add-organization-attachment.
 export class CreateOrganizationRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'registration_number' })
-  RegistrationNumber: string;
+  registrationNumber: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'name_en' })
-  NameEn: string;
+  nameEn: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'name_bn' })
-  NameBn: string;
+  nameBn: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'tin' })
-  TIN: string;
+  tin: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'contact_number' })
-  ContactNumber: string;
+  contactNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'mobile_number' })
-  MobileNumber: string;
+  mobileNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'phone_number' })
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'fax_number' })
-  Fax: string;
+  fax: string;
 
   @IsString()
   @IsOptional()
   @IsEmail()
-  // @Expose({ name: 'email' })
-  Email: string;
+  email: string;
 
   @IsString()
   @IsOptional()
   @IsUrl()
-  // @Expose({ name: 'website' })
-  Website: string;
+  website: string;
 
   @Type(() => AddOrganizationAttachmentRequest)
   @IsOptional()
   @ValidateNested()
-  // @Expose({ name: 'logo' })
-  Logo: AddOrganizationAttachmentRequest;
+  logo: AddOrganizationAttachmentRequest;
 }

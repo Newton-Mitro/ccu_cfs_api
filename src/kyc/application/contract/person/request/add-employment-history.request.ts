@@ -10,56 +10,45 @@ import {
 export class AddEmploymentHistoryRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'organization_name' })
-  OrganizationName: string;
+  organizationName: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'position' })
-  Position: string;
+  position: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'address' })
-  Address: string;
+  address: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'supervisor_name' })
-  SupervisorName: string;
+  supervisorName: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'supervisor_designation' })
-  SupervisorDesignation: string;
+  supervisorDesignation: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'supervisor_phone' })
-  SupervisorPhone: string;
+  supervisorPhone: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'job_responsibilities' })
-  JobResponsibilities: string;
+  jobResponsibilities: string;
 
   @IsNumber()
   @IsOptional()
-  // @Expose({ name: 'salary' })
-  Salary: number;
+  salary: number;
 
   @IsDateString()
   @IsNotEmpty()
-  // @Expose({ name: 'start_date' })
-  StartDate: Date;
+  startDate: Date;
 
   @IsDateString()
   @IsOptional()
-  // @Expose({ name: 'end_date' })
-  EndDate: Date;
+  endDate: Date;
 
   @IsBoolean()
   @IsNotEmpty()
-  // @Expose({ name: 'till_now' })
-  TillNow: boolean;
+  tillNow: boolean;
 }

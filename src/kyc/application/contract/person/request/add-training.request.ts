@@ -8,31 +8,25 @@ import {
 export class AddTrainingRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'course_title' })
-  CourseTitle: string;
+  courseTitle: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'institute_name' })
-  InstituteName: string;
+  instituteName: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'course_content' })
-  CourseContent: string;
+  courseContent: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'result' })
-  Result: string;
+  result: string;
 
   @IsDateString()
   @IsOptional()
-  // @Expose({ name: 'start_date' })
-  StartDate: Date;
+  startDate: Date;
 
   @IsDateString()
   @IsOptional()
-  // @Expose({ name: 'end_date' })
-  EndDate: Date;
+  endDate: Date;
 }

@@ -18,79 +18,64 @@ import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 export class CreatePersonRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'name_en' })
-  NameEn: string;
+  nameEn: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'name_bn' })
-  NameBn: string = '';
+  nameBn: string = '';
 
   @IsDateString()
   @IsNotEmpty()
-  // @Expose({ name: 'date_of_birth' })
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @IsString()
   @IsEnum(Gender)
-  // @Expose({ name: 'gender' })
-  Gender: Gender = Gender.MALE;
+  gender: Gender = Gender.MALE;
 
   @IsString()
   @IsEnum(BloodGroup)
-  // @Expose({ name: 'blood_group' })
-  BloodGroup: BloodGroup = BloodGroup.UNKNOWN;
+  bloodGroup: BloodGroup = BloodGroup.UNKNOWN;
 
   @IsString()
   @IsEnum(Religion)
-  // @Expose({ name: 'religion' })
-  Religion: Religion = Religion.UNWILLING_TO_REVEAL;
+  religion: Religion = Religion.UNWILLING_TO_REVEAL;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'nid' })
-  NID: string = '';
+  nid: string = '';
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'birth_registration_number' })
-  BirthRegistrationNumber: string = '';
+  birthRegistrationNumber: string = '';
 
   @IsString()
   @IsEnum(MaritalStatus)
-  // @Expose({ name: 'marital_status' })
-  MaritalStatus: MaritalStatus = MaritalStatus.SINGLE;
+  maritalStatus: MaritalStatus = MaritalStatus.SINGLE;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'contact_number' })
-  ContactNumber: string = '';
+  contactNumber: string = '';
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'mobile_number' })
-  MobileNumber: string = '';
+  mobileNumber: string = '';
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'phone_number' })
-  PhoneNumber: string = '';
+  phoneNumber: string = '';
 
   @IsString()
   @IsOptional()
   @IsEmail()
-  // @Expose({ name: 'email' })
-  Email: string = '';
+  email: string = '';
 
   @IsString()
   @IsEnum(Profession)
   @IsOptional()
-  // @Expose({ name: 'profession' })
-  Profession: Profession = Profession.UNWILLING_TO_REVEAL;
+  profession: Profession = Profession.UNWILLING_TO_REVEAL;
 
   @Type(() => AddPersonAttachmentRequest)
   @IsOptional()
   @ValidateNested()
-  // @Expose({ name: 'photo' })
-  Photo: AddPersonAttachmentRequest;
+  photo: AddPersonAttachmentRequest;
 }

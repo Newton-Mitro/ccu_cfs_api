@@ -1,13 +1,12 @@
 ### Login Request
 # @name login
-PATCH   http://localhost:5000/users/65fb06adcbb91edc19d66bb0
+POST  http://localhost:5000/auth/signup
 Content-Type: application/json
 Accept: application/json
 
 ## Request Body
 {
-    "userId": "65fb06adcbb91edc19d66bb0",
-    "name": "Newton Mitro",
+    "name":"Newton Mitro",
     "username": "newtonmitro@gmail.com", 
     "password": "password"
 }

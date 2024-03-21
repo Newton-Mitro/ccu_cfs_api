@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthenticateRequest } from 'src/users/application/contracts/authenticate.request';
-import { CreateUserRequest } from 'src/users/application/contracts/create-user.request';
+import { AuthenticateRequest } from '../users/application/contracts/authenticate.request';
+import { CreateUserRequest } from '../users/application/contracts/create-user.request';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { RefreshTokenGuard } from './guards/refresh-token.guard';
 import { Public } from './util/public.decorator';
 
 @UseGuards(JwtAuthGuard)
@@ -22,10 +23,9 @@ export class AuthController {
   @Public()
   @Post('login')
   async login(@Body() authenticateRequest: AuthenticateRequest) {
-    return this.authService.login(authenticateRequest);
+    return this.authService.signIn(authenticateRequest);
   }
 
-  // @UseGuards(PermissionGuard)
   // @HasPermissions(Permission.AddEducation)
   @Get('user')
   async getAuthenticatedUser(@Req() req) {
@@ -33,8 +33,17 @@ export class AuthController {
     return req.user;
   }
 
+  @Public()
+  @UseGuards(RefreshTokenGuard)
+  @Get('refresh')
+  refreshTokens(@Req() req: Request) {
+    const userId = req.user ? req.user['sub'] : null;
+    const refreshToken = req.user ? req.user['refreshToken'] : null;
+    return this.authService.refreshTokens(userId, refreshToken);
+  }
+
   @Get('logout')
   async logout(@Req() req: Request) {
-    if (req.user) this.authService.logout(req.user['sub']);
+    if (req.user) this.authService.logout(req.user['userId']);
   }
 }

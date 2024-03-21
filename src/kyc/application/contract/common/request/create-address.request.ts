@@ -5,55 +5,44 @@ import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 export class CreateAddressRequest {
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'address_id' })
-  AddressId: string;
+  addressId: string;
 
   @IsEnum(AddressType)
   @IsNotEmpty()
-  // @Expose({ name: 'address_type' })
-  AddressType: AddressType;
+  addressType: AddressType;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'address_line_one' })
-  AddressLineOne: string;
+  addressLineOne: string;
 
   @IsString()
-  // @Expose({ name: 'address_line_two' })
-  AddressLineTwo: string;
+  addressLineTwo: string;
 
   @IsEnum(Country)
   @IsNotEmpty()
-  // @Expose({ name: 'country' })
-  Country: string;
+  country: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'state' })
-  State: string;
+  state: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'city' })
-  City: string;
+  city: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'division' })
-  Division: string;
+  division: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'district' })
-  District: string;
+  district: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'sub_district' })
-  SubDistrict: string;
+  subDistrict: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'zip_code' })
-  ZipCode: string;
+  zipCode: string;
 }

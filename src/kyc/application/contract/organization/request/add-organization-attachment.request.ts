@@ -4,17 +4,14 @@ import { OrganizationalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-
 export class AddOrganizationAttachmentRequest {
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'file_extension' })
-  FileExtension: string;
+  fileExtension: string;
 
   @IsString({ each: true })
   @IsEnum(OrganizationalDocumentType)
-  // @Expose({ name: 'document_title' })
-  DocumentTitle: OrganizationalDocumentType;
+  documentTitle: OrganizationalDocumentType;
 
   @IsString()
   @IsNotEmpty()
   @IsBase64()
-  // @Expose({ name: 'base64_document' })
-  Base64Document: string;
+  base64Document: string;
 }

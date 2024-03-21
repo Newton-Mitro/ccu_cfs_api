@@ -20,95 +20,77 @@ import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 export class AddFamilyAndRelativeRequest {
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'customer_id' })
-  CustomerId: string;
+  customerId: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'identification_number' })
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @IsString()
   @IsNotEmpty()
-  // @Expose({ name: 'name_en' })
-  NameEn: string;
+  nameEn: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'name_bn' })
-  NameBn: string;
+  nameBn: string;
 
   @IsDateString()
   @IsNotEmpty()
-  // @Expose({ name: 'date_of_birth' })
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @IsString()
   @IsEnum(Gender)
-  // @Expose({ name: 'gender' })
-  Gender: Gender;
+  gender: Gender;
 
   @IsString()
   @IsOptional()
   @IsEnum(BloodGroup)
-  // @Expose({ name: 'blood_group' })
-  BloodGroup: BloodGroup;
+  bloodGroup: BloodGroup;
 
   @IsString()
   @IsEnum(Religion)
-  // @Expose({ name: 'religion' })
-  Religion: Religion;
+  religion: Religion;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'nid' })
-  NID: string;
+  nid: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'birth_registration_number' })
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @IsString()
   @IsOptional()
   @IsEnum(MaritalStatus)
-  // @Expose({ name: 'marital_status' })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'contact_number' })
-  ContactNumber: string;
+  contactNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'mobile_number' })
-  MobileNumber: string;
+  mobileNumber: string;
 
   @IsString()
   @IsOptional()
-  // @Expose({ name: 'phone_number' })
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @IsString()
   @IsOptional()
   @IsEmail()
-  // @Expose({ name: 'email' })
-  Email: string;
+  email: string;
 
   @Type(() => AddPersonAttachmentRequest)
   @ValidateNested()
   @IsNotEmptyObject()
-  // @Expose({ name: 'photo' })
-  Photo: AddPersonAttachmentRequest;
+  photo: AddPersonAttachmentRequest;
 
   @IsEnum(Relationship)
   @IsNotEmpty()
-  // @Expose({ name: 'relationship' })
-  Relationship: Relationship;
+  relationship: Relationship;
 
   @IsEnum(FamilyTreeStatus)
   @IsNotEmpty()
-  // @Expose({ name: 'status' })
-  Status: FamilyTreeStatus;
+  status: FamilyTreeStatus;
 }

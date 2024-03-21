@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { Permission } from 'src/auth/enums/permissions.enum';
-import { HasPermissions } from 'src/auth/util/permissions.decorator';
+import { Permission } from 'src/access-control/auth/enums/permissions.enum';
+import { HasPermissions } from 'src/access-control/auth/util/permissions.decorator';
 import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 import { CustomersService } from '../../application/services/customers.service';
 
