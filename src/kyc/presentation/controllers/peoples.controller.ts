@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreatePersonRequest } from 'src/kyc/application/contract/person/request/create-person.request';
-import { UpdatePersonRequest } from 'src/kyc/application/contract/person/request/update-person.request';
+import { CreatePersonRequest } from 'src/kyc/application/contract/person/requests/create-person.request';
+import { UpdatePersonRequest } from 'src/kyc/application/contract/person/requests/update-person.request';
 import { PeoplesService } from '../../application/services/peoples.service';
 
 @Controller('peoples')

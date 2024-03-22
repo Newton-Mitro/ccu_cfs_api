@@ -32,4 +32,4 @@ const MODELS = [
   imports: [MongooseModule.forFeature(MODELS)],
   exports: [MongooseModule],
 })
-export class MongooseKYCModelsModule {}
+export class RegisterMongooseSchemasModule {}

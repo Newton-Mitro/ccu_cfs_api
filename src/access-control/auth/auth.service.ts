@@ -6,8 +6,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as argon2 from 'argon2';
-import { AuthenticateRequest } from '../users/application/contracts/authenticate.request';
-import { CreateUserRequest } from '../users/application/contracts/create-user.request';
+import { AuthenticateRequest } from '../users/application/contracts/request/authenticate.request';
+import { CreateUserRequest } from '../users/application/contracts/request/create-user.request';
 import { UsersService } from '../users/application/users.service';
 
 @Injectable()

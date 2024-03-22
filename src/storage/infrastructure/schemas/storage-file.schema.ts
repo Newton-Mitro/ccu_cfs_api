@@ -1,9 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 
-@Schema({
-  collection: 'StorageFiles',
-})
+@Schema()
 export class StorageFile extends IdentifiableEntitySchema {
   @Prop()
   readonly DocumentTitle: string;
@@ -13,6 +11,3 @@ export class StorageFile extends IdentifiableEntitySchema {
 }
 
 export const StorageFileSchema = SchemaFactory.createForClass(StorageFile);
-
-export type StorageFileDocument = StorageFile & Document;
-export const STORAGE_FILE_MODEL = StorageFile.name;

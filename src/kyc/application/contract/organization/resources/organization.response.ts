@@ -1,5 +1,5 @@
-import { AddressResponse } from '../../common/response/address.response';
-import { AddOrganizationAttachmentRequest } from '../request/add-organization-attachment.request';
+import { AddressResponse } from '../../common/resources/address.response';
+import { AddOrganizationAttachmentRequest } from '../requests/add-organization-attachment.request';
 import { BankAccountResponse } from './bank-account.response';
 import { BranchResponse } from './branch.response';
 import { ContactPersonResponse } from './contact-person.response';

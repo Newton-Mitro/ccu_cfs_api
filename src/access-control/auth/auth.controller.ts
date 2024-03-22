@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthenticateRequest } from '../users/application/contracts/authenticate.request';
-import { CreateUserRequest } from '../users/application/contracts/create-user.request';
+import { AuthenticateRequest } from '../users/application/contracts/request/authenticate.request';
+import { CreateUserRequest } from '../users/application/contracts/request/create-user.request';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';

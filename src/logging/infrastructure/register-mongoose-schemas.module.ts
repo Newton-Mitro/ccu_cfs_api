@@ -35,4 +35,4 @@ import {
   ],
   exports: [MongooseModule],
 })
-export class MongooseLoggingModelsModule {}
+export class RegisterMongooseSchemasModule {}

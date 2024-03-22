@@ -11,8 +11,8 @@ import {
   CreatePersonCommand,
   PersonPhotoAttachment,
 } from '../commands/person/create-person/create-person.command';
-import { CreatePersonRequest } from '../contract/person/request/create-person.request';
-import { UpdatePersonRequest } from '../contract/person/request/update-person.request';
+import { CreatePersonRequest } from '../contract/person/requests/create-person.request';
+import { UpdatePersonRequest } from '../contract/person/requests/update-person.request';
 
 @Injectable()
 export class PeoplesService {

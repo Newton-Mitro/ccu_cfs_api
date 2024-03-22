@@ -3,13 +3,13 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { AddressResponse } from '../../common/response/address.response';
 import { EducationResponse } from './education.response';
 import { EmploymentHistoryResponse } from './employment-history.response';
 import { FamilyAndRelativeResponse } from './family-and-relative.response';
 import { PersonAttachmentResponse } from './person-attachment.response';
 import { PhotoAttachmentResponse } from './photo-attachment.response';
 import { TrainingResponse } from './training.response';
+import { AddressResponse } from '../../common/resources/address.response';
 
 export class PersonResponse {
   personId: string;

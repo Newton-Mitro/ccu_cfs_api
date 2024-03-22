@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from '../infrastructure/schemas/user.schema';
-import { CreateUserRequest } from './contracts/create-user.request';
-import { UpdateUserRequest } from './contracts/update-user.request';
+import { CreateUserRequest } from './contracts/request/create-user.request';
+import { UpdateUserRequest } from './contracts/request/update-user.request';
 
 @Injectable()
 export class UsersService {

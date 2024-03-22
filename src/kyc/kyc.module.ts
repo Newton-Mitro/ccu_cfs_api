@@ -9,7 +9,7 @@ import { CustomerModelToSchemaMapper } from './infrastructure/mapping/model-to-s
 import { PersonModelToSchemaMapper } from './infrastructure/mapping/model-to-schema/person-model-to-schema.mapper';
 import { CustomerSchemaToModelMapper } from './infrastructure/mapping/schema-to-model/customer-schema-to-model.mapper';
 import { PersonSchemaToModelMapper } from './infrastructure/mapping/schema-to-model/person-schema-to-model.mapper';
-import { MongooseKYCModelsModule } from './infrastructure/mongoose-kyc-models.module';
+import { RegisterMongooseSchemasModule } from './infrastructure/register-mongoose-schemas.module';
 import { CustomerRepository } from './infrastructure/repositories/customer.repository';
 import { PeoplesRepository } from './infrastructure/repositories/peoples.repository';
 import { CustomersController } from './presentation/controllers/customers.controller';
@@ -35,7 +35,7 @@ export const Services = [
 export const Repositories = [CustomerRepository, PeoplesRepository];
 
 @Module({
-  imports: [MongooseKYCModelsModule, MessagingModule, CqrsModule],
+  imports: [RegisterMongooseSchemasModule, MessagingModule, CqrsModule],
   controllers: [
     CustomersController,
     PeoplesController,

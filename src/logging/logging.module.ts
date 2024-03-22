@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { LoggingService } from './application/logging.service';
 import { LoggerType } from './domain/enums/logger-type.enum';
-import { MongooseLoggingModelsModule } from './infrastructure/mongoose-logging-model.module';
+import { RegisterMongooseSchemasModule } from './infrastructure/register-mongoose-schemas.module';
 import { DatabaseLoggingRepository } from './infrastructure/repositories/database-logging.repository';
 
 @Module({
-  imports: [MongooseLoggingModelsModule],
+  imports: [RegisterMongooseSchemasModule],
   exports: [],
   providers: [
     {
