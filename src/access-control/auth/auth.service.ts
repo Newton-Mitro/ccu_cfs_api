@@ -23,13 +23,8 @@ export class AuthService {
     if (!user) throw new BadRequestException('User does not exist');
     const passwordMatches = await argon2.verify(user.password, pass);
     if (passwordMatches) {
-      const { password, refreshToken, ...result } = user;
-      return {
-        userId: user.userId,
-        username: user.username,
-        name: user.name,
-        roles: user.roles,
-      };
+      const { password, ...result } = user;
+      return result;
     }
     return null;
   }
@@ -104,7 +99,7 @@ export class AuthService {
   }
 
   async getTokens(
-    userId: string,
+    id: string,
     username: string,
     roles: string[],
     permissions: string[],
@@ -113,7 +108,7 @@ export class AuthService {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
-          sub: userId,
+          id: id,
           username,
           roles,
           permissions,
@@ -126,7 +121,7 @@ export class AuthService {
       ),
       this.jwtService.signAsync(
         {
-          sub: userId,
+          id: id,
           username,
         },
         {

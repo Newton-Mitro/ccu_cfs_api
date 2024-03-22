@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 type JwtPayload = {
   sub: string;
-  userId: string;
+  id: string;
   name: string;
   username: string;
   roles: string[];
@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: JwtPayload) {
     return {
-      userId: payload.sub,
+      id: payload.id,
       name: payload.name,
       username: payload.username,
       roles: payload.roles,

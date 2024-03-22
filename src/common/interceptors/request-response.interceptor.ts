@@ -48,7 +48,19 @@ export class RequestResponseInterceptor implements NestInterceptor {
           const ip = request['ip'];
           const path = request.url;
           const requestQuery = request['query'];
-          const requestBody = request?.body!;
+          const photo = request?.body!['photo'] ? 'omitted' : undefined;
+          const logo = request?.body!['logo'] ? 'omitted' : undefined;
+          const password = request?.body!['password'] ? 'omitted' : undefined;
+          const confirmPassword = request?.body!['confirmPassword']
+            ? 'omitted'
+            : undefined;
+          const requestBody = {
+            ...request?.body!,
+            photo,
+            logo,
+            password,
+            confirmPassword,
+          };
           const responseTime = _responseTime;
           const statusCode = response['statusCode'];
 

@@ -37,13 +37,13 @@ export class AuthController {
   @UseGuards(RefreshTokenGuard)
   @Get('refresh')
   refreshTokens(@Req() req: Request) {
-    const userId = req.user ? req.user['sub'] : null;
+    const userId = req.user ? req.user['id'] : null;
     const refreshToken = req.user ? req.user['refreshToken'] : null;
     return this.authService.refreshTokens(userId, refreshToken);
   }
 
   @Get('logout')
   async logout(@Req() req: Request) {
-    if (req.user) this.authService.logout(req.user['userId']);
+    if (req.user) this.authService.logout(req.user['id']);
   }
 }
