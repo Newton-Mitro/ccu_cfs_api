@@ -28,10 +28,10 @@ export class EmploymentHistory extends IdentifiableEntitySchema {
   Salary: number;
 
   @Prop({ require: true })
-  StartDate: string;
+  StartDate: Date;
 
   @Prop()
-  EndDate: string;
+  EndDate: Date;
 
   @Prop()
   TillNow: boolean;

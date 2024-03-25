@@ -69,7 +69,7 @@ export class PersonSchemaToModelMapper
           familyAndRelative._id.toHexString(),
           familyAndRelative.PersonId,
           familyAndRelative.IdentificationNumber,
-          familyAndRelative.DateOfBirth.toISOString(),
+          familyAndRelative.DateOfBirth,
           familyAndRelative.Gender,
           familyAndRelative.NameEn,
           familyAndRelative.NameBn,

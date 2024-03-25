@@ -16,10 +16,10 @@ export class Training extends IdentifiableEntitySchema {
   Result: string;
 
   @Prop()
-  StartDate: string;
+  StartDate: Date;
 
   @Prop()
-  EndDate: string;
+  EndDate: Date;
 }
 
 export const TrainingSchema = SchemaFactory.createForClass(Training);

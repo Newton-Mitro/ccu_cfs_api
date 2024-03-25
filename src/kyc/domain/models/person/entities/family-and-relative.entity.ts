@@ -11,7 +11,7 @@ import { PhotoAttachmentEntity } from '../../common/photo-attachment.entity';
 export class FamilyAndRelativeEntity extends BaseEntity {
   private _CustomerId: string;
   private _IdentificationNumber: string;
-  private _DateOfBirth: string;
+  private _DateOfBirth: Date;
   private _Gender: Gender;
   private _NameEn: string;
   private _NameBn: string;
@@ -33,7 +33,7 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     customerId: string,
     familyTreeId: string,
     identificationNumber: string,
-    dateOfBirth: string,
+    dateOfBirth: Date,
     gender: Gender,
     nameEn: string,
     nameBn: string,
@@ -132,11 +132,11 @@ export class FamilyAndRelativeEntity extends BaseEntity {
     this._MobileNumber = value;
   }
 
-  public get DateOfBirth(): string {
+  public get DateOfBirth(): Date {
     return this._DateOfBirth;
   }
 
-  public set DateOfBirth(value: string) {
+  public set DateOfBirth(value: Date) {
     this._DateOfBirth = value;
   }
 

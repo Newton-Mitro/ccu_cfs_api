@@ -5,8 +5,8 @@ export class TrainingEntity extends BaseEntity {
   private _InstituteName: string;
   private _CourseContent: string;
   private _Result: string;
-  private _StartDate: string;
-  private _EndDate: string;
+  private _StartDate: Date;
+  private _EndDate: Date;
 
   constructor(
     trainingId: string,
@@ -14,8 +14,8 @@ export class TrainingEntity extends BaseEntity {
     instituteName: string,
     courseContent: string,
     result: string,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
   ) {
     super(trainingId);
     this._CourseTitle = courseTitle;
@@ -58,19 +58,19 @@ export class TrainingEntity extends BaseEntity {
     this._Result = value;
   }
 
-  public get StartDate(): string {
+  public get StartDate(): Date {
     return this._StartDate;
   }
 
-  public set StartDate(value: string) {
+  public set StartDate(value: Date) {
     this._StartDate = value;
   }
 
-  public get EndDate(): string {
+  public get EndDate(): Date {
     return this._EndDate;
   }
 
-  public set EndDate(value: string) {
+  public set EndDate(value: Date) {
     this._EndDate = value;
   }
 }

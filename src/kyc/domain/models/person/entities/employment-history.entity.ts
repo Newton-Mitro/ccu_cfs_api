@@ -9,8 +9,8 @@ export class EmploymentHistoryEntity extends BaseEntity {
   private _SupervisorPhone: string;
   private _JobResponsibilities: string;
   private _Salary: number;
-  private _StartDate: string;
-  private _EndDate: string;
+  private _StartDate: Date;
+  private _EndDate: Date;
   private _TillNow: boolean;
 
   constructor(
@@ -23,8 +23,8 @@ export class EmploymentHistoryEntity extends BaseEntity {
     supervisorPhone: string,
     jobResponsibilities: string,
     salary: number,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
     tillNow: boolean,
   ) {
     super(educationHistoryId);
@@ -105,19 +105,19 @@ export class EmploymentHistoryEntity extends BaseEntity {
     this._Salary = value;
   }
 
-  public get StartDate(): string {
+  public get StartDate(): Date {
     return this._StartDate;
   }
 
-  public set StartDate(value: string) {
+  public set StartDate(value: Date) {
     this._StartDate = value;
   }
 
-  public get EndDate(): string {
+  public get EndDate(): Date {
     return this._EndDate;
   }
 
-  public set EndDate(value: string) {
+  public set EndDate(value: Date) {
     this._EndDate = value;
   }
 
