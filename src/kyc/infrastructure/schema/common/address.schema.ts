@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Country } from 'src/common/enums/country.enum';
 import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
@@ -17,8 +18,12 @@ export class Address extends IdentifiableEntitySchema {
   @Prop()
   AddressLineTwo: string;
 
-  @Prop({ require: true })
-  Country: string;
+  @Prop({
+    type: String,
+    enum: Object.values(Country),
+    default: Country.BANGLADESH,
+  })
+  Country: Country;
 
   @Prop()
   State: string;

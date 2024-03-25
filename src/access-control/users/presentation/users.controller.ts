@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateUserRequest } from '../application/contracts/request/create-user.request';
-import { UpdateUserRequest } from '../application/contracts/request/update-user.request';
+import { CreateUserRequest } from '../application/contracts/requests/create-user.request';
+import { UpdateUserRequest } from '../application/contracts/requests/update-user.request';
 import { UsersService } from '../application/users.service';
 
 @Controller('users')

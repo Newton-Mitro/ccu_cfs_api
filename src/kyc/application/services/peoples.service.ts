@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -13,19 +12,21 @@ import {
 } from '../commands/person/create-person/create-person.command';
 import { CreatePersonRequest } from '../contract/person/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/requests/update-person.request';
+import { PersonResponse } from '../contract/person/responses/person.response';
+import { PersonModelToResponseMapper } from '../mapping/model-to-response/person-model-to-response.mapper';
 
 @Injectable()
 export class PeoplesService {
   constructor(
     private commandBus: CommandBus,
-
     @InjectModel(PERSON_MODEL)
     private readonly personModel: Model<PersonDocument>,
-    private readonly emailService: EmailMessagingRepository,
   ) {}
 
-  async create(createPersonRequest: CreatePersonRequest) {
-    return this.commandBus.execute(
+  async create(
+    createPersonRequest: CreatePersonRequest,
+  ): Promise<PersonResponse> {
+    const person = await this.commandBus.execute(
       new CreatePersonCommand(
         createPersonRequest.nameEn,
         createPersonRequest.nameBn,
@@ -47,6 +48,8 @@ export class PeoplesService {
         ),
       ),
     );
+
+    return PersonModelToResponseMapper.map(person);
   }
 
   async findAll() {

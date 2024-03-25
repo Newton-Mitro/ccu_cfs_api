@@ -1,4 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
+import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
 import { AddressEntity } from '../common/address.entity';
 
@@ -29,7 +30,7 @@ export class CustomerModel extends AggregateRoot {
     addressType: AddressType,
     addressLineOne: string,
     addressLineTwo: string,
-    country: string,
+    country: Country,
     state: string,
     city: string,
     division: string,

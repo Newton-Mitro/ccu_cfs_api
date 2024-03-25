@@ -1,4 +1,4 @@
-import { OrganizationAttachment } from './organization-attachment';
+import { OrganizationAttachment } from 'src/kyc/infrastructure/schema/organization/organization-attachment.schema';
 
 export class ListOrganizationResponse {
   organizationId: string;

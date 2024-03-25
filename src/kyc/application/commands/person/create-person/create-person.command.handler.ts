@@ -11,7 +11,7 @@ export class CreatePersonHandler
 {
   constructor(private peoplesRepository: PeoplesRepository) {}
 
-  execute(command: CreatePersonCommand): Promise<any> {
+  execute(command: CreatePersonCommand): Promise<PersonModel> {
     const personModel = new PersonModel();
     const personId = new Types.ObjectId().toHexString();
     const identificationNumber = String(new Date().valueOf()).substring(3, 13);

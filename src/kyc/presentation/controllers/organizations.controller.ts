@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateOrganizationRequest } from 'src/kyc/application/contract/organization/request/create-organization.request';
-import { UpdateOrganizationRequest } from 'src/kyc/application/contract/organization/request/update-organization.request';
+import { CreateOrganizationRequest } from 'src/kyc/application/contract/organization/requests/create-organization.request';
+import { UpdateOrganizationRequest } from 'src/kyc/application/contract/organization/requests/update-organization.request';
 import { OrganizationsService } from '../../application/services/organizations.service';
 
 @Controller('organizations')

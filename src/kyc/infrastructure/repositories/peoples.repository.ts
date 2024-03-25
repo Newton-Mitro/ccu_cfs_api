@@ -48,7 +48,7 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
     return null;
   }
 
-  async createPerson(personModel: PersonModel): Promise<any> {
+  async createPerson(personModel: PersonModel): Promise<PersonModel> {
     const personSchema =
       this.personSchemaMapper.mapBusinessModelToSchema(personModel);
 

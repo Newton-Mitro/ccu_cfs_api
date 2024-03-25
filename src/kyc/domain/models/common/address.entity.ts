@@ -1,11 +1,12 @@
 import { BaseEntity } from 'src/common/entities/base-entity';
+import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
 
 export class AddressEntity extends BaseEntity {
   private _AddressType: AddressType;
   private _AddressLineOne: string;
   private _AddressLineTwo: string;
-  private _Country: string;
+  private _Country: Country;
   private _State: string;
   private _City: string;
   private _Division: string;
@@ -18,7 +19,7 @@ export class AddressEntity extends BaseEntity {
     addressType: AddressType,
     addressLineOne: string,
     addressLineTwo: string,
-    country: string,
+    country: Country,
     state: string,
     city: string,
     division: string,
@@ -64,10 +65,10 @@ export class AddressEntity extends BaseEntity {
     this._AddressLineTwo = value;
   }
 
-  public get Country(): string {
+  public get Country(): Country {
     return this._Country;
   }
-  public set Country(value: string) {
+  public set Country(value: Country) {
     this._Country = value;
   }
 
