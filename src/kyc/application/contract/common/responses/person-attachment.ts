@@ -1,6 +1,6 @@
 import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
-export class PersonAttachmentResponse {
+export class PersonAttachment {
   attachmentId: string;
   documentTitle: PersonalDocumentType;
   fileUrl: string;

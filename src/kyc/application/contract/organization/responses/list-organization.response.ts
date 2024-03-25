@@ -1,4 +1,4 @@
-import { OrganizationAttachmentResponse } from './organization-attachment.response';
+import { OrganizationAttachment } from './organization-attachment';
 
 export class ListOrganizationResponse {
   organizationId: string;
@@ -13,5 +13,5 @@ export class ListOrganizationResponse {
   fax: string;
   email: string;
   website: string;
-  logo: OrganizationAttachmentResponse;
+  logo: OrganizationAttachment;
 }
