@@ -10,20 +10,20 @@ import { PersonAttachment } from '../../common/responses/person-attachment';
 
 export class Person {
   constructor(
-    readonly personId: string,
-    readonly identificationNumber: string,
-    readonly nameEn: string,
-    readonly nameBn: string,
-    readonly dateOfBirth: Date,
+    readonly person_id: string,
+    readonly identification_number: string,
+    readonly name_en: string,
+    readonly name_bn: string,
+    readonly date_of_birth: Date,
     readonly gender: Gender,
-    readonly bloodGroup: BloodGroup,
+    readonly blood_group: BloodGroup,
     readonly religion: Religion,
     readonly nid: string,
-    readonly birthRegistrationNumber: string,
-    readonly maritalStatus: MaritalStatus,
-    readonly contactNumber: string,
-    readonly mobileNumber: string,
-    readonly phoneNumber: string,
+    readonly birth_registration_number: string,
+    readonly marital_status: MaritalStatus,
+    readonly contact_number: string,
+    readonly mobile_number: string,
+    readonly phone_number: string,
     readonly email: string,
     readonly profession: Profession,
     readonly photo: string,
@@ -32,46 +32,46 @@ export class Person {
 
 export class PersonResponse extends Person {
   addresses: Address[];
-  familyTree: FamilyAndRelative[];
+  family_tree: FamilyAndRelative[];
   educations: Education[];
   trainings: Training[];
-  employmentHistories: EmploymentHistory[];
+  employment_histories: EmploymentHistory[];
   attachments: PersonAttachment[];
 
   constructor(
-    readonly personId: string,
-    readonly identificationNumber: string,
-    readonly nameEn: string,
-    readonly nameBn: string,
-    readonly dateOfBirth: Date,
+    readonly person_id: string,
+    readonly identification_number: string,
+    readonly name_en: string,
+    readonly name_bn: string,
+    readonly date_of_birth: Date,
     readonly gender: Gender,
-    readonly bloodGroup: BloodGroup,
+    readonly blood_group: BloodGroup,
     readonly religion: Religion,
     readonly nid: string,
-    readonly birthRegistrationNumber: string,
-    readonly maritalStatus: MaritalStatus,
-    readonly contactNumber: string,
-    readonly mobileNumber: string,
-    readonly phoneNumber: string,
+    readonly birth_registration_number: string,
+    readonly marital_status: MaritalStatus,
+    readonly contact_number: string,
+    readonly mobile_number: string,
+    readonly phone_number: string,
     readonly email: string,
     readonly profession: Profession,
     readonly photo: string,
   ) {
     super(
-      personId,
-      identificationNumber,
-      nameEn,
-      nameBn,
-      dateOfBirth,
+      person_id,
+      identification_number,
+      name_en,
+      name_bn,
+      date_of_birth,
       gender,
-      bloodGroup,
+      blood_group,
       religion,
       nid,
-      birthRegistrationNumber,
-      maritalStatus,
-      contactNumber,
-      mobileNumber,
-      phoneNumber,
+      birth_registration_number,
+      marital_status,
+      contact_number,
+      mobile_number,
+      phone_number,
       email,
       profession,
       photo,
@@ -81,49 +81,49 @@ export class PersonResponse extends Person {
 
 export class Education {
   constructor(
-    readonly educationId: string,
-    readonly educationLevel: string,
-    readonly educationDegree: string,
-    readonly instituteName: string,
-    readonly majorSubject: string,
-    readonly passingYear: string,
+    readonly education_id: string,
+    readonly education_level: string,
+    readonly education_degree: string,
+    readonly institute_name: string,
+    readonly major_subject: string,
+    readonly passing_year: string,
     readonly grade: string,
   ) {}
 }
 
 export class EmploymentHistory {
   constructor(
-    readonly employmentHistoryId: string,
-    readonly organizationName: string,
+    readonly employment_history_id: string,
+    readonly organization_name: string,
     readonly position: string,
     readonly address: string,
-    readonly supervisorName: string,
-    readonly supervisorDesignation: string,
-    readonly supervisorPhone: string,
-    readonly jobResponsibilities: string,
+    readonly supervisor_name: string,
+    readonly supervisor_designation: string,
+    readonly supervisor_phone: string,
+    readonly job_responsibilities: string,
     readonly salary: number,
-    readonly startDate: Date,
-    readonly endDate: Date,
-    readonly tillNow: boolean,
+    readonly start_date: Date,
+    readonly end_date: Date,
+    readonly till_now: boolean,
   ) {}
 }
 
 export class FamilyAndRelative {
   constructor(
-    readonly familyTreeId: string,
-    readonly identificationNumber: string,
-    readonly nameEn: string,
-    readonly nameBn: string,
-    readonly dateOfBirth: Date,
+    readonly family_tree_id: string,
+    readonly identification_number: string,
+    readonly name_en: string,
+    readonly name_bn: string,
+    readonly date_of_birth: Date,
     readonly gender: Gender,
-    readonly bloodGroup: BloodGroup,
+    readonly blood_group: BloodGroup,
     readonly religion: Religion,
     readonly nid: string,
-    readonly birthRegistrationNumber: string,
-    readonly maritalStatus: MaritalStatus,
-    readonly contactNumber: string,
-    readonly mobileNumber: string,
-    readonly phoneNumber: string,
+    readonly birth_registration_number: string,
+    readonly marital_status: MaritalStatus,
+    readonly contact_number: string,
+    readonly mobile_number: string,
+    readonly phone_number: string,
     readonly email: string,
     readonly photo: string,
     readonly relationship: Relationship,
@@ -133,12 +133,12 @@ export class FamilyAndRelative {
 
 export class Training {
   constructor(
-    readonly trainingId: string,
-    readonly courseTitle: string,
-    readonly instituteName: string,
-    readonly courseContent: string,
+    readonly training_id: string,
+    readonly course_title: string,
+    readonly institute_name: string,
+    readonly course_content: string,
     readonly result: string,
-    readonly startDate: Date,
-    readonly endDate: Date,
+    readonly start_date: Date,
+    readonly end_date: Date,
   ) {}
 }

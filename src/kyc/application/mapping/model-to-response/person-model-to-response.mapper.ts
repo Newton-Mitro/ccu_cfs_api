@@ -11,7 +11,7 @@ import {
 
 export class PersonModelToResponseMapper {
   static map(model: PersonModel): PersonResponse {
-    // TODO: Implement Mapping
+    // [x]: Implement Mapping
     const personResponseModel = new PersonResponse(
       model.PersonId,
       model.IdentificationNumber,
@@ -72,7 +72,7 @@ export class PersonModelToResponseMapper {
       );
     });
 
-    personResponseModel.employmentHistories = model.EmploymentHistories?.map(
+    personResponseModel.employment_histories = model.EmploymentHistories?.map(
       (employmentHistory) => {
         return new EmploymentHistory(
           employmentHistory.Id,
@@ -91,7 +91,7 @@ export class PersonModelToResponseMapper {
       },
     );
 
-    personResponseModel.familyTree = model.FamilyTree?.map((familyMember) => {
+    personResponseModel.family_tree = model.FamilyTree?.map((familyMember) => {
       return new FamilyAndRelative(
         familyMember.Id,
         familyMember.IdentificationNumber,
