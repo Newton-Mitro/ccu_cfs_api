@@ -20,23 +20,23 @@ import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 export class AddFamilyAndRelativeRequest {
   @IsString()
   @IsOptional()
-  customerId: string;
+  customer_id: string;
 
   @IsString()
   @IsOptional()
-  identificationNumber: string;
+  identification_number: string;
 
   @IsString()
   @IsNotEmpty()
-  nameEn: string;
+  name_en: string;
 
   @IsString()
   @IsOptional()
-  nameBn: string;
+  name_bn: string;
 
   @IsDateString()
   @IsNotEmpty()
-  dateOfBirth: Date;
+  date_of_birth: Date;
 
   @IsString()
   @IsEnum(Gender)
@@ -45,7 +45,7 @@ export class AddFamilyAndRelativeRequest {
   @IsString()
   @IsOptional()
   @IsEnum(BloodGroup)
-  bloodGroup: BloodGroup;
+  blood_group: BloodGroup;
 
   @IsString()
   @IsEnum(Religion)
@@ -57,24 +57,24 @@ export class AddFamilyAndRelativeRequest {
 
   @IsString()
   @IsOptional()
-  birthRegistrationNumber: string;
+  birth_registration_number: string;
 
   @IsString()
   @IsOptional()
   @IsEnum(MaritalStatus)
-  maritalStatus: MaritalStatus;
+  marital_status: MaritalStatus;
 
   @IsString()
   @IsOptional()
-  contactNumber: string;
+  contact_number: string;
 
   @IsString()
   @IsOptional()
-  mobileNumber: string;
+  mobile_number: string;
 
   @IsString()
   @IsOptional()
-  phoneNumber: string;
+  phone_number: string;
 
   @IsString()
   @IsOptional()

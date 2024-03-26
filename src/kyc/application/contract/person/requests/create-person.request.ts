@@ -18,15 +18,15 @@ import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 export class CreatePersonRequest {
   @IsString()
   @IsNotEmpty()
-  nameEn: string;
+  name_en: string;
 
   @IsString()
   @IsOptional()
-  nameBn: string = '';
+  name_bn: string;
 
   @IsDateString()
   @IsNotEmpty()
-  dateOfBirth: Date;
+  date_of_birth: Date;
 
   @IsString()
   @IsEnum(Gender)
@@ -34,7 +34,7 @@ export class CreatePersonRequest {
 
   @IsString()
   @IsEnum(BloodGroup)
-  bloodGroup: BloodGroup = BloodGroup.UNKNOWN;
+  blood_group: BloodGroup = BloodGroup.UNKNOWN;
 
   @IsString()
   @IsEnum(Religion)
@@ -46,23 +46,23 @@ export class CreatePersonRequest {
 
   @IsString()
   @IsOptional()
-  birthRegistrationNumber: string = '';
+  birth_registration_number: string = '';
 
   @IsString()
   @IsEnum(MaritalStatus)
-  maritalStatus: MaritalStatus = MaritalStatus.SINGLE;
+  marital_status: MaritalStatus = MaritalStatus.SINGLE;
 
   @IsString()
   @IsOptional()
-  contactNumber: string = '';
+  contact_number: string = '';
 
   @IsString()
   @IsOptional()
-  mobileNumber: string = '';
+  mobile_number: string = '';
 
   @IsString()
   @IsOptional()
-  phoneNumber: string = '';
+  phone_number: string = '';
 
   @IsString()
   @IsOptional()

@@ -8,11 +8,11 @@ import {
 export class AddTrainingRequest {
   @IsString()
   @IsNotEmpty()
-  courseTitle: string;
+  course_title: string;
 
   @IsString()
   @IsNotEmpty()
-  instituteName: string;
+  institute_name: string;
 
   @IsString()
   @IsNotEmpty()
@@ -24,9 +24,9 @@ export class AddTrainingRequest {
 
   @IsDateString()
   @IsOptional()
-  startDate: Date;
+  start_date: Date;
 
   @IsDateString()
   @IsOptional()
-  endDate: Date;
+  end_date: Date;
 }

@@ -1,12 +1,5 @@
 import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
-import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
-import { PhotoAttachmentEntity } from 'src/kyc/domain/models/common/photo-attachment.entity';
-import { EducationEntity } from 'src/kyc/domain/models/person/entities/education.entity';
-import { EmploymentHistoryEntity } from 'src/kyc/domain/models/person/entities/employment-history.entity';
-import { FamilyAndRelativeEntity } from 'src/kyc/domain/models/person/entities/family-and-relative.entity';
-import { PersonAttachmentEntity } from 'src/kyc/domain/models/person/entities/person-attachment.entity';
-import { TrainingEntity } from 'src/kyc/domain/models/person/entities/training.entity';
-import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
+import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { Address } from '../../schema/common/address.schema';
 import { Education } from '../../schema/person/education.schema';
 import { EmploymentHistory } from '../../schema/person/employment-history.schema';
@@ -16,39 +9,37 @@ import { Person } from '../../schema/person/person.schema';
 import { Training } from '../../schema/person/training.schema';
 
 export class PersonSchemaToModelMapper
-  implements IBusinessModelMapper<Person, PersonModel>
+  implements IBusinessModelMapper<Person, PersonAggregate>
 {
-  mapSchemaToBusinessModel(entitySchema: Person): PersonModel {
-    const personModel = new PersonModel();
-    personModel.IdentificationNumber = entitySchema.IdentificationNumber;
-    personModel.NameEn = entitySchema.NameEn;
-    personModel.NameBn = entitySchema.NameBn;
-    personModel.ContactNumber = entitySchema.ContactNumber;
-    personModel.PhoneNumber = entitySchema.PhoneNumber;
-    personModel.MobileNumber = entitySchema.MobileNumber;
-    personModel.Email = entitySchema.Email;
-
-    personModel.DateOfBirth = entitySchema.DateOfBirth;
-    personModel.NID = entitySchema.NID;
-    personModel.BirthRegistrationNumber = entitySchema.BirthRegistrationNumber;
-    personModel.BloodGroup = entitySchema.BloodGroup;
-    personModel.Gender = entitySchema.Gender;
-    personModel.Religion = entitySchema.Religion;
-    personModel.Profession = entitySchema.Profession;
-    personModel.MaritalStatus = entitySchema.MaritalStatus;
-    personModel.Photo = new PhotoAttachmentEntity(
-      entitySchema.Photo._id.toHexString(),
-      entitySchema.Photo.DocumentTitle,
-      entitySchema.Photo.FileUrl,
+  mapSchemaToBusinessModel(entitySchema: Person): PersonAggregate {
+    const personModel = new PersonAggregate();
+    personModel.createPerson(
+      entitySchema._id.toHexString(),
+      entitySchema.IdentificationNumber,
+      entitySchema.NameEn,
+      entitySchema.NameBn,
+      entitySchema.ContactNumber,
+      entitySchema.MobileNumber,
+      entitySchema.PhoneNumber,
+      entitySchema.Email,
+      'Person',
+      entitySchema.DateOfBirth,
+      entitySchema.Gender,
+      entitySchema.BloodGroup,
+      entitySchema.Religion,
+      entitySchema.MaritalStatus,
+      entitySchema.Profession,
+      entitySchema.NID,
+      entitySchema.BirthRegistrationNumber,
+      entitySchema.Photo,
+      entitySchema.CreatedAt,
+      entitySchema.UpdatedAt,
+      entitySchema.CreatedBy,
+      entitySchema.UpdatedBy,
     );
 
-    personModel.CreatedAt = entitySchema.CreatedAt;
-    personModel.UpdatedAt = entitySchema.UpdatedAt;
-    personModel.CreatedBy = entitySchema.CreatedBy;
-    personModel.UpdatedBy = entitySchema.UpdatedBy;
-
-    personModel.Addresses = entitySchema.Addresses?.map((address: Address) => {
-      return new AddressEntity(
+    entitySchema.Addresses?.map((address: Address) => {
+      personModel.addAddress(
         address._id.toHexString(),
         address.AddressType,
         address.AddressLineOne,
@@ -60,69 +51,78 @@ export class PersonSchemaToModelMapper
         address.District,
         address.SubDistrict,
         address.ZipCode,
+        address.CreatedAt,
+        address.UpdatedAt,
+        address.CreatedBy,
+        address.UpdatedBy,
       );
     });
 
-    personModel.FamilyTree = entitySchema.FamilyTree?.map(
-      (familyAndRelative: FamilyAndRelative) => {
-        return new FamilyAndRelativeEntity(
-          familyAndRelative._id.toHexString(),
-          familyAndRelative.PersonId,
-          familyAndRelative.IdentificationNumber,
-          familyAndRelative.DateOfBirth,
-          familyAndRelative.Gender,
-          familyAndRelative.NameEn,
-          familyAndRelative.NameBn,
-          familyAndRelative.BloodGroup,
-          familyAndRelative.Religion,
-          familyAndRelative.MaritalStatus,
-          familyAndRelative.Profession,
-          familyAndRelative.ContactNumber,
-          familyAndRelative.Email,
-          familyAndRelative.NID,
-          familyAndRelative.BirthRegistrationNumber,
-          familyAndRelative.Relationship,
-          familyAndRelative.Status,
-          new PhotoAttachmentEntity(
-            familyAndRelative.Photo._id.toHexString(),
-            familyAndRelative.Photo.DocumentTitle,
-            familyAndRelative.Photo.FileUrl,
-          ),
-        );
-      },
-    );
+    entitySchema.FamilyTree?.map((familyAndRelative: FamilyAndRelative) => {
+      personModel.addToFamilyTree(
+        familyAndRelative._id.toHexString(),
+        familyAndRelative.PersonId,
+        familyAndRelative.IdentificationNumber,
+        familyAndRelative.NameEn,
+        familyAndRelative.NameBn,
+        familyAndRelative.ContactNumber,
+        familyAndRelative.MobileNumber,
+        familyAndRelative.PhoneNumber,
+        familyAndRelative.Email,
+        'Person',
+        familyAndRelative.DateOfBirth,
+        familyAndRelative.Gender,
+        familyAndRelative.BloodGroup,
+        familyAndRelative.Religion,
+        familyAndRelative.MaritalStatus,
+        familyAndRelative.Profession,
+        familyAndRelative.NID,
+        familyAndRelative.BirthRegistrationNumber,
+        familyAndRelative.Photo,
+        familyAndRelative.Relationship,
+        familyAndRelative.Status,
+        familyAndRelative.CreatedAt,
+        familyAndRelative.UpdatedAt,
+        familyAndRelative.CreatedBy,
+        familyAndRelative.UpdatedBy,
+      );
+    });
 
-    personModel.Educations = entitySchema.Educations?.map(
-      (education: Education) => {
-        return new EducationEntity(
-          education._id.toHexString(),
-          education.EducationLevel,
-          education.EducationDegree,
-          education.InstituteName,
-          education.MajorSubject,
-          education.PassingYear,
-          education.Grade,
-        );
-      },
-    );
+    entitySchema.Educations?.map((education: Education) => {
+      personModel.addEducation(
+        education._id.toHexString(),
+        education.EducationLevel,
+        education.EducationDegree,
+        education.InstituteName,
+        education.MajorSubject,
+        education.PassingYear,
+        education.Grade,
+        education.CreatedAt,
+        education.UpdatedAt,
+        education.CreatedBy,
+        education.UpdatedBy,
+      );
+    });
 
-    personModel.Trainings = entitySchema.Trainings?.map(
-      (training: Training) => {
-        return new TrainingEntity(
-          training._id.toHexString(),
-          training.CourseTitle,
-          training.InstituteName,
-          training.CourseContent,
-          training.Result,
-          training.StartDate,
-          training.EndDate,
-        );
-      },
-    );
+    entitySchema.Trainings?.map((training: Training) => {
+      personModel.addTraining(
+        training._id.toHexString(),
+        training.CourseTitle,
+        training.InstituteName,
+        training.CourseContent,
+        training.Result,
+        training.StartDate,
+        training.EndDate,
+        training.CreatedAt,
+        training.UpdatedAt,
+        training.CreatedBy,
+        training.UpdatedBy,
+      );
+    });
 
-    personModel.EmploymentHistories = entitySchema.EmploymentHistories?.map(
+    entitySchema.EmploymentHistories?.map(
       (employmentHistory: EmploymentHistory) => {
-        return new EmploymentHistoryEntity(
+        personModel.addEmploymentHistory(
           employmentHistory._id.toHexString(),
           employmentHistory.OrganizationName,
           employmentHistory.Position,
@@ -135,19 +135,25 @@ export class PersonSchemaToModelMapper
           employmentHistory.StartDate,
           employmentHistory.EndDate,
           employmentHistory.TillNow,
+          employmentHistory.CreatedAt,
+          employmentHistory.UpdatedAt,
+          employmentHistory.CreatedBy,
+          employmentHistory.UpdatedBy,
         );
       },
     );
 
-    personModel.Attachments = entitySchema.Attachments?.map(
-      (personAttachment: PersonAttachment) => {
-        return new PersonAttachmentEntity(
-          personAttachment._id.toHexString(),
-          personAttachment.DocumentTitle,
-          personAttachment.FileUrl,
-        );
-      },
-    );
+    entitySchema.Attachments?.map((personAttachment: PersonAttachment) => {
+      personModel.addAttachment(
+        personAttachment._id.toHexString(),
+        personAttachment.DocumentTitle,
+        personAttachment.FileUrl,
+        personAttachment.CreatedAt,
+        personAttachment.UpdatedAt,
+        personAttachment.CreatedBy,
+        personAttachment.UpdatedBy,
+      );
+    });
 
     return personModel;
   }

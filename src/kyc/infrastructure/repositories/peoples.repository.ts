@@ -3,8 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
 import { EntityRepository } from 'src/config/database/mongoose/entity.repository';
-import { CustomerModel } from 'src/kyc/domain/models/common/customer.model';
-import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
+import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { PersonModelToSchemaMapper } from '../mapping/model-to-schema/person-model-to-schema.mapper';
 import { PersonSchemaToModelMapper } from '../mapping/schema-to-model/person-schema-to-model.mapper';
 import {
@@ -14,7 +13,10 @@ import {
 } from '../schema/person/person.schema';
 
 @Injectable()
-export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
+export class PeoplesRepository extends EntityRepository<
+  Person,
+  PersonAggregate
+> {
   constructor(
     @InjectModel(PERSON_MODEL)
     private readonly personDocument: Model<PersonDocument>,
@@ -26,7 +28,7 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
 
   async findAll(
     findAllQueryDto: FindAllQueryRequest,
-  ): Promise<CustomerModel[]> {
+  ): Promise<PersonAggregate[]> {
     const { order_by, limit, page, sort_by } = findAllQueryDto;
 
     const customers = await this.personDocument
@@ -40,7 +42,7 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
     );
   }
 
-  async findById(id: string): Promise<CustomerModel | null> {
+  async findById(id: string): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findById(new Types.ObjectId(id));
     if (customer) {
       return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
@@ -48,7 +50,7 @@ export class PeoplesRepository extends EntityRepository<Person, PersonModel> {
     return null;
   }
 
-  async createPerson(personModel: PersonModel): Promise<PersonModel> {
+  async createPerson(personModel: PersonAggregate): Promise<PersonAggregate> {
     const personSchema =
       this.personSchemaMapper.mapBusinessModelToSchema(personModel);
 

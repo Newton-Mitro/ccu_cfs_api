@@ -24,28 +24,35 @@ export class PeoplesService {
   ) {}
 
   async create(
+    user: any,
+    createdAt,
+    updatedAt,
     createPersonRequest: CreatePersonRequest,
   ): Promise<PersonResponse> {
     const person = await this.commandBus.execute(
       new CreatePersonCommand(
-        createPersonRequest.nameEn,
-        createPersonRequest.nameBn,
-        createPersonRequest.dateOfBirth,
+        createPersonRequest.name_en,
+        createPersonRequest.name_bn,
+        createPersonRequest.date_of_birth,
         createPersonRequest.gender,
-        createPersonRequest.bloodGroup,
+        createPersonRequest.blood_group,
         createPersonRequest.religion,
         createPersonRequest.nid,
-        createPersonRequest.birthRegistrationNumber,
-        createPersonRequest.maritalStatus,
-        createPersonRequest.contactNumber,
-        createPersonRequest.mobileNumber,
-        createPersonRequest.phoneNumber,
+        createPersonRequest.birth_registration_number,
+        createPersonRequest.marital_status,
+        createPersonRequest.contact_number,
+        createPersonRequest.mobile_number,
+        createPersonRequest.phone_number,
         createPersonRequest.email,
         createPersonRequest.profession,
         new PersonPhotoAttachment(
-          createPersonRequest.photo.base64Document,
-          createPersonRequest.photo.fileExtension,
+          createPersonRequest.photo.base64_document,
+          createPersonRequest.photo.file_extension,
         ),
+        createdAt,
+        updatedAt,
+        user?.id,
+        user?.id,
       ),
     );
 

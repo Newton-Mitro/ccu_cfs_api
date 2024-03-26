@@ -14,23 +14,23 @@ import { Religion } from 'src/common/enums/religion.enum';
 export class AddContactPersonRequest {
   @IsString()
   @IsOptional()
-  personId: string;
+  person_id: string;
 
   @IsString()
   @IsOptional()
-  identificationNumber: string;
+  identification_number: string;
 
   @IsString()
   @IsNotEmpty()
-  nameEn: string;
+  name_en: string;
 
   @IsString()
   @IsOptional()
-  nameBn: string;
+  name_bn: string;
 
   @IsDateString()
   @IsNotEmpty()
-  dateOfBirth: Date;
+  date_of_birth: Date;
 
   @IsString()
   @IsEnum(Gender)
@@ -38,7 +38,7 @@ export class AddContactPersonRequest {
 
   @IsString()
   @IsEnum(BloodGroup)
-  bloodGroup: BloodGroup;
+  blood_group: BloodGroup;
 
   @IsString()
   @IsEnum(Religion)
@@ -50,23 +50,23 @@ export class AddContactPersonRequest {
 
   @IsString()
   @IsOptional()
-  birthRegistrationNumber: string;
+  birth_registration_number: string;
 
   @IsString()
   @IsEnum(MaritalStatus)
-  maritalStatus: MaritalStatus;
+  marital_status: MaritalStatus;
 
   @IsString()
   @IsOptional()
-  contactNumber: string;
+  contact_number: string;
 
   @IsString()
   @IsOptional()
-  mobileNumber: string;
+  mobile_number: string;
 
   @IsString()
   @IsOptional()
-  phoneNumber: string;
+  phone_number: string;
 
   @IsString()
   @IsOptional()

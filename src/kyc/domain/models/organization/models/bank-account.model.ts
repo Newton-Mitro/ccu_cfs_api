@@ -1,11 +1,14 @@
-import { BaseEntity } from 'src/common/entities/base-entity';
-
-export class BankAccountEntity extends BaseEntity {
+export class BankAccountModel {
+  private _BankAccountId: string;
   private _BankName: string;
   private _Branch: string;
   private _RoutingNumber: string;
   private _AccountNumber: string;
   private _AccountName: string;
+  private _CreatedAt: Date;
+  private _UpdatedAt: Date;
+  private _CreatedBy: string;
+  private _UpdatedBy: string;
 
   constructor(
     bankAccountId: string,
@@ -14,13 +17,25 @@ export class BankAccountEntity extends BaseEntity {
     routingNumber: string,
     accountNumber: string,
     accountName: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
-    super(bankAccountId);
+    this._BankAccountId = bankAccountId;
     this._BankName = bankName;
     this._Branch = branch;
     this._RoutingNumber = routingNumber;
     this._AccountNumber = accountNumber;
     this._AccountName = accountName;
+    this._CreatedAt = createdAt;
+    this._UpdatedAt = updatedAt;
+    this._CreatedBy = createdBy;
+    this._UpdatedBy = updatedBy;
+  }
+
+  public get BankAccountId(): string {
+    return this._BankAccountId;
   }
 
   public get BankName(): string {
@@ -61,5 +76,21 @@ export class BankAccountEntity extends BaseEntity {
 
   public set AccountName(value: string) {
     this._AccountName = value;
+  }
+
+  public get CreatedAt(): Date {
+    return this._CreatedAt;
+  }
+
+  public get UpdatedAt(): Date {
+    return this._UpdatedAt;
+  }
+
+  public get CreatedBy(): string {
+    return this._CreatedBy;
+  }
+
+  public get UpdatedBy(): string {
+    return this._UpdatedBy;
   }
 }

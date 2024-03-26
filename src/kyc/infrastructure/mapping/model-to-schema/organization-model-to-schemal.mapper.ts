@@ -1,38 +1,35 @@
 import { Types } from 'mongoose';
 import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
-import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
-import { BankAccountEntity } from 'src/kyc/domain/models/organization/entities/bank-account.entity';
-import { BranchEntity } from 'src/kyc/domain/models/organization/entities/branch.entity';
-import { ContactPersonEntity } from 'src/kyc/domain/models/organization/entities/contact-person.entity';
-import { OrganizationAttachmentEntity } from 'src/kyc/domain/models/organization/entities/organization-attachment.entity';
-import { OrganizationModel } from 'src/kyc/domain/models/organization/organization.aggregate';
+import { AddressModel } from 'src/kyc/domain/models/common/address.model';
+import { BankAccountModel } from 'src/kyc/domain/models/organization/models/bank-account.model';
+import { BranchModel } from 'src/kyc/domain/models/organization/models/branch.model';
+import { ContactPersonModel } from 'src/kyc/domain/models/organization/models/contact-person.model';
+import { OrganizationAttachmentModel } from 'src/kyc/domain/models/organization/models/organization-attachment.model';
+import { OrganizationAggregate } from 'src/kyc/domain/models/organization/organization.aggregate';
 import { Organization } from '../../schema/organization/organization.schema';
 
 export class OrganizationModelToSchemaMapper
-  implements ISchemaMapper<Organization, OrganizationModel>
+  implements ISchemaMapper<Organization, OrganizationAggregate>
 {
-  mapBusinessModelToSchema(model: OrganizationModel): Organization {
+  mapBusinessModelToSchema(model: OrganizationAggregate): Organization {
     const organizationSchema = new Organization();
-    organizationSchema.IdentificationNumber = model.IdentificationNumber;
-    organizationSchema.NameEn = model.NameEn;
-    organizationSchema.NameBn = model.NameBn;
-    organizationSchema.ContactNumber = model.ContactNumber;
-    organizationSchema.PhoneNumber = model.PhoneNumber;
-    organizationSchema.MobileNumber = model.MobileNumber;
-    organizationSchema.Email = model.Email;
-
-    organizationSchema.RegistrationNumber = model.RegistrationNumber;
-    organizationSchema.FaxNumber = model.FaxNumber;
-    organizationSchema.Website = model.Website;
-    organizationSchema.Logo = model.Logo && {
-      _id: new Types.ObjectId(model.Logo.Id),
-      DocumentTitle: model.Logo.DocumentTitle,
-      FileUrl: model.Logo.FileUrl,
-    };
+    organizationSchema.IdentificationNumber =
+      model.Organization.IdentificationNumber;
+    organizationSchema.NameEn = model.Organization.NameEn;
+    organizationSchema.NameBn = model.Organization.NameBn;
+    organizationSchema.ContactNumber = model.Organization.ContactNumber;
+    organizationSchema.PhoneNumber = model.Organization.PhoneNumber;
+    organizationSchema.MobileNumber = model.Organization.MobileNumber;
+    organizationSchema.Email = model.Organization.Email;
+    organizationSchema.RegistrationNumber =
+      model.Organization.RegistrationNumber;
+    organizationSchema.Fax = model.Organization.Fax;
+    organizationSchema.Website = model.Organization.Website;
+    organizationSchema.Logo = model.Organization.Logo;
 
     organizationSchema.Addresses = model.Addresses?.map(
-      (address: AddressEntity) => ({
-        _id: new Types.ObjectId(address.Id),
+      (address: AddressModel) => ({
+        _id: new Types.ObjectId(address.AddressId),
         AddressType: address.AddressType,
         AddressLineOne: address.AddressLineOne,
         AddressLineTwo: address.AddressLineTwo,
@@ -43,29 +40,39 @@ export class OrganizationModelToSchemaMapper
         District: address.District,
         SubDistrict: address.SubDistrict,
         ZipCode: address.ZipCode,
+        CreatedAt: address.CreatedAt,
+        UpdatedAt: address.UpdatedAt,
+        CreatedBy: address.CreatedBy,
+        UpdatedBy: address.UpdatedBy,
       }),
     );
 
     organizationSchema.Branches = model.Branches?.map(
-      (branch: BranchEntity) => ({
-        _id: new Types.ObjectId(branch.Id),
+      (branch: BranchModel) => ({
+        _id: new Types.ObjectId(branch.BranchId),
         OrganizationId: branch.OrganizationId,
         IdentificationNumber: branch.IdentificationNumber,
         RegistrationNumber: branch.RegistrationNumber,
+        TIN: branch.TIN,
+        Logo: branch.Logo,
         NameEn: branch.NameEn,
         NameBn: branch.NameBn,
         Email: branch.Email,
         ContactNumber: branch.ContactNumber,
         MobileNumber: branch.MobileNumber,
         PhoneNumber: branch.PhoneNumber,
-        FaxNumber: branch.FaxNumber,
+        Fax: branch.Fax,
         Website: branch.Website,
+        CreatedAt: branch.CreatedAt,
+        UpdatedAt: branch.UpdatedAt,
+        CreatedBy: branch.CreatedBy,
+        UpdatedBy: branch.UpdatedBy,
       }),
     );
 
     organizationSchema.ContactPeoples = model.ContactPeoples?.map(
-      (contactPerson: ContactPersonEntity) => ({
-        _id: new Types.ObjectId(contactPerson.Id),
+      (contactPerson: ContactPersonModel) => ({
+        _id: new Types.ObjectId(contactPerson.ContactPersonId),
         PersonId: contactPerson.PersonId,
         IdentificationNumber: contactPerson.IdentificationNumber,
         NameEn: contactPerson.NameEn,
@@ -82,25 +89,37 @@ export class OrganizationModelToSchemaMapper
         NID: contactPerson.NID,
         BirthRegistrationNumber: contactPerson.BirthRegistrationNumber,
         MaritalStatus: contactPerson.MaritalStatus,
+        CreatedAt: contactPerson.CreatedAt,
+        UpdatedAt: contactPerson.UpdatedAt,
+        CreatedBy: contactPerson.CreatedBy,
+        UpdatedBy: contactPerson.UpdatedBy,
       }),
     );
 
     organizationSchema.BankAccounts = model.BankAccounts?.map(
-      (branch: BankAccountEntity) => ({
-        _id: new Types.ObjectId(branch.Id),
-        BankName: branch.BankName,
-        Branch: branch.Branch,
-        RoutingNumber: branch.RoutingNumber,
-        AccountNumber: branch.AccountNumber,
-        AccountName: branch.AccountName,
+      (bankAccount: BankAccountModel) => ({
+        _id: new Types.ObjectId(bankAccount.BankAccountId),
+        BankName: bankAccount.BankName,
+        Branch: bankAccount.Branch,
+        RoutingNumber: bankAccount.RoutingNumber,
+        AccountNumber: bankAccount.AccountNumber,
+        AccountName: bankAccount.AccountName,
+        CreatedAt: bankAccount.CreatedAt,
+        UpdatedAt: bankAccount.UpdatedAt,
+        CreatedBy: bankAccount.CreatedBy,
+        UpdatedBy: bankAccount.UpdatedBy,
       }),
     );
 
     organizationSchema.Attachments = model.Attachments?.map(
-      (organizationAttachment: OrganizationAttachmentEntity) => ({
-        _id: new Types.ObjectId(organizationAttachment.Id),
+      (organizationAttachment: OrganizationAttachmentModel) => ({
+        _id: new Types.ObjectId(organizationAttachment.AttachmentId),
         DocumentTitle: organizationAttachment.DocumentTitle,
         FileUrl: organizationAttachment.FileUrl,
+        CreatedAt: organizationAttachment.CreatedAt,
+        UpdatedAt: organizationAttachment.UpdatedAt,
+        CreatedBy: organizationAttachment.CreatedBy,
+        UpdatedBy: organizationAttachment.UpdatedBy,
       }),
     );
 

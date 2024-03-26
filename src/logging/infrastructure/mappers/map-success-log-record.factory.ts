@@ -23,6 +23,10 @@ export class MapSuccessLogRecordFactory
       StatusCode: entity.StatusCode,
       RequestedAt: entity.RequestedAt,
       ResponseTime: entity.ResponseTime,
+      CreatedAt: new Date(),
+      UpdatedAt: new Date(),
+      CreatedBy: '',
+      UpdatedBy: '',
     };
   }
 

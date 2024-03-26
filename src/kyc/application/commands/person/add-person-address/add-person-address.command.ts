@@ -13,5 +13,9 @@ export class CreateAddressCommand {
     public readonly district: string,
     public readonly subDistrict: string,
     public readonly zipCode: string,
+    public readonly createdAt: Date,
+    public readonly updatedAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedBy: string,
   ) {}
 }

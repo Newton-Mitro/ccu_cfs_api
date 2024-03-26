@@ -1,33 +1,30 @@
+import { AggregateRoot } from '@nestjs/cqrs';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
+import { Country } from 'src/common/enums/country.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
+import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { FamilyTreeStatus } from '../../enums/family-tree-status.enum';
 import { PersonalDocumentType } from '../../enums/kyc-attachment-type.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
-import { CustomerModel } from '../common/customer.model';
-import { PhotoAttachmentEntity } from '../common/photo-attachment.entity';
-import { EducationEntity } from './entities/education.entity';
-import { EmploymentHistoryEntity } from './entities/employment-history.entity';
-import { FamilyAndRelativeEntity } from './entities/family-and-relative.entity';
-import { PersonAttachmentEntity } from './entities/person-attachment.entity';
-import { TrainingEntity } from './entities/training.entity';
+import { AddressModel } from '../common/address.model';
+import { EducationModel } from './models/education.model';
+import { EmploymentHistoryModel } from './models/employment-history.model';
+import { FamilyAndRelativeModel } from './models/family-and-relative.model';
+import { PersonAttachmentModel } from './models/person-attachment.model';
+import { PersonModel } from './models/person.model';
+import { TrainingModel } from './models/training.model';
 
-export class PersonModel extends CustomerModel {
-  private _DateOfBirth: Date;
-  private _Gender: Gender;
-  private _BloodGroup: BloodGroup;
-  private _Religion: Religion;
-  private _MaritalStatus: MaritalStatus;
-  private _Profession: Profession;
-  private _NID: string;
-  private _BirthRegistrationNumber: string;
-  private _Photo: PhotoAttachmentEntity;
-  private _FamilyTree: FamilyAndRelativeEntity[];
-  private _Educations: EducationEntity[];
-  private _Trainings: TrainingEntity[];
-  private _EmploymentHistories: EmploymentHistoryEntity[];
-  private _Attachments: PersonAttachmentEntity[];
+export class PersonAggregate extends AggregateRoot {
+  private _Person: PersonModel;
+  private _Addresses: AddressModel[];
+  private _FamilyTree: FamilyAndRelativeModel[];
+  private _Educations: EducationModel[];
+  private _Trainings: TrainingModel[];
+  private _EmploymentHistories: EmploymentHistoryModel[];
+  private _Attachments: PersonAttachmentModel[];
 
   constructor() {
     super();
@@ -36,75 +33,55 @@ export class PersonModel extends CustomerModel {
   public createPerson(
     personId: string,
     identificationNumber: string,
-    dateOfBirth: Date,
-    gender: Gender,
     nameEn: string,
     nameBn: string,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
     contactNumber: string,
     mobileNumber: string,
     phoneNumber: string,
     email: string,
+    customerType: string,
+    dateOfBirth: Date,
+    gender: Gender,
+    bloodGroup: BloodGroup,
+    religion: Religion,
+    maritalStatus: MaritalStatus,
+    profession: Profession,
     nid: string,
     birthRegistrationNumber: string,
-    photo: PhotoAttachmentEntity,
+    photo: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
-    this._CustomerId = personId;
-    this._IdentificationNumber = identificationNumber;
-    this._DateOfBirth = dateOfBirth;
-    this._Gender = gender;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
-    this._BloodGroup = bloodGroup;
-    this._Religion = religion;
-    this._MaritalStatus = maritalStatus;
-    this._Profession = profession;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._Email = email;
-    this._NID = nid;
-    this._BirthRegistrationNumber = birthRegistrationNumber;
-    this._Photo = photo;
-    // Publish Event: PersonCreatedEvent
+    this._Person = new PersonModel(
+      personId,
+      identificationNumber,
+      nameEn,
+      nameBn,
+      contactNumber,
+      mobileNumber,
+      phoneNumber,
+      email,
+      customerType,
+      dateOfBirth,
+      gender,
+      bloodGroup,
+      religion,
+      maritalStatus,
+      profession,
+      nid,
+      birthRegistrationNumber,
+      photo,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
+    );
     this.apply('PersonCreatedEvent');
   }
 
-  public updatePerson(
-    dateOfBirth: Date,
-    gender: Gender,
-    nameEn: string,
-    nameBn: string,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    email: string,
-    nid: string,
-    birthRegistrationNumber: string,
-    photo: PhotoAttachmentEntity,
-  ) {
-    this._DateOfBirth = dateOfBirth;
-    this._Gender = gender;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
-    this._BloodGroup = bloodGroup;
-    this._Religion = religion;
-    this._MaritalStatus = maritalStatus;
-    this._Profession = profession;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._Email = email;
-    this._NID = nid;
-    this._BirthRegistrationNumber = birthRegistrationNumber;
-    this._Photo = photo;
+  public updatePerson() {
     // Publish Event: PersonUpdatedEvent
     this.apply('PersonUpdatedEvent');
   }
@@ -114,14 +91,37 @@ export class PersonModel extends CustomerModel {
     addressType: AddressType,
     addressLineOne: string,
     addressLineTwo: string,
-    country: string,
+    country: Country,
     state: string,
     city: string,
     division: string,
     district: string,
     subDistrict: string,
     zipCode: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._Addresses.push(
+      new AddressModel(
+        addressId,
+        addressType,
+        addressLineOne,
+        addressLineTwo,
+        country,
+        state,
+        city,
+        division,
+        district,
+        subDistrict,
+        zipCode,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     // Business logic for address adding
     this.apply('AddressAddedEvent');
   }
@@ -132,25 +132,61 @@ export class PersonModel extends CustomerModel {
   }
 
   public addToFamilyTree(
-    customerId: string,
     familyTreeId: string,
+    personId: string,
     identificationNumber: string,
-    dateOfBirth: Date,
-    gender: Gender,
     nameEn: string,
     nameBn: string,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
     contactNumber: string,
     mobileNumber: string,
     phoneNumber: string,
     email: string,
+    customerType: string,
+    dateOfBirth: Date,
+    gender: Gender,
+    bloodGroup: BloodGroup,
+    religion: Religion,
+    maritalStatus: MaritalStatus,
+    profession: Profession,
     nid: string,
     birthRegistrationNumber: string,
-    photo: PersonAttachmentEntity,
+    photo: string,
+    relationship: Relationship,
+    status: FamilyTreeStatus,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._FamilyTree.push(
+      new FamilyAndRelativeModel(
+        familyTreeId,
+        personId,
+        identificationNumber,
+        nameEn,
+        nameBn,
+        contactNumber,
+        mobileNumber,
+        phoneNumber,
+        email,
+        customerType,
+        dateOfBirth,
+        gender,
+        bloodGroup,
+        religion,
+        maritalStatus,
+        profession,
+        nid,
+        birthRegistrationNumber,
+        photo,
+        relationship,
+        status,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     // Business logic for adding family member to family tree
     this.apply('FamilyMemberAddedEvent');
   }
@@ -164,7 +200,22 @@ export class PersonModel extends CustomerModel {
     attachmentId: string,
     documentTitle: PersonalDocumentType,
     fileUrl: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._Attachments.push(
+      new PersonAttachmentModel(
+        attachmentId,
+        documentTitle,
+        fileUrl,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     // Business logic for attachment adding
     this.apply('AttachmentAddedEvent');
   }
@@ -182,7 +233,26 @@ export class PersonModel extends CustomerModel {
     majorSubject: string,
     passingYear: string,
     grade: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._Educations.push(
+      new EducationModel(
+        educationId,
+        educationLevel,
+        educationDegree,
+        instituteName,
+        majorSubject,
+        passingYear,
+        grade,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     this.apply('EducationAddedEvent');
   }
 
@@ -197,9 +267,28 @@ export class PersonModel extends CustomerModel {
     instituteName: string,
     courseContent: string,
     result: string,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._Trainings.push(
+      new TrainingModel(
+        trainingId,
+        courseTitle,
+        instituteName,
+        courseContent,
+        result,
+        startDate,
+        endDate,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     this.apply('TrainingAddedEvent');
   }
 
@@ -221,7 +310,31 @@ export class PersonModel extends CustomerModel {
     startDate: Date,
     endDate: Date,
     tillNow: boolean,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._EmploymentHistories.push(
+      new EmploymentHistoryModel(
+        educationHistoryId,
+        organizationName,
+        position,
+        address,
+        supervisorName,
+        supervisorDesignation,
+        supervisorPhone,
+        jobResponsibilities,
+        salary,
+        startDate,
+        endDate,
+        tillNow,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     this.apply('EmploymentHistoryAddedEvent');
   }
 
@@ -230,105 +343,31 @@ export class PersonModel extends CustomerModel {
     this.apply('EmploymentHistoryDeletedEvent');
   }
 
-  public get PersonId(): string {
-    return this._CustomerId;
+  public get Person(): PersonModel {
+    return this._Person;
   }
 
-  public get DateOfBirth(): Date {
-    return this._DateOfBirth;
-  }
-  public set DateOfBirth(value: Date) {
-    this._DateOfBirth = value;
+  public get Addresses(): AddressModel[] {
+    return this._Addresses;
   }
 
-  public get Gender(): Gender {
-    return this._Gender;
-  }
-  public set Gender(value: Gender) {
-    this._Gender = value;
-  }
-
-  public get BloodGroup(): BloodGroup {
-    return this._BloodGroup;
-  }
-  public set BloodGroup(value: BloodGroup) {
-    this._BloodGroup = value;
-  }
-
-  public get Religion(): Religion {
-    return this._Religion;
-  }
-  public set Religion(value: Religion) {
-    this._Religion = value;
-  }
-
-  public get MaritalStatus(): MaritalStatus {
-    return this._MaritalStatus;
-  }
-  public set MaritalStatus(value: MaritalStatus) {
-    this._MaritalStatus = value;
-  }
-
-  public get Profession(): Profession {
-    return this._Profession;
-  }
-  public set Profession(value: Profession) {
-    this._Profession = value;
-  }
-
-  public get NID(): string {
-    return this._NID;
-  }
-  public set NID(value: string) {
-    this._NID = value;
-  }
-
-  public get BirthRegistrationNumber(): string {
-    return this._BirthRegistrationNumber;
-  }
-  public set BirthRegistrationNumber(value: string) {
-    this._BirthRegistrationNumber = value;
-  }
-
-  public get FamilyTree(): FamilyAndRelativeEntity[] {
+  public get FamilyTree(): FamilyAndRelativeModel[] {
     return this._FamilyTree;
   }
-  public set FamilyTree(value: FamilyAndRelativeEntity[]) {
-    this._FamilyTree = value;
-  }
 
-  public get Educations(): EducationEntity[] {
+  public get Educations(): EducationModel[] {
     return this._Educations;
   }
-  public set Educations(value: EducationEntity[]) {
-    this._Educations = value;
-  }
 
-  public get Trainings(): TrainingEntity[] {
+  public get Trainings(): TrainingModel[] {
     return this._Trainings;
   }
-  public set Trainings(value: TrainingEntity[]) {
-    this._Trainings = value;
-  }
 
-  public get EmploymentHistories(): EmploymentHistoryEntity[] {
+  public get EmploymentHistories(): EmploymentHistoryModel[] {
     return this._EmploymentHistories;
   }
-  public set EmploymentHistories(value: EmploymentHistoryEntity[]) {
-    this._EmploymentHistories = value;
-  }
 
-  public get Attachments(): PersonAttachmentEntity[] {
+  public get Attachments(): PersonAttachmentModel[] {
     return this._Attachments;
-  }
-  public set Attachments(value: PersonAttachmentEntity[]) {
-    this._Attachments = value;
-  }
-
-  public get Photo(): PhotoAttachmentEntity {
-    return this._Photo;
-  }
-  public set Photo(value: PhotoAttachmentEntity) {
-    this._Photo = value;
   }
 }

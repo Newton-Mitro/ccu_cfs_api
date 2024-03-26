@@ -18,13 +18,13 @@ export class Organization extends Customer {
   RegistrationNumber: string;
 
   @Prop()
-  FaxNumber: string;
+  Fax: string;
 
   @Prop()
   Website: string;
 
-  @Prop({ type: Object(OrganizationAttachmentSchema) })
-  Logo: OrganizationAttachment;
+  @Prop()
+  Logo: string;
 
   @Prop({ type: Array(BranchSchema) })
   Branches: Branch[];

@@ -1,99 +1,38 @@
-import { BloodGroup } from 'src/common/enums/blood-group.enum';
-import { Gender } from 'src/common/enums/gender.enum';
-import { MaritalStatus } from 'src/common/enums/marital-status.enum';
-import { Profession } from 'src/common/enums/profession.enum';
-import { Religion } from 'src/common/enums/religion.enum';
-import { OrganizationalDocumentType } from '../../enums/kyc-attachment-type.enum';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
-import { CustomerModel } from '../common/customer.model';
-import { BankAccountEntity } from './entities/bank-account.entity';
-import { BranchEntity } from './entities/branch.entity';
-import { ContactPersonEntity } from './entities/contact-person.entity';
-import { OrganizationAttachmentEntity } from './entities/organization-attachment.entity';
+import { AddressModel } from '../common/address.model';
+import { BankAccountModel } from './models/bank-account.model';
+import { BranchModel } from './models/branch.model';
+import { ContactPersonModel } from './models/contact-person.model';
+import { OrganizationAttachmentModel } from './models/organization-attachment.model';
+import { OrganizationModel } from './models/organization.model';
 
-export class OrganizationModel extends CustomerModel {
-  private _FaxNumber: string;
-  private _RegistrationNumber: string;
-  private _Website: string;
-  private _Logo: OrganizationAttachmentEntity;
-  private _Branches: BranchEntity[];
-  private _Attachments: OrganizationAttachmentEntity[];
-  private _ContactPeoples: ContactPersonEntity[];
-  private _BankAccounts: BankAccountEntity[];
+export class OrganizationAggregate extends AggregateRoot {
+  private _Organization: OrganizationModel;
+  private _Addresses: AddressModel[];
+  private _Branches: BranchModel[];
+  private _Attachments: OrganizationAttachmentModel[];
+  private _ContactPeoples: ContactPersonModel[];
+  private _BankAccounts: BankAccountModel[];
 
   constructor() {
     super();
   }
 
-  public createOrganization(
-    organizationId: string,
-    identificationNumber: string,
-    registrationNumber: string,
-    nameEn: string,
-    nameBn: string,
-    email: string,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    faxNumber: string,
-    website: string,
-    logo: OrganizationAttachmentEntity,
-  ) {
+  public createOrganization() {
     // Organization created business logic
-    this._CustomerId = organizationId;
-    this._IdentificationNumber = identificationNumber;
-    this._RegistrationNumber = registrationNumber;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
-    this._Email = email;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._FaxNumber = faxNumber;
-    this._Website = website;
-    this._Logo = logo;
+
     this.apply('OrganizationCreatedEvent');
   }
 
-  public updateOrganization(
-    registrationNumber: string,
-    nameEn: string,
-    nameBn: string,
-    email: string,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    faxNumber: string,
-    website: string,
-    logo: OrganizationAttachmentEntity,
-  ) {
+  public updateOrganization() {
     // Organization updated business logic
-    this._RegistrationNumber = registrationNumber;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
-    this._Email = email;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._FaxNumber = faxNumber;
-    this._Website = website;
-    this._Logo = logo;
+
     this.apply('OrganizationUpdatedEvent');
   }
 
-  public addBranch(
-    branchId: string,
-    customerId: string,
-    identificationNumber: string,
-    nameEn: string,
-    nameBn: string,
-    email: string,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    faxNumber: string,
-    website: string,
-  ) {
+  public addBranch() {
     // Business logic for branch adding
     this.apply('BranchAddedEvent');
   }
@@ -108,14 +47,37 @@ export class OrganizationModel extends CustomerModel {
     addressType: AddressType,
     addressLineOne: string,
     addressLineTwo: string,
-    country: string,
+    country: Country,
     state: string,
     city: string,
     division: string,
     district: string,
     subDistrict: string,
     zipCode: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
+    this._Addresses.push(
+      new AddressModel(
+        addressId,
+        addressType,
+        addressLineOne,
+        addressLineTwo,
+        country,
+        state,
+        city,
+        division,
+        district,
+        subDistrict,
+        zipCode,
+        createdAt,
+        updatedAt,
+        createdBy,
+        updatedBy,
+      ),
+    );
     // Business logic for address adding
     this.apply('AddressAddedEvent');
   }
@@ -125,11 +87,7 @@ export class OrganizationModel extends CustomerModel {
     this.apply('AddressDeletedEvent');
   }
 
-  public addAttachment(
-    attachmentId: string,
-    documentTitle: OrganizationalDocumentType,
-    fileUrl: string,
-  ) {
+  public addAttachment() {
     // Business logic for attachment adding
     this.apply('AttachmentAddedEvent');
   }
@@ -139,25 +97,7 @@ export class OrganizationModel extends CustomerModel {
     this.apply('AttachmentDeletedEvent');
   }
 
-  public addContactPerson(
-    contactPersonId: string,
-    customerId: string,
-    identificationNumber: string,
-    dateOfBirth: string,
-    gender: Gender,
-    nameEn: string,
-    nameBn: string,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    email: string,
-    nid: string,
-    birthRegistrationNumber: string,
-  ) {
+  public addContactPerson() {
     // Business logic for contact person adding
     this.apply('ContactPersonAddedEvent');
   }
@@ -167,14 +107,7 @@ export class OrganizationModel extends CustomerModel {
     this.apply('ContactPersonDeletedEvent');
   }
 
-  public addBankAccount(
-    bankAccountId: string,
-    bankName: string,
-    branch: string,
-    routingNumber: string,
-    accountNumber: string,
-    accountName: string,
-  ) {
+  public addBankAccount() {
     // Business logic for bank account adding
     this.apply('BankAccountAddedEvent');
   }
@@ -184,63 +117,27 @@ export class OrganizationModel extends CustomerModel {
     this.apply('BankAccountDeletedEvent');
   }
 
-  public get OrganizationId(): string {
-    return this._CustomerId;
+  public get Organization(): OrganizationModel {
+    return this._Organization;
   }
 
-  public get RegistrationNumber(): string {
-    return this._RegistrationNumber;
-  }
-  public set RegistrationNumber(value: string) {
-    this._RegistrationNumber = value;
+  public get Addresses(): AddressModel[] {
+    return this._Addresses;
   }
 
-  public get FaxNumber(): string {
-    return this._FaxNumber;
-  }
-  public set FaxNumber(value: string) {
-    this._FaxNumber = value;
-  }
-
-  public get Website(): string {
-    return this._Website;
-  }
-  public set Website(value: string) {
-    this._Website = value;
-  }
-
-  public get Logo(): OrganizationAttachmentEntity {
-    return this._Logo;
-  }
-  public set Logo(value: OrganizationAttachmentEntity) {
-    this._Logo = value;
-  }
-
-  public get Branches(): BranchEntity[] {
+  public get Branches(): BranchModel[] {
     return this._Branches;
   }
-  public set Branches(value: BranchEntity[]) {
-    this._Branches = value;
-  }
 
-  public get Attachments(): OrganizationAttachmentEntity[] {
+  public get Attachments(): OrganizationAttachmentModel[] {
     return this._Attachments;
   }
-  public set Attachments(value: OrganizationAttachmentEntity[]) {
-    this._Attachments = value;
-  }
 
-  public get ContactPeoples(): ContactPersonEntity[] {
+  public get ContactPeoples(): ContactPersonModel[] {
     return this._ContactPeoples;
   }
-  public set ContactPeoples(value: ContactPersonEntity[]) {
-    this._ContactPeoples = value;
-  }
 
-  public get BankAccounts(): BankAccountEntity[] {
+  public get BankAccounts(): BankAccountModel[] {
     return this._BankAccounts;
-  }
-  public set BankAccounts(value: BankAccountEntity[]) {
-    this._BankAccounts = value;
   }
 }

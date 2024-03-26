@@ -12,15 +12,15 @@ import { AddOrganizationAttachmentRequest } from './add-organization-attachment.
 export class CreateOrganizationRequest {
   @IsString()
   @IsNotEmpty()
-  registrationNumber: string;
+  registration_number: string;
 
   @IsString()
   @IsNotEmpty()
-  nameEn: string;
+  name_en: string;
 
   @IsString()
   @IsOptional()
-  nameBn: string;
+  name_bn: string;
 
   @IsString()
   @IsOptional()
@@ -28,15 +28,15 @@ export class CreateOrganizationRequest {
 
   @IsString()
   @IsOptional()
-  contactNumber: string;
+  contact_number: string;
 
   @IsString()
   @IsOptional()
-  mobileNumber: string;
+  mobile_number: string;
 
   @IsString()
   @IsOptional()
-  phoneNumber: string;
+  phone_number: string;
 
   @IsString()
   @IsOptional()

@@ -3,7 +3,7 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class AddBankAccountRequest {
   @IsString()
   @IsNotEmpty()
-  bankName: string;
+  bank_name: string;
 
   @IsString()
   @IsNotEmpty()
@@ -11,13 +11,13 @@ export class AddBankAccountRequest {
 
   @IsString()
   @IsOptional()
-  routingNumber: string;
+  routing_number: string;
 
   @IsString()
   @IsNotEmpty()
-  accountNumber: string;
+  account_number: string;
 
   @IsString()
   @IsOptional()
-  accountName: string;
+  account_name: string;
 }

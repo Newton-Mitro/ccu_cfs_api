@@ -6,5 +6,9 @@ export class AddTrainingCommand {
     public readonly result: string,
     public readonly startDate: Date,
     public readonly endDate: Date,
+    public readonly createdAt: Date,
+    public readonly updatedAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedBy: string,
   ) {}
 }

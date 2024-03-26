@@ -1,6 +1,5 @@
-import { BaseEntity } from 'src/common/entities/base-entity';
-
-export class EmploymentHistoryEntity extends BaseEntity {
+export class EmploymentHistoryModel {
+  private _EmploymentHistoryId: string;
   private _OrganizationName: string;
   private _Position: string;
   private _Address: string;
@@ -12,6 +11,10 @@ export class EmploymentHistoryEntity extends BaseEntity {
   private _StartDate: Date;
   private _EndDate: Date;
   private _TillNow: boolean;
+  private _CreatedAt: Date;
+  private _UpdatedAt: Date;
+  private _CreatedBy: string;
+  private _UpdatedBy: string;
 
   constructor(
     educationHistoryId: string,
@@ -26,8 +29,12 @@ export class EmploymentHistoryEntity extends BaseEntity {
     startDate: Date,
     endDate: Date,
     tillNow: boolean,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
-    super(educationHistoryId);
+    this._EmploymentHistoryId = educationHistoryId;
     this._OrganizationName = organizationName;
     this._Position = position;
     this._Address = address;
@@ -39,93 +46,73 @@ export class EmploymentHistoryEntity extends BaseEntity {
     this._StartDate = startDate;
     this._EndDate = endDate;
     this._TillNow = tillNow;
+    this._CreatedAt = createdAt;
+    this._UpdatedAt = updatedAt;
+    this._CreatedBy = createdBy;
+    this._UpdatedBy = updatedBy;
+  }
+
+  public get EmploymentHistoryId(): string {
+    return this._EmploymentHistoryId;
   }
 
   public get OrganizationName(): string {
     return this._OrganizationName;
   }
 
-  public set OrganizationName(value: string) {
-    this._OrganizationName = value;
-  }
-
   public get Position(): string {
     return this._Position;
-  }
-
-  public set Position(value: string) {
-    this._Position = value;
   }
 
   public get Address(): string {
     return this._Address;
   }
 
-  public set Address(value: string) {
-    this._Address = value;
-  }
-
   public get SupervisorName(): string {
     return this._SupervisorName;
-  }
-
-  public set SupervisorName(value: string) {
-    this._SupervisorName = value;
   }
 
   public get SupervisorDesignation(): string {
     return this._SupervisorDesignation;
   }
 
-  public set SupervisorDesignation(value: string) {
-    this._SupervisorDesignation = value;
-  }
-
   public get SupervisorPhone(): string {
     return this._SupervisorPhone;
-  }
-
-  public set SupervisorPhone(value: string) {
-    this._SupervisorPhone = value;
   }
 
   public get JobResponsibilities(): string {
     return this._JobResponsibilities;
   }
 
-  public set JobResponsibilities(value: string) {
-    this._JobResponsibilities = value;
-  }
-
   public get Salary(): number {
     return this._Salary;
-  }
-
-  public set Salary(value: number) {
-    this._Salary = value;
   }
 
   public get StartDate(): Date {
     return this._StartDate;
   }
 
-  public set StartDate(value: Date) {
-    this._StartDate = value;
-  }
-
   public get EndDate(): Date {
     return this._EndDate;
-  }
-
-  public set EndDate(value: Date) {
-    this._EndDate = value;
   }
 
   public get TillNow(): boolean {
     return this._TillNow;
   }
 
-  public set TillNow(value: boolean) {
-    this._TillNow = value;
+  public get CreatedAt(): Date {
+    return this._CreatedAt;
+  }
+
+  public get UpdatedAt(): Date {
+    return this._UpdatedAt;
+  }
+
+  public get CreatedBy(): string {
+    return this._CreatedBy;
+  }
+
+  public get UpdatedBy(): string {
+    return this._UpdatedBy;
   }
 }

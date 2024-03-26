@@ -21,6 +21,10 @@ export class CreatePersonCommand {
     public readonly email: string,
     public readonly profession: Profession,
     public readonly photo: PersonPhotoAttachment,
+    public readonly createdAt: Date,
+    public readonly updatedAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedBy: string,
   ) {}
 }
 

@@ -39,18 +39,6 @@ export class Customer extends IdentifiableEntitySchema {
     type: Array(AddressSchema),
   })
   Addresses: Address[];
-
-  @Prop()
-  CreatedAt: Date;
-
-  @Prop()
-  UpdatedAt: Date;
-
-  @Prop()
-  CreatedBy: string;
-
-  @Prop()
-  UpdatedBy: string;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

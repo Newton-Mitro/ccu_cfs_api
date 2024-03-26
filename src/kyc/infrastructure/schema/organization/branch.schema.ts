@@ -12,6 +12,9 @@ export class Branch extends IdentifiableEntitySchema {
   @Prop({ required: true, type: String })
   RegistrationNumber: string;
 
+  @Prop()
+  TIN: string;
+
   @Prop({ required: true, type: String })
   NameEn: string;
 
@@ -31,10 +34,13 @@ export class Branch extends IdentifiableEntitySchema {
   PhoneNumber: string;
 
   @Prop()
-  FaxNumber: string;
+  Fax: string;
 
   @Prop()
   Website: string;
+
+  @Prop()
+  Logo: string;
 }
 
 export const BranchSchema = SchemaFactory.createForClass(Branch);

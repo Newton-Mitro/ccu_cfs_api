@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Post,
+  Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { CreatePersonRequest } from 'src/kyc/application/contract/person/requests/create-person.request';
 import { UpdatePersonRequest } from 'src/kyc/application/contract/person/requests/update-person.request';
 import { PeoplesService } from '../../application/services/peoples.service';
@@ -16,8 +18,17 @@ export class PeoplesController {
   constructor(private readonly peoplesService: PeoplesService) {}
 
   @Post()
-  create(@Body() createPersonRequest: CreatePersonRequest) {
-    return this.peoplesService.create(createPersonRequest);
+  create(
+    @Req() req: Request,
+    @Body() createPersonRequest: CreatePersonRequest,
+  ) {
+    const user: any = req.user;
+    return this.peoplesService.create(
+      user?.id,
+      new Date(),
+      new Date(),
+      createPersonRequest,
+    );
   }
 
   @Get()

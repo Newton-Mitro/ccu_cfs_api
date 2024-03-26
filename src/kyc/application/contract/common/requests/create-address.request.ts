@@ -5,18 +5,18 @@ import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 export class CreateAddressRequest {
   @IsString()
   @IsOptional()
-  addressId: string;
+  address_id: string;
 
   @IsEnum(AddressType)
   @IsNotEmpty()
-  addressType: AddressType;
+  address_type: AddressType;
 
   @IsString()
   @IsNotEmpty()
-  addressLineOne: string;
+  address_line_one: string;
 
   @IsString()
-  addressLineTwo: string;
+  address_line_two: string;
 
   @IsEnum(Country)
   @IsNotEmpty()
@@ -40,9 +40,9 @@ export class CreateAddressRequest {
 
   @IsString()
   @IsNotEmpty()
-  subDistrict: string;
+  sub_district: string;
 
   @IsString()
   @IsOptional()
-  zipCode: string;
+  zip_code: string;
 }

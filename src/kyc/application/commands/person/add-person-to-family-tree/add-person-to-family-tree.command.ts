@@ -26,5 +26,9 @@ export class AddPersonToFamilyTreeCommand {
     public readonly photo: PersonPhotoAttachment,
     public readonly relationship: Relationship,
     public readonly status: FamilyTreeStatus,
+    public readonly createdAt: Date,
+    public readonly updatedAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedBy: string,
   ) {}
 }

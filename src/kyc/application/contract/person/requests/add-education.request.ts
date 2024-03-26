@@ -3,23 +3,23 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class AddEducationRequest {
   @IsString()
   @IsNotEmpty()
-  educationLevel: string;
+  education_level: string;
 
   @IsString()
   @IsNotEmpty()
-  educationDegree: string;
+  education_degree: string;
 
   @IsString()
   @IsNotEmpty()
-  instituteName: string;
+  institute_name: string;
 
   @IsString()
   @IsOptional()
-  majorSubject: string;
+  major_subject: string;
 
   @IsString()
   @IsNotEmpty()
-  passingYear: string;
+  passing_year: string;
 
   @IsString()
   @IsNotEmpty()

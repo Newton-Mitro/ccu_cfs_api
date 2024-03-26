@@ -23,6 +23,10 @@ export class MapErrorLogRecordFactory
       StatusCode: entity.StatusCode,
       ExceptionType: entity.ExceptionType,
       ErrorMessage: entity.ErrorMessage,
+      CreatedAt: new Date(),
+      UpdatedAt: new Date(),
+      CreatedBy: '',
+      UpdatedBy: '',
     };
   }
 

@@ -11,5 +11,9 @@ export class AddEmploymentHistoryCommand {
     public readonly startDate: Date,
     public readonly endDate: Date,
     public readonly tillNow: boolean,
+    public readonly createdAt: Date,
+    public readonly updatedAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedBy: string,
   ) {}
 }

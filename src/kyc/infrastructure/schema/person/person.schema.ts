@@ -5,7 +5,6 @@ import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { Customer } from '../common/customer.schema';
-import { PhotoAttachment } from '../common/photo-attachment.schema';
 import { Education, EducationSchema } from './education.schema';
 import {
   EmploymentHistory,
@@ -54,8 +53,8 @@ export class Person extends Customer {
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
 
-  @Prop({ type: Object(PhotoAttachment) })
-  Photo: PhotoAttachment;
+  @Prop()
+  Photo: string;
 
   @Prop({ type: Array(FamilyAndRelativeSchema) })
   FamilyTree: FamilyAndRelative[];

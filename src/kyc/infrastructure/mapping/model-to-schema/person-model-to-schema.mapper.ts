@@ -1,48 +1,43 @@
 import { Types } from 'mongoose';
 import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
-import { AddressEntity } from 'src/kyc/domain/models/common/address.entity';
-import { EducationEntity } from 'src/kyc/domain/models/person/entities/education.entity';
-import { EmploymentHistoryEntity } from 'src/kyc/domain/models/person/entities/employment-history.entity';
-import { FamilyAndRelativeEntity } from 'src/kyc/domain/models/person/entities/family-and-relative.entity';
-import { PersonAttachmentEntity } from 'src/kyc/domain/models/person/entities/person-attachment.entity';
-import { TrainingEntity } from 'src/kyc/domain/models/person/entities/training.entity';
-import { PersonModel } from 'src/kyc/domain/models/person/person.aggregate';
+import { AddressModel } from 'src/kyc/domain/models/common/address.model';
+import { EducationModel } from 'src/kyc/domain/models/person/models/education.model';
+import { EmploymentHistoryModel } from 'src/kyc/domain/models/person/models/employment-history.model';
+import { FamilyAndRelativeModel } from 'src/kyc/domain/models/person/models/family-and-relative.model';
+import { PersonAttachmentModel } from 'src/kyc/domain/models/person/models/person-attachment.model';
+import { TrainingModel } from 'src/kyc/domain/models/person/models/training.model';
+import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { Person } from '../../schema/person/person.schema';
 
 export class PersonModelToSchemaMapper
-  implements ISchemaMapper<Person, PersonModel>
+  implements ISchemaMapper<Person, PersonAggregate>
 {
-  mapBusinessModelToSchema(model: PersonModel): Person {
+  mapBusinessModelToSchema(model: PersonAggregate): Person {
     const personSchema = new Person();
-    personSchema._id = new Types.ObjectId(model.CustomerId);
-    personSchema.IdentificationNumber = model.IdentificationNumber;
-    personSchema.NameEn = model.NameEn;
-    personSchema.NameBn = model.NameBn;
-    personSchema.ContactNumber = model.ContactNumber;
-    personSchema.PhoneNumber = model.PhoneNumber;
-    personSchema.MobileNumber = model.MobileNumber;
-    personSchema.Email = model.Email;
+    personSchema._id = new Types.ObjectId(model.Person.PersonId);
+    personSchema.IdentificationNumber = model.Person.IdentificationNumber;
+    personSchema.NameEn = model.Person.NameEn;
+    personSchema.NameBn = model.Person.NameBn;
+    personSchema.ContactNumber = model.Person.ContactNumber;
+    personSchema.PhoneNumber = model.Person.PhoneNumber;
+    personSchema.MobileNumber = model.Person.MobileNumber;
+    personSchema.Email = model.Person.Email;
+    personSchema.DateOfBirth = model.Person.DateOfBirth;
+    personSchema.NID = model.Person.NID;
+    personSchema.BirthRegistrationNumber = model.Person.BirthRegistrationNumber;
+    personSchema.BloodGroup = model.Person.BloodGroup;
+    personSchema.Gender = model.Person.Gender;
+    personSchema.Religion = model.Person.Religion;
+    personSchema.Profession = model.Person.Profession;
+    personSchema.MaritalStatus = model.Person.MaritalStatus;
+    personSchema.Photo = model.Person.Photo;
+    personSchema.CreatedAt = model.Person.CreatedAt;
+    personSchema.UpdatedAt = model.Person.UpdatedAt;
+    personSchema.CreatedBy = model.Person.CreatedBy;
+    personSchema.UpdatedBy = model.Person.UpdatedBy;
 
-    personSchema.DateOfBirth = new Date(model.DateOfBirth);
-    personSchema.NID = model.NID;
-    personSchema.BirthRegistrationNumber = model.BirthRegistrationNumber;
-    personSchema.BloodGroup = model.BloodGroup;
-    personSchema.Gender = model.Gender;
-    personSchema.Religion = model.Religion;
-    personSchema.Profession = model.Profession;
-    personSchema.MaritalStatus = model.MaritalStatus;
-    personSchema.Photo = model.Photo && {
-      _id: new Types.ObjectId(model.Photo.Id),
-      DocumentTitle: model.Photo.DocumentTitle,
-      FileUrl: model.Photo.FileUrl,
-    };
-    personSchema.CreatedAt = model.CreatedAt;
-    personSchema.UpdatedAt = model.UpdatedAt;
-    personSchema.CreatedBy = model.CreatedBy;
-    personSchema.UpdatedBy = model.UpdatedBy;
-
-    personSchema.Addresses = model.Addresses?.map((address: AddressEntity) => ({
-      _id: new Types.ObjectId(address.Id),
+    personSchema.Addresses = model.Addresses?.map((address: AddressModel) => ({
+      _id: new Types.ObjectId(address.AddressId),
       AddressType: address.AddressType,
       AddressLineOne: address.AddressLineOne,
       AddressLineTwo: address.AddressLineTwo,
@@ -53,12 +48,16 @@ export class PersonModelToSchemaMapper
       District: address.District,
       SubDistrict: address.SubDistrict,
       ZipCode: address.ZipCode,
+      CreatedAt: address.CreatedAt,
+      UpdatedAt: address.UpdatedAt,
+      CreatedBy: address.CreatedBy,
+      UpdatedBy: address.UpdatedBy,
     }));
 
     personSchema.FamilyTree = model.FamilyTree?.map(
-      (familyAndRelative: FamilyAndRelativeEntity) => ({
-        _id: new Types.ObjectId(familyAndRelative.Id),
-        PersonId: familyAndRelative.CustomerId,
+      (familyAndRelative: FamilyAndRelativeModel) => ({
+        _id: new Types.ObjectId(familyAndRelative.FamilyTreeId),
+        PersonId: familyAndRelative.PersonId,
         IdentificationNumber: familyAndRelative.IdentificationNumber,
         DateOfBirth: new Date(familyAndRelative.DateOfBirth),
         Gender: familyAndRelative.Gender,
@@ -76,41 +75,49 @@ export class PersonModelToSchemaMapper
         BirthRegistrationNumber: familyAndRelative.BirthRegistrationNumber,
         Relationship: familyAndRelative.Relationship,
         Status: familyAndRelative.Status,
-        Photo: familyAndRelative.Photo && {
-          _id: new Types.ObjectId(model.Photo.Id),
-          DocumentTitle: model.Photo.DocumentTitle,
-          FileUrl: model.Photo.FileUrl,
-        },
+        Photo: familyAndRelative.Photo,
+        CreatedAt: familyAndRelative.CreatedAt,
+        UpdatedAt: familyAndRelative.UpdatedAt,
+        CreatedBy: familyAndRelative.CreatedBy,
+        UpdatedBy: familyAndRelative.UpdatedBy,
       }),
     );
 
     personSchema.Educations = model.Educations?.map(
-      (education: EducationEntity) => ({
-        _id: new Types.ObjectId(education.Id),
+      (education: EducationModel) => ({
+        _id: new Types.ObjectId(education.EducationId),
         EducationLevel: education.EducationLevel,
         EducationDegree: education.EducationDegree,
         InstituteName: education.InstituteName,
         MajorSubject: education.MajorSubject,
         PassingYear: education.PassingYear,
         Grade: education.Grade,
+        CreatedAt: education.CreatedAt,
+        UpdatedAt: education.UpdatedAt,
+        CreatedBy: education.CreatedBy,
+        UpdatedBy: education.UpdatedBy,
       }),
     );
 
     personSchema.Trainings = model.Trainings?.map(
-      (training: TrainingEntity) => ({
-        _id: new Types.ObjectId(training.Id),
+      (training: TrainingModel) => ({
+        _id: new Types.ObjectId(training.TrainingId),
         CourseTitle: training.CourseTitle,
         InstituteName: training.InstituteName,
         CourseContent: training.CourseContent,
         Result: training.Result,
         StartDate: training.StartDate,
         EndDate: training.EndDate,
+        CreatedAt: training.CreatedAt,
+        UpdatedAt: training.UpdatedAt,
+        CreatedBy: training.CreatedBy,
+        UpdatedBy: training.UpdatedBy,
       }),
     );
 
     personSchema.EmploymentHistories = model.EmploymentHistories?.map(
-      (employmentHistory: EmploymentHistoryEntity) => ({
-        _id: new Types.ObjectId(employmentHistory.Id),
+      (employmentHistory: EmploymentHistoryModel) => ({
+        _id: new Types.ObjectId(employmentHistory.EmploymentHistoryId),
         OrganizationName: employmentHistory.OrganizationName,
         Position: employmentHistory.Position,
         Address: employmentHistory.Address,
@@ -122,14 +129,22 @@ export class PersonModelToSchemaMapper
         StartDate: employmentHistory.StartDate,
         EndDate: employmentHistory.EndDate,
         TillNow: employmentHistory.TillNow,
+        CreatedAt: employmentHistory.CreatedAt,
+        UpdatedAt: employmentHistory.UpdatedAt,
+        CreatedBy: employmentHistory.CreatedBy,
+        UpdatedBy: employmentHistory.UpdatedBy,
       }),
     );
 
     personSchema.Attachments = model.Attachments?.map(
-      (personAttachment: PersonAttachmentEntity) => ({
-        _id: new Types.ObjectId(personAttachment.Id),
+      (personAttachment: PersonAttachmentModel) => ({
+        _id: new Types.ObjectId(personAttachment.AttachmentId),
         DocumentTitle: personAttachment.DocumentTitle,
         FileUrl: personAttachment.FileUrl,
+        CreatedAt: personAttachment.CreatedAt,
+        UpdatedAt: personAttachment.UpdatedAt,
+        CreatedBy: personAttachment.CreatedBy,
+        UpdatedBy: personAttachment.UpdatedBy,
       }),
     );
 

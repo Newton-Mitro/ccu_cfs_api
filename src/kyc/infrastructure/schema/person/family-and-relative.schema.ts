@@ -7,10 +7,6 @@ import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
-import {
-  PhotoAttachment,
-  PhotoAttachmentSchema,
-} from '../common/photo-attachment.schema';
 
 @Schema()
 export class FamilyAndRelative extends IdentifiableEntitySchema {
@@ -31,6 +27,12 @@ export class FamilyAndRelative extends IdentifiableEntitySchema {
 
   @Prop()
   ContactNumber: string;
+
+  @Prop()
+  PhoneNumber: string;
+
+  @Prop()
+  MobileNumber: string;
 
   @Prop()
   DateOfBirth: Date;
@@ -60,8 +62,8 @@ export class FamilyAndRelative extends IdentifiableEntitySchema {
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
   MaritalStatus: MaritalStatus;
 
-  @Prop({ type: Object(PhotoAttachmentSchema) })
-  Photo: PhotoAttachment;
+  @Prop()
+  Photo: string;
 
   @Prop({
     type: String,

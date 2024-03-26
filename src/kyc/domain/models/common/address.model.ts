@@ -1,8 +1,8 @@
-import { BaseEntity } from 'src/common/entities/base-entity';
 import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../enums/person-address-type.enum';
 
-export class AddressEntity extends BaseEntity {
+export class AddressModel {
+  private _AddressId: string;
   private _AddressType: AddressType;
   private _AddressLineOne: string;
   private _AddressLineTwo: string;
@@ -13,6 +13,10 @@ export class AddressEntity extends BaseEntity {
   private _District: string;
   private _SubDistrict: string;
   private _ZipCode: string;
+  private _CreatedAt: Date;
+  private _UpdatedAt: Date;
+  private _CreatedBy: string;
+  private _UpdatedBy: string;
 
   constructor(
     addressId: string,
@@ -26,8 +30,12 @@ export class AddressEntity extends BaseEntity {
     district: string,
     subDistrict: string,
     zipCode: string,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: string,
+    updatedBy: string,
   ) {
-    super(addressId);
+    this._AddressId = addressId;
     this._AddressType = addressType;
     this._AddressLineOne = addressLineOne;
     this._AddressLineTwo = addressLineTwo;
@@ -38,10 +46,14 @@ export class AddressEntity extends BaseEntity {
     this._District = district;
     this._SubDistrict = subDistrict;
     this._ZipCode = zipCode;
+    this._CreatedAt = createdAt;
+    this._UpdatedAt = updatedAt;
+    this._CreatedBy = createdBy;
+    this._UpdatedBy = updatedBy;
   }
 
   public get AddressId(): string {
-    return this._Id;
+    return this._AddressId;
   }
 
   public get AddressType(): AddressType {
@@ -112,5 +124,21 @@ export class AddressEntity extends BaseEntity {
   }
   public set ZipCode(value: string) {
     this._ZipCode = value;
+  }
+
+  public get CreatedAt(): Date {
+    return this._CreatedAt;
+  }
+
+  public get UpdatedAt(): Date {
+    return this._UpdatedAt;
+  }
+
+  public get CreatedBy(): string {
+    return this._CreatedBy;
+  }
+
+  public get UpdatedBy(): string {
+    return this._UpdatedBy;
   }
 }

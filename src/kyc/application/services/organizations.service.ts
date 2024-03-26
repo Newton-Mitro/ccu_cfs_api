@@ -30,16 +30,12 @@ export class OrganizationsService {
       new Date().valueOf(),
     ).substring(3, 13);
 
-    createOrganizationModel.Logo = {
-      _id: new Types.ObjectId(),
-      DocumentTitle: createOrganizationModel.Logo.DocumentTitle,
-      FileUrl: StoreBase64File.store(
-        'organizations/logo',
-        createOrganizationModel.NameEn,
-        createOrganizationRequest.logo.fileExtension,
-        createOrganizationRequest.logo.base64Document,
-      ),
-    };
+    createOrganizationModel.Logo = StoreBase64File.store(
+      'organizations/logo',
+      createOrganizationModel.NameEn,
+      createOrganizationRequest.logo.file_extension,
+      createOrganizationRequest.logo.base64_document,
+    );
 
     const errors = createOrganizationModel.validateSync();
 

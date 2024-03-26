@@ -10,7 +10,7 @@ import {
 export class AddEmploymentHistoryRequest {
   @IsString()
   @IsNotEmpty()
-  organizationName: string;
+  organization_name: string;
 
   @IsString()
   @IsNotEmpty()
@@ -22,19 +22,19 @@ export class AddEmploymentHistoryRequest {
 
   @IsString()
   @IsNotEmpty()
-  supervisorName: string;
+  supervisor_name: string;
 
   @IsString()
   @IsNotEmpty()
-  supervisorDesignation: string;
+  supervisor_designation: string;
 
   @IsString()
   @IsNotEmpty()
-  supervisorPhone: string;
+  supervisor_phone: string;
 
   @IsString()
   @IsNotEmpty()
-  jobResponsibilities: string;
+  job_responsibilities: string;
 
   @IsNumber()
   @IsOptional()
@@ -42,13 +42,13 @@ export class AddEmploymentHistoryRequest {
 
   @IsDateString()
   @IsNotEmpty()
-  startDate: Date;
+  start_date: Date;
 
   @IsDateString()
   @IsOptional()
-  endDate: Date;
+  end_date: Date;
 
   @IsBoolean()
   @IsNotEmpty()
-  tillNow: boolean;
+  till_now: boolean;
 }

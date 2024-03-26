@@ -4,14 +4,14 @@ import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.e
 export class AddPersonAttachmentRequest {
   @IsString()
   @IsNotEmpty()
-  fileExtension: string;
+  file_extension: string;
 
   @IsString({ each: true })
   @IsEnum(PersonalDocumentType)
-  documentTitle: PersonalDocumentType;
+  document_title: PersonalDocumentType;
 
   @IsString()
   @IsNotEmpty()
   @IsBase64()
-  base64Document: string;
+  base64_document: string;
 }
