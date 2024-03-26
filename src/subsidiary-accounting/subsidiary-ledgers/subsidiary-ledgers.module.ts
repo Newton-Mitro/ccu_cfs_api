@@ -8,4 +8,4 @@ import { SubsidiaryLedgerAccountController } from './deposits/presentation/subsi
   controllers: [SubsidiaryLedgerAccountController],
   providers: [SubsidiaryLedgerAccountService],
 })
-export class SubsidiaryLedgerAccountModule {}
+export class SubsidiaryLedgersModule {}

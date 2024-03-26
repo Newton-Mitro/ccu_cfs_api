@@ -12,7 +12,7 @@ import { KYCModule } from './kyc/kyc.module';
 import { LoggerType } from './logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from './logging/infrastructure/repositories/database-logging.repository';
 import { LoggingModule } from './logging/logging.module';
-import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiary-ledgers/subsidiary-ledger-account.module';
+import { SubsidiaryLedgersModule } from './subsidiary-accounting/subsidiary-ledgers/subsidiary-ledgers.module';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { SubsidiaryLedgerAccountModule } from './subsidiary-accounting/subsidiar
       rootPath: join(__dirname, '..', 'uploads'),
     }),
     ConfigModule.forRoot({ isGlobal: true }),
-    SubsidiaryLedgerAccountModule,
+    SubsidiaryLedgersModule,
     DatabaseModule,
     KYCModule,
     LoggingModule,
