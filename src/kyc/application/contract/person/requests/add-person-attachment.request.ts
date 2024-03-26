@@ -4,6 +4,10 @@ import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.e
 export class AddPersonAttachmentRequest {
   @IsString()
   @IsNotEmpty()
+  person_id: string;
+
+  @IsString()
+  @IsNotEmpty()
   file_extension: string;
 
   @IsString({ each: true })

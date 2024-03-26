@@ -3,6 +3,10 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class AddBankAccountRequest {
   @IsString()
   @IsNotEmpty()
+  organization_id: string;
+
+  @IsString()
+  @IsNotEmpty()
   bank_name: string;
 
   @IsString()

@@ -4,7 +4,6 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
-  IsNotEmptyObject,
   IsOptional,
   IsString,
   ValidateNested,
@@ -12,6 +11,7 @@ import {
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
+import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
@@ -19,8 +19,12 @@ import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 
 export class AddFamilyAndRelativeRequest {
   @IsString()
+  @IsNotEmpty()
+  person_id: string;
+
+  @IsString()
   @IsOptional()
-  customer_id: string;
+  family_member_person_id: string;
 
   @IsString()
   @IsOptional()
@@ -34,56 +38,63 @@ export class AddFamilyAndRelativeRequest {
   @IsOptional()
   name_bn: string;
 
+  @IsString()
+  @IsOptional()
+  contact_number: string = '';
+
+  @IsString()
+  @IsOptional()
+  mobile_number: string = '';
+
+  @IsString()
+  @IsOptional()
+  phone_number: string = '';
+
+  @IsString()
+  @IsOptional()
+  @IsEmail()
+  email: string = '';
+
+  @IsString()
+  @IsOptional()
+  customer_type: string = '';
+
   @IsDateString()
   @IsNotEmpty()
   date_of_birth: Date;
 
   @IsString()
   @IsEnum(Gender)
-  gender: Gender;
+  gender: Gender = Gender.MALE;
 
   @IsString()
-  @IsOptional()
   @IsEnum(BloodGroup)
-  blood_group: BloodGroup;
+  blood_group: BloodGroup = BloodGroup.UNKNOWN;
 
   @IsString()
   @IsEnum(Religion)
-  religion: Religion;
+  religion: Religion = Religion.UNWILLING_TO_REVEAL;
 
   @IsString()
-  @IsOptional()
-  nid: string;
-
-  @IsString()
-  @IsOptional()
-  birth_registration_number: string;
-
-  @IsString()
-  @IsOptional()
   @IsEnum(MaritalStatus)
-  marital_status: MaritalStatus;
+  marital_status: MaritalStatus = MaritalStatus.SINGLE;
+
+  @IsString()
+  @IsEnum(Profession)
+  @IsOptional()
+  profession: Profession = Profession.UNWILLING_TO_REVEAL;
 
   @IsString()
   @IsOptional()
-  contact_number: string;
+  nid: string = '';
 
   @IsString()
   @IsOptional()
-  mobile_number: string;
-
-  @IsString()
-  @IsOptional()
-  phone_number: string;
-
-  @IsString()
-  @IsOptional()
-  @IsEmail()
-  email: string;
+  birth_registration_number: string = '';
 
   @Type(() => AddPersonAttachmentRequest)
+  @IsOptional()
   @ValidateNested()
-  @IsNotEmptyObject()
   photo: AddPersonAttachmentRequest;
 
   @IsEnum(Relationship)

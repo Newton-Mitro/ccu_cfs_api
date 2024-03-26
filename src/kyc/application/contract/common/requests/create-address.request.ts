@@ -4,8 +4,8 @@ import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 export class CreateAddressRequest {
   @IsString()
-  @IsOptional()
-  address_id: string;
+  @IsNotEmpty()
+  person_or_organization_id: string;
 
   @IsEnum(AddressType)
   @IsNotEmpty()

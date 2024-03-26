@@ -15,6 +15,10 @@ export class CreateOrganizationRequest {
   registration_number: string;
 
   @IsString()
+  @IsOptional()
+  tin: string;
+
+  @IsString()
   @IsNotEmpty()
   name_en: string;
 
@@ -24,7 +28,8 @@ export class CreateOrganizationRequest {
 
   @IsString()
   @IsOptional()
-  tin: string;
+  @IsEmail()
+  email: string;
 
   @IsString()
   @IsOptional()
@@ -41,11 +46,6 @@ export class CreateOrganizationRequest {
   @IsString()
   @IsOptional()
   fax: string;
-
-  @IsString()
-  @IsOptional()
-  @IsEmail()
-  email: string;
 
   @IsString()
   @IsOptional()

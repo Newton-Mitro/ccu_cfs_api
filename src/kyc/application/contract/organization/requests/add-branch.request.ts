@@ -15,12 +15,20 @@ export class AddBranchRequest {
   organization_id: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
+  branch_organization_id: string;
+
+  @IsString()
+  @IsOptional()
   identification_number: string;
 
   @IsString()
   @IsNotEmpty()
   registration_number: string;
+
+  @IsString()
+  @IsOptional()
+  tin: string;
 
   @IsString()
   @IsNotEmpty()
@@ -32,7 +40,8 @@ export class AddBranchRequest {
 
   @IsString()
   @IsOptional()
-  tin: string;
+  @IsEmail()
+  email: string;
 
   @IsString()
   @IsOptional()
@@ -49,11 +58,6 @@ export class AddBranchRequest {
   @IsString()
   @IsOptional()
   fax: string;
-
-  @IsString()
-  @IsOptional()
-  @IsEmail()
-  email: string;
 
   @IsString()
   @IsOptional()

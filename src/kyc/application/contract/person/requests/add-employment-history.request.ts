@@ -10,6 +10,10 @@ import {
 export class AddEmploymentHistoryRequest {
   @IsString()
   @IsNotEmpty()
+  person_id: string;
+
+  @IsString()
+  @IsNotEmpty()
   organization_name: string;
 
   @IsString()

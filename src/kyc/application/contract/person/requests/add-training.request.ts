@@ -8,6 +8,10 @@ import {
 export class AddTrainingRequest {
   @IsString()
   @IsNotEmpty()
+  person_id: string;
+
+  @IsString()
+  @IsNotEmpty()
   course_title: string;
 
   @IsString()

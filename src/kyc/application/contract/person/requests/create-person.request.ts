@@ -13,7 +13,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { AddPersonAttachmentRequest } from './add-person-attachment.request';
+import { AddPersonPhotoRequest } from './add-person-photo.request';
 
 export class CreatePersonRequest {
   @IsString()
@@ -23,34 +23,6 @@ export class CreatePersonRequest {
   @IsString()
   @IsOptional()
   name_bn: string;
-
-  @IsDateString()
-  @IsNotEmpty()
-  date_of_birth: Date;
-
-  @IsString()
-  @IsEnum(Gender)
-  gender: Gender = Gender.MALE;
-
-  @IsString()
-  @IsEnum(BloodGroup)
-  blood_group: BloodGroup = BloodGroup.UNKNOWN;
-
-  @IsString()
-  @IsEnum(Religion)
-  religion: Religion = Religion.UNWILLING_TO_REVEAL;
-
-  @IsString()
-  @IsOptional()
-  nid: string = '';
-
-  @IsString()
-  @IsOptional()
-  birth_registration_number: string = '';
-
-  @IsString()
-  @IsEnum(MaritalStatus)
-  marital_status: MaritalStatus = MaritalStatus.SINGLE;
 
   @IsString()
   @IsOptional()
@@ -70,12 +42,44 @@ export class CreatePersonRequest {
   email: string = '';
 
   @IsString()
+  @IsOptional()
+  customer_type: string = '';
+
+  @IsDateString()
+  @IsNotEmpty()
+  date_of_birth: Date;
+
+  @IsString()
+  @IsEnum(Gender)
+  gender: Gender = Gender.MALE;
+
+  @IsString()
+  @IsEnum(BloodGroup)
+  blood_group: BloodGroup = BloodGroup.UNKNOWN;
+
+  @IsString()
+  @IsEnum(Religion)
+  religion: Religion = Religion.UNWILLING_TO_REVEAL;
+
+  @IsString()
+  @IsEnum(MaritalStatus)
+  marital_status: MaritalStatus = MaritalStatus.SINGLE;
+
+  @IsString()
   @IsEnum(Profession)
   @IsOptional()
   profession: Profession = Profession.UNWILLING_TO_REVEAL;
 
-  @Type(() => AddPersonAttachmentRequest)
+  @IsString()
+  @IsOptional()
+  nid: string = '';
+
+  @IsString()
+  @IsOptional()
+  birth_registration_number: string = '';
+
+  @Type(() => AddPersonPhotoRequest)
   @IsOptional()
   @ValidateNested()
-  photo: AddPersonAttachmentRequest;
+  photo: AddPersonPhotoRequest;
 }

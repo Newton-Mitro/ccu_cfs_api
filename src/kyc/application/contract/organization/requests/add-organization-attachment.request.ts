@@ -4,6 +4,10 @@ import { OrganizationalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-
 export class AddOrganizationAttachmentRequest {
   @IsString()
   @IsNotEmpty()
+  organization_id: string;
+
+  @IsString()
+  @IsNotEmpty()
   file_extension: string;
 
   @IsString({ each: true })

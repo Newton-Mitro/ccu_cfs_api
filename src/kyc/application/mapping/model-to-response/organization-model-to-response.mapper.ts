@@ -95,8 +95,8 @@ export class OrganizationModelToResponseMapper {
         contactPerson.NID,
         contactPerson.BirthRegistrationNumber,
         contactPerson.Photo,
-        contactPerson.CreatedAt,
-        contactPerson.UpdatedAt,
+        contactPerson.CreatedAt.toISOString(),
+        contactPerson.UpdatedAt.toISOString(),
         contactPerson.CreatedBy,
         contactPerson.UpdatedBy,
       );
