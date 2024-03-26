@@ -1,7 +1,7 @@
+import { InstallmentType } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/installment-type.enum';
+import { ScheduleStatus } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/schedule-status.enum';
+import { ScheduleType } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/schedule-type.enum';
 import { v4 as uuidv4 } from 'uuid';
-import { InstallmentType } from '../../../subsidiary-ledgers/domain/enum/installment-type.enum';
-import { ScheduleStatus } from '../../../subsidiary-ledgers/domain/enum/schedule-status.enum';
-import { ScheduleType } from '../../../subsidiary-ledgers/domain/enum/schedule-type.enum';
 
 export class ScheduleModel {
   Id: string = uuidv4();

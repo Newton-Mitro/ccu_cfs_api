@@ -13,7 +13,7 @@ import {
 import { CreatePersonRequest } from '../contract/person/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/requests/update-person.request';
 import { PersonResponse } from '../contract/person/responses/person.response';
-import { PersonModelToResponseMapper } from '../mapping/model-to-response/person-model-to-response.mapper';
+import { PersonAggregateToResponseMapper } from '../mapping/aggregate-to-response/person-aggregate-to-response.mapper';
 
 @Injectable()
 export class PeoplesService {
@@ -56,7 +56,7 @@ export class PeoplesService {
       ),
     );
 
-    return PersonModelToResponseMapper.map(person);
+    return PersonAggregateToResponseMapper.map(person);
   }
 
   async findAll() {

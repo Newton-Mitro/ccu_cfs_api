@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@nestjs/mongoose';
-import { InstallmentType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/installment-type.enum';
-import { ScheduleStatus } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/schedule-status.enum';
-import { ScheduleType } from 'src/subsidiary-accounting/subsidiary-ledgers/domain/enum/schedule-type.enum';
+import { InstallmentType } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/installment-type.enum';
+import { ScheduleStatus } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/schedule-status.enum';
+import { ScheduleType } from 'src/subsidiary-accounting/subsidiary-ledgers/deposits/domain/enum/schedule-type.enum';
 
 @Schema()
 export class ScheduleSchema {
