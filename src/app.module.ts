@@ -5,14 +5,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './access-control/auth/auth.module';
 import { UsersModule } from './access-control/users/users.module';
+import { DatabaseModule } from './common/database/mongoose/database.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { RequestResponseInterceptor } from './common/interceptors/request-response.interceptor';
-import { DatabaseModule } from './config/database/mongoose/database.module';
+import { SubsidiaryLedgersModule } from './core-banking/sub-ledgers/subsidiary-ledgers.module';
 import { KYCModule } from './kyc/kyc.module';
 import { LoggerType } from './logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from './logging/infrastructure/repositories/database-logging.repository';
 import { LoggingModule } from './logging/logging.module';
-import { SubsidiaryLedgersModule } from './subsidiary-accounting/subsidiary-ledgers/subsidiary-ledgers.module';
 
 @Module({
   imports: [

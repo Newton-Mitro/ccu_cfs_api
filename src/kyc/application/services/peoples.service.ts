@@ -48,6 +48,7 @@ export class PeoplesService {
         new PersonPhotoAttachment(
           createPersonRequest.photo.base64_document,
           createPersonRequest.photo.file_extension,
+          createPersonRequest.photo.document_title,
         ),
         createdAt,
         updatedAt,

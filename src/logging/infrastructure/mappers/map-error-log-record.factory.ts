@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
-import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
-import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
+import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
+import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
 import { ErrorLogRecord } from '../schemas/error-log-record.schema';
 

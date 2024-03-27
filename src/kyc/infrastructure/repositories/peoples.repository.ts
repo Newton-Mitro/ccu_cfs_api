@@ -2,7 +2,7 @@ import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
-import { EntityRepository } from 'src/config/database/mongoose/entity.repository';
+import { EntityRepository } from 'src/common/database/mongoose/entity.repository';
 import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { PersonModelToSchemaMapper } from '../mapping/model-to-schema/person-model-to-schema.mapper';
 import { PersonSchemaToModelMapper } from '../mapping/schema-to-model/person-schema-to-model.mapper';

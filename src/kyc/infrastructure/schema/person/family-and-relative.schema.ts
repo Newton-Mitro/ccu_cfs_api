@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifiable-entity.schema';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
 
 @Schema()

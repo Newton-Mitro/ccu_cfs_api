@@ -1,4 +1,4 @@
-import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
+import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
 import { OrganizationAggregate } from 'src/kyc/domain/models/organization/organization.aggregate';
 import { Address } from '../../schema/common/address.schema';
 import { Organization } from '../../schema/organization/organization.schema';

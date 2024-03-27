@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IdentifiableEntitySchema } from 'src/config/database/mongoose/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifiable-entity.schema';
 import { PersonalDocumentType } from 'src/kyc/domain/enums/kyc-attachment-type.enum';
 
 @Schema()

@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
+import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { AddressModel } from 'src/kyc/domain/models/common/address.model';
 import { EducationModel } from 'src/kyc/domain/models/person/models/education.model';
 import { EmploymentHistoryModel } from 'src/kyc/domain/models/person/models/employment-history.model';

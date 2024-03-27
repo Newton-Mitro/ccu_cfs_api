@@ -1,8 +1,8 @@
 import { Types } from 'mongoose';
-import { IBusinessModelMapper } from 'src/config/database/mongoose/business-model.mapper';
-import { ISchemaMapper } from 'src/config/database/mongoose/schema.mapper';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 import { SuccessLogRecord } from '../schemas/success-log-record.schema';
+import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
+import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 
 export class MapSuccessLogRecordFactory
   implements
