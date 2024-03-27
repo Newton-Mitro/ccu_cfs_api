@@ -74,6 +74,7 @@ export class PersonAggregate extends AggregateRoot {
     createdBy: string,
     updatedBy: string,
   ) {
+    // NID or BRN needed
     this._PersonId = personId;
     this._IdentificationNumber = identificationNumber;
     this._NameEn = nameEn;

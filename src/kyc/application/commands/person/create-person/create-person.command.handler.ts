@@ -45,6 +45,12 @@ export class CreatePersonHandler
       command.createdBy,
       command.updatedBy,
     );
+
+    // [ ] Check if NID already exist.
+    // [ ] Check if birth registration number already exist.
+    // [ ] Check if mobile number already exist.
+    // [ ] Check if email already exist.
+
     const personModelRes = this.peoplesRepository.createPerson(personModel);
     return personModelRes;
   }
