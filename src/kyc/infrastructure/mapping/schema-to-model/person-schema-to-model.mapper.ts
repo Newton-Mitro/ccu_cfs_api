@@ -13,7 +13,7 @@ export class PersonSchemaToModelMapper
 {
   mapSchemaToBusinessModel(entitySchema: Person): PersonAggregate {
     const personModel = new PersonAggregate();
-    personModel.createPerson(
+    personModel.addPerson(
       entitySchema._id.toHexString(),
       entitySchema.IdentificationNumber,
       entitySchema.NameEn,

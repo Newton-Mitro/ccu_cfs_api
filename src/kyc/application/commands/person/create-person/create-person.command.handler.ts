@@ -21,7 +21,7 @@ export class CreatePersonHandler
       command.photo.base64Document,
     );
 
-    personModel.createPerson(
+    personModel.addPerson(
       personId,
       identificationNumber,
       command.nameEn,

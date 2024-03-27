@@ -4,7 +4,6 @@ import { PersonAttachmentDTO } from '../../contract/common/dto/person-attachment
 import { EducationDTO } from '../../contract/person/responses/dto/education.dto';
 import { EmploymentHistoryDTO } from '../../contract/person/responses/dto/employment-history.dto';
 import { FamilyAndRelativeDTO } from '../../contract/person/responses/dto/family-and-relative.dto';
-import { PersonDTO } from '../../contract/person/responses/dto/person.dto';
 import { TrainingDTO } from '../../contract/person/responses/dto/training.dto';
 import { PersonResponse } from '../../contract/person/responses/person.response';
 
@@ -12,32 +11,32 @@ export class PersonAggregateToResponseMapper {
   static map(model: PersonAggregate): PersonResponse {
     // [x]: Implement Mapping
 
-    const person = new PersonDTO(
-      model.Person.PersonId,
-      model.Person.IdentificationNumber,
-      model.Person.NameEn,
-      model.Person.NameBn,
-      model.Person.ContactNumber,
-      model.Person.MobileNumber,
-      model.Person.PhoneNumber,
-      model.Person.Email,
-      model.Person.CustomerType,
-      model.Person.DateOfBirth,
-      model.Person.Gender,
-      model.Person.BloodGroup,
-      model.Person.Religion,
-      model.Person.MaritalStatus,
-      model.Person.Profession,
-      model.Person.NID,
-      model.Person.BirthRegistrationNumber,
-      model.Person.Photo,
-      model.Person.CreatedAt.toISOString(),
-      model.Person.UpdatedAt.toISOString(),
-      model.Person.CreatedBy,
-      model.Person.UpdatedBy,
+    const personResponseModel = new PersonResponse(
+      model.PersonId,
+      model.IdentificationNumber,
+      model.NameEn,
+      model.NameBn,
+      model.ContactNumber,
+      model.MobileNumber,
+      model.PhoneNumber,
+      model.Email,
+      model.CustomerType,
+      model.DateOfBirth,
+      model.Gender,
+      model.BloodGroup,
+      model.Religion,
+      model.MaritalStatus,
+      model.Profession,
+      model.NID,
+      model.BirthRegistrationNumber,
+      model.Photo,
+      model.CreatedAt.toISOString(),
+      model.UpdatedAt.toISOString(),
+      model.CreatedBy,
+      model.UpdatedBy,
     );
 
-    const addresses = model.Addresses?.map((address) => {
+    personResponseModel.addresses = model.Addresses?.map((address) => {
       return new AddressDTO(
         address.AddressId,
         address.AddressType,
@@ -57,7 +56,7 @@ export class PersonAggregateToResponseMapper {
       );
     });
 
-    const educations = model.Educations?.map((education) => {
+    personResponseModel.educations = model.Educations?.map((education) => {
       return new EducationDTO(
         education.EducationId,
         education.EducationLevel,
@@ -73,7 +72,7 @@ export class PersonAggregateToResponseMapper {
       );
     });
 
-    const trainings = model.Trainings?.map((training) => {
+    personResponseModel.trainings = model.Trainings?.map((training) => {
       return new TrainingDTO(
         training.TrainingId,
         training.CourseTitle,
@@ -89,7 +88,7 @@ export class PersonAggregateToResponseMapper {
       );
     });
 
-    const employment_histories = model.EmploymentHistories?.map(
+    personResponseModel.employment_histories = model.EmploymentHistories?.map(
       (employmentHistory) => {
         return new EmploymentHistoryDTO(
           employmentHistory.EmploymentHistoryId,
@@ -112,7 +111,7 @@ export class PersonAggregateToResponseMapper {
       },
     );
 
-    const family_tree = model.FamilyTree?.map((familyMember) => {
+    personResponseModel.family_tree = model.FamilyTree?.map((familyMember) => {
       return new FamilyAndRelativeDTO(
         familyMember.FamilyTreeId,
         familyMember.PersonId,
@@ -142,7 +141,7 @@ export class PersonAggregateToResponseMapper {
       );
     });
 
-    const attachments = model.Attachments?.map((attachment) => {
+    personResponseModel.attachments = model.Attachments?.map((attachment) => {
       return new PersonAttachmentDTO(
         attachment.AttachmentId,
         attachment.DocumentTitle,
@@ -153,16 +152,6 @@ export class PersonAggregateToResponseMapper {
         attachment.UpdatedBy,
       );
     });
-
-    const personResponseModel = new PersonResponse(
-      person,
-      addresses,
-      family_tree,
-      educations,
-      trainings,
-      employment_histories,
-      attachments,
-    );
 
     return personResponseModel;
   }

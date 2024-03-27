@@ -14,27 +14,27 @@ export class PersonModelToSchemaMapper
 {
   mapBusinessModelToSchema(model: PersonAggregate): Person {
     const personSchema = new Person();
-    personSchema._id = new Types.ObjectId(model.Person.PersonId);
-    personSchema.IdentificationNumber = model.Person.IdentificationNumber;
-    personSchema.NameEn = model.Person.NameEn;
-    personSchema.NameBn = model.Person.NameBn;
-    personSchema.ContactNumber = model.Person.ContactNumber;
-    personSchema.PhoneNumber = model.Person.PhoneNumber;
-    personSchema.MobileNumber = model.Person.MobileNumber;
-    personSchema.Email = model.Person.Email;
-    personSchema.DateOfBirth = model.Person.DateOfBirth;
-    personSchema.NID = model.Person.NID;
-    personSchema.BirthRegistrationNumber = model.Person.BirthRegistrationNumber;
-    personSchema.BloodGroup = model.Person.BloodGroup;
-    personSchema.Gender = model.Person.Gender;
-    personSchema.Religion = model.Person.Religion;
-    personSchema.Profession = model.Person.Profession;
-    personSchema.MaritalStatus = model.Person.MaritalStatus;
-    personSchema.Photo = model.Person.Photo;
-    personSchema.CreatedAt = model.Person.CreatedAt;
-    personSchema.UpdatedAt = model.Person.UpdatedAt;
-    personSchema.CreatedBy = model.Person.CreatedBy;
-    personSchema.UpdatedBy = model.Person.UpdatedBy;
+    personSchema._id = new Types.ObjectId(model.PersonId);
+    personSchema.IdentificationNumber = model.IdentificationNumber;
+    personSchema.NameEn = model.NameEn;
+    personSchema.NameBn = model.NameBn;
+    personSchema.ContactNumber = model.ContactNumber;
+    personSchema.PhoneNumber = model.PhoneNumber;
+    personSchema.MobileNumber = model.MobileNumber;
+    personSchema.Email = model.Email;
+    personSchema.DateOfBirth = model.DateOfBirth;
+    personSchema.NID = model.NID;
+    personSchema.BirthRegistrationNumber = model.BirthRegistrationNumber;
+    personSchema.BloodGroup = model.BloodGroup;
+    personSchema.Gender = model.Gender;
+    personSchema.Religion = model.Religion;
+    personSchema.Profession = model.Profession;
+    personSchema.MaritalStatus = model.MaritalStatus;
+    personSchema.Photo = model.Photo;
+    personSchema.CreatedAt = model.CreatedAt;
+    personSchema.UpdatedAt = model.UpdatedAt;
+    personSchema.CreatedBy = model.CreatedBy;
+    personSchema.UpdatedBy = model.UpdatedBy;
 
     personSchema.Addresses = model.Addresses?.map((address: AddressModel) => ({
       _id: new Types.ObjectId(address.AddressId),
