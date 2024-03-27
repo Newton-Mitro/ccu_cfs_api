@@ -1,5 +1,4 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common';
-import { UUID } from 'src/common/utils/uuid.util';
 import { EmailMessagingRepository } from 'src/messaging/infrastructure/repositories/email-messaging.repository';
 import { SMSMessagingRepository } from 'src/messaging/infrastructure/repositories/sms-messaging.repository';
 import { CreateSubsidiaryLedgerRequest } from '../application/contract/create-subsidiary-ledger.dto';
@@ -25,7 +24,10 @@ export class SubsidiaryLedgerAccountController {
       // text: 'Test Body',
       // html: '<h1>Hello world.</h1>',
       template: 'send-otp',
-      context: { name: 'Newton Mitro', otp: UUID.makeAccountId(6) },
+      context: {
+        name: 'Newton Mitro',
+        otp: String(new Date().valueOf()).substring(7, 13),
+      },
     };
 
     // const emailMessage = {
@@ -47,7 +49,10 @@ export class SubsidiaryLedgerAccountController {
       messageType: '1',
       apiCodeOrEndpoint: '1',
       messageId: '',
-      context: { name: 'Newton Mitro', otp: UUID.makeAccountId(6) },
+      context: {
+        name: 'Newton Mitro',
+        otp: String(new Date().valueOf()).substring(7, 13),
+      },
     };
 
     // const res = await this.smsService.sendSMS(smsMessage);
