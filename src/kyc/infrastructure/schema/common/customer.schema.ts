@@ -15,30 +15,30 @@ export class Customer extends IdentifiableEntitySchema {
     maxLength: 13,
     trim: true,
   })
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ require: true, trim: true })
-  NameEn: string;
+  nameEn: string;
 
   @Prop()
-  NameBn: string;
+  nameBn: string;
 
   @Prop({ trim: true })
-  Email: string;
+  email: string;
 
   @Prop()
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop()
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @Prop()
-  MobileNumber: string;
+  mobileNumber: string;
 
   @Prop({
     type: Array(AddressSchema),
   })
-  Addresses: Address[];
+  addresses: Address[];
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

@@ -15,28 +15,28 @@ export class Organization extends Customer {
     unique: true,
     trim: true,
   })
-  RegistrationNumber: string;
+  registrationNumber: string;
 
   @Prop()
-  Fax: string;
+  fax: string;
 
   @Prop()
-  Website: string;
+  website: string;
 
   @Prop()
-  Logo: string;
+  logo: string;
 
   @Prop({ type: Array(BranchSchema) })
-  Branches: Branch[];
+  branches: Branch[];
 
   @Prop({ type: Array(ContactPersonSchema) })
-  ContactPeoples: ContactPerson[];
+  contactPeoples: ContactPerson[];
 
   @Prop({ type: Array(BankAccountSchema) })
-  BankAccounts: BankAccount[];
+  bankAccounts: BankAccount[];
 
   @Prop({ type: Array(OrganizationAttachmentSchema) })
-  Attachments: OrganizationAttachment[];
+  attachments: OrganizationAttachment[];
 }
 
 export const OrganizationSchema = SchemaFactory.createForClass(Organization);

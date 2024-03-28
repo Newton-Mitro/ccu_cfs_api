@@ -4,37 +4,37 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 @Schema()
 export class EmploymentHistory extends IdentifiableEntitySchema {
   @Prop({ require: true })
-  OrganizationName: string;
+  organizationName: string;
 
   @Prop({ require: true })
-  Position: string;
+  position: string;
 
   @Prop({ require: true })
-  Address: string;
+  address: string;
 
   @Prop({ require: true })
-  SupervisorName: string;
+  supervisorName: string;
 
   @Prop({ require: true })
-  SupervisorDesignation: string;
+  supervisorDesignation: string;
 
   @Prop({ require: true })
-  SupervisorPhone: string;
+  supervisorPhone: string;
 
   @Prop()
-  JobResponsibilities: string;
+  jobResponsibilities: string;
 
   @Prop()
-  Salary: number;
+  salary: number;
 
   @Prop({ require: true })
-  StartDate: Date;
+  startDate: Date;
 
   @Prop()
-  EndDate: Date;
+  endDate: Date;
 
   @Prop()
-  TillNow: boolean;
+  tillNow: boolean;
 }
 
 export const EmploymentHistorySchema =

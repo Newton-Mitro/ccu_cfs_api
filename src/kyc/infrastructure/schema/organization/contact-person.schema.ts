@@ -9,52 +9,52 @@ import { Religion } from 'src/common/enums/religion.enum';
 @Schema()
 export class ContactPerson extends IdentifiableEntitySchema {
   @Prop()
-  PersonId: string;
+  personId: string;
 
   @Prop()
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ required: true, trim: true })
-  NameEn: string;
+  nameEn: string;
 
   @Prop()
-  NameBn: string;
+  nameBn: string;
 
   @Prop()
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @Prop({ require: true, type: String, enum: Object.values(Gender) })
-  Gender: Gender;
+  gender: Gender;
 
   @Prop({ type: String, enum: Object.values(BloodGroup) })
-  BloodGroup: BloodGroup;
+  bloodGroup: BloodGroup;
 
   @Prop({ require: true, type: String, enum: Object.values(Religion) })
-  Religion: Religion;
+  religion: Religion;
 
   @Prop()
-  NID: string;
+  nid: string;
 
   @Prop()
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 
   @Prop({ require: true, type: String, enum: Object.values(Profession) })
-  Profession: Profession;
+  profession: Profession;
 
   @Prop({ required: true, trim: true })
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop()
-  MobileNumber: string;
+  mobileNumber: string;
 
   @Prop()
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @Prop({ required: true, trim: true })
-  Email: string;
+  email: string;
 }
 
 export const ContactPersonSchema = SchemaFactory.createForClass(ContactPerson);

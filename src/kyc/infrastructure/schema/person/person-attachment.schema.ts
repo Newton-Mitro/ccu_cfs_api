@@ -8,10 +8,10 @@ export class PersonAttachment extends IdentifiableEntitySchema {
     require: true,
     enum: Object.values(PersonalDocumentType),
   })
-  DocumentTitle: PersonalDocumentType;
+  documentTitle: PersonalDocumentType;
 
   @Prop({ required: true, type: String })
-  FileUrl: string;
+  fileUrl: string;
 }
 
 export const PersonAttachmentSchema =

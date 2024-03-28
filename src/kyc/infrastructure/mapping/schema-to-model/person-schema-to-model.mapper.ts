@@ -13,146 +13,144 @@ export class PersonSchemaToModelMapper
 {
   mapSchemaToBusinessModel(entitySchema: Person): PersonAggregate {
     const personModel = new PersonAggregate();
-    personModel.addPerson(
-      entitySchema._id.toHexString(),
-      entitySchema.IdentificationNumber,
-      entitySchema.NameEn,
-      entitySchema.NameBn,
-      entitySchema.ContactNumber,
-      entitySchema.MobileNumber,
-      entitySchema.PhoneNumber,
-      entitySchema.Email,
-      'Person',
-      entitySchema.DateOfBirth,
-      entitySchema.Gender,
-      entitySchema.BloodGroup,
-      entitySchema.Religion,
-      entitySchema.MaritalStatus,
-      entitySchema.Profession,
-      entitySchema.NID,
-      entitySchema.BirthRegistrationNumber,
-      entitySchema.Photo,
-      entitySchema.CreatedAt,
-      entitySchema.UpdatedAt,
-      entitySchema.CreatedBy,
-      entitySchema.UpdatedBy,
-    );
-
-    entitySchema.Addresses?.map((address: Address) => {
-      personModel.addAddress(
-        address._id.toHexString(),
-        address.AddressType,
-        address.AddressLineOne,
-        address.AddressLineTwo,
-        address.Country,
-        address.State,
-        address.City,
-        address.Division,
-        address.District,
-        address.SubDistrict,
-        address.ZipCode,
-        address.CreatedAt,
-        address.UpdatedAt,
-        address.CreatedBy,
-        address.UpdatedBy,
-      );
+    personModel.addPerson({
+      personId: entitySchema._id.toHexString(),
+      identificationNumber: entitySchema.identificationNumber,
+      nameEn: entitySchema.nameEn,
+      nameBn: entitySchema.nameBn,
+      contactNumber: entitySchema.contactNumber,
+      mobileNumber: entitySchema.mobileNumber,
+      phoneNumber: entitySchema.phoneNumber,
+      email: entitySchema.email,
+      dateOfBirth: entitySchema.dateOfBirth,
+      gender: entitySchema.gender,
+      bloodGroup: entitySchema.bloodGroup,
+      religion: entitySchema.religion,
+      maritalStatus: entitySchema.maritalStatus,
+      profession: entitySchema.profession,
+      nid: entitySchema.nid,
+      birthRegistrationNumber: entitySchema.birthRegistrationNumber,
+      photo: entitySchema.photo,
+      createdAt: entitySchema.createdAt,
+      updatedAt: entitySchema.updatedAt,
+      createdBy: entitySchema.createdBy,
+      updatedBy: entitySchema.updatedBy,
     });
 
-    entitySchema.FamilyTree?.map((familyAndRelative: FamilyAndRelative) => {
-      personModel.addToFamilyTree(
-        familyAndRelative._id.toHexString(),
-        familyAndRelative.PersonId,
-        familyAndRelative.IdentificationNumber,
-        familyAndRelative.NameEn,
-        familyAndRelative.NameBn,
-        familyAndRelative.ContactNumber,
-        familyAndRelative.MobileNumber,
-        familyAndRelative.PhoneNumber,
-        familyAndRelative.Email,
-        'Person',
-        familyAndRelative.DateOfBirth,
-        familyAndRelative.Gender,
-        familyAndRelative.BloodGroup,
-        familyAndRelative.Religion,
-        familyAndRelative.MaritalStatus,
-        familyAndRelative.Profession,
-        familyAndRelative.NID,
-        familyAndRelative.BirthRegistrationNumber,
-        familyAndRelative.Photo,
-        familyAndRelative.Relationship,
-        familyAndRelative.Status,
-        familyAndRelative.CreatedAt,
-        familyAndRelative.UpdatedAt,
-        familyAndRelative.CreatedBy,
-        familyAndRelative.UpdatedBy,
-      );
+    entitySchema.addresses?.map((address: Address) => {
+      personModel.addAddress({
+        addressId: address._id.toHexString(),
+        addressType: address.addressType,
+        addressLineOne: address.addressLineOne,
+        addressLineTwo: address.addressLineTwo,
+        country: address.country,
+        state: address.state,
+        city: address.city,
+        division: address.division,
+        district: address.district,
+        subDistrict: address.subDistrict,
+        zipCode: address.zipCode,
+        createdAt: address.createdAt,
+        updatedAt: address.updatedAt,
+        createdBy: address.createdBy,
+        updatedBy: address.updatedBy,
+      });
     });
 
-    entitySchema.Educations?.map((education: Education) => {
-      personModel.addEducation(
-        education._id.toHexString(),
-        education.EducationLevel,
-        education.EducationDegree,
-        education.InstituteName,
-        education.MajorSubject,
-        education.PassingYear,
-        education.Grade,
-        education.CreatedAt,
-        education.UpdatedAt,
-        education.CreatedBy,
-        education.UpdatedBy,
-      );
+    entitySchema.familyTree?.map((familyAndRelative: FamilyAndRelative) => {
+      personModel.addToFamilyTree({
+        familyTreeId: familyAndRelative._id.toHexString(),
+        personId: familyAndRelative.personId,
+        identificationNumber: familyAndRelative.identificationNumber,
+        nameEn: familyAndRelative.nameEn,
+        nameBn: familyAndRelative.nameBn,
+        contactNumber: familyAndRelative.contactNumber,
+        mobileNumber: familyAndRelative.mobileNumber,
+        phoneNumber: familyAndRelative.phoneNumber,
+        email: familyAndRelative.email,
+        dateOfBirth: familyAndRelative.dateOfBirth,
+        gender: familyAndRelative.gender,
+        bloodGroup: familyAndRelative.bloodGroup,
+        religion: familyAndRelative.religion,
+        maritalStatus: familyAndRelative.maritalStatus,
+        profession: familyAndRelative.profession,
+        nid: familyAndRelative.nid,
+        birthRegistrationNumber: familyAndRelative.birthRegistrationNumber,
+        photo: familyAndRelative.photo,
+        relationship: familyAndRelative.relationship,
+        status: familyAndRelative.status,
+        createdAt: familyAndRelative.createdAt,
+        updatedAt: familyAndRelative.updatedAt,
+        createdBy: familyAndRelative.createdBy,
+        updatedBy: familyAndRelative.updatedBy,
+      });
     });
 
-    entitySchema.Trainings?.map((training: Training) => {
-      personModel.addTraining(
-        training._id.toHexString(),
-        training.CourseTitle,
-        training.InstituteName,
-        training.CourseContent,
-        training.Result,
-        training.StartDate,
-        training.EndDate,
-        training.CreatedAt,
-        training.UpdatedAt,
-        training.CreatedBy,
-        training.UpdatedBy,
-      );
+    entitySchema.educations?.map((education: Education) => {
+      personModel.addEducation({
+        educationId: education._id.toHexString(),
+        educationLevel: education.educationLevel,
+        educationDegree: education.educationDegree,
+        instituteName: education.instituteName,
+        majorSubject: education.majorSubject,
+        passingYear: education.passingYear,
+        grade: education.grade,
+        createdAt: education.createdAt,
+        updatedAt: education.updatedAt,
+        createdBy: education.createdBy,
+        updatedBy: education.updatedBy,
+      });
     });
 
-    entitySchema.EmploymentHistories?.map(
+    entitySchema.trainings?.map((training: Training) => {
+      personModel.addTraining({
+        trainingId: training._id.toHexString(),
+        courseTitle: training.courseTitle,
+        instituteName: training.instituteName,
+        courseContent: training.courseContent,
+        result: training.result,
+        startDate: training.startDate,
+        endDate: training.endDate,
+        createdAt: training.createdAt,
+        updatedAt: training.updatedAt,
+        createdBy: training.createdBy,
+        updatedBy: training.updatedBy,
+      });
+    });
+
+    entitySchema.employmentHistories?.map(
       (employmentHistory: EmploymentHistory) => {
-        personModel.addEmploymentHistory(
-          employmentHistory._id.toHexString(),
-          employmentHistory.OrganizationName,
-          employmentHistory.Position,
-          employmentHistory.Address,
-          employmentHistory.SupervisorName,
-          employmentHistory.SupervisorDesignation,
-          employmentHistory.SupervisorPhone,
-          employmentHistory.JobResponsibilities,
-          employmentHistory.Salary,
-          employmentHistory.StartDate,
-          employmentHistory.EndDate,
-          employmentHistory.TillNow,
-          employmentHistory.CreatedAt,
-          employmentHistory.UpdatedAt,
-          employmentHistory.CreatedBy,
-          employmentHistory.UpdatedBy,
-        );
+        personModel.addEmploymentHistory({
+          employmentHistoryId: employmentHistory._id.toHexString(),
+          organizationName: employmentHistory.organizationName,
+          position: employmentHistory.position,
+          address: employmentHistory.address,
+          supervisorName: employmentHistory.supervisorName,
+          supervisorDesignation: employmentHistory.supervisorDesignation,
+          supervisorPhone: employmentHistory.supervisorPhone,
+          jobResponsibilities: employmentHistory.jobResponsibilities,
+          salary: employmentHistory.salary,
+          startDate: employmentHistory.startDate,
+          endDate: employmentHistory.endDate,
+          tillNow: employmentHistory.tillNow,
+          createdAt: employmentHistory.createdAt,
+          updatedAt: employmentHistory.updatedAt,
+          createdBy: employmentHistory.createdBy,
+          updatedBy: employmentHistory.updatedBy,
+        });
       },
     );
 
-    entitySchema.Attachments?.map((personAttachment: PersonAttachment) => {
-      personModel.addAttachment(
-        personAttachment._id.toHexString(),
-        personAttachment.DocumentTitle,
-        personAttachment.FileUrl,
-        personAttachment.CreatedAt,
-        personAttachment.UpdatedAt,
-        personAttachment.CreatedBy,
-        personAttachment.UpdatedBy,
-      );
+    entitySchema.attachments?.map((personAttachment: PersonAttachment) => {
+      personModel.addAttachment({
+        attachmentId: personAttachment._id.toHexString(),
+        documentTitle: personAttachment.documentTitle,
+        fileUrl: personAttachment.fileUrl,
+        createdAt: personAttachment.createdAt,
+        updatedAt: personAttachment.updatedAt,
+        createdBy: personAttachment.createdBy,
+        updatedBy: personAttachment.updatedBy,
+      });
     });
 
     return personModel;

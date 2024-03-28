@@ -50,13 +50,48 @@ export class PeoplesRepository extends EntityRepository<
     return null;
   }
 
+  async findByNID(nid: string): Promise<PersonAggregate | null> {
+    const customer = await this.personDocument.findOne({ nid });
+    if (customer) {
+      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+    }
+    return null;
+  }
+
+  async findByMobileNumber(
+    mobileNumber: string,
+  ): Promise<PersonAggregate | null> {
+    const customer = await this.personDocument.findOne({ mobileNumber });
+    if (customer) {
+      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+    }
+    return null;
+  }
+
+  async findByBNR(
+    birthRegistrationNumber: string,
+  ): Promise<PersonAggregate | null> {
+    const customer = await this.personDocument.findOne({
+      birthRegistrationNumber,
+    });
+    if (customer) {
+      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+    }
+    return null;
+  }
+
+  async findByEmail(email: string): Promise<PersonAggregate | null> {
+    const customer = await this.personDocument.findOne({ email });
+    if (customer) {
+      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+    }
+    return null;
+  }
+
   async createPerson(personModel: PersonAggregate): Promise<PersonAggregate> {
     const personSchema =
       this.personSchemaMapper.mapBusinessModelToSchema(personModel);
-
     const personDoc = new this.personDocument(personSchema);
-    // createdPerson._id = new Types.ObjectId();
-
     const errors = personDoc.validateSync();
 
     if (errors) {
@@ -72,36 +107,10 @@ export class PeoplesRepository extends EntityRepository<
       };
       throw new BadRequestException(result);
     }
-
-    // Unique NID Check
-
-    // Unique BirthRegistrationNumber Check
-
     const savedPersonSchema = await personDoc.save();
 
     return this.personBusinessModelMapper.mapSchemaToBusinessModel(
       savedPersonSchema,
     );
-
-    // const per = JSON.stringify(person);
-    // const emailMessage = {
-    //   from: '"CCU_CFS" <noreply@domain.com>',
-    //   to: 'newtonmitro@gmail.com',
-    //   subject: 'Person Created',
-    //   // text: 'Test Body',
-    //   // html: '<h1>Hello world.</h1>',
-    //   template: 'person-created',
-    //   context: { name: createPersonRequest.NameEn, per },
-    // };
-
-    // // const emailMessage = {
-    // //   from: '"Credit Solution" <info@cccul.com>',
-    // //   to: 'newtonmitro@gmail.com',
-    // //   subject: 'Test Subject',
-    // //   text: 'Test Body',
-    // //   html: '<h1>Hello world.</h1>',
-    // // };
-
-    // const res = await this.emailService.sendEmail(emailMessage);
   }
 }

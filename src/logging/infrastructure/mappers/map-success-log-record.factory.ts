@@ -1,8 +1,8 @@
 import { Types } from 'mongoose';
-import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
-import { SuccessLogRecord } from '../schemas/success-log-record.schema';
 import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
 import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
+import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
+import { SuccessLogRecord } from '../schemas/success-log-record.schema';
 
 export class MapSuccessLogRecordFactory
   implements
@@ -23,10 +23,10 @@ export class MapSuccessLogRecordFactory
       StatusCode: entity.StatusCode,
       RequestedAt: entity.RequestedAt,
       ResponseTime: entity.ResponseTime,
-      CreatedAt: new Date(),
-      UpdatedAt: new Date(),
-      CreatedBy: '',
-      UpdatedBy: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      createdBy: '',
+      updatedBy: '',
     };
   }
 

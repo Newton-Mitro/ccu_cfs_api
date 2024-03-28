@@ -9,24 +9,11 @@ export class OrganizationSchemaModelMapper
   mapSchemaToBusinessModel(entitySchema: Organization): OrganizationAggregate {
     const organizationModel = new OrganizationAggregate();
 
-    entitySchema.Addresses?.map((address: Address) => {
-      organizationModel.addAddress(
-        address._id.toHexString(),
-        address.AddressType,
-        address.AddressLineOne,
-        address.AddressLineTwo,
-        address.Country,
-        address.State,
-        address.City,
-        address.Division,
-        address.District,
-        address.SubDistrict,
-        address.ZipCode,
-        address.CreatedAt,
-        address.UpdatedAt,
-        address.CreatedBy,
-        address.UpdatedBy,
-      );
+    entitySchema.addresses?.map((address: Address) => {
+      organizationModel.addAddress({
+        ...address,
+        addressId: address._id.toHexString(),
+      });
     });
 
     return organizationModel;

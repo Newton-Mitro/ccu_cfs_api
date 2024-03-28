@@ -13,113 +13,50 @@ export class OrganizationModelToSchemaMapper
 {
   mapBusinessModelToSchema(model: OrganizationAggregate): Organization {
     const organizationSchema = new Organization();
-    organizationSchema.IdentificationNumber =
-      model.Organization.IdentificationNumber;
-    organizationSchema.NameEn = model.Organization.NameEn;
-    organizationSchema.NameBn = model.Organization.NameBn;
-    organizationSchema.ContactNumber = model.Organization.ContactNumber;
-    organizationSchema.PhoneNumber = model.Organization.PhoneNumber;
-    organizationSchema.MobileNumber = model.Organization.MobileNumber;
-    organizationSchema.Email = model.Organization.Email;
-    organizationSchema.RegistrationNumber =
-      model.Organization.RegistrationNumber;
-    organizationSchema.Fax = model.Organization.Fax;
-    organizationSchema.Website = model.Organization.Website;
-    organizationSchema.Logo = model.Organization.Logo;
+    organizationSchema.identificationNumber = model.identificationNumber;
+    organizationSchema.nameEn = model.nameEn;
+    organizationSchema.nameBn = model.nameBn;
+    organizationSchema.contactNumber = model.contactNumber;
+    organizationSchema.phoneNumber = model.phoneNumber;
+    organizationSchema.mobileNumber = model.mobileNumber;
+    organizationSchema.email = model.email;
+    organizationSchema.registrationNumber = model.registrationNumber;
+    organizationSchema.fax = model.fax;
+    organizationSchema.website = model.website;
+    organizationSchema.logo = model.logo;
 
-    organizationSchema.Addresses = model.Addresses?.map(
+    organizationSchema.addresses = model.addresses?.map(
       (address: AddressModel) => ({
-        _id: new Types.ObjectId(address.AddressId),
-        AddressType: address.AddressType,
-        AddressLineOne: address.AddressLineOne,
-        AddressLineTwo: address.AddressLineTwo,
-        Country: address.Country,
-        State: address.State,
-        City: address.City,
-        Division: address.Division,
-        District: address.District,
-        SubDistrict: address.SubDistrict,
-        ZipCode: address.ZipCode,
-        CreatedAt: address.CreatedAt,
-        UpdatedAt: address.UpdatedAt,
-        CreatedBy: address.CreatedBy,
-        UpdatedBy: address.UpdatedBy,
+        _id: new Types.ObjectId(address.addressId),
+        ...address,
       }),
     );
 
-    organizationSchema.Branches = model.Branches?.map(
+    organizationSchema.branches = model.branches?.map(
       (branch: BranchModel) => ({
-        _id: new Types.ObjectId(branch.BranchId),
-        OrganizationId: branch.OrganizationId,
-        IdentificationNumber: branch.IdentificationNumber,
-        RegistrationNumber: branch.RegistrationNumber,
-        TIN: branch.TIN,
-        Logo: branch.Logo,
-        NameEn: branch.NameEn,
-        NameBn: branch.NameBn,
-        Email: branch.Email,
-        ContactNumber: branch.ContactNumber,
-        MobileNumber: branch.MobileNumber,
-        PhoneNumber: branch.PhoneNumber,
-        Fax: branch.Fax,
-        Website: branch.Website,
-        CreatedAt: branch.CreatedAt,
-        UpdatedAt: branch.UpdatedAt,
-        CreatedBy: branch.CreatedBy,
-        UpdatedBy: branch.UpdatedBy,
+        _id: new Types.ObjectId(branch.branchId),
+        ...branch,
       }),
     );
 
-    organizationSchema.ContactPeoples = model.ContactPeoples?.map(
+    organizationSchema.contactPeoples = model.contactPeoples?.map(
       (contactPerson: ContactPersonModel) => ({
-        _id: new Types.ObjectId(contactPerson.ContactPersonId),
-        PersonId: contactPerson.PersonId,
-        IdentificationNumber: contactPerson.IdentificationNumber,
-        NameEn: contactPerson.NameEn,
-        NameBn: contactPerson.NameBn,
-        Email: contactPerson.Email,
-        ContactNumber: contactPerson.ContactNumber,
-        MobileNumber: contactPerson.MobileNumber,
-        PhoneNumber: contactPerson.PhoneNumber,
-        DateOfBirth: new Date(contactPerson.DateOfBirth),
-        Gender: contactPerson.Gender,
-        BloodGroup: contactPerson.BloodGroup,
-        Religion: contactPerson.Religion,
-        Profession: contactPerson.Profession,
-        NID: contactPerson.NID,
-        BirthRegistrationNumber: contactPerson.BirthRegistrationNumber,
-        MaritalStatus: contactPerson.MaritalStatus,
-        CreatedAt: contactPerson.CreatedAt,
-        UpdatedAt: contactPerson.UpdatedAt,
-        CreatedBy: contactPerson.CreatedBy,
-        UpdatedBy: contactPerson.UpdatedBy,
+        _id: new Types.ObjectId(contactPerson.contactPersonId),
+        ...contactPerson,
       }),
     );
 
-    organizationSchema.BankAccounts = model.BankAccounts?.map(
+    organizationSchema.bankAccounts = model.bankAccounts?.map(
       (bankAccount: BankAccountModel) => ({
-        _id: new Types.ObjectId(bankAccount.BankAccountId),
-        BankName: bankAccount.BankName,
-        Branch: bankAccount.Branch,
-        RoutingNumber: bankAccount.RoutingNumber,
-        AccountNumber: bankAccount.AccountNumber,
-        AccountName: bankAccount.AccountName,
-        CreatedAt: bankAccount.CreatedAt,
-        UpdatedAt: bankAccount.UpdatedAt,
-        CreatedBy: bankAccount.CreatedBy,
-        UpdatedBy: bankAccount.UpdatedBy,
+        _id: new Types.ObjectId(bankAccount.bankAccountId),
+        ...bankAccount,
       }),
     );
 
-    organizationSchema.Attachments = model.Attachments?.map(
+    organizationSchema.attachments = model.attachments?.map(
       (organizationAttachment: OrganizationAttachmentModel) => ({
-        _id: new Types.ObjectId(organizationAttachment.AttachmentId),
-        DocumentTitle: organizationAttachment.DocumentTitle,
-        FileUrl: organizationAttachment.FileUrl,
-        CreatedAt: organizationAttachment.CreatedAt,
-        UpdatedAt: organizationAttachment.UpdatedAt,
-        CreatedBy: organizationAttachment.CreatedBy,
-        UpdatedBy: organizationAttachment.UpdatedBy,
+        _id: new Types.ObjectId(organizationAttachment.attachmentId),
+        ...organizationAttachment,
       }),
     );
 

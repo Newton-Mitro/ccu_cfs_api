@@ -4,138 +4,129 @@ import { BankAccountDTO } from '../../contract/organization/responses/dto/bank-a
 import { BranchDTO } from '../../contract/organization/responses/dto/branch.dto';
 import { ContactPersonDTO } from '../../contract/organization/responses/dto/contact-person.dto';
 import { OrganizationAttachmentDTO } from '../../contract/organization/responses/dto/organization-attachment.dto';
-import { OrganizationDTO } from '../../contract/organization/responses/dto/organization.dto';
 import { OrganizationResponse } from '../../contract/organization/responses/organization.response';
 
 export class OrganizationAggregateToResponseMapper {
   static map(model: OrganizationAggregate): OrganizationResponse {
     // [x]: Implement Mapping
 
-    const organization = new OrganizationDTO(
-      model.Organization.OrganizationId,
-      model.Organization.IdentificationNumber,
-      model.Organization.RegistrationNumber,
-      model.Organization.NameEn,
-      model.Organization.NameBn,
-      model.Organization.TIN,
-      model.Organization.ContactNumber,
-      model.Organization.MobileNumber,
-      model.Organization.PhoneNumber,
-      model.Organization.Fax,
-      model.Organization.Email,
-      model.Organization.Website,
-      model.Organization.Logo,
-      model.Organization.CreatedAt.toISOString(),
-      model.Organization.UpdatedAt.toISOString(),
-      model.Organization.CreatedBy,
-      model.Organization.UpdatedBy,
+    const organization = new OrganizationResponse(
+      model.organizationId,
+      model.identificationNumber,
+      model.registrationNumber,
+      model.nameEn,
+      model.nameBn,
+      model.tin,
+      model.contactNumber,
+      model.mobileNumber,
+      model.phoneNumber,
+      model.fax,
+      model.email,
+      model.website,
+      model.logo,
+      model.createdAt?.toISOString(),
+      model.updatedAt?.toISOString(),
+      model.createdBy,
+      model.updatedBy,
     );
 
-    const branches = model.Branches.map((branch) => {
+    organization.branches = model.branches.map((branch) => {
       return new BranchDTO(
-        branch.BranchId,
-        branch.OrganizationId,
-        branch.IdentificationNumber,
-        branch.RegistrationNumber,
-        branch.NameEn,
-        branch.NameBn,
-        branch.TIN,
-        branch.ContactNumber,
-        branch.MobileNumber,
-        branch.PhoneNumber,
-        branch.Fax,
-        branch.Email,
-        branch.Website,
-        branch.Logo,
-        branch.CreatedAt.toISOString(),
-        branch.UpdatedAt.toISOString(),
-        branch.CreatedBy,
-        branch.UpdatedBy,
+        branch.branchId,
+        branch.organizationId,
+        branch.identificationNumber,
+        branch.registrationNumber,
+        branch.nameEn,
+        branch.nameBn,
+        branch.tin,
+        branch.contactNumber,
+        branch.mobileNumber,
+        branch.phoneNumber,
+        branch.fax,
+        branch.email,
+        branch.website,
+        branch.logo,
+        branch.createdAt?.toISOString(),
+        branch.updatedAt?.toISOString(),
+        branch.createdBy,
+        branch.updatedBy,
       );
     });
 
-    const addresses = model.Addresses.map((address) => {
+    organization.addresses = model.addresses.map((address) => {
       return new AddressDTO(
-        address.AddressId,
-        address.AddressType,
-        address.AddressLineOne,
-        address.AddressLineTwo,
-        address.Country,
-        address.State,
-        address.City,
-        address.Division,
-        address.District,
-        address.SubDistrict,
-        address.ZipCode,
-        address.CreatedAt.toISOString(),
-        address.UpdatedAt.toISOString(),
-        address.CreatedBy,
-        address.UpdatedBy,
+        address.addressId,
+        address.addressType,
+        address.addressLineOne,
+        address.addressLineTwo,
+        address.country,
+        address.state,
+        address.city,
+        address.division,
+        address.district,
+        address.subDistrict,
+        address.zipCode,
+        address.createdAt?.toISOString(),
+        address.updatedAt?.toISOString(),
+        address.createdBy,
+        address.updatedBy,
       );
     });
 
-    const contactPeoples = model.ContactPeoples.map((contactPerson) => {
+    organization.contact_peoples = model.contactPeoples.map((contactPerson) => {
       return new ContactPersonDTO(
-        contactPerson.ContactPersonId,
-        contactPerson.PersonId,
-        contactPerson.IdentificationNumber,
-        contactPerson.NameEn,
-        contactPerson.NameBn,
-        contactPerson.ContactNumber,
-        contactPerson.MobileNumber,
-        contactPerson.PhoneNumber,
-        contactPerson.Email,
-        contactPerson.CustomerType,
-        contactPerson.DateOfBirth,
-        contactPerson.Gender,
-        contactPerson.BloodGroup,
-        contactPerson.Religion,
-        contactPerson.MaritalStatus,
-        contactPerson.Profession,
-        contactPerson.NID,
-        contactPerson.BirthRegistrationNumber,
-        contactPerson.Photo,
-        contactPerson.CreatedAt.toISOString(),
-        contactPerson.UpdatedAt.toISOString(),
-        contactPerson.CreatedBy,
-        contactPerson.UpdatedBy,
+        contactPerson.contactPersonId,
+        contactPerson.personId,
+        contactPerson.identificationNumber,
+        contactPerson.nameEn,
+        contactPerson.nameBn,
+        contactPerson.contactNumber,
+        contactPerson.mobileNumber,
+        contactPerson.phoneNumber,
+        contactPerson.email,
+        contactPerson.dateOfBirth?.toISOString(),
+        contactPerson.gender,
+        contactPerson.bloodGroup,
+        contactPerson.religion,
+        contactPerson.maritalStatus,
+        contactPerson.profession,
+        contactPerson.nid,
+        contactPerson.birthRegistrationNumber,
+        contactPerson.photo,
+        contactPerson.createdAt?.toISOString(),
+        contactPerson.updatedAt?.toISOString(),
+        contactPerson.createdBy,
+        contactPerson.updatedBy,
       );
     });
 
-    const bankAccounts = model.BankAccounts.map((bankAccount) => {
+    organization.bank_accounts = model.bankAccounts.map((bankAccount) => {
       return new BankAccountDTO(
-        bankAccount.BankAccountId,
-        bankAccount.BankName,
-        bankAccount.Branch,
-        bankAccount.RoutingNumber,
-        bankAccount.AccountNumber,
-        bankAccount.AccountName,
-        bankAccount.CreatedAt.toISOString(),
-        bankAccount.UpdatedAt.toISOString(),
-        bankAccount.CreatedBy,
-        bankAccount.UpdatedBy,
+        bankAccount.bankAccountId,
+        bankAccount.bankName,
+        bankAccount.branch,
+        bankAccount.routingNumber,
+        bankAccount.accountNumber,
+        bankAccount.accountName,
+        bankAccount.createdAt?.toISOString(),
+        bankAccount.updatedAt?.toISOString(),
+        bankAccount.createdBy,
+        bankAccount.updatedBy,
       );
     });
 
-    const attachments = model.Attachments.map((attachment) => {
+    organization.attachments = model.attachments.map((attachment) => {
       return new OrganizationAttachmentDTO(
-        attachment.AttachmentId,
-        attachment.DocumentTitle,
-        attachment.FileUrl,
-        attachment.CreatedAt.toISOString(),
-        attachment.UpdatedAt.toISOString(),
-        attachment.CreatedBy,
-        attachment.UpdatedBy,
+        attachment.attachmentId,
+        attachment.documentTitle,
+        attachment.fileUrl,
+        attachment.createdAt?.toISOString(),
+        attachment.updatedAt?.toISOString(),
+        attachment.createdBy,
+        attachment.updatedBy,
       );
     });
 
-    return new OrganizationResponse(
-      organization,
-      branches,
-      addresses,
-      contactPeoples,
-      bankAccounts,
-      attachments,
-    );
+    return organization;
   }
 }

@@ -26,13 +26,13 @@ export class OrganizationsService {
       createOrganizationRequest,
     );
     createOrganizationModel._id = new Types.ObjectId();
-    createOrganizationModel.IdentificationNumber = String(
+    createOrganizationModel.identificationNumber = String(
       new Date().valueOf(),
     ).substring(3, 13);
 
-    createOrganizationModel.Logo = StoreBase64File.store(
+    createOrganizationModel.logo = StoreBase64File.store(
       'organizations/logo',
-      createOrganizationModel.NameEn,
+      createOrganizationModel.nameEn,
       createOrganizationRequest.logo.file_extension,
       createOrganizationRequest.logo.base64_document,
     );

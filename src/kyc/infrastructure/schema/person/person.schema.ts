@@ -26,50 +26,50 @@ export class Person extends Customer {
     super();
   }
   @Prop({ require: true })
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @Prop({ trim: true })
-  NID: string;
+  nid: string;
 
   @Prop({ trim: true })
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @Prop({ type: String, enum: Object.values(BloodGroup) })
-  BloodGroup: BloodGroup;
+  bloodGroup: BloodGroup;
 
   @Prop({ require: true, type: String, enum: Object.values(Gender) })
-  Gender: Gender;
+  gender: Gender;
 
   @Prop({ require: true, type: String, enum: Object.values(Religion) })
-  Religion: Religion;
+  religion: Religion;
 
   @Prop({
     type: String,
     default: Profession.UNWILLING_TO_REVEAL,
     enum: Object.values(Profession),
   })
-  Profession: Profession;
+  profession: Profession;
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 
   @Prop()
-  Photo: string;
+  photo: string;
 
   @Prop({ type: Array(FamilyAndRelativeSchema) })
-  FamilyTree: FamilyAndRelative[];
+  familyTree: FamilyAndRelative[];
 
   @Prop({ type: Array(EducationSchema) })
-  Educations: Education[];
+  educations: Education[];
 
   @Prop({ type: Array(TrainingSchema) })
-  Trainings: Training[];
+  trainings: Training[];
 
   @Prop({ type: Array(EmploymentHistorySchema) })
-  EmploymentHistories: EmploymentHistory[];
+  employmentHistories: EmploymentHistory[];
 
   @Prop({ type: Array(PersonAttachmentSchema) })
-  Attachments: PersonAttachment[];
+  attachments: PersonAttachment[];
 }
 
 export const PersonSchema = SchemaFactory.createForClass(Person);

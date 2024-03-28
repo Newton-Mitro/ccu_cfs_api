@@ -7,10 +7,10 @@ export class PhotoAttachment extends IdentifiableEntitySchema {
     require: true,
     type: String,
   })
-  DocumentTitle: string;
+  documentTitle: string;
 
   @Prop({ required: true, type: String })
-  FileUrl: string;
+  fileUrl: string;
 }
 
 export const PhotoAttachmentSchema =

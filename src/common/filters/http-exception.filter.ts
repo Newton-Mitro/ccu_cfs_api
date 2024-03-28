@@ -30,13 +30,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
     // let message: any = exception['response']['message'];
     // const message: any = exception.message;
 
-    try {
-      message = exception['response']['message'];
-    } catch (error) {
-      message = exception.message;
-    }
+    message = exception.message;
 
     if (exception instanceof BadRequestException) {
+      message = exception['response']['message'];
       status = exception.getStatus();
     }
 

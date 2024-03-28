@@ -1,27 +1,58 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from '../../enums/person-address-type.enum';
-import { AddressModel } from '../common/address.model';
+import { AddressModel, AddressProps } from '../common/address.model';
 import { BankAccountModel } from './models/bank-account.model';
 import { BranchModel } from './models/branch.model';
 import { ContactPersonModel } from './models/contact-person.model';
 import { OrganizationAttachmentModel } from './models/organization-attachment.model';
-import { OrganizationModel } from './models/organization.model';
+import { OrganizationProps } from './models/organization.model';
 
 export class OrganizationAggregate extends AggregateRoot {
-  private _Organization: OrganizationModel;
-  private _Addresses: AddressModel[];
-  private _Branches: BranchModel[];
-  private _Attachments: OrganizationAttachmentModel[];
-  private _ContactPeoples: ContactPersonModel[];
-  private _BankAccounts: BankAccountModel[];
+  private _organizationId: string;
+  private _identificationNumber: string;
+  private _registrationNumber: string;
+  private _tin: string;
+  private _nameEn: string;
+  private _nameBn: string;
+  private _email: string;
+  private _contactNumber: string;
+  private _mobileNumber: string;
+  private _phoneNumber: string;
+  private _fax: string;
+  private _website: string;
+  private _logo: string;
+  private _createdAt: Date;
+  private _updatedAt: Date;
+  private _createdBy: string;
+  private _updatedBy: string;
+  private _addresses: AddressModel[];
+  private _branches: BranchModel[];
+  private _attachments: OrganizationAttachmentModel[];
+  private _contactPeoples: ContactPersonModel[];
+  private _bankAccounts: BankAccountModel[];
 
   constructor() {
     super();
   }
 
-  public createOrganization() {
+  public addOrganization(organizationProps: OrganizationProps) {
     // Organization created business logic
+    this._organizationId = organizationProps.organizationId;
+    this._identificationNumber = organizationProps.identificationNumber;
+    this._registrationNumber = organizationProps.registrationNumber;
+    this._tin = organizationProps.tin;
+    this._nameEn = organizationProps.nameEn;
+    this._nameBn = organizationProps.nameBn;
+    this._email = organizationProps.email;
+    this._contactNumber = organizationProps.contactNumber;
+    this._mobileNumber = organizationProps.mobileNumber;
+    this._phoneNumber = organizationProps.phoneNumber;
+    this._fax = organizationProps.fax;
+    this._website = organizationProps.website;
+    this._logo = organizationProps.logo;
+    this._createdAt = organizationProps.createdAt;
+    this._updatedAt = organizationProps.updatedAt;
+    this._createdBy = organizationProps.createdBy;
+    this._updatedBy = organizationProps.updatedBy;
 
     this.apply('OrganizationCreatedEvent');
   }
@@ -42,42 +73,8 @@ export class OrganizationAggregate extends AggregateRoot {
     this.apply('BranchDeletedEvent');
   }
 
-  public addAddress(
-    addressId: string,
-    addressType: AddressType,
-    addressLineOne: string,
-    addressLineTwo: string,
-    country: Country,
-    state: string,
-    city: string,
-    division: string,
-    district: string,
-    subDistrict: string,
-    zipCode: string,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._Addresses.push(
-      new AddressModel(
-        addressId,
-        addressType,
-        addressLineOne,
-        addressLineTwo,
-        country,
-        state,
-        city,
-        division,
-        district,
-        subDistrict,
-        zipCode,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addAddress(addressProps: AddressProps) {
+    this._addresses.push(new AddressModel(addressProps));
     // Business logic for address adding
     this.apply('AddressAddedEvent');
   }
@@ -117,27 +114,91 @@ export class OrganizationAggregate extends AggregateRoot {
     this.apply('BankAccountDeletedEvent');
   }
 
-  public get Organization(): OrganizationModel {
-    return this._Organization;
+  public get organizationId(): string {
+    return this._organizationId;
   }
 
-  public get Addresses(): AddressModel[] {
-    return this._Addresses;
+  public get identificationNumber(): string {
+    return this._identificationNumber;
   }
 
-  public get Branches(): BranchModel[] {
-    return this._Branches;
+  public get registrationNumber(): string {
+    return this._registrationNumber;
   }
 
-  public get Attachments(): OrganizationAttachmentModel[] {
-    return this._Attachments;
+  public get tin(): string {
+    return this._tin;
   }
 
-  public get ContactPeoples(): ContactPersonModel[] {
-    return this._ContactPeoples;
+  public get nameEn(): string {
+    return this._nameEn;
   }
 
-  public get BankAccounts(): BankAccountModel[] {
-    return this._BankAccounts;
+  public get nameBn(): string {
+    return this._nameBn;
+  }
+
+  public get email(): string {
+    return this._email;
+  }
+
+  public get contactNumber(): string {
+    return this._contactNumber;
+  }
+
+  public get mobileNumber(): string {
+    return this._mobileNumber;
+  }
+
+  public get phoneNumber(): string {
+    return this._phoneNumber;
+  }
+
+  public get fax(): string {
+    return this._fax;
+  }
+
+  public get website(): string {
+    return this._website;
+  }
+
+  public get logo(): string {
+    return this._logo;
+  }
+
+  public get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this._updatedAt;
+  }
+
+  public get createdBy(): string {
+    return this._createdBy;
+  }
+
+  public get updatedBy(): string {
+    return this._updatedBy;
+  }
+
+  public get addresses(): AddressModel[] {
+    return this._addresses;
+  }
+
+  public get branches(): BranchModel[] {
+    return this._branches;
+  }
+
+  public get attachments(): OrganizationAttachmentModel[] {
+    return this._attachments;
+  }
+
+  public get contactPeoples(): ContactPersonModel[] {
+    return this._contactPeoples;
+  }
+
+  public get bankAccounts(): BankAccountModel[] {
+    return this._bankAccounts;
   }
 }

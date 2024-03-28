@@ -4,43 +4,43 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 @Schema()
 export class Branch extends IdentifiableEntitySchema {
   @Prop({ required: true, type: String })
-  OrganizationId: string;
+  organizationId: string;
 
   @Prop({ required: true, type: String })
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ required: true, type: String })
-  RegistrationNumber: string;
+  registrationNumber: string;
 
   @Prop()
-  TIN: string;
+  tin: string;
 
   @Prop({ required: true, type: String })
-  NameEn: string;
+  nameEn: string;
 
   @Prop()
-  NameBn: string;
+  nameBn: string;
 
   @Prop()
-  Email: string;
+  email: string;
 
   @Prop()
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop()
-  MobileNumber: string;
+  mobileNumber: string;
 
   @Prop()
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @Prop()
-  Fax: string;
+  fax: string;
 
   @Prop()
-  Website: string;
+  website: string;
 
   @Prop()
-  Logo: string;
+  logo: string;
 }
 
 export const BranchSchema = SchemaFactory.createForClass(Branch);

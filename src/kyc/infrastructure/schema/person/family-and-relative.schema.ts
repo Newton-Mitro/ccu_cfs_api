@@ -11,72 +11,72 @@ import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
 @Schema()
 export class FamilyAndRelative extends IdentifiableEntitySchema {
   @Prop()
-  PersonId: string;
+  personId: string;
 
   @Prop()
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ required: true, trim: true })
-  NameEn: string;
+  nameEn: string;
 
   @Prop()
-  NameBn: string;
+  nameBn: string;
 
   @Prop()
-  Email: string;
+  email: string;
 
   @Prop()
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop()
-  PhoneNumber: string;
+  phoneNumber: string;
 
   @Prop()
-  MobileNumber: string;
+  mobileNumber: string;
 
   @Prop()
-  DateOfBirth: Date;
+  dateOfBirth: Date;
 
   @Prop()
-  NID: string;
+  nid: string;
 
   @Prop()
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @Prop({ type: String, enum: Object.values(BloodGroup) })
-  BloodGroup: BloodGroup;
+  bloodGroup: BloodGroup;
 
   @Prop({ require: true, type: String, enum: Object.values(Gender) })
-  Gender: Gender;
+  gender: Gender;
 
   @Prop({ require: true, type: String, enum: Object.values(Religion) })
-  Religion: Religion;
+  religion: Religion;
 
   @Prop({
     type: String,
     default: Profession.UNWILLING_TO_REVEAL,
     enum: Object.values(Profession),
   })
-  Profession: Profession;
+  profession: Profession;
 
   @Prop({ require: true, type: String, enum: Object.values(MaritalStatus) })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 
   @Prop()
-  Photo: string;
+  photo: string;
 
   @Prop({
     type: String,
     enum: Object.values(Relationship),
   })
-  Relationship: Relationship;
+  relationship: Relationship;
 
   @Prop({
     type: String,
     default: FamilyTreeStatus.PENDING,
     enum: Object.values(FamilyTreeStatus),
   })
-  Status: FamilyTreeStatus;
+  status: FamilyTreeStatus;
 }
 
 export const FamilyAndRelativeSchema =

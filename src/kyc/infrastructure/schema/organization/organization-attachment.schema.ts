@@ -9,10 +9,10 @@ export class OrganizationAttachment extends IdentifiableEntitySchema {
     type: String,
     enum: Object.values(OrganizationalDocumentType),
   })
-  DocumentTitle: OrganizationalDocumentType;
+  documentTitle: OrganizationalDocumentType;
 
   @Prop({ required: true, type: String })
-  FileUrl: string;
+  fileUrl: string;
 }
 
 export const OrganizationAttachmentSchema = SchemaFactory.createForClass(

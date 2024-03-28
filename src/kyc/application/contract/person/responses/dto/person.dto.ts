@@ -15,7 +15,7 @@ export class PersonDTO {
     readonly phone_number: string,
     readonly email: string,
     readonly customer_type: string,
-    readonly date_of_birth: Date,
+    readonly date_of_birth: string,
     readonly gender: Gender,
     readonly blood_group: BloodGroup,
     readonly religion: Religion,

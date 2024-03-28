@@ -4,19 +4,19 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 @Schema()
 export class BankAccount extends IdentifiableEntitySchema {
   @Prop({ require: true })
-  BankName: string;
+  bankName: string;
 
   @Prop({ require: true })
-  Branch: string;
+  branch: string;
 
   @Prop()
-  RoutingNumber: string;
+  routingNumber: string;
 
   @Prop({ require: true })
-  AccountNumber: string;
+  accountNumber: string;
 
   @Prop()
-  AccountName: string;
+  accountName: string;
 }
 
 export const BankAccountSchema = SchemaFactory.createForClass(BankAccount);

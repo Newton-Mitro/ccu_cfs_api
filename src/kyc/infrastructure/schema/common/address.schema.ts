@@ -10,38 +10,38 @@ export class Address extends IdentifiableEntitySchema {
     enum: Object.values(AddressType),
     default: AddressType.PERMANENT_ADDRESS,
   })
-  AddressType: AddressType;
+  addressType: AddressType;
 
   @Prop({ require: true })
-  AddressLineOne: string;
+  addressLineOne: string;
 
   @Prop()
-  AddressLineTwo: string;
+  addressLineTwo: string;
 
   @Prop({
     type: String,
     enum: Object.values(Country),
     default: Country.BANGLADESH,
   })
-  Country: Country;
+  country: Country;
 
   @Prop()
-  State: string;
+  state: string;
 
   @Prop()
-  City: string;
+  city: string;
 
   @Prop()
-  Division: string;
+  division: string;
 
   @Prop()
-  District: string;
+  district: string;
 
   @Prop()
-  SubDistrict: string;
+  subDistrict: string;
 
   @Prop()
-  ZipCode: string;
+  zipCode: string;
 }
 
 export const AddressSchema = SchemaFactory.createForClass(Address);

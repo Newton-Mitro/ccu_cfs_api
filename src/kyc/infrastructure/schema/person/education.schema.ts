@@ -4,22 +4,22 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 @Schema()
 export class Education extends IdentifiableEntitySchema {
   @Prop({ require: true })
-  EducationLevel: string;
+  educationLevel: string;
 
   @Prop({ require: true })
-  EducationDegree: string;
+  educationDegree: string;
 
   @Prop({ require: true })
-  InstituteName: string;
+  instituteName: string;
 
   @Prop()
-  MajorSubject: string;
+  majorSubject: string;
 
   @Prop({ require: true })
-  PassingYear: string;
+  passingYear: string;
 
   @Prop()
-  Grade: string;
+  grade: string;
 }
 
 export const EducationSchema = SchemaFactory.createForClass(Education);

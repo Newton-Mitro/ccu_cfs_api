@@ -1,102 +1,89 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
-import { Country } from 'src/common/enums/country.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
-import { Relationship } from 'src/common/enums/relationship.enum';
 import { Religion } from 'src/common/enums/religion.enum';
-import { FamilyTreeStatus } from '../../enums/family-tree-status.enum';
-import { PersonalDocumentType } from '../../enums/kyc-attachment-type.enum';
-import { AddressType } from '../../enums/person-address-type.enum';
-import { AddressModel } from '../common/address.model';
-import { EducationModel } from './models/education.model';
-import { EmploymentHistoryModel } from './models/employment-history.model';
-import { FamilyAndRelativeModel } from './models/family-and-relative.model';
-import { PersonAttachmentModel } from './models/person-attachment.model';
-import { TrainingModel } from './models/training.model';
+import { AddressModel, AddressProps } from '../common/address.model';
+import { EducationModel, EducationProps } from './models/education.model';
+import {
+  EmploymentHistoryModel,
+  EmploymentHistoryProps,
+} from './models/employment-history.model';
+import {
+  FamilyAndRelativeModel,
+  FamilyAndRelativeProps,
+} from './models/family-and-relative.model';
+import {
+  PersonAttachmentModel,
+  PersonAttachmentProps,
+} from './models/person-attachment.model';
+import { PersonProps } from './models/person.model';
+import { TrainingModel, TrainingProps } from './models/training.model';
 
 export class PersonAggregate extends AggregateRoot {
-  private _PersonId: string;
-  private _IdentificationNumber: string;
-  private _NameEn: string;
-  private _NameBn: string;
-  private _ContactNumber: string;
-  private _MobileNumber: string;
-  private _PhoneNumber: string;
-  private _Email: string;
-  private _CustomerType: string;
-  private _DateOfBirth: Date;
-  private _Gender: Gender;
-  private _BloodGroup: BloodGroup;
-  private _Religion: Religion;
-  private _MaritalStatus: MaritalStatus;
-  private _Profession: Profession;
-  private _NID: string;
-  private _BirthRegistrationNumber: string;
-  private _Photo: string;
-  protected _CreatedAt: Date;
-  protected _UpdatedAt: Date;
-  protected _CreatedBy: string;
-  protected _UpdatedBy: string;
-  private _Addresses: AddressModel[];
-  private _FamilyTree: FamilyAndRelativeModel[];
-  private _Educations: EducationModel[];
-  private _Trainings: TrainingModel[];
-  private _EmploymentHistories: EmploymentHistoryModel[];
-  private _Attachments: PersonAttachmentModel[];
+  private _personId: string;
+  private _identificationNumber: string;
+  private _nameEn: string;
+  private _nameBn: string;
+  private _contactNumber: string;
+  private _mobileNumber: string;
+  private _phoneNumber: string;
+  private _email: string;
+  private _dateOfBirth: Date;
+  private _gender: Gender;
+  private _bloodGroup: BloodGroup;
+  private _religion: Religion;
+  private _maritalStatus: MaritalStatus;
+  private _profession: Profession;
+  private _nid: string;
+  private _birthRegistrationNumber: string;
+  private _photo: string;
+  private _createdAt: Date;
+  private _updatedAt: Date;
+  private _createdBy: string;
+  private _updatedBy: string;
+  private _addresses: AddressModel[];
+  private _familyTree: FamilyAndRelativeModel[];
+  private _educations: EducationModel[];
+  private _trainings: TrainingModel[];
+  private _employmentHistories: EmploymentHistoryModel[];
+  private _attachments: PersonAttachmentModel[];
 
   constructor() {
     super();
   }
 
-  public addPerson(
-    personId: string,
-    identificationNumber: string,
-    nameEn: string,
-    nameBn: string,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    email: string,
-    customerType: string,
-    dateOfBirth: Date,
-    gender: Gender,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
-    nid: string,
-    birthRegistrationNumber: string,
-    photo: string,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
+  public addPerson(personProps: PersonProps) {
     // NID or BRN needed
-    this._PersonId = personId;
-    this._IdentificationNumber = identificationNumber;
-    this._NameEn = nameEn;
-    this._NameBn = nameBn;
-    this._ContactNumber = contactNumber;
-    this._MobileNumber = mobileNumber;
-    this._PhoneNumber = phoneNumber;
-    this._Email = email;
-    this._CustomerType = customerType;
-    this._DateOfBirth = dateOfBirth;
-    this._Gender = gender;
-    this._BloodGroup = bloodGroup;
-    this._Religion = religion;
-    this._MaritalStatus = maritalStatus;
-    this._Profession = profession;
-    this._NID = nid;
-    this._BirthRegistrationNumber = birthRegistrationNumber;
-    this._Photo = photo;
-    this._CreatedAt = createdAt;
-    this._UpdatedAt = updatedAt;
-    this._CreatedBy = createdBy;
-    this._UpdatedBy = updatedBy;
+    if (!personProps.nid && !personProps.birthRegistrationNumber) {
+      throw new HttpException('NID or BNR required', HttpStatus.BAD_REQUEST);
+    }
+    if (!personProps.dateOfBirth) {
+      throw new HttpException('Date of birth required', HttpStatus.BAD_REQUEST);
+    }
+    this._personId = personProps.personId;
+    this._identificationNumber = personProps.identificationNumber;
+    this._nameEn = personProps.nameEn;
+    this._nameBn = personProps?.nameBn;
+    this._contactNumber = personProps?.contactNumber;
+    this._mobileNumber = personProps.mobileNumber;
+    this._phoneNumber = personProps?.phoneNumber;
+    this._email = personProps.email;
+    this._dateOfBirth = personProps.dateOfBirth;
+    this._gender = personProps.gender;
+    this._bloodGroup = personProps.bloodGroup;
+    this._religion = personProps.religion;
+    this._maritalStatus = personProps.maritalStatus;
+    this._profession = personProps.profession;
+    this._nid = personProps?.nid;
+    this._birthRegistrationNumber = personProps?.birthRegistrationNumber;
+    this._photo = personProps?.photo;
+    this._createdAt = personProps.createdAt;
+    this._updatedAt = personProps.updatedAt;
+    this._createdBy = personProps?.createdBy;
+    this._updatedBy = personProps?.updatedBy;
     this.apply('PersonCreatedEvent');
   }
 
@@ -105,42 +92,8 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('PersonUpdatedEvent');
   }
 
-  public addAddress(
-    addressId: string,
-    addressType: AddressType,
-    addressLineOne: string,
-    addressLineTwo: string,
-    country: Country,
-    state: string,
-    city: string,
-    division: string,
-    district: string,
-    subDistrict: string,
-    zipCode: string,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._Addresses.push(
-      new AddressModel(
-        addressId,
-        addressType,
-        addressLineOne,
-        addressLineTwo,
-        country,
-        state,
-        city,
-        division,
-        district,
-        subDistrict,
-        zipCode,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addAddress(addressProps: AddressProps) {
+    this._addresses.push(new AddressModel(addressProps));
     // Business logic for address adding
     this.apply('AddressAddedEvent');
   }
@@ -150,62 +103,8 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('AddressDeletedEvent');
   }
 
-  public addToFamilyTree(
-    familyTreeId: string,
-    personId: string,
-    identificationNumber: string,
-    nameEn: string,
-    nameBn: string,
-    contactNumber: string,
-    mobileNumber: string,
-    phoneNumber: string,
-    email: string,
-    customerType: string,
-    dateOfBirth: Date,
-    gender: Gender,
-    bloodGroup: BloodGroup,
-    religion: Religion,
-    maritalStatus: MaritalStatus,
-    profession: Profession,
-    nid: string,
-    birthRegistrationNumber: string,
-    photo: string,
-    relationship: Relationship,
-    status: FamilyTreeStatus,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._FamilyTree.push(
-      new FamilyAndRelativeModel(
-        familyTreeId,
-        personId,
-        identificationNumber,
-        nameEn,
-        nameBn,
-        contactNumber,
-        mobileNumber,
-        phoneNumber,
-        email,
-        customerType,
-        dateOfBirth,
-        gender,
-        bloodGroup,
-        religion,
-        maritalStatus,
-        profession,
-        nid,
-        birthRegistrationNumber,
-        photo,
-        relationship,
-        status,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addToFamilyTree(familyAndRelativeProps: FamilyAndRelativeProps) {
+    this._familyTree.push(new FamilyAndRelativeModel(familyAndRelativeProps));
     // Business logic for adding family member to family tree
     this.apply('FamilyMemberAddedEvent');
   }
@@ -215,26 +114,8 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('FamilyMemberDeletedEvent');
   }
 
-  public addAttachment(
-    attachmentId: string,
-    documentTitle: PersonalDocumentType,
-    fileUrl: string,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._Attachments.push(
-      new PersonAttachmentModel(
-        attachmentId,
-        documentTitle,
-        fileUrl,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addAttachment(personAttachmentProps: PersonAttachmentProps) {
+    this._attachments.push(new PersonAttachmentModel(personAttachmentProps));
     // Business logic for attachment adding
     this.apply('AttachmentAddedEvent');
   }
@@ -244,34 +125,8 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('AttachmentDeletedEvent');
   }
 
-  public addEducation(
-    educationId: string,
-    educationLevel: string,
-    educationDegree: string,
-    instituteName: string,
-    majorSubject: string,
-    passingYear: string,
-    grade: string,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._Educations.push(
-      new EducationModel(
-        educationId,
-        educationLevel,
-        educationDegree,
-        instituteName,
-        majorSubject,
-        passingYear,
-        grade,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addEducation(educationProps: EducationProps) {
+    this._educations.push(new EducationModel(educationProps));
     this.apply('EducationAddedEvent');
   }
 
@@ -280,34 +135,8 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('EducationDeletedEvent');
   }
 
-  public addTraining(
-    trainingId: string,
-    courseTitle: string,
-    instituteName: string,
-    courseContent: string,
-    result: string,
-    startDate: Date,
-    endDate: Date,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._Trainings.push(
-      new TrainingModel(
-        trainingId,
-        courseTitle,
-        instituteName,
-        courseContent,
-        result,
-        startDate,
-        endDate,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
-    );
+  public addTraining(trainingProps: TrainingProps) {
+    this._trainings.push(new TrainingModel(trainingProps));
     this.apply('TrainingAddedEvent');
   }
 
@@ -316,43 +145,9 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('TrainingDeletedEvent');
   }
 
-  public addEmploymentHistory(
-    educationHistoryId: string,
-    organizationName: string,
-    position: string,
-    address: string,
-    supervisorName: string,
-    supervisorDesignation: string,
-    supervisorPhone: string,
-    jobResponsibilities: string,
-    salary: number,
-    startDate: Date,
-    endDate: Date,
-    tillNow: boolean,
-    createdAt: Date,
-    updatedAt: Date,
-    createdBy: string,
-    updatedBy: string,
-  ) {
-    this._EmploymentHistories.push(
-      new EmploymentHistoryModel(
-        educationHistoryId,
-        organizationName,
-        position,
-        address,
-        supervisorName,
-        supervisorDesignation,
-        supervisorPhone,
-        jobResponsibilities,
-        salary,
-        startDate,
-        endDate,
-        tillNow,
-        createdAt,
-        updatedAt,
-        createdBy,
-        updatedBy,
-      ),
+  public addEmploymentHistory(employmentHistoryProps: EmploymentHistoryProps) {
+    this._employmentHistories.push(
+      new EmploymentHistoryModel(employmentHistoryProps),
     );
     this.apply('EmploymentHistoryAddedEvent');
   }
@@ -362,115 +157,111 @@ export class PersonAggregate extends AggregateRoot {
     this.apply('EmploymentHistoryDeletedEvent');
   }
 
-  public get PersonId(): string {
-    return this._PersonId;
+  public get personId(): string {
+    return this._personId;
   }
 
-  public get IdentificationNumber(): string {
-    return this._IdentificationNumber;
+  public get identificationNumber(): string {
+    return this._identificationNumber;
   }
 
-  public get NameEn(): string {
-    return this._NameEn;
+  public get nameEn(): string {
+    return this._nameEn;
   }
 
-  public get NameBn(): string {
-    return this._NameBn;
+  public get nameBn(): string {
+    return this._nameBn;
   }
 
-  public get ContactNumber(): string {
-    return this._ContactNumber;
+  public get contactNumber(): string {
+    return this._contactNumber;
   }
 
-  public get MobileNumber(): string {
-    return this._MobileNumber;
+  public get mobileNumber(): string {
+    return this._mobileNumber;
   }
 
-  public get PhoneNumber(): string {
-    return this._PhoneNumber;
+  public get phoneNumber(): string {
+    return this._phoneNumber;
   }
 
-  public get Email(): string {
-    return this._Email;
+  public get email(): string {
+    return this._email;
   }
 
-  public get CustomerType(): string {
-    return this._CustomerType;
+  public get dateOfBirth(): Date {
+    return this._dateOfBirth;
   }
 
-  public get DateOfBirth(): Date {
-    return this._DateOfBirth;
+  public get gender(): Gender {
+    return this._gender;
   }
 
-  public get Gender(): Gender {
-    return this._Gender;
+  public get bloodGroup(): BloodGroup {
+    return this._bloodGroup;
   }
 
-  public get BloodGroup(): BloodGroup {
-    return this._BloodGroup;
+  public get religion(): Religion {
+    return this._religion;
   }
 
-  public get Religion(): Religion {
-    return this._Religion;
+  public get maritalStatus(): MaritalStatus {
+    return this._maritalStatus;
   }
 
-  public get MaritalStatus(): MaritalStatus {
-    return this._MaritalStatus;
+  public get profession(): Profession {
+    return this._profession;
   }
 
-  public get Profession(): Profession {
-    return this._Profession;
+  public get nid(): string {
+    return this._nid;
   }
 
-  public get NID(): string {
-    return this._NID;
+  public get birthRegistrationNumber(): string {
+    return this._birthRegistrationNumber;
   }
 
-  public get BirthRegistrationNumber(): string {
-    return this._BirthRegistrationNumber;
+  public get photo(): string {
+    return this._photo;
   }
 
-  public get Photo(): string {
-    return this._Photo;
+  public get createdAt(): Date {
+    return this._createdAt;
   }
 
-  public get CreatedAt(): Date {
-    return this._CreatedAt;
+  public get updatedAt(): Date {
+    return this._updatedAt;
   }
 
-  public get UpdatedAt(): Date {
-    return this._UpdatedAt;
+  public get createdBy(): string {
+    return this._createdBy;
   }
 
-  public get CreatedBy(): string {
-    return this._CreatedBy;
+  public get updatedBy(): string {
+    return this._updatedBy;
   }
 
-  public get UpdatedBy(): string {
-    return this._UpdatedBy;
+  public get addresses(): AddressModel[] {
+    return this._addresses;
   }
 
-  public get Addresses(): AddressModel[] {
-    return this._Addresses;
+  public get familyTree(): FamilyAndRelativeModel[] {
+    return this._familyTree;
   }
 
-  public get FamilyTree(): FamilyAndRelativeModel[] {
-    return this._FamilyTree;
+  public get educations(): EducationModel[] {
+    return this._educations;
   }
 
-  public get Educations(): EducationModel[] {
-    return this._Educations;
+  public get trainings(): TrainingModel[] {
+    return this._trainings;
   }
 
-  public get Trainings(): TrainingModel[] {
-    return this._Trainings;
+  public get employmentHistories(): EmploymentHistoryModel[] {
+    return this._employmentHistories;
   }
 
-  public get EmploymentHistories(): EmploymentHistoryModel[] {
-    return this._EmploymentHistories;
-  }
-
-  public get Attachments(): PersonAttachmentModel[] {
-    return this._Attachments;
+  public get attachments(): PersonAttachmentModel[] {
+    return this._attachments;
   }
 }

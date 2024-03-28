@@ -6,14 +6,14 @@ export abstract class IdentifiableEntitySchema {
   _id: ObjectId;
 
   @Prop()
-  CreatedAt: Date;
+  createdAt: Date;
 
   @Prop()
-  UpdatedAt: Date;
+  updatedAt: Date;
 
   @Prop()
-  CreatedBy: string;
+  createdBy: string;
 
   @Prop()
-  UpdatedBy: string;
+  updatedBy: string;
 }
