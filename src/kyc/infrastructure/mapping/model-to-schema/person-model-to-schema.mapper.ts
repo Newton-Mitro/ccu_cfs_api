@@ -6,7 +6,7 @@ import { EmploymentHistoryModel } from 'src/kyc/domain/models/person/models/empl
 import { FamilyAndRelativeModel } from 'src/kyc/domain/models/person/models/family-and-relative.model';
 import { PersonAttachmentModel } from 'src/kyc/domain/models/person/models/person-attachment.model';
 import { TrainingModel } from 'src/kyc/domain/models/person/models/training.model';
-import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
+import { PersonAggregate } from '../../../domain/models/person/person.aggregate';
 import { Person } from '../../schema/person/person.schema';
 
 export class PersonModelToSchemaMapper
@@ -41,12 +41,16 @@ export class PersonModelToSchemaMapper
       ...address,
     }));
 
-    personSchema.familyTree = model.familyTree?.map(
+    const family_tree = model.familyTree?.map(
       (familyAndRelative: FamilyAndRelativeModel) => ({
         _id: new Types.ObjectId(familyAndRelative.familyTreeId),
         ...familyAndRelative,
       }),
     );
+
+    if (family_tree) {
+      personSchema.familyTree = family_tree;
+    }
 
     personSchema.educations = model.educations?.map(
       (education: EducationModel) => ({

@@ -1,6 +1,7 @@
 import { Relationship } from 'src/common/enums/relationship.enum';
 import { FamilyTreeStatus } from 'src/kyc/domain/enums/family-tree-status.enum';
-import { PersonModel, PersonProps } from './person.model';
+import { PersonProps } from '../person.aggregate';
+import { PersonModel } from './person.model';
 
 export type FamilyAndRelativeProps = PersonProps & {
   familyTreeId: string;

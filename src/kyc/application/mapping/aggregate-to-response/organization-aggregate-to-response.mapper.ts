@@ -1,4 +1,4 @@
-import { OrganizationAggregate } from 'src/kyc/domain/models/organization/organization.aggregate';
+import { OrganizationAggregate } from '../../../domain/models/organization/organization.aggregate';
 import { AddressDTO } from '../../contract/common/dto/address.dto';
 import { BankAccountDTO } from '../../contract/organization/responses/dto/bank-account.dto';
 import { BranchDTO } from '../../contract/organization/responses/dto/branch.dto';

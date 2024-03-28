@@ -1,5 +1,5 @@
 import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
-import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
+import { PersonAggregate } from '../../../domain/models/person/person.aggregate';
 import { Address } from '../../schema/common/address.schema';
 import { Education } from '../../schema/person/education.schema';
 import { EmploymentHistory } from '../../schema/person/employment-history.schema';
@@ -12,8 +12,7 @@ export class PersonSchemaToModelMapper
   implements IBusinessModelMapper<Person, PersonAggregate>
 {
   mapSchemaToBusinessModel(entitySchema: Person): PersonAggregate {
-    const personModel = new PersonAggregate();
-    personModel.addPerson({
+    const personModel = new PersonAggregate({
       personId: entitySchema._id.toHexString(),
       identificationNumber: entitySchema.identificationNumber,
       nameEn: entitySchema.nameEn,

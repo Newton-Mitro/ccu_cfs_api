@@ -5,7 +5,7 @@ import { BankAccountModel } from 'src/kyc/domain/models/organization/models/bank
 import { BranchModel } from 'src/kyc/domain/models/organization/models/branch.model';
 import { ContactPersonModel } from 'src/kyc/domain/models/organization/models/contact-person.model';
 import { OrganizationAttachmentModel } from 'src/kyc/domain/models/organization/models/organization-attachment.model';
-import { OrganizationAggregate } from 'src/kyc/domain/models/organization/organization.aggregate';
+import { OrganizationAggregate } from '../../../domain/models/organization/organization.aggregate';
 import { Organization } from '../../schema/organization/organization.schema';
 
 export class OrganizationModelToSchemaMapper

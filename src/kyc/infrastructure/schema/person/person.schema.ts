@@ -28,7 +28,7 @@ export class Person extends Customer {
   @Prop({ require: true })
   dateOfBirth: Date;
 
-  @Prop({ trim: true })
+  @Prop({ trim: true, default: null })
   nid: string;
 
   @Prop({ trim: true })

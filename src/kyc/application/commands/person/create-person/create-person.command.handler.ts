@@ -5,8 +5,8 @@ import { StoreBase64File } from 'src/common/utils/store-base64-file';
 import { BirthRegistrationExistException } from 'src/kyc/application/exceptions/birth-registration-exist.exception';
 import { MobileExistException } from 'src/kyc/application/exceptions/mobile-number-exist.exception';
 import { NIDExistException } from 'src/kyc/application/exceptions/nid-exist.exception';
-import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { PeoplesRepository } from 'src/kyc/infrastructure/repositories/peoples.repository';
+import { PersonAggregate } from '../../../../domain/models/person/person.aggregate';
 import { CreatePersonCommand } from './create-person.command';
 @CommandHandler(CreatePersonCommand)
 export class CreatePersonHandler
@@ -15,17 +15,20 @@ export class CreatePersonHandler
   constructor(private peoplesRepository: PeoplesRepository) {}
 
   async execute(command: CreatePersonCommand): Promise<PersonAggregate> {
-    const personModel = new PersonAggregate();
     const personId = new Types.ObjectId().toHexString();
     const identificationNumber = String(Date.now());
-    const fileUrl = StoreBase64File.store(
-      'persons/photo',
-      identificationNumber,
-      command.photo.fileExtension,
-      command.photo.base64Document,
-    );
 
-    personModel.addPerson({
+    let fileUrl: string = '';
+    if (command?.photo) {
+      fileUrl = StoreBase64File.store(
+        'persons/photo',
+        identificationNumber,
+        command.photo.fileExtension,
+        command.photo.base64Document,
+      );
+    }
+
+    const personModel = new PersonAggregate({
       ...command,
       personId: personId,
       identificationNumber: identificationNumber,
@@ -77,10 +80,3 @@ export class CreatePersonHandler
     return personModelRes;
   }
 }
-
-// Generate PersonIdentificationNumber (Auto Incremental, 6 digit)
-// Check if NID already exist
-// Check if BirthRegistrationNumber already exist
-// Check if MobileNumber already exist
-// Check if Email already exist
-// Send email if person created

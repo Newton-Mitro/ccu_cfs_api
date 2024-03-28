@@ -22,7 +22,7 @@ export class PeoplesController {
     @Req() req: Request,
     @Body() createPersonRequest: CreatePersonRequest,
   ) {
-    const user: any = req.user;
+    const user: any = req['user'];
     return this.peoplesService.create(
       user?.id,
       new Date(),

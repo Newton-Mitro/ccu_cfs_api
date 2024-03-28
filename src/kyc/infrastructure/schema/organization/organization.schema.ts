@@ -18,6 +18,9 @@ export class Organization extends Customer {
   registrationNumber: string;
 
   @Prop()
+  tin: string;
+
+  @Prop()
   fax: string;
 
   @Prop()

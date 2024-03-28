@@ -20,7 +20,7 @@ export class Customer extends IdentifiableEntitySchema {
   @Prop({ require: true, trim: true })
   nameEn: string;
 
-  @Prop()
+  @Prop({ default: null })
   nameBn: string;
 
   @Prop({ trim: true })

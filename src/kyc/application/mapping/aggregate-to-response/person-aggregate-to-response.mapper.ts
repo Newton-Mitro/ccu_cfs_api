@@ -1,4 +1,4 @@
-import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
+import { PersonAggregate } from '../../../domain/models/person/person.aggregate';
 import { AddressDTO } from '../../contract/common/dto/address.dto';
 import { PersonAttachmentDTO } from '../../contract/common/dto/person-attachment.dto';
 import { EducationDTO } from '../../contract/person/responses/dto/education.dto';
