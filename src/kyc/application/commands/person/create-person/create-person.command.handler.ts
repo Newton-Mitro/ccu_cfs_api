@@ -2,6 +2,9 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Types } from 'mongoose';
 import { StoreBase64File } from 'src/common/utils/store-base64-file';
+import { BirthRegistrationExistException } from 'src/kyc/application/exceptions/birth-registration-exist.exception';
+import { MobileExistException } from 'src/kyc/application/exceptions/mobile-number-exist.exception';
+import { NIDExistException } from 'src/kyc/application/exceptions/nid-exist.exception';
 import { PersonAggregate } from 'src/kyc/domain/models/person/person.aggregate';
 import { PeoplesRepository } from 'src/kyc/infrastructure/repositories/peoples.repository';
 import { CreatePersonCommand } from './create-person.command';
@@ -35,10 +38,7 @@ export class CreatePersonHandler
         personModel.nid,
       );
       if (personWithNID) {
-        throw new HttpException(
-          'Person with the same national identification number already exist',
-          HttpStatus.BAD_REQUEST,
-        );
+        throw new NIDExistException();
       }
     }
     // [ ] Check if birth registration number already exist.
@@ -47,10 +47,7 @@ export class CreatePersonHandler
         personModel.birthRegistrationNumber,
       );
       if (personWithBNR) {
-        throw new HttpException(
-          'Person with the same birth registration number already exist',
-          HttpStatus.BAD_REQUEST,
-        );
+        throw new BirthRegistrationExistException();
       }
     }
     // [ ] Check if mobile number already exist.
@@ -60,10 +57,7 @@ export class CreatePersonHandler
           personModel.mobileNumber,
         );
       if (personWithMobileNumber) {
-        throw new HttpException(
-          'Person with the same mobile number already exist',
-          HttpStatus.BAD_REQUEST,
-        );
+        throw new MobileExistException();
       }
     }
     // [ ] Check if email already exist.
