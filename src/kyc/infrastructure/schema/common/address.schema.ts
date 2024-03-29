@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifiable-entity.schema';
+import { AddressType } from 'src/common/enums/address-type.enum';
 import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 @Schema()
 export class Address extends IdentifiableEntitySchema {

@@ -1,4 +1,9 @@
-import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
@@ -112,5 +117,22 @@ export class PeoplesRepository extends EntityRepository<
     return this.personBusinessModelMapper.mapSchemaToAggregate(
       savedPersonSchema,
     );
+  }
+
+  async findOneAndReplace(
+    personId: string,
+    personModel: PersonAggregate,
+  ): Promise<void> {
+    const updatedEntityDocument = await this.entityModel.findOneAndReplace(
+      { _id: personId },
+      personModel,
+      {
+        new: true,
+      },
+    );
+
+    if (!updatedEntityDocument) {
+      throw new NotFoundException('Unable to find the entity to replace.');
+    }
   }
 }

@@ -7,9 +7,9 @@ import {
   PersonDocument,
 } from '../../infrastructure/schema/person/person.schema';
 import {
-  CreatePersonCommand,
+  AddPersonCommand,
   PersonPhotoAttachment,
-} from '../commands/person/create-person/create-person.command';
+} from '../commands/person/add-person/add-person.command';
 import { CreatePersonRequest } from '../contract/person/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/requests/update-person.request';
 import { PersonResponse } from '../contract/person/responses/person.response';
@@ -30,7 +30,7 @@ export class PeoplesService {
     createPersonRequest: CreatePersonRequest,
   ): Promise<PersonResponse> {
     const person = await this.commandBus.execute(
-      new CreatePersonCommand(
+      new AddPersonCommand(
         createPersonRequest.name_en,
         createPersonRequest?.name_bn,
         new Date(createPersonRequest.date_of_birth),

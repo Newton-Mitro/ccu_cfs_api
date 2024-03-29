@@ -4,6 +4,8 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { PersonAddedEvent } from '../../events/person/person-added.event';
+import { PersonUpdatedEvent } from '../../events/person/person-updated.event';
 import { AddressModel, AddressProps } from '../common/address.model';
 import { EducationModel, EducationProps } from './models/education.model';
 import {
@@ -45,27 +47,27 @@ export type PersonProps = {
 };
 
 export class PersonAggregate extends AggregateRoot {
-  readonly personId: string;
-  readonly identificationNumber: string;
-  readonly nameEn: string;
-  readonly nameBn: string;
-  readonly contactNumber: string;
-  readonly mobileNumber: string;
-  readonly phoneNumber: string;
-  readonly email: string;
-  readonly dateOfBirth: Date;
-  readonly gender: Gender;
-  readonly bloodGroup: BloodGroup;
-  readonly religion: Religion;
-  readonly maritalStatus: MaritalStatus;
-  readonly profession: Profession;
-  readonly nid: string;
-  readonly birthRegistrationNumber: string;
-  readonly photo: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  private _personId: string;
+  private _identificationNumber: string;
+  private _nameEn: string;
+  private _nameBn: string;
+  private _contactNumber: string;
+  private _mobileNumber: string;
+  private _phoneNumber: string;
+  private _email: string;
+  private _dateOfBirth: Date;
+  private _gender: Gender;
+  private _bloodGroup: BloodGroup;
+  private _religion: Religion;
+  private _maritalStatus: MaritalStatus;
+  private _profession: Profession;
+  private _nid: string;
+  private _birthRegistrationNumber: string;
+  private _photo: string;
+  private _createdAt: Date;
+  private _updatedAt: Date;
+  private _createdBy: string;
+  private _updatedBy: string;
   private _addresses: AddressModel[];
   private _familyTree: FamilyAndRelativeModel[];
   private _educations: EducationModel[];
@@ -75,27 +77,53 @@ export class PersonAggregate extends AggregateRoot {
 
   constructor(personProps: PersonProps) {
     super();
-    this.personId = personProps.personId;
-    this.identificationNumber = personProps.identificationNumber;
-    this.nameEn = personProps.nameEn;
-    this.nameBn = personProps.nameBn;
-    this.contactNumber = personProps.contactNumber;
-    this.mobileNumber = personProps.mobileNumber;
-    this.phoneNumber = personProps.phoneNumber;
-    this.email = personProps.email;
-    this.dateOfBirth = personProps.dateOfBirth;
-    this.gender = personProps.gender;
-    this.bloodGroup = personProps.bloodGroup;
-    this.religion = personProps.religion;
-    this.maritalStatus = personProps.maritalStatus;
-    this.profession = personProps.profession;
-    this.nid = personProps.nid;
-    this.birthRegistrationNumber = personProps.birthRegistrationNumber;
-    this.photo = personProps.photo;
-    this.createdAt = personProps.createdAt;
-    this.updatedAt = personProps.updatedAt;
-    this.createdBy = personProps.createdBy;
-    this.updatedBy = personProps.updatedBy;
+    this._personId = personProps.personId;
+    this._identificationNumber = personProps.identificationNumber;
+    this._nameEn = personProps.nameEn;
+    this._nameBn = personProps.nameBn;
+    this._contactNumber = personProps.contactNumber;
+    this._mobileNumber = personProps.mobileNumber;
+    this._phoneNumber = personProps.phoneNumber;
+    this._email = personProps.email;
+    this._dateOfBirth = personProps.dateOfBirth;
+    this._gender = personProps.gender;
+    this._bloodGroup = personProps.bloodGroup;
+    this._religion = personProps.religion;
+    this._maritalStatus = personProps.maritalStatus;
+    this._profession = personProps.profession;
+    this._nid = personProps.nid;
+    this._birthRegistrationNumber = personProps.birthRegistrationNumber;
+    this._photo = personProps.photo;
+    this._createdAt = new Date();
+    this._updatedAt = personProps.updatedAt;
+    this._createdBy = personProps.createdBy;
+    this._updatedBy = personProps.updatedBy;
+    this.apply(new PersonAddedEvent(personProps.personId));
+  }
+
+  public updatePerson(personProps: PersonProps) {
+    this._personId = personProps.personId;
+    this._identificationNumber = personProps.identificationNumber;
+    this._nameEn = personProps.nameEn;
+    this._nameBn = personProps.nameBn;
+    this._contactNumber = personProps.contactNumber;
+    this._mobileNumber = personProps.mobileNumber;
+    this._phoneNumber = personProps.phoneNumber;
+    this._email = personProps.email;
+    this._dateOfBirth = personProps.dateOfBirth;
+    this._gender = personProps.gender;
+    this._bloodGroup = personProps.bloodGroup;
+    this._religion = personProps.religion;
+    this._maritalStatus = personProps.maritalStatus;
+    this._profession = personProps.profession;
+    this._nid = personProps.nid;
+    this._birthRegistrationNumber = personProps.birthRegistrationNumber;
+    this._photo = personProps.photo;
+    this._createdAt = personProps.createdAt;
+    this._updatedAt = new Date();
+    this._createdBy = personProps.createdBy;
+    this._updatedBy = personProps.updatedBy;
+    this.apply(new PersonUpdatedEvent(personProps.personId));
   }
 
   public addAddress(addressProps: AddressProps) {
@@ -161,6 +189,90 @@ export class PersonAggregate extends AggregateRoot {
   public deleteEmploymentHistory(employmentHistoryId: string) {
     // Business logic for deleting employment history
     this.apply('EmploymentHistoryDeletedEvent');
+  }
+
+  public get personId(): string {
+    return this._personId;
+  }
+
+  public get identificationNumber(): string {
+    return this._identificationNumber;
+  }
+
+  public get nameEn(): string {
+    return this._nameEn;
+  }
+
+  public get nameBn(): string {
+    return this._nameBn;
+  }
+
+  public get contactNumber(): string {
+    return this._contactNumber;
+  }
+
+  public get mobileNumber(): string {
+    return this._mobileNumber;
+  }
+
+  public get phoneNumber(): string {
+    return this._phoneNumber;
+  }
+
+  public get email(): string {
+    return this._email;
+  }
+
+  public get dateOfBirth(): Date {
+    return this._dateOfBirth;
+  }
+
+  public get gender(): Gender {
+    return this._gender;
+  }
+
+  public get bloodGroup(): BloodGroup {
+    return this._bloodGroup;
+  }
+
+  public get religion(): Religion {
+    return this._religion;
+  }
+
+  public get maritalStatus(): MaritalStatus {
+    return this._maritalStatus;
+  }
+
+  public get profession(): Profession {
+    return this._profession;
+  }
+
+  public get nid(): string {
+    return this._nid;
+  }
+
+  public get birthRegistrationNumber(): string {
+    return this._birthRegistrationNumber;
+  }
+
+  public get photo(): string {
+    return this._photo;
+  }
+
+  public get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this._updatedAt;
+  }
+
+  public get createdBy(): string {
+    return this._createdBy;
+  }
+
+  public get updatedBy(): string {
+    return this._updatedBy;
   }
 
   public get addresses(): AddressModel[] {

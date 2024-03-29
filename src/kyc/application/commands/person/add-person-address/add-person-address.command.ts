@@ -1,4 +1,4 @@
-import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
+import { AddressType } from 'src/common/enums/address-type.enum';
 
 export class CreateAddressCommand {
   constructor(

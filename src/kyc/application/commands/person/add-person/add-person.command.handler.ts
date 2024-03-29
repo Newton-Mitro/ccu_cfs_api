@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { Types } from 'mongoose';
 import { StoreBase64File } from 'src/common/utils/store-base64-file';
 import { BirthRegistrationExistException } from 'src/kyc/application/exceptions/birth-registration-exist.exception';
@@ -7,14 +7,15 @@ import { MobileExistException } from 'src/kyc/application/exceptions/mobile-numb
 import { NIDExistException } from 'src/kyc/application/exceptions/nid-exist.exception';
 import { PeoplesRepository } from 'src/kyc/infrastructure/repositories/peoples.repository';
 import { PersonAggregate } from '../../../../domain/models/person/person.aggregate';
-import { CreatePersonCommand } from './create-person.command';
-@CommandHandler(CreatePersonCommand)
-export class CreatePersonHandler
-  implements ICommandHandler<CreatePersonCommand>
-{
-  constructor(private peoplesRepository: PeoplesRepository) {}
+import { AddPersonCommand } from './add-person.command';
+@CommandHandler(AddPersonCommand)
+export class AddPersonHandler implements ICommandHandler<AddPersonCommand> {
+  constructor(
+    private peoplesRepository: PeoplesRepository,
+    private readonly publisher: EventPublisher,
+  ) {}
 
-  async execute(command: CreatePersonCommand): Promise<PersonAggregate> {
+  async execute(command: AddPersonCommand): Promise<PersonAggregate> {
     const personId = new Types.ObjectId().toHexString();
     const identificationNumber = String(Date.now());
 
@@ -28,12 +29,14 @@ export class CreatePersonHandler
       );
     }
 
-    const personModel = new PersonAggregate({
-      ...command,
-      personId: personId,
-      identificationNumber: identificationNumber,
-      photo: fileUrl,
-    });
+    const personModel = this.publisher.mergeObjectContext(
+      new PersonAggregate({
+        ...command,
+        personId: personId,
+        identificationNumber: identificationNumber,
+        photo: fileUrl,
+      }),
+    );
 
     // [ ] Check if NID already exist.
     if (personModel.nid) {
@@ -76,7 +79,10 @@ export class CreatePersonHandler
       }
     }
 
-    const personModelRes = this.peoplesRepository.createPerson(personModel);
+    const personModelRes =
+      await this.peoplesRepository.createPerson(personModel);
+    personModel.commit();
+    console.log('personModelRes');
     return personModelRes;
   }
 }

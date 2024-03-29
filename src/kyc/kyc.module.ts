@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MessagingModule } from 'src/messaging/messaging.module';
-import { CreatePersonHandler } from './application/commands/person/create-person/create-person.command.handler';
+import { AddPersonHandler } from './application/commands/person/add-person/add-person.command.handler';
+import { PersonAddedEventHandler } from './application/events/person/person-added.event.handler';
 import { CustomersService } from './application/services/customers.service';
 import { OrganizationsService } from './application/services/organizations.service';
 import { PeoplesService } from './application/services/peoples.service';
@@ -14,8 +15,8 @@ import { CustomersController } from './presentation/controllers/customers.contro
 import { OrganizationsController } from './presentation/controllers/organizations.controller';
 import { PeoplesController } from './presentation/controllers/peoples.controller';
 
-export const CommandHandlers = [CreatePersonHandler];
-export const EventHandlers = [];
+export const CommandHandlers = [AddPersonHandler];
+export const EventHandlers = [PersonAddedEventHandler];
 export const Mappers = [
   PersonAggregateToSchemaMapper,
   PersonSchemaToAggregateMapper,

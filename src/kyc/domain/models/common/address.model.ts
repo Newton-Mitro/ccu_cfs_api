@@ -1,5 +1,5 @@
 import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from '../../enums/person-address-type.enum';
+import { AddressType } from '../../../../common/enums/address-type.enum';
 
 export type AddressProps = {
   addressId: string;

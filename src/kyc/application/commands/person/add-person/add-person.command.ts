@@ -4,7 +4,7 @@ import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
 
-export class CreatePersonCommand {
+export class AddPersonCommand {
   constructor(
     public readonly nameEn: string,
     public readonly nameBn: string,

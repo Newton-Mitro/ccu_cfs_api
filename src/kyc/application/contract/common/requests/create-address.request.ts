@@ -1,6 +1,6 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { AddressType } from 'src/common/enums/address-type.enum';
 import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from 'src/kyc/domain/enums/person-address-type.enum';
 
 export class CreateAddressRequest {
   @IsString()
