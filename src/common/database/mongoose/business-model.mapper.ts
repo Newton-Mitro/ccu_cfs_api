@@ -5,5 +5,5 @@ export interface IBusinessModelMapper<
   TSchema extends IdentifiableEntitySchema,
   TModel extends AggregateRoot,
 > {
-  mapSchemaToBusinessModel(entitySchema: TSchema): TModel;
+  mapSchemaToAggregate(entitySchema: TSchema): TModel;
 }

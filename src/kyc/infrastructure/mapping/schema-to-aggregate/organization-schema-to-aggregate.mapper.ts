@@ -3,10 +3,10 @@ import { OrganizationAggregate } from '../../../domain/models/organization/organ
 import { Address } from '../../schema/common/address.schema';
 import { Organization } from '../../schema/organization/organization.schema';
 
-export class OrganizationSchemaModelMapper
+export class OrganizationSchemaToAggregateMapper
   implements IBusinessModelMapper<Organization, OrganizationAggregate>
 {
-  mapSchemaToBusinessModel(entitySchema: Organization): OrganizationAggregate {
+  mapSchemaToAggregate(entitySchema: Organization): OrganizationAggregate {
     const organizationModel = new OrganizationAggregate({
       organizationId: entitySchema._id.toHexString(),
       identificationNumber: entitySchema.identificationNumber,

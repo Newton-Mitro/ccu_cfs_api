@@ -5,5 +5,5 @@ export interface ISchemaMapper<
   TSchema extends IdentifiableEntitySchema,
   TModel extends AggregateRoot,
 > {
-  mapBusinessModelToSchema(model: TModel): TSchema;
+  mapAggregateToSchema(model: TModel): TSchema;
 }

@@ -9,10 +9,10 @@ import { TrainingModel } from 'src/kyc/domain/models/person/models/training.mode
 import { PersonAggregate } from '../../../domain/models/person/person.aggregate';
 import { Person } from '../../schema/person/person.schema';
 
-export class PersonModelToSchemaMapper
+export class PersonAggregateToSchemaMapper
   implements ISchemaMapper<Person, PersonAggregate>
 {
-  mapBusinessModelToSchema(model: PersonAggregate): Person {
+  mapAggregateToSchema(model: PersonAggregate): Person {
     const personSchema = new Person();
     personSchema._id = new Types.ObjectId(model.personId);
     personSchema.identificationNumber = model.identificationNumber;

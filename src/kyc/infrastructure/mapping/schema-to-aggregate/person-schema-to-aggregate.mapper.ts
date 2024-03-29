@@ -8,10 +8,10 @@ import { PersonAttachment } from '../../schema/person/person-attachment.schema';
 import { Person } from '../../schema/person/person.schema';
 import { Training } from '../../schema/person/training.schema';
 
-export class PersonSchemaToModelMapper
+export class PersonSchemaToAggregateMapper
   implements IBusinessModelMapper<Person, PersonAggregate>
 {
-  mapSchemaToBusinessModel(entitySchema: Person): PersonAggregate {
+  mapSchemaToAggregate(entitySchema: Person): PersonAggregate {
     const personModel = new PersonAggregate({
       personId: entitySchema._id.toHexString(),
       identificationNumber: entitySchema.identificationNumber,

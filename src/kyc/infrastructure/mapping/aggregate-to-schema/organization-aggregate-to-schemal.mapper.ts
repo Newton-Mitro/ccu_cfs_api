@@ -8,10 +8,10 @@ import { OrganizationAttachmentModel } from 'src/kyc/domain/models/organization/
 import { OrganizationAggregate } from '../../../domain/models/organization/organization.aggregate';
 import { Organization } from '../../schema/organization/organization.schema';
 
-export class OrganizationModelToSchemaMapper
+export class OrganizationAggregateToSchemaMapper
   implements ISchemaMapper<Organization, OrganizationAggregate>
 {
-  mapBusinessModelToSchema(model: OrganizationAggregate): Organization {
+  mapAggregateToSchema(model: OrganizationAggregate): Organization {
     const organizationSchema = new Organization();
     organizationSchema.identificationNumber = model.identificationNumber;
     organizationSchema.nameEn = model.nameEn;

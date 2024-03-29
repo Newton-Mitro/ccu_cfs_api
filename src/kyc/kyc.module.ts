@@ -5,8 +5,8 @@ import { CreatePersonHandler } from './application/commands/person/create-person
 import { CustomersService } from './application/services/customers.service';
 import { OrganizationsService } from './application/services/organizations.service';
 import { PeoplesService } from './application/services/peoples.service';
-import { PersonModelToSchemaMapper } from './infrastructure/mapping/model-to-schema/person-model-to-schema.mapper';
-import { PersonSchemaToModelMapper } from './infrastructure/mapping/schema-to-model/person-schema-to-model.mapper';
+import { PersonAggregateToSchemaMapper } from './infrastructure/mapping/aggregate-to-schema/person-aggregate-to-schema.mapper';
+import { PersonSchemaToAggregateMapper } from './infrastructure/mapping/schema-to-aggregate/person-schema-to-aggregate.mapper';
 import { RegisterMongooseSchemasModule } from './infrastructure/register-mongoose-schemas.module';
 import { CustomerRepository } from './infrastructure/repositories/customer.repository';
 import { PeoplesRepository } from './infrastructure/repositories/peoples.repository';
@@ -16,7 +16,10 @@ import { PeoplesController } from './presentation/controllers/peoples.controller
 
 export const CommandHandlers = [CreatePersonHandler];
 export const EventHandlers = [];
-export const Mappers = [PersonModelToSchemaMapper, PersonSchemaToModelMapper];
+export const Mappers = [
+  PersonAggregateToSchemaMapper,
+  PersonSchemaToAggregateMapper,
+];
 export const Services = [
   PeoplesService,
   OrganizationsService,

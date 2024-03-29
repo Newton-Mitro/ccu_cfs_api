@@ -4,8 +4,8 @@ import { Model, Types } from 'mongoose';
 import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
 import { EntityRepository } from 'src/common/database/mongoose/entity.repository';
 import { PersonAggregate } from '../../domain/models/person/person.aggregate';
-import { PersonModelToSchemaMapper } from '../mapping/model-to-schema/person-model-to-schema.mapper';
-import { PersonSchemaToModelMapper } from '../mapping/schema-to-model/person-schema-to-model.mapper';
+import { PersonAggregateToSchemaMapper } from '../mapping/aggregate-to-schema/person-aggregate-to-schema.mapper';
+import { PersonSchemaToAggregateMapper } from '../mapping/schema-to-aggregate/person-schema-to-aggregate.mapper';
 import {
   PERSON_MODEL,
   Person,
@@ -20,8 +20,8 @@ export class PeoplesRepository extends EntityRepository<
   constructor(
     @InjectModel(PERSON_MODEL)
     private readonly personDocument: Model<PersonDocument>,
-    private readonly personSchemaMapper: PersonModelToSchemaMapper,
-    private readonly personBusinessModelMapper: PersonSchemaToModelMapper,
+    private readonly personSchemaMapper: PersonAggregateToSchemaMapper,
+    private readonly personBusinessModelMapper: PersonSchemaToAggregateMapper,
   ) {
     super(personDocument, personSchemaMapper, personBusinessModelMapper);
   }
@@ -38,14 +38,14 @@ export class PeoplesRepository extends EntityRepository<
       .skip(limit * (page - 1));
 
     return customers.map((customerSchema) =>
-      this.personBusinessModelMapper.mapSchemaToBusinessModel(customerSchema),
+      this.personBusinessModelMapper.mapSchemaToAggregate(customerSchema),
     );
   }
 
   async findById(id: string): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findById(new Types.ObjectId(id));
     if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
     }
     return null;
   }
@@ -53,7 +53,7 @@ export class PeoplesRepository extends EntityRepository<
   async findByNID(nid: string): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findOne({ nid });
     if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
     }
     return null;
   }
@@ -63,7 +63,7 @@ export class PeoplesRepository extends EntityRepository<
   ): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findOne({ mobileNumber });
     if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
     }
     return null;
   }
@@ -75,7 +75,7 @@ export class PeoplesRepository extends EntityRepository<
       birthRegistrationNumber,
     });
     if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
     }
     return null;
   }
@@ -83,14 +83,14 @@ export class PeoplesRepository extends EntityRepository<
   async findByEmail(email: string): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findOne({ email });
     if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToBusinessModel(customer);
+      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
     }
     return null;
   }
 
   async createPerson(personModel: PersonAggregate): Promise<PersonAggregate> {
     const personSchema =
-      this.personSchemaMapper.mapBusinessModelToSchema(personModel);
+      this.personSchemaMapper.mapAggregateToSchema(personModel);
     const personDoc = new this.personDocument(personSchema);
     const errors = personDoc.validateSync();
 
@@ -109,7 +109,7 @@ export class PeoplesRepository extends EntityRepository<
     }
     const savedPersonSchema = await personDoc.save();
 
-    return this.personBusinessModelMapper.mapSchemaToBusinessModel(
+    return this.personBusinessModelMapper.mapSchemaToAggregate(
       savedPersonSchema,
     );
   }

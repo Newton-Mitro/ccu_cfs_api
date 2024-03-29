@@ -9,7 +9,7 @@ export class MapErrorLogRecordFactory
     ISchemaMapper<ErrorLogRecord, ErrorLogRecordModel>,
     IBusinessModelMapper<ErrorLogRecord, ErrorLogRecordModel>
 {
-  mapBusinessModelToSchema(entity: ErrorLogRecordModel): ErrorLogRecord {
+  mapAggregateToSchema(entity: ErrorLogRecordModel): ErrorLogRecord {
     return {
       _id: new Types.ObjectId(entity.id),
       User: entity.User,
@@ -30,7 +30,7 @@ export class MapErrorLogRecordFactory
     };
   }
 
-  mapSchemaToBusinessModel(entitySchema: ErrorLogRecord): ErrorLogRecordModel {
+  mapSchemaToAggregate(entitySchema: ErrorLogRecord): ErrorLogRecordModel {
     return new ErrorLogRecordModel(
       entitySchema._id.toHexString(),
       entitySchema.User,

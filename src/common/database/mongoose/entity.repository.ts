@@ -31,7 +31,7 @@ export abstract class EntityRepository<
       throw new NotFoundException('Entity was not found.');
     }
 
-    return this.businessModelMapper.mapSchemaToBusinessModel(entityDocument);
+    return this.businessModelMapper.mapSchemaToAggregate(entityDocument);
   }
 
   protected async find(
@@ -39,13 +39,13 @@ export abstract class EntityRepository<
   ): Promise<TEntity[]> {
     return (await this.entityModel.find({}, { lean: true })).map(
       (entityDocument) =>
-        this.businessModelMapper.mapSchemaToBusinessModel(entityDocument),
+        this.businessModelMapper.mapSchemaToAggregate(entityDocument),
     );
   }
 
   async create(entity: TEntity): Promise<void> {
     await new this.entityModel(
-      this.schemaMapper.mapBusinessModelToSchema(entity),
+      this.schemaMapper.mapAggregateToSchema(entity),
     ).save();
   }
 
