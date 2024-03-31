@@ -26,24 +26,24 @@ export class CreatePersonRequest {
 
   @IsString()
   @IsOptional()
-  contact_number: string = '';
+  contact_number: string;
 
   @IsString()
   @IsOptional()
-  mobile_number: string = '';
+  mobile_number: string;
 
   @IsString()
   @IsOptional()
-  phone_number: string = '';
+  phone_number: string;
 
   @IsString()
   @IsOptional()
   @IsEmail()
-  email: string = '';
+  email: string;
 
   @IsString()
   @IsOptional()
-  customer_type: string = '';
+  customer_type: string;
 
   @IsDateString()
   @IsNotEmpty()
@@ -76,7 +76,7 @@ export class CreatePersonRequest {
 
   @IsString()
   @IsOptional()
-  birth_registration_number: string = '';
+  birth_registration_number: string;
 
   @Type(() => AddPersonPhotoRequest)
   @IsOptional()

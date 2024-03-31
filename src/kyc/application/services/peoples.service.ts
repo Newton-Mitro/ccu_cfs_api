@@ -10,6 +10,7 @@ import {
   AddPersonCommand,
   PersonPhotoAttachment,
 } from '../commands/person/add-person/add-person.command';
+import { UpdatePersonCommand } from '../commands/person/update-person/update-person.command';
 import { CreatePersonRequest } from '../contract/person/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/person/requests/update-person.request';
 import { PersonResponse } from '../contract/person/responses/person.response';
@@ -99,37 +100,40 @@ export class PeoplesService {
     return existingPerson;
   }
 
-  async update(id: string, updatePeopleRequest: UpdatePersonRequest) {
-    const updatedPerson = await this.personModel.findByIdAndUpdate(
-      id,
-      updatePeopleRequest,
-      { new: true },
+  async update(
+    user: any,
+    createdAt,
+    updatedAt,
+    personId,
+    updatePeopleRequest: UpdatePersonRequest,
+  ) {
+    const person = await this.commandBus.execute(
+      new UpdatePersonCommand(
+        personId,
+        updatePeopleRequest.name_en,
+        updatePeopleRequest?.name_bn,
+        new Date(updatePeopleRequest.date_of_birth),
+        updatePeopleRequest.gender,
+        updatePeopleRequest.blood_group,
+        updatePeopleRequest.religion,
+        updatePeopleRequest.marital_status,
+        updatePeopleRequest?.contact_number,
+        updatePeopleRequest?.phone_number,
+        updatePeopleRequest.profession,
+        updatePeopleRequest.photo &&
+          new PersonPhotoAttachment(
+            updatePeopleRequest.photo.base64_document,
+            updatePeopleRequest.photo.file_extension,
+            updatePeopleRequest.photo.document_title,
+          ),
+        createdAt,
+        updatedAt,
+        user?.id,
+        user?.id,
+      ),
     );
-    if (!updatedPerson) {
-      throw new NotFoundException(`Person #${id} not found`);
-    }
-    return updatedPerson;
 
-    // const transactionHandlerMethod = async (
-    //   session: ClientSession,
-    // ): Promise<any> => {
-    //   const createdPerson = new this.personModel(updatePeopleDto);
-    //   const person = await createdPerson.save({ session });
-
-    //   return person;
-    // };
-
-    // const onError = (error: any): void => {
-    //   throw error;
-    // };
-
-    // const person = await mongooseTransactionHandler<any>(
-    //   transactionHandlerMethod,
-    //   onError,
-    //   this.connection,
-    // );
-
-    // return person;
+    return PersonAggregateToResponseMapper.map(person);
   }
 
   async remove(id: string) {

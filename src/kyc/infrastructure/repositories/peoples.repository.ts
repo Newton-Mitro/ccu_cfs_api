@@ -122,9 +122,9 @@ export class PeoplesRepository extends EntityRepository<
   async findOneAndReplace(
     personId: string,
     personModel: PersonAggregate,
-  ): Promise<void> {
+  ): Promise<PersonAggregate> {
     const updatedEntityDocument = await this.entityModel.findOneAndReplace(
-      { _id: personId },
+      { _id: new Types.ObjectId(personId) },
       personModel,
       {
         new: true,
@@ -134,5 +134,9 @@ export class PeoplesRepository extends EntityRepository<
     if (!updatedEntityDocument) {
       throw new NotFoundException('Unable to find the entity to replace.');
     }
+
+    return this.personBusinessModelMapper.mapSchemaToAggregate(
+      updatedEntityDocument,
+    );
   }
 }

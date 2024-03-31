@@ -44,9 +44,17 @@ export class PeoplesController {
   @Patch(':id')
   update(
     @Param('id') id: string,
+    @Req() req: Request,
     @Body() updatePeopleRequest: UpdatePersonRequest,
   ) {
-    return this.peoplesService.update(id, updatePeopleRequest);
+    const user: any = req['user'];
+    return this.peoplesService.update(
+      user?.id,
+      new Date(),
+      new Date(),
+      id,
+      updatePeopleRequest,
+    );
   }
 
   @Delete(':id')
