@@ -3,8 +3,8 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 import { Address, AddressSchema } from './address.schema';
 
 @Schema({
-  discriminatorKey: 'CustomerType',
-  collection: 'Customers',
+  discriminatorKey: 'customerType',
+  collection: 'customers',
   versionKey: false,
 })
 export class Customer extends IdentifiableEntitySchema {
@@ -34,6 +34,9 @@ export class Customer extends IdentifiableEntitySchema {
 
   @Prop()
   mobileNumber: string;
+
+  // @Prop()
+  // customerType: string;
 
   @Prop({
     type: Array(AddressSchema),

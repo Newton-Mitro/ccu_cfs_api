@@ -33,6 +33,7 @@ export class PersonResponse {
     readonly updated_at: string,
     readonly created_by: string,
     readonly updated_by: string,
+    readonly customer_type: string,
   ) {}
 
   public addresses: AddressDTO[];

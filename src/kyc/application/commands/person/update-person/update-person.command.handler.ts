@@ -16,12 +16,11 @@ export class UpdatePersonHandler
   async execute(command: UpdatePersonCommand): Promise<PersonAggregate> {
     const person = await this.peoplesRepository.findById(command.personId);
 
-    console.log(person);
-
     let fileUrl: string = '';
     let personModel: PersonAggregate;
 
     if (person) {
+      this.publisher.mergeObjectContext(person);
       if (command.photo) {
         fileUrl = StoreBase64File.store(
           'persons/photo',
@@ -32,39 +31,36 @@ export class UpdatePersonHandler
       }
 
       if (fileUrl) {
-        personModel = this.publisher.mergeObjectContext(
-          new PersonAggregate({
-            ...command,
-            personId: person.personId,
-            nid: person.nid,
-            mobileNumber: person.mobileNumber,
-            email: person.email,
-            birthRegistrationNumber: person.birthRegistrationNumber,
-            identificationNumber: person.identificationNumber,
-            photo: fileUrl,
-          }),
-        );
+        person.updatePerson({
+          ...command,
+          customerType: 'Person',
+          personId: person.personId,
+          nid: person.nid,
+          mobileNumber: person.mobileNumber,
+          email: person.email,
+          birthRegistrationNumber: person.birthRegistrationNumber,
+          identificationNumber: person.identificationNumber,
+          photo: fileUrl,
+        });
       } else {
-        personModel = this.publisher.mergeObjectContext(
-          new PersonAggregate({
-            ...command,
-            personId: person.personId,
-            nid: person.nid,
-            mobileNumber: person.mobileNumber,
-            email: person.email,
-            birthRegistrationNumber: person.birthRegistrationNumber,
-            identificationNumber: person.identificationNumber,
-            photo: person.photo,
-          }),
-        );
+        person.updatePerson({
+          ...command,
+          personId: person.personId,
+          nid: person.nid,
+          mobileNumber: person.mobileNumber,
+          email: person.email,
+          birthRegistrationNumber: person.birthRegistrationNumber,
+          identificationNumber: person.identificationNumber,
+          photo: person.photo,
+          customerType: 'Person',
+        });
       }
 
       const personModelRes = await this.peoplesRepository.findOneAndReplace(
-        personModel.personId,
-        personModel,
+        person.personId,
+        person,
       );
-      personModel.commit();
-      console.log('personModelRes');
+      person.commit();
       return personModelRes;
     }
 

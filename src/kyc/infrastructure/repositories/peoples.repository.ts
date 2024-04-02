@@ -123,9 +123,12 @@ export class PeoplesRepository extends EntityRepository<
     personId: string,
     personModel: PersonAggregate,
   ): Promise<PersonAggregate> {
+    const personSchema =
+      this.personSchemaMapper.mapAggregateToSchema(personModel);
+
     const updatedEntityDocument = await this.entityModel.findOneAndReplace(
       { _id: new Types.ObjectId(personId) },
-      personModel,
+      personSchema,
       {
         new: true,
       },

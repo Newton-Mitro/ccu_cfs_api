@@ -33,6 +33,7 @@ export class PersonAggregateToResponseMapper {
       model.updatedAt?.toISOString(),
       model.createdBy,
       model.updatedBy,
+      model.customerType,
     );
 
     personResponseModel.addresses = model.addresses?.map((address) => {

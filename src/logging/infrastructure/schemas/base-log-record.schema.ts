@@ -3,8 +3,8 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 
 @Schema({
   versionKey: false,
-  collection: 'Logs',
-  discriminatorKey: 'LogType',
+  collection: 'logs',
+  discriminatorKey: 'logType',
 })
 export class BaseLogRecord extends IdentifiableEntitySchema {
   @Prop({ type: Object })

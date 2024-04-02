@@ -8,14 +8,6 @@ import { CustomersService } from '../../application/services/customers.service';
 export class CustomersController {
   constructor(private readonly customerService: CustomersService) {}
 
-  // @Get('search/:search_text')
-  // search(
-  //   @Query() findAllQueryDto: FindAllQueryDTO,
-  //   @Param('search_text') searchText: string,
-  // ) {
-  //   return this.customerService.search(searchText, findAllQueryDto);
-  // }
-
   @Get()
   @HasPermissions(Permission.ListCustomers)
   findAll(@Query() findAllQueryRequest: FindAllQueryRequest) {
@@ -26,9 +18,4 @@ export class CustomersController {
   findOne(@Param('id') id: string) {
     return this.customerService.findOne(id);
   }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.customerService.remove(id);
-  // }
 }

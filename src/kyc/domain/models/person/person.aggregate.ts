@@ -44,6 +44,7 @@ export type PersonProps = {
   updatedAt: Date;
   createdBy: string;
   updatedBy: string;
+  customerType: string;
 };
 
 export class PersonAggregate extends AggregateRoot {
@@ -74,6 +75,7 @@ export class PersonAggregate extends AggregateRoot {
   private _trainings: TrainingModel[];
   private _employmentHistories: EmploymentHistoryModel[];
   private _attachments: PersonAttachmentModel[];
+  private _customerType: string = 'Customer';
 
   constructor(personProps: PersonProps) {
     super();
@@ -98,6 +100,7 @@ export class PersonAggregate extends AggregateRoot {
     this._updatedAt = personProps.updatedAt;
     this._createdBy = personProps.createdBy;
     this._updatedBy = personProps.updatedBy;
+    this._customerType = personProps.customerType;
     this.apply(new PersonAddedEvent(personProps.personId));
   }
 
@@ -123,6 +126,7 @@ export class PersonAggregate extends AggregateRoot {
     this._updatedAt = new Date();
     this._createdBy = personProps.createdBy;
     this._updatedBy = personProps.updatedBy;
+    this._customerType = personProps.customerType;
     this.apply(new PersonUpdatedEvent(personProps.personId));
   }
 
@@ -273,6 +277,10 @@ export class PersonAggregate extends AggregateRoot {
 
   public get updatedBy(): string {
     return this._updatedBy;
+  }
+
+  public get customerType(): string {
+    return this._customerType;
   }
 
   public get addresses(): AddressModel[] {

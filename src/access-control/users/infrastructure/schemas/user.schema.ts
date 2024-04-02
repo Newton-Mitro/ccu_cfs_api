@@ -4,7 +4,7 @@ import { Document } from 'mongoose';
 export type UserDocument = User & Document;
 
 @Schema({
-  collection: 'Users',
+  collection: 'users',
   versionKey: false,
   timestamps: true,
 })

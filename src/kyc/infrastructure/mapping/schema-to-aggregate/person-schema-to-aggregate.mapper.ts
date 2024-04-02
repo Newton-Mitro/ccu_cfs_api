@@ -17,6 +17,7 @@ export class PersonSchemaToAggregateMapper
       identificationNumber: entitySchema.identificationNumber,
       nameEn: entitySchema.nameEn,
       nameBn: entitySchema.nameBn,
+      customerType: entitySchema['customerType'],
       contactNumber: entitySchema.contactNumber,
       mobileNumber: entitySchema.mobileNumber,
       phoneNumber: entitySchema.phoneNumber,
@@ -82,6 +83,7 @@ export class PersonSchemaToAggregateMapper
         updatedAt: familyAndRelative.updatedAt,
         createdBy: familyAndRelative.createdBy,
         updatedBy: familyAndRelative.updatedBy,
+        customerType: 'Person',
       });
     });
 

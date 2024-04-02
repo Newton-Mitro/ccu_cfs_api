@@ -10,6 +10,5 @@ export class PersonAddedEventHandler
 
   async handle(event: PersonAddedEvent) {
     const person = await this.peoplesRepository.findById(event.personId);
-    console.log('person event');
   }
 }

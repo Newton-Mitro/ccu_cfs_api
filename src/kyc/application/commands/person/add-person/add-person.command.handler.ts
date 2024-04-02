@@ -35,6 +35,7 @@ export class AddPersonHandler implements ICommandHandler<AddPersonCommand> {
         personId: personId,
         identificationNumber: identificationNumber,
         photo: fileUrl,
+        customerType: 'Person',
       }),
     );
 
@@ -82,7 +83,6 @@ export class AddPersonHandler implements ICommandHandler<AddPersonCommand> {
     const personModelRes =
       await this.peoplesRepository.createPerson(personModel);
     personModel.commit();
-    console.log('personModelRes');
     return personModelRes;
   }
 }
