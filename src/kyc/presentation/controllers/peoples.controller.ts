@@ -51,7 +51,6 @@ export class PeoplesController {
     return this.peoplesService.update(
       user?.id,
       new Date(),
-      new Date(),
       id,
       updatePeopleRequest,
     );

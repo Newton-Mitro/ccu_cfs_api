@@ -1,5 +1,4 @@
-import { PersonModel } from '../../person/models/person.model';
-import { PersonProps } from '../../person/person.aggregate';
+import { PersonModel, PersonProps } from '../../person/models/person.model';
 
 export type ContactPersonProps = PersonProps & { contactPersonId: string };
 

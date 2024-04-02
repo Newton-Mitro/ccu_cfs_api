@@ -29,15 +29,16 @@ export class AddPersonHandler implements ICommandHandler<AddPersonCommand> {
       );
     }
 
-    const personModel = this.publisher.mergeObjectContext(
-      new PersonAggregate({
-        ...command,
-        personId: personId,
-        identificationNumber: identificationNumber,
-        photo: fileUrl,
-        customerType: 'Person',
-      }),
-    );
+    const personModel = new PersonAggregate();
+    personModel.addPerson({
+      ...command,
+      personId: personId,
+      identificationNumber: identificationNumber,
+      photo: fileUrl,
+      customerType: 'Person',
+    });
+
+    this.publisher.mergeObjectContext(personModel);
 
     // [ ] Check if NID already exist.
     if (personModel.nid) {

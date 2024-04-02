@@ -20,9 +20,10 @@ import {
   PersonAttachmentModel,
   PersonAttachmentProps,
 } from './models/person-attachment.model';
+import { PersonProps } from './models/person.model';
 import { TrainingModel, TrainingProps } from './models/training.model';
 
-export type PersonProps = {
+export type PersonAggregateProps = {
   personId: string;
   identificationNumber: string;
   nameEn: string;
@@ -45,6 +46,12 @@ export type PersonProps = {
   createdBy: string;
   updatedBy: string;
   customerType: string;
+  addresses: AddressProps[];
+  familyTree: FamilyAndRelativeProps[];
+  educations: EducationProps[];
+  trainings: TrainingProps[];
+  employmentHistories: EmploymentHistoryProps[];
+  attachments: PersonAttachmentProps[];
 };
 
 export class PersonAggregate extends AggregateRoot {
@@ -77,8 +84,11 @@ export class PersonAggregate extends AggregateRoot {
   private _attachments: PersonAttachmentModel[];
   private _customerType: string = 'Customer';
 
-  constructor(personProps: PersonProps) {
+  constructor() {
     super();
+  }
+
+  personInit(personProps: PersonAggregateProps) {
     this._personId = personProps.personId;
     this._identificationNumber = personProps.identificationNumber;
     this._nameEn = personProps.nameEn;
@@ -96,7 +106,38 @@ export class PersonAggregate extends AggregateRoot {
     this._nid = personProps.nid;
     this._birthRegistrationNumber = personProps.birthRegistrationNumber;
     this._photo = personProps.photo;
-    this._createdAt = new Date();
+    this._createdAt = personProps.createdAt;
+    this._updatedAt = personProps.updatedAt;
+    this._createdBy = personProps.createdBy;
+    this._updatedBy = personProps.updatedBy;
+    this._customerType = personProps.customerType;
+    this._addresses = personProps.addresses;
+    this._familyTree = personProps.familyTree;
+    this._educations = personProps.educations;
+    this._trainings = personProps.trainings;
+    this._employmentHistories = personProps.employmentHistories;
+    this._attachments = personProps.attachments;
+  }
+
+  public addPerson(personProps: PersonProps) {
+    this._personId = personProps.personId;
+    this._identificationNumber = personProps.identificationNumber;
+    this._nameEn = personProps.nameEn;
+    this._nameBn = personProps.nameBn;
+    this._contactNumber = personProps.contactNumber;
+    this._mobileNumber = personProps.mobileNumber;
+    this._phoneNumber = personProps.phoneNumber;
+    this._email = personProps.email;
+    this._dateOfBirth = personProps.dateOfBirth;
+    this._gender = personProps.gender;
+    this._bloodGroup = personProps.bloodGroup;
+    this._religion = personProps.religion;
+    this._maritalStatus = personProps.maritalStatus;
+    this._profession = personProps.profession;
+    this._nid = personProps.nid;
+    this._birthRegistrationNumber = personProps.birthRegistrationNumber;
+    this._photo = personProps.photo;
+    this._createdAt = personProps.createdAt;
     this._updatedAt = personProps.updatedAt;
     this._createdBy = personProps.createdBy;
     this._updatedBy = personProps.updatedBy;
@@ -122,9 +163,7 @@ export class PersonAggregate extends AggregateRoot {
     this._nid = personProps.nid;
     this._birthRegistrationNumber = personProps.birthRegistrationNumber;
     this._photo = personProps.photo;
-    this._createdAt = personProps.createdAt;
-    this._updatedAt = new Date();
-    this._createdBy = personProps.createdBy;
+    this._updatedAt = personProps.updatedAt;
     this._updatedBy = personProps.updatedBy;
     this._customerType = personProps.customerType;
     this.apply(new PersonUpdatedEvent(personProps.personId));

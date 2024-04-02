@@ -41,6 +41,8 @@ export class UpdatePersonHandler
           birthRegistrationNumber: person.birthRegistrationNumber,
           identificationNumber: person.identificationNumber,
           photo: fileUrl,
+          createdAt: new Date(),
+          createdBy: '',
         });
       } else {
         person.updatePerson({
@@ -53,14 +55,16 @@ export class UpdatePersonHandler
           identificationNumber: person.identificationNumber,
           photo: person.photo,
           customerType: 'Person',
+          createdAt: new Date(),
+          createdBy: '',
         });
       }
 
+      person.commit();
       const personModelRes = await this.peoplesRepository.findOneAndReplace(
         person.personId,
         person,
       );
-      person.commit();
       return personModelRes;
     }
 

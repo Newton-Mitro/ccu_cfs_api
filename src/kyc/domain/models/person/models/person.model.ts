@@ -26,6 +26,7 @@ export type PersonProps = {
   updatedAt: Date;
   createdBy: string;
   updatedBy: string;
+  customerType: string;
 };
 
 export class PersonModel {

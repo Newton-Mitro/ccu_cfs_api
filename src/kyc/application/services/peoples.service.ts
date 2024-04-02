@@ -102,7 +102,6 @@ export class PeoplesService {
 
   async update(
     user: any,
-    createdAt,
     updatedAt,
     personId,
     updatePeopleRequest: UpdatePersonRequest,
@@ -126,9 +125,7 @@ export class PeoplesService {
             updatePeopleRequest.photo.file_extension,
             updatePeopleRequest.photo.document_title,
           ),
-        createdAt,
         updatedAt,
-        user?.id,
         user?.id,
       ),
     );
