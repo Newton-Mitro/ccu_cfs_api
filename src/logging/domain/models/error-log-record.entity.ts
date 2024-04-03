@@ -1,19 +1,20 @@
 import { LogRecordModel } from './log-record.entity';
 
 export class ErrorLogRecordModel extends LogRecordModel {
-  private _ExceptionType: string;
-  private _ErrorMessage: any;
+  private _exceptionType: string;
+  private _errorMessage: any;
 
   constructor(
     id: string,
-    user: Object,
+    user: any,
     userAgent: string,
-    ReceivedAt: string,
+    receivedAt: string,
     ip: string,
-    requestMethod: string,
+    method: string,
     path: string,
-    requestQuery: Object,
-    requestBody: Object,
+    query: any,
+    params: any,
+    body: any,
     statusCode: number,
     exceptionType: string,
     errorMessage: any,
@@ -22,29 +23,24 @@ export class ErrorLogRecordModel extends LogRecordModel {
       id,
       user,
       userAgent,
-      ReceivedAt,
+      receivedAt,
       ip,
-      requestMethod,
+      method,
       path,
-      requestQuery,
-      requestBody,
+      query,
+      params,
+      body,
       statusCode,
     );
-    this._ExceptionType = exceptionType;
-    this._ErrorMessage = errorMessage;
+    this._errorMessage = errorMessage;
+    this._exceptionType = exceptionType;
   }
 
-  public get ExceptionType(): string {
-    return this._ExceptionType;
-  }
-  public set ExceptionType(value: string) {
-    this._ExceptionType = value;
+  public get exceptionType(): string {
+    return this._exceptionType;
   }
 
-  public get ErrorMessage(): any {
-    return this._ErrorMessage;
-  }
-  public set ErrorMessage(value: any) {
-    this._ErrorMessage = value;
+  public get errorMessage(): any {
+    return this._errorMessage;
   }
 }

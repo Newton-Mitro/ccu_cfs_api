@@ -1,19 +1,20 @@
 import { LogRecordModel } from './log-record.entity';
 
 export class SuccessLogRecordModel extends LogRecordModel {
-  private _RequestedAt: any;
-  private _ResponseTime: number;
+  private _requestedAt: any;
+  private _responseTime: number;
 
   constructor(
     id: string,
-    user: Object,
+    user: any,
     userAgent: string,
-    ReceivedAt: string,
+    receivedAt: string,
     ip: string,
-    requestMethod: string,
+    method: string,
     path: string,
-    requestQuery: Object,
-    requestBody: Object,
+    query: any,
+    params: any,
+    body: any,
     statusCode: number,
     requestedAt: any,
     responseTime: number,
@@ -22,30 +23,24 @@ export class SuccessLogRecordModel extends LogRecordModel {
       id,
       user,
       userAgent,
-      ReceivedAt,
+      receivedAt,
       ip,
-      requestMethod,
+      method,
       path,
-      requestQuery,
-      requestBody,
+      query,
+      params,
+      body,
       statusCode,
     );
-    this._RequestedAt = requestedAt;
-    this._ResponseTime = responseTime;
+    this._requestedAt = requestedAt;
+    this._responseTime = responseTime;
   }
 
-  public get RequestedAt(): any {
-    return this._RequestedAt;
+  public get requestedAt(): any {
+    return this._requestedAt;
   }
 
-  public set RequestedAt(value: any) {
-    this._RequestedAt = value;
-  }
-
-  public get ResponseTime(): number {
-    return this._ResponseTime;
-  }
-  public set ResponseTime(value: number) {
-    this._ResponseTime = value;
+  public get responseTime(): number {
+    return this._responseTime;
   }
 }

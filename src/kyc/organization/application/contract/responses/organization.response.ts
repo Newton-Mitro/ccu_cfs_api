@@ -1,4 +1,4 @@
-import { AddressDTO } from '../../../../shared/application/contract/dto/address.dto';
+import { AddressDTO } from '../../../../shared/application/contract/responses/dto/address.dto';
 import { BankAccountDTO } from './dto/bank-account.dto';
 import { ContactPersonDTO } from './dto/contact-person.dto';
 import { OrganizationAttachmentDTO } from './dto/organization-attachment.dto';

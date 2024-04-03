@@ -4,10 +4,10 @@ import { BaseLogRecord } from './base-log-record.schema';
 @Schema()
 export class SuccessLogRecord extends BaseLogRecord {
   @Prop({ type: String })
-  RequestedAt: string;
+  requestedAt: string;
 
   @Prop({ type: Number })
-  ResponseTime: number;
+  responseTime: number;
 }
 export const SuccessLogRecordSchema =
   SchemaFactory.createForClass(SuccessLogRecord);

@@ -1,4 +1,4 @@
-import { AddressDTO } from '../../../shared/application/contract/dto/address.dto';
+import { AddressDTO } from '../../../shared/application/contract/responses/dto/address.dto';
 import { OrganizationAggregate } from '../../domain/models/organization.aggregate';
 import { BankAccountDTO } from '../contract/responses/dto/bank-account.dto';
 import { BranchDTO } from '../contract/responses/dto/branch.dto';

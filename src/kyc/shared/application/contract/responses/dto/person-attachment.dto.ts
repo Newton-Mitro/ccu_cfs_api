@@ -1,4 +1,4 @@
-import { PersonalDocumentType } from '../../../domain/enums/kyc-attachment-type.enum';
+import { PersonalDocumentType } from '../../../../domain/enums/kyc-attachment-type.enum';
 
 export class PersonAttachmentDTO {
   constructor(

@@ -5,6 +5,7 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { Observable, tap } from 'rxjs';
 import { LoggerType } from 'src/logging/domain/enums/logger-type.enum';
 import { DatabaseLoggingRepository } from 'src/logging/infrastructure/repositories/database-logging.repository';
@@ -35,19 +36,15 @@ export class RequestResponseInterceptor implements NestInterceptor {
         const _responseTime = endTime - startTime;
 
         try {
-          const user = {
-            UserId: 'a2d3f3a3s5f5',
-            UserName: 'john.doe@email.com',
-            FullName: 'John Doe',
-            Roles: ['User', 'Administrator', 'Collector'],
-          };
+          const user = request.user;
           const requestMethod = request.method;
           const UserAgent = request.headers['user-agent'];
           const requestedAt = _requestedAt;
           const receivedAt = new Date().toISOString();
-          const ip = request['ip'];
-          const path = request.url;
-          const requestQuery = request['query'];
+          const ip = request.ip;
+          const path = request.path;
+          const requestQuery = request.query;
+          const params = request.params;
           const photo = request?.body!['photo'] ? 'omitted' : undefined;
           const logo = request?.body!['logo'] ? 'omitted' : undefined;
           const password = request?.body!['password'] ? 'omitted' : undefined;
@@ -65,14 +62,15 @@ export class RequestResponseInterceptor implements NestInterceptor {
           const statusCode = response['statusCode'];
 
           this._databaseLoggingRepository.createSuccessLog(
-            user,
-            UserAgent,
+            user!,
+            UserAgent!,
             requestedAt,
             receivedAt,
             ip,
             requestMethod,
             path,
             requestQuery,
+            params,
             requestBody,
             responseTime,
             statusCode,

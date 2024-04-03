@@ -8,31 +8,34 @@ import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifia
 })
 export class BaseLogRecord extends IdentifiableEntitySchema {
   @Prop({ type: Object })
-  User: Object;
+  user: Object;
 
   @Prop()
-  UserAgent: string;
+  userAgent: string;
 
   @Prop({ type: String })
-  ReceivedAt: string;
+  receivedAt: string;
 
   @Prop()
-  IP: string;
+  ip: string;
 
   @Prop()
-  RequestMethod: string;
+  method: string;
 
   @Prop()
-  Path: string;
+  path: string;
 
   @Prop({ type: Object })
-  RequestQuery: Object;
+  query: Object;
 
   @Prop({ type: Object })
-  RequestBody: Object;
+  params: Object;
+
+  @Prop({ type: Object })
+  body: Object;
 
   @Prop({ type: Number })
-  StatusCode: number;
+  statusCode: number;
 }
 export const BaseLogRecordSchema = SchemaFactory.createForClass(BaseLogRecord);
 export type BaseLogRecordDocument = BaseLogRecord & Document;

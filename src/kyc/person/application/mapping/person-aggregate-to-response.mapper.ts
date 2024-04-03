@@ -1,5 +1,5 @@
-import { AddressDTO } from '../../../shared/application/contract/dto/address.dto';
-import { PersonAttachmentDTO } from '../../../shared/application/contract/dto/person-attachment.dto';
+import { AddressDTO } from '../../../shared/application/contract/responses/dto/address.dto';
+import { PersonAttachmentDTO } from '../../../shared/application/contract/responses/dto/person-attachment.dto';
 import { PersonAggregate } from '../../domain/models/person.aggregate';
 import { EducationDTO } from '../contract/responses/dto/education.dto';
 import { EmploymentHistoryDTO } from '../contract/responses/dto/employment-history.dto';

@@ -4,10 +4,10 @@ import { BaseLogRecord } from './base-log-record.schema';
 @Schema()
 export class ErrorLogRecord extends BaseLogRecord {
   @Prop()
-  ExceptionType: string;
+  exceptionType: string;
 
   @Prop({ type: Object })
-  ErrorMessage: any;
+  errorMessage: any;
 }
 export const ErrorLogRecordSchema =
   SchemaFactory.createForClass(ErrorLogRecord);

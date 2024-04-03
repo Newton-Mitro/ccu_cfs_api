@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
+import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
+import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
 import { ErrorLogRecordDocument } from '../schemas/error-log-record.schema';
 import { SuccessLogRecordDocument } from '../schemas/success-log-record.schema';
-import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
-import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
 
 @Injectable()
 export class DatabaseLoggingRepository implements ILoggingRepository {
@@ -22,10 +22,11 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     requestedAt: any,
     receivedAt: string,
     ip: string,
-    requestMethod: string,
+    method: string,
     path: string,
-    requestQuery: Object,
-    requestBody: Object,
+    query: Object,
+    params: Object,
+    body: Object,
     responseTime: number,
     statusCode: number,
   ) {
@@ -35,10 +36,11 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       userAgent,
       receivedAt,
       ip,
-      requestMethod,
+      method,
       path,
-      requestQuery,
-      requestBody,
+      query,
+      params,
+      body,
       statusCode,
       requestedAt,
       responseTime,
@@ -47,17 +49,18 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     // const successLogRecordSchemaObject = new SuccessLogRecordSchema();
     const successLogRecordSchemaObject = {
       _id: new Types.ObjectId(),
-      User: {},
-      UserAgent: successLogRecordObject.UserAgent,
-      ReceivedAt: successLogRecordObject.ReceivedAt,
-      IP: successLogRecordObject.IP,
-      RequestMethod: successLogRecordObject.RequestMethod,
-      Path: successLogRecordObject.Path,
-      RequestQuery: successLogRecordObject.RequestQuery,
-      RequestBody: successLogRecordObject.RequestBody,
-      StatusCode: successLogRecordObject.StatusCode,
-      RequestedAt: successLogRecordObject.RequestedAt,
-      ResponseTime: successLogRecordObject.ResponseTime,
+      user: successLogRecordObject.user,
+      userAgent: successLogRecordObject.userAgent,
+      receivedAt: successLogRecordObject.receivedAt,
+      ip: successLogRecordObject.ip,
+      method: successLogRecordObject.method,
+      path: successLogRecordObject.path,
+      query: successLogRecordObject.query,
+      params: successLogRecordObject.params,
+      body: successLogRecordObject.body,
+      statusCode: successLogRecordObject.statusCode,
+      requestedAt: successLogRecordObject.requestedAt,
+      responseTime: successLogRecordObject.responseTime,
     };
 
     const successLogRecord = new this.successLogRecordModel(
@@ -72,10 +75,11 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     userAgent: string,
     receivedAt: string,
     ip: string,
-    requestMethod: string,
+    method: string,
     path: string,
-    requestQuery: Object,
-    requestBody: Object,
+    query: Object,
+    params: Object,
+    body: Object,
     exceptionType: string,
     statusCode: number,
     errorMessage: any,
@@ -86,10 +90,11 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       userAgent,
       receivedAt,
       ip,
-      requestMethod,
+      method,
       path,
-      requestQuery,
-      requestBody,
+      query,
+      params,
+      body,
       statusCode,
       exceptionType,
       errorMessage,
@@ -98,17 +103,18 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     // const errorLogRecordSchemaObject = new ErrorLogRecordSchema();
     const errorLogRecordSchemaObject = {
       _id: new Types.ObjectId(),
-      User: errorLogRecordObject.User,
-      UserAgent: errorLogRecordObject.UserAgent,
-      ReceivedAt: errorLogRecordObject.ReceivedAt,
-      IP: errorLogRecordObject.IP,
-      RequestMethod: errorLogRecordObject.RequestMethod,
-      Path: errorLogRecordObject.Path,
-      RequestQuery: errorLogRecordObject.RequestQuery,
-      RequestBody: errorLogRecordObject.RequestBody,
-      StatusCode: errorLogRecordObject.StatusCode,
-      ExceptionType: errorLogRecordObject.ExceptionType,
-      ErrorMessage: errorLogRecordObject.ErrorMessage,
+      user: errorLogRecordObject.user,
+      userAgent: errorLogRecordObject.userAgent,
+      receivedAt: errorLogRecordObject.receivedAt,
+      ip: errorLogRecordObject.ip,
+      method: errorLogRecordObject.method,
+      path: errorLogRecordObject.path,
+      query: errorLogRecordObject.query,
+      params: errorLogRecordObject.params,
+      body: errorLogRecordObject.body,
+      statusCode: errorLogRecordObject.statusCode,
+      exceptionType: errorLogRecordObject.exceptionType,
+      errorMessage: errorLogRecordObject.errorMessage,
     };
 
     const errorLogRecord = new this.errorLogRecordModel(

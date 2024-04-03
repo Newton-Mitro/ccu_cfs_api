@@ -51,9 +51,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       const requestMethod = request.method;
       const userAgent = request.headers['user-agent']!;
       const requestedReceived = new Date().toISOString();
-      const ip = request['ip'];
-      const path = request.url;
-      const requestQuery = request['query'];
+      const ip = request.ip;
+      const path = request.path;
+      const requestQuery = request.query;
+      const params = request.params;
       const photo = request?.body!['photo'] ? 'omitted' : undefined;
       const logo = request?.body!['logo'] ? 'omitted' : undefined;
       const password = request?.body!['password'] ? 'omitted' : undefined;
@@ -79,6 +80,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         requestMethod,
         path,
         requestQuery,
+        params,
         requestBody,
         exceptionType,
         statusCode,
