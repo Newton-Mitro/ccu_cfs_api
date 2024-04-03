@@ -1,6 +1,6 @@
 ### Create Person Request
 # @name createPerson
-POST  http://localhost:5000/peoples
+POST {{host}}/peoples
 Content-Type: application/json
 Accept: application/json
 

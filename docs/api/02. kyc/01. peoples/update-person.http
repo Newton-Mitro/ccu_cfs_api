@@ -1,6 +1,6 @@
 ### Update Person Request
 # @name updatePerson
-PATCH   http://localhost:5000/peoples/660bb69be63331fc993fa686?name=Newton
+PATCH {{host}}/peoples/660c19664b82f8e2ea1549e0?name=Newton
 Content-Type: application/json
 Accept: application/json
 
