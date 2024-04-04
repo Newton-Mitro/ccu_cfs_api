@@ -16,16 +16,21 @@ import { RegisterMongooseSchemasModule } from './register-mongoose-schemas.modul
 import { CustomersService } from './shared/application/services/customers.service';
 import { CustomerRepository } from './shared/infrastructure/repositories/customer.repository';
 import { CustomersController } from './shared/presentation/customers.controller';
+import { PersonAggregateToResponseMapper } from './person/application/mapping/person-aggregate-to-response.mapper';
 
 export const CommandHandlers = [AddPersonHandler, UpdatePersonHandler];
+
 export const EventHandlers = [
   PersonAddedEventHandler,
   PersonUpdatedEventHandler,
 ];
+
 export const Mappers = [
   PersonAggregateToSchemaMapper,
   PersonSchemaToAggregateMapper,
+  PersonAggregateToResponseMapper,
 ];
+
 export const Services = [
   PeoplesService,
   OrganizationsService,

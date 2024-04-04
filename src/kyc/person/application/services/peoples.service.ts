@@ -10,15 +10,18 @@ import {
   AddPersonCommand,
   PersonPhotoAttachment,
 } from '../commands/add-person/add-person.command';
+import { RemovePersonCommand } from '../commands/remove-person/remove-person.command';
 import { UpdatePersonCommand } from '../commands/update-person/update-person.command';
 import { CreatePersonRequest } from '../contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/requests/update-person.request';
+import { PersonAggregateToResponseMapper } from '../mapping/person-aggregate-to-response.mapper';
 
 @Injectable()
 export class PeoplesService {
   constructor(
-    private commandBus: CommandBus,
-    private queryBus: QueryBus,
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly personAggregateToResponseMapper: PersonAggregateToResponseMapper,
     @InjectModel(PERSON_MODEL)
     private readonly personModel: Model<PersonDocument>,
   ) {}
@@ -64,6 +67,9 @@ export class PeoplesService {
     const firstPage = 0;
     const lastPage = 0;
     let totalDocuments: number = 0;
+
+    // const person = await this.queryBus.execute();
+
     this.personModel
       .countDocuments({})
       .then((docCount) => {
@@ -106,11 +112,14 @@ export class PeoplesService {
   }
 
   async findOne(id: string) {
+    // const person = await this.queryBus.execute();
+
     const existingPerson = await this.personModel.findById(id);
     if (!existingPerson) {
       throw new NotFoundException(`Person #${id} not found`);
     }
     return existingPerson;
+    // return this.personAggregateToResponseMapper.mapAggregateToResponse(existingPerson);
   }
 
   async update(
@@ -145,10 +154,6 @@ export class PeoplesService {
   }
 
   async remove(id: string) {
-    const deletedPerson = await this.personModel.findByIdAndDelete(id);
-    if (!deletedPerson) {
-      throw new NotFoundException(`Person #${id} not found`);
-    }
-    return deletedPerson;
+    await this.commandBus.execute(new RemovePersonCommand(id));
   }
 }

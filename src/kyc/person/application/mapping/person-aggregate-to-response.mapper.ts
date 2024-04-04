@@ -8,7 +8,7 @@ import { TrainingDTO } from '../contract/responses/dto/training.dto';
 import { PersonResponse } from '../contract/responses/person.response';
 
 export class PersonAggregateToResponseMapper {
-  static map(model: PersonAggregate): PersonResponse {
+  public mapAggregateToResponse(model: PersonAggregate): PersonResponse {
     // [x]: Implement Mapping
 
     const personResponseModel = new PersonResponse(
