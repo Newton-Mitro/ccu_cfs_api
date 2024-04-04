@@ -75,44 +75,6 @@ export class PeoplesService {
       ),
     );
 
-    // this.personModel
-    //   .countDocuments({})
-    //   .then((docCount) => {
-    //     totalDocuments = docCount;
-    //   })
-    //   .catch((err) => {
-    //     //handle possible errors
-    //   });
-
-    // const currentPage = 1 - 1;
-    // const peoples = await this.personModel
-    //   .find({})
-    //   .select([
-    //     '_id',
-    //     'createdAt',
-    //     'updatedAt',
-    //     'identificationNumber',
-    //     'nameEn',
-    //     'nameBn',
-    //     'email',
-    //     'contactNumber',
-    //     'phoneNumber',
-    //     'mobileNumber',
-    //     'dateOfBirth',
-    //     'nid',
-    //     'birthRegistrationNumber',
-    //     'bloodGroup',
-    //     'gender',
-    //     'religion',
-    //     'profession',
-    //     'maritalStatus',
-    //     'photo',
-    //     'customerType',
-    //   ])
-    //   .sort({ nameEn: 'asc' })
-    //   .limit(resultPerPage)
-    //   .skip(resultPerPage * currentPage);
-
     return peoples.map((entityDocument) =>
       this.personAggregateToResponseMapper.mapAggregateToResponse(
         entityDocument,
