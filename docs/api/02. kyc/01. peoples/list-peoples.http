@@ -1,5 +1,5 @@
-### Update Person Request
-# @name updatePerson
+### List Peoples Request
+# @name listPeoples
 GET {{host}}/peoples
 Content-Type: application/json
 Accept: application/json

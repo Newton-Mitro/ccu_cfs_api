@@ -9,6 +9,7 @@ export interface IRepository<
   findById(id: string | number): Promise<TEntity>;
 
   find(
+    select: string[],
     page?: number,
     limit?: number,
     order_by?: string,

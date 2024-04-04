@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Model } from 'mongoose';
+import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -15,6 +16,8 @@ import { UpdatePersonCommand } from '../commands/update-person/update-person.com
 import { CreatePersonRequest } from '../contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/requests/update-person.request';
 import { PersonAggregateToResponseMapper } from '../mapping/person-aggregate-to-response.mapper';
+import { GetPersonQuery } from '../queries/get-person/get-person.query';
+import { ListPeoplesQuery } from '../queries/list-peoples/list-peoples.query';
 
 @Injectable()
 export class PeoplesService {
@@ -62,66 +65,68 @@ export class PeoplesService {
     );
   }
 
-  async findAll() {
-    const resultPerPage = 5;
-    const firstPage = 0;
-    const lastPage = 0;
-    let totalDocuments: number = 0;
+  async findAll(query: FindAllQueryRequest) {
+    const peoples = await this.queryBus.execute(
+      new ListPeoplesQuery(
+        query.page,
+        query.limit,
+        query.order_by,
+        query.sort_by,
+      ),
+    );
 
-    // const person = await this.queryBus.execute();
+    // this.personModel
+    //   .countDocuments({})
+    //   .then((docCount) => {
+    //     totalDocuments = docCount;
+    //   })
+    //   .catch((err) => {
+    //     //handle possible errors
+    //   });
 
-    this.personModel
-      .countDocuments({})
-      .then((docCount) => {
-        totalDocuments = docCount;
-      })
-      .catch((err) => {
-        //handle possible errors
-      });
+    // const currentPage = 1 - 1;
+    // const peoples = await this.personModel
+    //   .find({})
+    //   .select([
+    //     '_id',
+    //     'createdAt',
+    //     'updatedAt',
+    //     'identificationNumber',
+    //     'nameEn',
+    //     'nameBn',
+    //     'email',
+    //     'contactNumber',
+    //     'phoneNumber',
+    //     'mobileNumber',
+    //     'dateOfBirth',
+    //     'nid',
+    //     'birthRegistrationNumber',
+    //     'bloodGroup',
+    //     'gender',
+    //     'religion',
+    //     'profession',
+    //     'maritalStatus',
+    //     'photo',
+    //     'customerType',
+    //   ])
+    //   .sort({ nameEn: 'asc' })
+    //   .limit(resultPerPage)
+    //   .skip(resultPerPage * currentPage);
 
-    const currentPage = 1 - 1;
-    const peoples = await this.personModel
-      .find({})
-      .select([
-        '_id',
-        'createdAt',
-        'updatedAt',
-        'identificationNumber',
-        'nameEn',
-        'nameBn',
-        'email',
-        'contactNumber',
-        'phoneNumber',
-        'mobileNumber',
-        'dateOfBirth',
-        'nid',
-        'birthRegistrationNumber',
-        'bloodGroup',
-        'gender',
-        'religion',
-        'profession',
-        'maritalStatus',
-        'photo',
-        'customerType',
-      ])
-      .sort({ nameEn: 'asc' })
-      .limit(resultPerPage)
-      .skip(resultPerPage * currentPage);
-
-    return peoples;
+    return peoples.map((entityDocument) =>
+      this.personAggregateToResponseMapper.mapAggregateToResponse(
+        entityDocument,
+      ),
+    );
   }
 
   async findById(id: string) {
-    // const person = await this.queryBus.execute();
+    const person = await this.queryBus.execute(new GetPersonQuery(id));
 
-    const existingPerson = await this.personModel.findById(
-      new Types.ObjectId(id),
-    );
-    if (!existingPerson) {
+    if (!person) {
       throw new NotFoundException(`Person #${id} not found`);
     }
-    return existingPerson;
-    // return this.personAggregateToResponseMapper.mapAggregateToResponse(existingPerson);
+    return this.personAggregateToResponseMapper.mapAggregateToResponse(person);
   }
 
   async update(

@@ -1,5 +1,5 @@
 ### Remove Person Request
 # @name getPerson
-GET {{host}}/peoples/660e4f346b8e3bdd10c4edd4
+GET {{host}}/peoples/660e7317a6fe12949e636338
 Content-Type: application/json
 Accept: application/json

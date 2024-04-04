@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Model, ObjectId } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { SortBy } from '../../enums/sort-by.enum';
 import { IRepository } from '../../interfaces/repository.interface';
 import { IAggregateModelMapper } from '../../mapper/aggregate-model.mapper';
@@ -21,8 +21,10 @@ export abstract class MongooseRepository<
     >,
   ) {}
 
-  async findById(id: string | ObjectId | number): Promise<TEntity> {
-    const entityDocument = await this.entityModel.findById({ _id: id });
+  async findById(id: string | number): Promise<TEntity> {
+    const entityDocument = await this.entityModel.findById(
+      new Types.ObjectId(id),
+    );
 
     if (!entityDocument) {
       throw new NotFoundException('Entity was not found.');
@@ -32,14 +34,22 @@ export abstract class MongooseRepository<
   }
 
   async find(
+    select: string[],
     page?: number,
     limit?: number,
     order_by?: string,
     sort_by?: SortBy,
   ): Promise<TEntity[]> {
-    return (await this.entityModel.find({}, { lean: true })).map(
-      (entityDocument) =>
-        this.aggregateModelMapper.mapSchemaToAggregate(entityDocument),
+    const recordLimit = limit ? limit : 0;
+    const currentPage = page ? page - 1 : 0;
+    return (
+      await this.entityModel
+        .find()
+        .select(select)
+        .limit(recordLimit)
+        .skip(recordLimit * currentPage)
+    ).map((entityDocument) =>
+      this.aggregateModelMapper.mapSchemaToAggregate(entityDocument),
     );
   }
 
@@ -50,11 +60,11 @@ export abstract class MongooseRepository<
   }
 
   async findByIdAndReplace(
-    id: string | ObjectId | number,
+    id: string | number,
     entity: TEntity,
   ): Promise<void> {
     const updatedEntityDocument = await this.entityModel.findByIdAndUpdate(
-      id,
+      new Types.ObjectId(id),
       this.schemaMapper.mapAggregateToSchema(entity),
       {
         new: true,
@@ -68,8 +78,10 @@ export abstract class MongooseRepository<
     }
   }
 
-  async remove(id: string | ObjectId | number): Promise<void> {
-    const entity = await this.entityModel.findByIdAndDelete(id);
+  async remove(id: string | number): Promise<void> {
+    const entity = await this.entityModel.findByIdAndDelete(
+      new Types.ObjectId(id),
+    );
 
     if (!entity) {
       throw new NotFoundException('Unable to find the entity to delete.');

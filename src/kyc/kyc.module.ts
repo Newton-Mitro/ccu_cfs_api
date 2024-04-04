@@ -9,6 +9,8 @@ import { UpdatePersonHandler } from './person/application/commands/update-person
 import { PersonAddedEventHandler } from './person/application/events/person-added.event.handler';
 import { PersonUpdatedEventHandler } from './person/application/events/person-updated.event.handler';
 import { PersonAggregateToResponseMapper } from './person/application/mapping/person-aggregate-to-response.mapper';
+import { GetPersonQueryHandler } from './person/application/queries/get-person/get-person.query.handler';
+import { ListPeoplesQueryHandler } from './person/application/queries/list-peoples/list-peoples.query.handler';
 import { PeoplesService } from './person/application/services/peoples.service';
 import { PersonAggregateToSchemaMapper } from './person/infrastructure/mapping/person-aggregate-to-schema.mapper';
 import { PersonSchemaToAggregateMapper } from './person/infrastructure/mapping/person-schema-to-aggregate.mapper';
@@ -24,6 +26,8 @@ export const CommandHandlers = [
   UpdatePersonHandler,
   RemovePersonHandler,
 ];
+
+export const QueryHandlers = [GetPersonQueryHandler, ListPeoplesQueryHandler];
 
 export const EventHandlers = [
   PersonAddedEventHandler,
@@ -57,6 +61,7 @@ export const Repositories = [CustomerRepository, PeoplesRepository];
     ...Mappers,
     ...CommandHandlers,
     ...EventHandlers,
+    ...QueryHandlers,
   ],
 })
 export class KYCModule {}

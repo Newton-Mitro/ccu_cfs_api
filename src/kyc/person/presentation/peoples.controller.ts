@@ -7,10 +7,12 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 import { CreatePersonRequest } from '../application/contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../application/contract/requests/update-person.request';
 import { PeoplesService } from '../application/services/peoples.service';
@@ -39,8 +41,8 @@ export class PeoplesController {
   }
 
   @Get()
-  async findAll() {
-    return await this.peoplesService.findAll();
+  async findAll(@Query() findAll: FindAllQueryRequest) {
+    return await this.peoplesService.findAll(findAll);
   }
 
   @Get(':id')
