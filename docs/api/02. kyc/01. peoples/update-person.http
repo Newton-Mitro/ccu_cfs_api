@@ -1,6 +1,6 @@
 ### Update Person Request
 # @name updatePerson
-PATCH {{host}}/peoples/660e7317a6fe12949e636338
+PATCH {{host}}/peoples/660c19664b82f8e2ea1549e0
 Content-Type: application/json
 Accept: application/json
 

@@ -1,6 +1,6 @@
 ### Login Request
 # @name login
-POST  http://localhost:5000/auth/login
+POST {{host}}/auth/login
 Content-Type: application/json
 Accept: application/json
 
@@ -16,7 +16,7 @@ Accept: application/json
 
 ### Get Authenticated User Request
 # @name refreshToken
-GET  http://localhost:5000/auth/refresh
+GET {{host}}/auth/refresh
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{refToken}}
@@ -24,7 +24,7 @@ Authorization: Bearer {{refToken}}
 
 ### Get Authenticated User Request
 # @name authUser
-GET  http://localhost:5000/auth/user
+GET {{host}}/auth/user
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}

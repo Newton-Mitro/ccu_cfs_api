@@ -1,6 +1,6 @@
 ### Login Request
 # @name login
-POST  http://localhost:5000/auth/signup
+POST {{host}}/auth/signup
 Content-Type: application/json
 Accept: application/json
 
