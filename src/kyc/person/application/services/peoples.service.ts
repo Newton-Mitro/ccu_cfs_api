@@ -13,8 +13,6 @@ import {
 import { UpdatePersonCommand } from '../commands/update-person/update-person.command';
 import { CreatePersonRequest } from '../contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../contract/requests/update-person.request';
-import { PersonResponse } from '../contract/responses/person.response';
-import { PersonAggregateToResponseMapper } from '../mapping/person-aggregate-to-response.mapper';
 
 @Injectable()
 export class PeoplesService {
@@ -30,7 +28,7 @@ export class PeoplesService {
     createdAt,
     updatedAt,
     createPersonRequest: CreatePersonRequest,
-  ): Promise<PersonResponse> {
+  ): Promise<void> {
     const person = await this.commandBus.execute(
       new AddPersonCommand(
         createPersonRequest.name_en,
@@ -59,8 +57,6 @@ export class PeoplesService {
         user?.id,
       ),
     );
-
-    return PersonAggregateToResponseMapper.map(person);
   }
 
   async findAll() {
@@ -146,8 +142,6 @@ export class PeoplesService {
         user?.id,
       ),
     );
-
-    return PersonAggregateToResponseMapper.map(person);
   }
 
   async remove(id: string) {

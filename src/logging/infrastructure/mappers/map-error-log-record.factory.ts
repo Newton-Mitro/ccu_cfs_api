@@ -1,13 +1,13 @@
 import { Types } from 'mongoose';
-import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
 import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
+import { IAggregateModelMapper } from '../../../common/database/mongoose/aggregate-model.mapper';
 import { ErrorLogRecord } from '../schemas/error-log-record.schema';
 
 export class MapErrorLogRecordFactory
   implements
     ISchemaMapper<ErrorLogRecord, ErrorLogRecordModel>,
-    IBusinessModelMapper<ErrorLogRecord, ErrorLogRecordModel>
+    IAggregateModelMapper<ErrorLogRecord, ErrorLogRecordModel>
 {
   mapAggregateToSchema(entity: ErrorLogRecordModel): ErrorLogRecord {
     return {

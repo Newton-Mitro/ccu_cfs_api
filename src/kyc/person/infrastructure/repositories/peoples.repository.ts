@@ -1,20 +1,14 @@
-import {
-  BadRequestException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
-import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
-import { EntityRepository } from 'src/common/database/mongoose/entity.repository';
+import { Model } from 'mongoose';
+import { MongooseRepository } from 'src/common/database/mongoose/mongoose.repository';
 import { PersonAggregate } from '../../domain/models/person.aggregate';
 import { PersonAggregateToSchemaMapper } from '../mapping/person-aggregate-to-schema.mapper';
 import { PersonSchemaToAggregateMapper } from '../mapping/person-schema-to-aggregate.mapper';
 import { PERSON_MODEL, Person, PersonDocument } from '../schema/person.schema';
 
 @Injectable()
-export class PeoplesRepository extends EntityRepository<
+export class PeoplesRepository extends MongooseRepository<
   Person,
   PersonAggregate
 > {
@@ -27,29 +21,29 @@ export class PeoplesRepository extends EntityRepository<
     super(personDocument, personSchemaMapper, personBusinessModelMapper);
   }
 
-  async findAll(
-    findAllQueryDto: FindAllQueryRequest,
-  ): Promise<PersonAggregate[]> {
-    const { order_by, limit, page, sort_by } = findAllQueryDto;
+  // async findAll(
+  //   findAllQueryDto: FindAllQueryRequest,
+  // ): Promise<PersonAggregate[]> {
+  //   const { order_by, limit, page, sort_by } = findAllQueryDto;
 
-    const customers = await this.personDocument
-      .find()
-      .sort({ [sort_by]: order_by })
-      .limit(limit)
-      .skip(limit * (page - 1));
+  //   const customers = await this.personDocument
+  //     .find()
+  //     .sort({ [sort_by]: order_by })
+  //     .limit(limit)
+  //     .skip(limit * (page - 1));
 
-    return customers.map((customerSchema) =>
-      this.personBusinessModelMapper.mapSchemaToAggregate(customerSchema),
-    );
-  }
+  //   return customers.map((customerSchema) =>
+  //     this.personBusinessModelMapper.mapSchemaToAggregate(customerSchema),
+  //   );
+  // }
 
-  async findById(id: string): Promise<PersonAggregate | null> {
-    const customer = await this.personDocument.findById(new Types.ObjectId(id));
-    if (customer) {
-      return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
-    }
-    return null;
-  }
+  // async findById(id: string): Promise<PersonAggregate | null> {
+  //   const customer = await this.personDocument.findById(new Types.ObjectId(id));
+  //   if (customer) {
+  //     return this.personBusinessModelMapper.mapSchemaToAggregate(customer);
+  //   }
+  //   return null;
+  // }
 
   async findByNID(nid: string): Promise<PersonAggregate | null> {
     const customer = await this.personDocument.findOne({ nid });
@@ -115,27 +109,27 @@ export class PeoplesRepository extends EntityRepository<
     );
   }
 
-  async findOneAndReplace(
-    personId: string,
-    personModel: PersonAggregate,
-  ): Promise<PersonAggregate> {
-    const personSchema =
-      this.personSchemaMapper.mapAggregateToSchema(personModel);
+  // async findOneAndReplace(
+  //   personId: string,
+  //   personModel: PersonAggregate,
+  // ): Promise<PersonAggregate> {
+  //   const personSchema =
+  //     this.personSchemaMapper.mapAggregateToSchema(personModel);
 
-    const updatedEntityDocument = await this.entityModel.findOneAndReplace(
-      { _id: new Types.ObjectId(personId) },
-      personSchema,
-      {
-        new: true,
-      },
-    );
+  //   const updatedEntityDocument = await this.entityModel.findOneAndReplace(
+  //     { _id: new Types.ObjectId(personId) },
+  //     personSchema,
+  //     {
+  //       new: true,
+  //     },
+  //   );
 
-    if (!updatedEntityDocument) {
-      throw new NotFoundException('Unable to find the entity to replace.');
-    }
+  //   if (!updatedEntityDocument) {
+  //     throw new NotFoundException('Unable to find the entity to replace.');
+  //   }
 
-    return this.personBusinessModelMapper.mapSchemaToAggregate(
-      updatedEntityDocument,
-    );
-  }
+  //   return this.personBusinessModelMapper.mapSchemaToAggregate(
+  //     updatedEntityDocument,
+  //   );
+  // }
 }

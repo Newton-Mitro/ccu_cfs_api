@@ -1,10 +1,10 @@
-import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
+import { IAggregateModelMapper } from '../../../../common/database/mongoose/aggregate-model.mapper';
 import { Address } from '../../../shared/infrastructure/schema/address.schema';
 import { OrganizationAggregate } from '../../domain/models/organization.aggregate';
 import { Organization } from '../schema/organization.schema';
 
 export class OrganizationSchemaToAggregateMapper
-  implements IBusinessModelMapper<Organization, OrganizationAggregate>
+  implements IAggregateModelMapper<Organization, OrganizationAggregate>
 {
   mapSchemaToAggregate(entitySchema: Organization): OrganizationAggregate {
     const organizationModel = new OrganizationAggregate({

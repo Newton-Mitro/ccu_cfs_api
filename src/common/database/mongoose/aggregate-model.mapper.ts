@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
 
-export interface IBusinessModelMapper<
+export interface IAggregateModelMapper<
   TSchema extends IdentifiableEntitySchema,
   TModel extends AggregateRoot,
 > {

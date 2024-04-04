@@ -1,13 +1,13 @@
 import { Types } from 'mongoose';
-import { IBusinessModelMapper } from 'src/common/database/mongoose/business-model.mapper';
 import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
+import { IAggregateModelMapper } from '../../../common/database/mongoose/aggregate-model.mapper';
 import { SuccessLogRecord } from '../schemas/success-log-record.schema';
 
 export class MapSuccessLogRecordFactory
   implements
     ISchemaMapper<SuccessLogRecord, SuccessLogRecordModel>,
-    IBusinessModelMapper<SuccessLogRecord, SuccessLogRecordModel>
+    IAggregateModelMapper<SuccessLogRecord, SuccessLogRecordModel>
 {
   mapAggregateToSchema(entity: SuccessLogRecordModel): SuccessLogRecord {
     return {

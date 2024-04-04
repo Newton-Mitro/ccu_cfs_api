@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
+import { Types } from 'mongoose';
 import { StoreBase64File } from 'src/common/utils/store-base64-file';
-import { PersonAggregate } from '../../../domain/models/person.aggregate';
 import { PeoplesRepository } from '../../../infrastructure/repositories/peoples.repository';
 import { UpdatePersonCommand } from './update-person.command';
+
 @CommandHandler(UpdatePersonCommand)
 export class UpdatePersonHandler
   implements ICommandHandler<UpdatePersonCommand>
@@ -13,11 +14,12 @@ export class UpdatePersonHandler
     private readonly publisher: EventPublisher,
   ) {}
 
-  async execute(command: UpdatePersonCommand): Promise<PersonAggregate> {
-    const person = await this.peoplesRepository.findById(command.personId);
+  async execute(command: UpdatePersonCommand): Promise<void> {
+    const person = await this.peoplesRepository.findOne({
+      _id: new Types.ObjectId(command.personId),
+    });
 
     let fileUrl: string = '';
-    let personModel: PersonAggregate;
 
     if (person) {
       this.publisher.mergeObjectContext(person);
@@ -60,14 +62,14 @@ export class UpdatePersonHandler
         });
       }
 
-      person.commit();
-      const personModelRes = await this.peoplesRepository.findOneAndReplace(
-        person.personId,
+      await this.peoplesRepository.findOneAndReplace(
+        { _id: new Types.ObjectId(person.personId) },
         person,
       );
-      return personModelRes;
-    }
 
-    throw new HttpException('Person not found', HttpStatus.BAD_REQUEST);
+      person.commit();
+    } else {
+      throw new HttpException('Person not found', HttpStatus.BAD_REQUEST);
+    }
   }
 }

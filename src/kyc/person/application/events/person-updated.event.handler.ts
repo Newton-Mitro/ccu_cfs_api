@@ -1,4 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { Types } from 'mongoose';
 import { MessagingService } from '../../../../messaging/application/messaging.service';
 import { PersonAddedEvent } from '../../domain/events/person-added.event';
 import { PersonUpdatedEvent } from '../../domain/events/person-updated.event';
@@ -14,7 +15,9 @@ export class PersonUpdatedEventHandler
   ) {}
 
   async handle(event: PersonAddedEvent) {
-    const person = await this.peoplesRepository.findById(event.personId);
+    const person = await this.peoplesRepository.findOne({
+      _id: new Types.ObjectId(event.personId),
+    });
     this.messagingService.sendEmail({
       to: person?.email,
       from: 'test@email.com',

@@ -1,4 +1,4 @@
-import { IBusinessModelMapper } from '../../../../common/database/mongoose/business-model.mapper';
+import { IAggregateModelMapper } from '../../../../common/database/mongoose/aggregate-model.mapper';
 import { Address } from '../../../shared/infrastructure/schema/address.schema';
 import { PersonAggregate } from '../../domain/models/person.aggregate';
 import { Education } from '../schema/education.schema';
@@ -9,7 +9,7 @@ import { Person } from '../schema/person.schema';
 import { Training } from '../schema/training.schema';
 
 export class PersonSchemaToAggregateMapper
-  implements IBusinessModelMapper<Person, PersonAggregate>
+  implements IAggregateModelMapper<Person, PersonAggregate>
 {
   mapSchemaToAggregate(entitySchema: Person): PersonAggregate {
     const addresses = entitySchema.addresses?.map((address: Address) => {
