@@ -1,5 +1,5 @@
 ### Update Person Request
 # @name updatePerson
-GET   http://localhost:5000/peoples
+GET {{host}}/peoples
 Content-Type: application/json
 Accept: application/json

@@ -65,7 +65,9 @@ export abstract class MongooseRepository<
   }
 
   async remove(entityFilterQuery?: FilterQuery<TSchema>): Promise<void> {
-    const entity = await this.entityModel.findByIdAndDelete(entityFilterQuery);
+    const entity = await this.entityModel.findByIdAndDelete(
+      entityFilterQuery?._id,
+    );
 
     if (!entity) {
       throw new NotFoundException('Unable to find the entity to delete.');

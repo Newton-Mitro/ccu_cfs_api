@@ -4,9 +4,11 @@ import { MessagingModule } from '../messaging/messaging.module';
 import { OrganizationsService } from './organization/application/services/organizations.service';
 import { OrganizationsController } from './organization/presentation/organizations.controller';
 import { AddPersonHandler } from './person/application/commands/add-person/add-person.command.handler';
+import { RemovePersonHandler } from './person/application/commands/remove-person/remove-person.command.handler';
 import { UpdatePersonHandler } from './person/application/commands/update-person/update-person.command.handler';
 import { PersonAddedEventHandler } from './person/application/events/person-added.event.handler';
 import { PersonUpdatedEventHandler } from './person/application/events/person-updated.event.handler';
+import { PersonAggregateToResponseMapper } from './person/application/mapping/person-aggregate-to-response.mapper';
 import { PeoplesService } from './person/application/services/peoples.service';
 import { PersonAggregateToSchemaMapper } from './person/infrastructure/mapping/person-aggregate-to-schema.mapper';
 import { PersonSchemaToAggregateMapper } from './person/infrastructure/mapping/person-schema-to-aggregate.mapper';
@@ -16,9 +18,12 @@ import { RegisterMongooseSchemasModule } from './register-mongoose-schemas.modul
 import { CustomersService } from './shared/application/services/customers.service';
 import { CustomerRepository } from './shared/infrastructure/repositories/customer.repository';
 import { CustomersController } from './shared/presentation/customers.controller';
-import { PersonAggregateToResponseMapper } from './person/application/mapping/person-aggregate-to-response.mapper';
 
-export const CommandHandlers = [AddPersonHandler, UpdatePersonHandler];
+export const CommandHandlers = [
+  AddPersonHandler,
+  UpdatePersonHandler,
+  RemovePersonHandler,
+];
 
 export const EventHandlers = [
   PersonAddedEventHandler,

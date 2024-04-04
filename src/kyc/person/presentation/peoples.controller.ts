@@ -34,7 +34,7 @@ export class PeoplesController {
     );
 
     return response
-      .status(HttpStatus.OK)
+      .status(HttpStatus.CREATED)
       .json({ data: 'Person created successfully.' });
   }
 
