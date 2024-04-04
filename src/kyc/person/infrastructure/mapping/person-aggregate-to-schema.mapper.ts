@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
+import { ISchemaMapper } from '../../../../common/mapper/schema.mapper';
 import { AddressModel } from '../../../shared/domain/models/address.model';
 import { EducationModel } from '../../domain/models/education.model';
 import { EmploymentHistoryModel } from '../../domain/models/employment-history.model';

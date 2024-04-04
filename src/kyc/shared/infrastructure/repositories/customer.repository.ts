@@ -17,7 +17,7 @@ export class CustomerRepository {
     const customers = await this.customerModel
       .find()
 
-      .sort({ [sort_by]: order_by })
+      .sort({ [sort_by]: sort_by })
       .limit(limit)
       .skip(limit * (page - 1));
 

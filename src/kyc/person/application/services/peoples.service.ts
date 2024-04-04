@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import {
   PERSON_MODEL,
   PersonDocument,
@@ -111,10 +111,12 @@ export class PeoplesService {
     return peoples;
   }
 
-  async findOne(id: string) {
+  async findById(id: string) {
     // const person = await this.queryBus.execute();
 
-    const existingPerson = await this.personModel.findById(id);
+    const existingPerson = await this.personModel.findById(
+      new Types.ObjectId(id),
+    );
     if (!existingPerson) {
       throw new NotFoundException(`Person #${id} not found`);
     }

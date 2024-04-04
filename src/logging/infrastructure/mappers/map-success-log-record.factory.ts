@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
-import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
-import { IAggregateModelMapper } from '../../../common/database/mongoose/aggregate-model.mapper';
+import { IAggregateModelMapper } from '../../../common/mapper/aggregate-model.mapper';
+import { ISchemaMapper } from '../../../common/mapper/schema.mapper';
 import { SuccessLogRecord } from '../schemas/success-log-record.schema';
 
 export class MapSuccessLogRecordFactory

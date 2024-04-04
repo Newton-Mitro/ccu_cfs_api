@@ -44,8 +44,8 @@ export class PeoplesController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.peoplesService.findOne(id);
+  async findById(@Param('id') id: string) {
+    return await this.peoplesService.findById(id);
   }
 
   @Patch(':id')

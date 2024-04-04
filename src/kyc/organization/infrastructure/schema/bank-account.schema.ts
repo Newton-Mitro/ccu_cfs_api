@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IdentifiableEntitySchema } from 'src/common/database/mongoose/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from '../../../../common/schemas/identifiable-entity.schema';
 
 @Schema()
 export class BankAccount extends IdentifiableEntitySchema {

@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
-import { Types } from 'mongoose';
 import { StoreBase64File } from 'src/common/utils/store-base64-file';
 import { PeoplesRepository } from '../../../infrastructure/repositories/peoples.repository';
 import { UpdatePersonCommand } from './update-person.command';
@@ -15,9 +14,7 @@ export class UpdatePersonHandler
   ) {}
 
   async execute(command: UpdatePersonCommand): Promise<void> {
-    const person = await this.peoplesRepository.findOne({
-      _id: new Types.ObjectId(command.personId),
-    });
+    const person = await this.peoplesRepository.findById(command.personId);
 
     let fileUrl: string = '';
 
@@ -62,10 +59,7 @@ export class UpdatePersonHandler
         });
       }
 
-      await this.peoplesRepository.findOneAndReplace(
-        { _id: new Types.ObjectId(person.personId) },
-        person,
-      );
+      await this.peoplesRepository.findByIdAndReplace(person.personId, person);
 
       person.commit();
     } else {

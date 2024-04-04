@@ -1,4 +1,4 @@
-import { IAggregateModelMapper } from '../../../../common/database/mongoose/aggregate-model.mapper';
+import { IAggregateModelMapper } from '../../../../common/mapper/aggregate-model.mapper';
 import { Address } from '../../../shared/infrastructure/schema/address.schema';
 import { PersonAggregate } from '../../domain/models/person.aggregate';
 import { Education } from '../schema/education.schema';

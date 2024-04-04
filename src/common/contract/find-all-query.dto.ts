@@ -11,13 +11,13 @@ export class FindAllQueryRequest {
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
-  limit: number = 10000000;
+  limit: number = 100;
 
   @IsString()
   @IsOptional()
-  sort_by: string;
+  order_by: string;
 
   @IsOptional()
   @IsEnum(SortBy)
-  order_by: SortBy = SortBy.ASC;
+  sort_by: SortBy = SortBy.ASC;
 }

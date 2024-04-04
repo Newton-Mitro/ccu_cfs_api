@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
-import { ISchemaMapper } from 'src/common/database/mongoose/schema.mapper';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
-import { IAggregateModelMapper } from '../../../common/database/mongoose/aggregate-model.mapper';
+import { IAggregateModelMapper } from '../../../common/mapper/aggregate-model.mapper';
+import { ISchemaMapper } from '../../../common/mapper/schema.mapper';
 import { ErrorLogRecord } from '../schemas/error-log-record.schema';
 
 export class MapErrorLogRecordFactory
