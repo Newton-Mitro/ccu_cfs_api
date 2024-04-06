@@ -6,9 +6,9 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { InstallmentType } from '../../domain/enum/installment-type.enum';
-import { ScheduleStatus } from '../../domain/enum/schedule-status.enum';
-import { ScheduleType } from '../../domain/enum/schedule-type.enum';
+import { InstallmentType } from '../../../../../shared/domain/enums/installment-type.enum';
+import { ScheduleStatus } from '../../../../../shared/domain/enums/schedule-status.enum';
+import { ScheduleType } from '../../../../../shared/domain/enums/schedule-type.enum';
 
 export class ScheduleRequest {
   @IsOptional()

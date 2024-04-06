@@ -5,8 +5,8 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { CollateralStatus } from '../../domain/enum/collateral-status.enum';
-import { CollateralType } from '../../domain/enum/collateral-type.enum';
+import { CollateralStatus } from '../../../../../shared/domain/enums/collateral-status.enum';
+import { CollateralType } from '../../../../../shared/domain/enums/collateral-type.enum';
 
 export class CollateralRequest {
   @IsOptional()

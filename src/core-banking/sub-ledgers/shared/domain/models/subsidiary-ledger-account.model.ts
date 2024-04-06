@@ -1,10 +1,10 @@
 import { BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { AccountStatus } from '../enum/account-status.enum';
-import { AccountType } from '../enum/account-type.enum';
-import { Branch } from '../enum/branch.enum';
-import { ControlLedger } from '../enum/control-ledger';
-import { DefaulterType } from '../enum/defaulter-type.enum';
+import { AccountStatus } from '../enums/account-status.enum';
+import { AccountType } from '../enums/account-type.enum';
+import { Branch } from '../enums/branch.enum';
+import { ControlLedger } from '../enums/control-ledger';
+import { DefaulterType } from '../enums/defaulter-type.enum';
 import { BaseCustomerModel } from './base-customer.model';
 import { IntroducerModel } from './introducer.model';
 import { NomineeModel } from './nominee.model';

@@ -1,6 +1,6 @@
 import { Prop, Schema } from '@nestjs/mongoose';
-import { CollateralStatus } from 'src/core-banking/sub-ledgers/deposits/products/savings/domain/enum/collateral-status.enum';
-import { CollateralType } from 'src/core-banking/sub-ledgers/deposits/products/savings/domain/enum/collateral-type.enum';
+import { CollateralStatus } from '../../../shared/domain/enums/collateral-status.enum';
+import { CollateralType } from '../../../shared/domain/enums/collateral-type.enum';
 
 @Schema()
 export class CollateralSchema {

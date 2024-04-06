@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AccountStatus } from '../../domain/enum/account-status.enum';
-import { AccountType } from '../../domain/enum/account-type.enum';
-import { Branch } from '../../domain/enum/branch.enum';
-import { ControlLedger } from '../../domain/enum/control-ledger';
-import { DefaulterType } from '../../domain/enum/defaulter-type.enum';
+import { AccountStatus } from '../../domain/enums/account-status.enum';
+import { AccountType } from '../../domain/enums/account-type.enum';
+import { Branch } from '../../domain/enums/branch.enum';
+import { ControlLedger } from '../../domain/enums/control-ledger';
+import { DefaulterType } from '../../domain/enums/defaulter-type.enum';
 import { BaseCustomer, BaseCustomerSchema } from './base-customer.schema';
 import { Introducer, IntroducerSchema } from './introducer.schema';
 import { Nominee, NomineeSchema } from './nominee.schema';

@@ -1,7 +1,7 @@
-import { InstallmentType } from 'src/core-banking/sub-ledgers/deposits/products/savings/domain/enum/installment-type.enum';
-import { ScheduleStatus } from 'src/core-banking/sub-ledgers/deposits/products/savings/domain/enum/schedule-status.enum';
-import { ScheduleType } from 'src/core-banking/sub-ledgers/deposits/products/savings/domain/enum/schedule-type.enum';
 import { v4 as uuidv4 } from 'uuid';
+import { InstallmentType } from '../../../../shared/domain/enums/installment-type.enum';
+import { ScheduleStatus } from '../../../../shared/domain/enums/schedule-status.enum';
+import { ScheduleType } from '../../../../shared/domain/enums/schedule-type.enum';
 
 export class ScheduleModel {
   Id: string = uuidv4();

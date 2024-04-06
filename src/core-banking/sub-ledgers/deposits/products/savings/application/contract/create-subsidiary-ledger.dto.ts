@@ -9,9 +9,9 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { AccountType } from '../../domain/enum/account-type.enum';
-import { Branch } from '../../domain/enum/branch.enum';
-import { ControlLedger } from '../../domain/enum/control-ledger';
+import { AccountType } from '../../../../../shared/domain/enums/account-type.enum';
+import { Branch } from '../../../../../shared/domain/enums/branch.enum';
+import { ControlLedger } from '../../../../../shared/domain/enums/control-ledger';
 import { CollateralRequest } from './collateral.dto';
 import { CustomerRequest } from './customer.dto';
 import { IntroducerRequest } from './introducer.dto';

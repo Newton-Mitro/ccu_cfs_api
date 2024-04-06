@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { CustomerType } from 'src/common/enums/customer-type.enum';
 import { CollateralModel } from 'src/core-banking/sub-ledgers/loans/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/core-banking/sub-ledgers/loans/schedules/domain/model/schedule.model';
-import { BaseCustomerModel } from '../domain/model/base-customer.model';
-import { HumanCustomerModel } from '../domain/model/human-customer.model';
-import { IntroducerModel } from '../domain/model/introducer.model';
-import { NomineeModel } from '../domain/model/nominee.model';
-import { OperatorModel } from '../domain/model/operator.model';
-import { OrganizationCustomerModel } from '../domain/model/organization-customer.model';
+import { BaseCustomerModel } from '../../../../shared/domain/models/base-customer.model';
+import { HumanCustomerModel } from '../../../../shared/domain/models/human-customer.model';
+import { IntroducerModel } from '../../../../shared/domain/models/introducer.model';
+import { NomineeModel } from '../../../../shared/domain/models/nominee.model';
+import { OperatorModel } from '../../../../shared/domain/models/operator.model';
+import { OrganizationCustomerModel } from '../../../../shared/domain/models/organization-customer.model';
 import { CreateSubsidiaryLedgerRequest } from './contract/create-subsidiary-ledger.dto';
 
 @Injectable()
