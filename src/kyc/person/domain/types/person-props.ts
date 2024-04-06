@@ -1,0 +1,30 @@
+import { BloodGroup } from '../../../../common/enums/blood-group.enum';
+import { Gender } from '../../../../common/enums/gender.enum';
+import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
+import { Profession } from '../../../../common/enums/profession.enum';
+import { Religion } from '../../../../common/enums/religion.enum';
+
+export type PersonProps = {
+  personId: string;
+  identificationNumber: string;
+  nameEn: string;
+  nameBn: string;
+  contactNumber: string;
+  mobileNumber: string;
+  phoneNumber: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
+  customerType: string;
+  dateOfBirth: Date;
+  gender: Gender;
+  bloodGroup: BloodGroup;
+  religion: Religion;
+  maritalStatus: MaritalStatus;
+  profession: Profession;
+  nid: string;
+  birthRegistrationNumber: string;
+  photo: string;
+};

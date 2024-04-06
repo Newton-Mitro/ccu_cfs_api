@@ -1,14 +1,5 @@
 import { PersonalDocumentType } from '../../../shared/domain/enums/kyc-attachment-type.enum';
-
-export type PersonAttachmentProps = {
-  attachmentId: string;
-  documentTitle: PersonalDocumentType;
-  fileUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
-};
+import { PersonAttachmentProps } from '../types/person-attachment-props';
 
 export class PersonAttachmentModel {
   readonly attachmentId: string;

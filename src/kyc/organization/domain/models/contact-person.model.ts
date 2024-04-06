@@ -3,9 +3,7 @@ import { Gender } from '../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
-import { PersonProps } from '../../../person/domain/models/person.aggregate';
-
-export type ContactPersonProps = PersonProps & { contactPersonId: string };
+import { ContactPersonProps } from '../types/contact-person-props';
 
 export class ContactPersonModel {
   readonly personId: string;

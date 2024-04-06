@@ -5,13 +5,7 @@ import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
 import { FamilyTreeStatus } from '../enums/family-tree-status.enum';
-import { PersonProps } from './person.aggregate';
-
-export type FamilyAndRelativeProps = PersonProps & {
-  familyTreeId: string;
-  relationship: Relationship;
-  status: FamilyTreeStatus;
-};
+import { FamilyAndRelativeProps } from '../types/family-and-relative-props';
 
 export class FamilyAndRelativeModel {
   readonly familyTreeId: string;

@@ -10,54 +10,18 @@ import {
 } from '../../../shared/domain/models/address.model';
 import { PersonAddedEvent } from '../events/person-added.event';
 import { PersonUpdatedEvent } from '../events/person-updated.event';
-import { EducationModel, EducationProps } from './education.model';
-import {
-  EmploymentHistoryModel,
-  EmploymentHistoryProps,
-} from './employment-history.model';
-import {
-  FamilyAndRelativeModel,
-  FamilyAndRelativeProps,
-} from './family-and-relative.model';
-import {
-  PersonAttachmentModel,
-  PersonAttachmentProps,
-} from './person-attachment.model';
-import { TrainingModel, TrainingProps } from './training.model';
-
-export type PersonProps = {
-  personId: string;
-  identificationNumber: string;
-  nameEn: string;
-  nameBn: string;
-  contactNumber: string;
-  mobileNumber: string;
-  phoneNumber: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
-  customerType: string;
-  dateOfBirth: Date;
-  gender: Gender;
-  bloodGroup: BloodGroup;
-  religion: Religion;
-  maritalStatus: MaritalStatus;
-  profession: Profession;
-  nid: string;
-  birthRegistrationNumber: string;
-  photo: string;
-};
-
-export type PersonAggregateProps = PersonProps & {
-  addresses: AddressProps[];
-  familyTree: FamilyAndRelativeProps[];
-  educations: EducationProps[];
-  trainings: TrainingProps[];
-  employmentHistories: EmploymentHistoryProps[];
-  attachments: PersonAttachmentProps[];
-};
+import { EducationProps } from '../types/education-props';
+import { EmploymentHistoryProps } from '../types/employment-history-props';
+import { FamilyAndRelativeProps } from '../types/family-and-relative-props';
+import { PersonAggregateProps } from '../types/person-aggregate-props';
+import { PersonAttachmentProps } from '../types/person-attachment-props';
+import { PersonProps } from '../types/person-props';
+import { TrainingProps } from '../types/training-props';
+import { EducationModel } from './education.model';
+import { EmploymentHistoryModel } from './employment-history.model';
+import { FamilyAndRelativeModel } from './family-and-relative.model';
+import { PersonAttachmentModel } from './person-attachment.model';
+import { TrainingModel } from './training.model';
 
 export class PersonAggregate extends AggregateRoot {
   private _personId: string;

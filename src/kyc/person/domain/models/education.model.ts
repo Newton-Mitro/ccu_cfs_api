@@ -1,16 +1,4 @@
-export type EducationProps = {
-  educationId: string;
-  educationLevel: string;
-  educationDegree: string;
-  instituteName: string;
-  majorSubject: string;
-  passingYear: string;
-  grade: string;
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
-};
+import { EducationProps } from '../types/education-props';
 
 export class EducationModel {
   readonly educationId: string;

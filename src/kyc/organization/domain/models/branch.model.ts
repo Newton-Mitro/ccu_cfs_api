@@ -1,8 +1,7 @@
-import { OrganizationProps } from './organization.aggregate';
-
-export type BranchProps = OrganizationProps & { branchId: string };
+import { BranchProps } from '../types/branch-props';
 
 export class BranchModel {
+  readonly branchId: string;
   readonly organizationId: string;
   readonly identificationNumber: string;
   readonly registrationNumber: string;
@@ -20,8 +19,6 @@ export class BranchModel {
   readonly updatedAt: Date;
   readonly createdBy: string;
   readonly updatedBy: string;
-
-  readonly branchId: string;
 
   constructor(branchProps: BranchProps) {
     this.branchId = branchProps.branchId;
