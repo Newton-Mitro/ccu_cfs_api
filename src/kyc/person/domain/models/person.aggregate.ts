@@ -23,10 +23,9 @@ import {
   PersonAttachmentModel,
   PersonAttachmentProps,
 } from './person-attachment.model';
-import { PersonProps } from './person.model';
 import { TrainingModel, TrainingProps } from './training.model';
 
-export type PersonAggregateProps = {
+export type PersonProps = {
   personId: string;
   identificationNumber: string;
   nameEn: string;
@@ -35,6 +34,11 @@ export type PersonAggregateProps = {
   mobileNumber: string;
   phoneNumber: string;
   email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
+  customerType: string;
   dateOfBirth: Date;
   gender: Gender;
   bloodGroup: BloodGroup;
@@ -44,11 +48,9 @@ export type PersonAggregateProps = {
   nid: string;
   birthRegistrationNumber: string;
   photo: string;
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
-  customerType: string;
+};
+
+export type PersonAggregateProps = PersonProps & {
   addresses: AddressProps[];
   familyTree: FamilyAndRelativeProps[];
   educations: EducationProps[];

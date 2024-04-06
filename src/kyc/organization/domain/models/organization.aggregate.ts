@@ -7,7 +7,26 @@ import { BankAccountModel } from './bank-account.model';
 import { BranchModel } from './branch.model';
 import { ContactPersonModel } from './contact-person.model';
 import { OrganizationAttachmentModel } from './organization-attachment.model';
-import { OrganizationProps } from './organization.model';
+
+export type OrganizationProps = {
+  organizationId: string;
+  identificationNumber: string;
+  registrationNumber: string;
+  tin: string;
+  nameEn: string;
+  nameBn: string;
+  email: string;
+  contactNumber: string;
+  mobileNumber: string;
+  phoneNumber: string;
+  fax: string;
+  website: string;
+  logo: string;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
+};
 
 export class OrganizationAggregate extends AggregateRoot {
   readonly organizationId: string;
