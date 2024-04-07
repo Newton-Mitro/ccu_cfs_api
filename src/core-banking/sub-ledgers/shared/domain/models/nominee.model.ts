@@ -4,9 +4,9 @@ import { Gender } from '../../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../../common/enums/profession.enum';
 import { Religion } from '../../../../../common/enums/religion.enum';
-import { HumanCustomerModel } from './human-customer.model';
+import { IHumanCustomer } from './human-customer.interface';
 
-export class NomineeModel implements HumanCustomerModel {
+export class NomineeModel implements IHumanCustomer {
   nomineeId: string;
   identificationNumber: string;
   nameEn: string;

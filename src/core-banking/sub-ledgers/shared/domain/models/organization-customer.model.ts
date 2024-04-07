@@ -1,6 +1,6 @@
-import { BaseCustomerModel } from './base-customer.model';
+import { IBaseCustomer } from './base-customer.interface';
 
-export interface OrganizationCustomerModel extends BaseCustomerModel {
+export interface IOrganizationCustomer extends IBaseCustomer {
   tin: string;
   fax: string;
   registrationNumber: string;

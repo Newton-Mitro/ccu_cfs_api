@@ -1,6 +1,6 @@
 import { CustomerType } from 'src/common/enums/customer-type.enum';
-import { IAuditableModel } from '../../../../../common/models/auditable.model';
-export interface BaseCustomerModel extends IAuditableModel {
+import { IAuditableModel as IAuditable } from '../../../../../common/models/auditable.model';
+export interface IBaseCustomer extends IAuditable {
   identificationNumber: string;
   nameEn: string;
   nameBn: string;

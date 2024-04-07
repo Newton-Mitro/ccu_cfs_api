@@ -29,6 +29,9 @@ export class SubsidiaryLedgerAccount extends IdentifiableEntitySchema {
   @Prop({ type: String, trim: true, required: true })
   branch: string;
 
+  @Prop({ type: Number, default: 0.0 })
+  balance: string;
+
   @Prop({
     type: String,
     enum: Object.values(AccountStatus),

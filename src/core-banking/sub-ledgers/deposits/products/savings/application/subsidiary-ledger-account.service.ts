@@ -2,12 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { CustomerType } from 'src/common/enums/customer-type.enum';
 import { CollateralModel } from 'src/core-banking/sub-ledgers/loans/collaterals/domain/model/collateral.model';
 import { ScheduleModel } from 'src/core-banking/sub-ledgers/loans/schedules/domain/model/schedule.model';
-import { BaseCustomerModel } from '../../../../shared/domain/models/base-customer.model';
-import { HumanCustomerModel } from '../../../../shared/domain/models/human-customer.model';
+import { IBaseCustomer } from '../../../../shared/domain/models/base-customer.interface';
 import { IntroducerModel } from '../../../../shared/domain/models/introducer.model';
 import { NomineeModel } from '../../../../shared/domain/models/nominee.model';
 import { OperatorModel } from '../../../../shared/domain/models/operator.model';
-import { OrganizationCustomerModel } from '../../../../shared/domain/models/organization-customer.model';
 import { CreateSubsidiaryLedgerRequest } from './contract/create-subsidiary-ledger.dto';
 
 @Injectable()
@@ -15,7 +13,7 @@ export class SubsidiaryLedgerAccountService {
   constructor() {}
 
   CreateAccount(subsidiaryLedgerAccountRequest: CreateSubsidiaryLedgerRequest) {
-    const holders: BaseCustomerModel[] = [];
+    const holders: IBaseCustomer[] = [];
     const introducers: IntroducerModel[] = [];
     const operators: OperatorModel[] = [];
     const nominees: NomineeModel[] = [];

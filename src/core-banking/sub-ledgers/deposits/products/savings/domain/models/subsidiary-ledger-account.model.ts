@@ -1,12 +1,12 @@
+import { IBaseCustomer } from '../../../../../shared/domain/models/base-customer.interface';
+import { IntroducerModel } from '../../../../../shared/domain/models/introducer.model';
+import { NomineeModel } from '../../../../../shared/domain/models/nominee.model';
+import { OperatorModel } from '../../../../../shared/domain/models/operator.model';
 import { AccountStatus } from '../enums/account-status.enum';
 import { AccountType } from '../enums/account-type.enum';
 import { Branch } from '../enums/branch.enum';
 import { ControlLedger } from '../enums/control-ledger';
 import { DefaulterType } from '../enums/defaulter-type.enum';
-import { BaseCustomerModel } from './base-customer.model';
-import { IntroducerModel } from './introducer.model';
-import { NomineeModel } from './nominee.model';
-import { OperatorModel } from './operator.model';
 
 export class SubsidiaryLedgerAccountModel {
   accountId: string;
@@ -23,7 +23,7 @@ export class SubsidiaryLedgerAccountModel {
   installmentAmount: number;
   numberOfInstallment: number;
   introducers: IntroducerModel[];
-  holders: BaseCustomerModel[];
+  holders: IBaseCustomer[];
   operators: OperatorModel[];
   nominees: NomineeModel[];
   openingDate: string;

@@ -1,9 +1,7 @@
 import { CustomerType } from '../../../../../common/enums/customer-type.enum';
-import { OrganizationCustomerModel } from './organization-customer.model';
+import { IOrganizationCustomer } from './organization-customer.model';
 
-export class OrganizationAccountHolderModel
-  implements OrganizationCustomerModel
-{
+export class OrganizationAccountHolderModel implements IOrganizationCustomer {
   accountHolderId: string;
   identificationNumber: string;
   nameEn: string;
