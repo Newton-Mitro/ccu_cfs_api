@@ -9,15 +9,18 @@ export class Nominee extends HumanCustomer {
     super();
   }
 
+  @Prop()
+  nomineeId: string;
+
   @Prop({
     type: String,
     enum: Object.values(CustomerType),
     default: CustomerType.PERSON,
   })
-  Relationship: Relationship;
+  relationship: Relationship;
 
   @Prop({ type: Number })
-  Percent: number;
+  percent: number;
 }
 
 export type NomineeDocument = Nominee & Document;

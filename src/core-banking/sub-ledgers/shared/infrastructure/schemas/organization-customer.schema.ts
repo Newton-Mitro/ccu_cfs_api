@@ -7,14 +7,17 @@ export class OrganizationCustomer extends BaseCustomer {
     super();
   }
 
-  @Prop({ trim: true })
-  TIN: string;
+  @Prop()
+  organizationId: string;
 
   @Prop({ trim: true })
-  Fax: string;
+  tin: string;
 
   @Prop({ trim: true })
-  RegistrationNumber: string;
+  fax: string;
+
+  @Prop({ trim: true })
+  registrationNumber: string;
 }
 
 export type OrganizationCustomerDocument = OrganizationCustomer & Document;

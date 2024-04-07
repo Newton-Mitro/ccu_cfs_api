@@ -1,0 +1,42 @@
+import { AccountStatus } from '../enums/account-status.enum';
+import { AccountType } from '../enums/account-type.enum';
+import { Branch } from '../enums/branch.enum';
+import { ControlLedger } from '../enums/control-ledger';
+import { DefaulterType } from '../enums/defaulter-type.enum';
+import { BaseCustomerModel } from './base-customer.model';
+import { IntroducerModel } from './introducer.model';
+import { NomineeModel } from './nominee.model';
+import { OperatorModel } from './operator.model';
+
+export class SubsidiaryLedgerAccountModel {
+  accountId: string;
+  accountType: AccountType;
+  controlLedger: ControlLedger;
+  accountNumber: string;
+  accountName: string;
+  branch: Branch;
+  duration: number;
+  interestRate: number;
+  stock: number;
+  protectionSchemePercent: number;
+  openingAmount: number;
+  installmentAmount: number;
+  numberOfInstallment: number;
+  introducers: IntroducerModel[];
+  holders: BaseCustomerModel[];
+  operators: OperatorModel[];
+  nominees: NomineeModel[];
+  openingDate: string;
+  maturityDate: string;
+  closingDate: string;
+  defaulterType: DefaulterType;
+  accountStatus: AccountStatus;
+  runningBalance: number;
+  totalTakenSuretyAmount: number;
+  totalGivenSuretyAmount: number;
+  totalScheduleDefaultMonth: number;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+}

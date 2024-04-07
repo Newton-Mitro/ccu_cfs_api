@@ -1,32 +1,36 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CustomerType } from 'src/common/enums/customer-type.enum';
+import { IdentifiableEntitySchema } from '../../../../../common/schemas/identifiable-entity.schema';
 
 @Schema()
-export class BaseCustomer {
+export class BaseCustomer extends IdentifiableEntitySchema {
   @Prop({ require: true, trim: true })
-  IdentificationNumber: string;
+  identificationNumber: string;
 
   @Prop({ require: true, trim: true })
-  NameEn: string;
+  nameEn: string;
 
   @Prop({ trim: true })
-  NameBn: string;
+  nameBn: string;
 
   @Prop({ trim: true })
-  Email: string;
+  email: string;
 
   @Prop({ trim: true })
-  ContactNumber: string;
+  contactNumber: string;
 
   @Prop({ trim: true })
-  SavingAccountNumber: string;
+  mobileNumber: string;
+
+  @Prop({ trim: true })
+  phoneNumber: string;
 
   @Prop({
     type: String,
     enum: Object.values(CustomerType),
     default: CustomerType.PERSON,
   })
-  CustomerType: CustomerType;
+  customerType: CustomerType;
 }
 
 export type BaseCustomerDocument = BaseCustomer & Document;

@@ -11,42 +11,45 @@ export class HumanCustomer extends BaseCustomer {
     super();
   }
 
+  @Prop()
+  personId: string;
+
   @Prop({ require: true, trim: true })
-  DateOfBirth: string;
+  dateOfBirth: string;
 
   @Prop({ trim: true })
-  NID: string;
+  nid: string;
 
   @Prop({ trim: true })
-  BirthRegistrationNumber: string;
+  birthRegistrationNumber: string;
 
   @Prop({
     type: String,
     enum: Object.values(Gender),
     default: Gender.MALE,
   })
-  Gender: Gender;
+  gender: Gender;
 
   @Prop({
     type: String,
     enum: Object.values(Religion),
     default: Religion.CHRISTIAN,
   })
-  Religion: Religion;
+  religion: Religion;
 
   @Prop({
     type: String,
     enum: Object.values(Profession),
     default: Profession.UNWILLING_TO_REVEAL,
   })
-  Profession: Profession;
+  profession: Profession;
 
   @Prop({
     type: String,
     enum: Object.values(MaritalStatus),
     default: MaritalStatus.SINGLE,
   })
-  MaritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus;
 }
 
 export type HumanCustomerDocument = HumanCustomer & Document;

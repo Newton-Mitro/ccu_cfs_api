@@ -1,5 +1,6 @@
 import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../../../common/enums/address-type.enum';
+import { IAuditableModel } from '../../../../common/models/auditable.model';
 
 export type AddressProps = {
   addressId: string;
@@ -19,7 +20,7 @@ export type AddressProps = {
   updatedBy: string;
 };
 
-export class AddressModel {
+export class AddressModel implements IAuditableModel {
   readonly addressId: string;
   readonly addressType: AddressType;
   readonly addressLineOne: string;
