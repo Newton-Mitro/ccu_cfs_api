@@ -1,13 +1,25 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import {
+  BaseCustomer,
+  BaseCustomerSchema,
+} from '../../../../../shared/infrastructure/schemas/base-customer.schema';
+import {
+  Introducer,
+  IntroducerSchema,
+} from '../../../../../shared/infrastructure/schemas/introducer.schema';
+import {
+  Nominee,
+  NomineeSchema,
+} from '../../../../../shared/infrastructure/schemas/nominee.schema';
+import {
+  Operator,
+  OperatorSchema,
+} from '../../../../../shared/infrastructure/schemas/operator.schema';
 import { AccountStatus } from '../../domain/enums/account-status.enum';
 import { AccountType } from '../../domain/enums/account-type.enum';
 import { Branch } from '../../domain/enums/branch.enum';
 import { ControlLedger } from '../../domain/enums/control-ledger';
 import { DefaulterType } from '../../domain/enums/defaulter-type.enum';
-import { BaseCustomer, BaseCustomerSchema } from './base-customer.schema';
-import { Introducer, IntroducerSchema } from './introducer.schema';
-import { Nominee, NomineeSchema } from './nominee.schema';
-import { Operator, OperatorSchema } from './operator.schema';
 
 @Schema()
 export class SubsidiaryLedgerAccount {
