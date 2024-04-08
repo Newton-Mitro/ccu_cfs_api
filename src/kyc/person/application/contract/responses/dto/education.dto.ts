@@ -1,3 +1,5 @@
+import { LinkObject } from '../../../../../../common/contract/link-object';
+
 export class EducationDTO {
   constructor(
     readonly education_id: string,
@@ -11,5 +13,6 @@ export class EducationDTO {
     readonly updated_at: string,
     readonly created_by: string,
     readonly updated_by: string,
+    readonly links?: LinkObject[],
   ) {}
 }

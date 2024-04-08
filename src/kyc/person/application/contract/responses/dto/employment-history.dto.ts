@@ -1,3 +1,5 @@
+import { LinkObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
+
 export class EmploymentHistoryDTO {
   constructor(
     readonly employment_history_id: string,
@@ -16,5 +18,6 @@ export class EmploymentHistoryDTO {
     readonly updated_at: string,
     readonly created_by: string,
     readonly updated_by: string,
+    readonly links?: LinkObject[],
   ) {}
 }

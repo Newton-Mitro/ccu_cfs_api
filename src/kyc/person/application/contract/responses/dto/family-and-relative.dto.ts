@@ -1,3 +1,4 @@
+import { LinkObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { BloodGroup } from 'src/common/enums/blood-group.enum';
 import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
@@ -32,5 +33,6 @@ export class FamilyAndRelativeDTO {
     readonly updated_at: string,
     readonly created_by: string,
     readonly updated_by: string,
+    readonly links?: LinkObject[],
   ) {}
 }

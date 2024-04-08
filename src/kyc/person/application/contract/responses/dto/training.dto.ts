@@ -1,3 +1,5 @@
+import { LinkObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
+
 export class TrainingDTO {
   constructor(
     readonly training_id: string,
@@ -11,5 +13,6 @@ export class TrainingDTO {
     readonly updated_at: string,
     readonly created_by: string,
     readonly updated_by: string,
+    readonly links?: LinkObject[],
   ) {}
 }

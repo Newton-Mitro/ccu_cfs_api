@@ -13,8 +13,10 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
+import { HttpMethod, LinkObject } from '../../../common/contract/link-object';
 import { CreatePersonRequest } from '../application/contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../application/contract/requests/update-person.request';
+import { PersonDTO } from '../application/contract/responses/dto/person.dto';
 import { PeoplesService } from '../application/services/peoples.service';
 
 @Controller('peoples')
@@ -41,13 +43,66 @@ export class PeoplesController {
   }
 
   @Get()
-  async findAll(@Query() findAll: FindAllQueryRequest) {
-    return await this.peoplesService.findAll(findAll);
+  async findAll(
+    @Query() findAll: FindAllQueryRequest,
+    @Res() response: Response,
+    @Req() req: Request,
+  ) {
+    const peoples = await this.peoplesService.findAll(findAll);
+
+    console.log(req.headers.host);
+
+    return response.status(HttpStatus.OK).json({
+      data: peoples.map((person: PersonDTO) => {
+        return {
+          ...person,
+          links: [
+            new LinkObject(
+              'View',
+              `http://${req.headers.host}/peoples/${person.person_id}`,
+              HttpMethod.GET,
+            ),
+            new LinkObject(
+              'Update',
+              `http://${req.headers.host}/peoples/${person.person_id}`,
+              HttpMethod.PATCH,
+            ),
+            new LinkObject(
+              'Delete',
+              `http://${req.headers.host}/peoples/${person.person_id}`,
+              HttpMethod.DELETE,
+            ),
+          ],
+        };
+      }),
+      paginate: [
+        new LinkObject('First', '', HttpMethod.GET),
+        new LinkObject('Last', '', HttpMethod.GET),
+        new LinkObject('Next', '', HttpMethod.GET),
+        new LinkObject('Previous', '', HttpMethod.GET),
+      ],
+    });
   }
 
   @Get(':id')
-  async findById(@Param('id') id: string) {
-    return await this.peoplesService.findById(id);
+  async findById(
+    @Param('id') id: string,
+    @Res() response: Response,
+    @Req() req: Request,
+  ) {
+    const person: PersonDTO = await this.peoplesService.findById(id);
+    return response.status(HttpStatus.OK).json({
+      data: {
+        ...person,
+        links: [
+          new LinkObject(
+            'View',
+            `http://${req.headers.host}/peoples/${person.person_id}`,
+            HttpMethod.GET,
+          ),
+        ],
+      },
+    });
   }
 
   @Patch(':id')
