@@ -7,7 +7,9 @@ import { OrganizationAttachmentDTO } from '../contract/responses/dto/organizatio
 import { OrganizationResponse } from '../contract/responses/organization.response';
 
 export class OrganizationAggregateToResponseMapper {
-  static map(model: OrganizationAggregate): OrganizationResponse {
+  public mapAggregateToResponse(
+    model: OrganizationAggregate,
+  ): OrganizationResponse {
     // [x]: Implement Mapping
 
     const organization = new OrganizationResponse(

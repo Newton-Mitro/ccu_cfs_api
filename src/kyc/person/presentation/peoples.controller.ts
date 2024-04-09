@@ -26,8 +26,8 @@ export class PeoplesController {
   @Post()
   async create(
     @Req() req: Request,
-    @Body() createPersonRequest: CreatePersonRequest,
     @Res() response: Response,
+    @Body() createPersonRequest: CreatePersonRequest,
   ) {
     const user: any = req['user'];
     await this.peoplesService.create(
@@ -109,8 +109,8 @@ export class PeoplesController {
   async update(
     @Param('id') id: string,
     @Req() req: Request,
-    @Body() updatePeopleRequest: UpdatePersonRequest,
     @Res() response: Response,
+    @Body() updatePeopleRequest: UpdatePersonRequest,
   ) {
     const user: any = req['user'];
     await this.peoplesService.update(

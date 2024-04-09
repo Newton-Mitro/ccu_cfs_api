@@ -1,40 +1,119 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
 import {
-  ORGANIZATION_MODEL,
-  OrganizationDocument,
-} from '../../infrastructure/schema/organization.schema';
+  AddOrganizationCommand,
+  OrganizationPhotoAttachment,
+} from '../commands/add-organization/add-organization.command';
+import { UpdateOrganizationCommand } from '../commands/update-organization/update-organization.command';
 import { CreateOrganizationRequest } from '../contract/requests/create-organization.request';
 import { UpdateOrganizationRequest } from '../contract/requests/update-organization.request';
+import { OrganizationAggregateToResponseMapper } from '../mapping/organization-aggregate-to-response.mapper';
+import { GetOrganizationQuery } from '../queries/get-organization/get-organization.query';
+import { ListOrganizationsQuery } from '../queries/list-organizations/list-organizations.query';
 
 @Injectable()
 export class OrganizationsService {
   constructor(
-    @InjectModel(ORGANIZATION_MODEL)
-    private readonly organizationModel: Model<OrganizationDocument>,
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly organizationAggregateToResponseMapper: OrganizationAggregateToResponseMapper,
   ) {}
 
-  async create(createOrganizationRequest: CreateOrganizationRequest) {
-    // TODO Call AddOrganizationCommand
+  async create(
+    user: any,
+    createdAt: Date,
+    updatedAt: Date,
+    createOrganizationRequest: CreateOrganizationRequest,
+  ): Promise<void> {
+    const person = await this.commandBus.execute(
+      new AddOrganizationCommand(
+        createOrganizationRequest.registration_number,
+        createOrganizationRequest.tin,
+        createOrganizationRequest.name_en,
+        createOrganizationRequest.name_bn,
+        createOrganizationRequest.email,
+        createOrganizationRequest.contact_number,
+        createOrganizationRequest.mobile_number,
+        createOrganizationRequest.phone_number,
+        createOrganizationRequest.fax,
+        createOrganizationRequest.website,
+        createOrganizationRequest.logo &&
+          new OrganizationPhotoAttachment(
+            createOrganizationRequest.logo.base64_document,
+            createOrganizationRequest.logo.file_extension,
+            createOrganizationRequest.logo.document_title,
+          ),
+        createdAt,
+        updatedAt,
+        user?.id,
+        user?.id,
+      ),
+    );
   }
 
-  async findAll() {
-    // TODO Call ListOrganizationQuery
+  async findAll(query: FindAllQueryRequest) {
+    const peoples = await this.queryBus.execute(
+      new ListOrganizationsQuery(
+        query.page,
+        query.limit,
+        query.order_by,
+        query.sort_by,
+      ),
+    );
+
+    return peoples.map((entityDocument) =>
+      this.organizationAggregateToResponseMapper.mapAggregateToResponse(
+        entityDocument,
+      ),
+    );
   }
 
   async findOne(id: string) {
-    // TODO Call GetOrganizationQuery
+    const organization = await this.queryBus.execute(
+      new GetOrganizationQuery(id),
+    );
+
+    if (!organization) {
+      throw new NotFoundException(`Organization #${id} not found`);
+    }
+    return this.organizationAggregateToResponseMapper.mapAggregateToResponse(
+      organization,
+    );
   }
 
   async update(
-    id: string,
+    user: any,
+    updatedAt: Date,
+    organizationId: string,
     updateOrganizationRequest: UpdateOrganizationRequest,
   ) {
-    // TODO Call UpdateOrganizationCommand
+    const organization = await this.commandBus.execute(
+      new UpdateOrganizationCommand(
+        organizationId,
+        updateOrganizationRequest.registration_number,
+        updateOrganizationRequest.tin,
+        updateOrganizationRequest.name_en,
+        updateOrganizationRequest.name_bn,
+        updateOrganizationRequest.email,
+        updateOrganizationRequest.contact_number,
+        updateOrganizationRequest.mobile_number,
+        updateOrganizationRequest.phone_number,
+        updateOrganizationRequest.fax,
+        updateOrganizationRequest.website,
+        updateOrganizationRequest.logo &&
+          new OrganizationPhotoAttachment(
+            updateOrganizationRequest.logo.base64_document,
+            updateOrganizationRequest.logo.file_extension,
+            updateOrganizationRequest.logo.document_title,
+          ),
+        updatedAt,
+        user?.id,
+      ),
+    );
   }
 
   async remove(id: string) {
-    // TODO Call RemoveOrganizationCommand
+    // await this.commandBus.execute(new RemoveOrganizationCommand(id));
   }
 }

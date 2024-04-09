@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MessagingModule } from '../messaging/messaging.module';
+import { AddOrganizationCommandHandler } from './organization/application/commands/add-organization/add-organization.command.handler';
+import { UpdateOrganizationCommandHandler } from './organization/application/commands/update-organization/update-organization.command.handler';
+import { OrganizationAggregateToResponseMapper } from './organization/application/mapping/organization-aggregate-to-response.mapper';
 import { OrganizationsService } from './organization/application/services/organizations.service';
+import { OrganizationAggregateToSchemaMapper } from './organization/infrastructure/mapping/organization-aggregate-to-schemal.mapper';
+import { OrganizationSchemaToAggregateMapper } from './organization/infrastructure/mapping/organization-schema-to-aggregate.mapper';
+import { OrganizationsRepository } from './organization/infrastructure/repositories/organizations.repository';
 import { OrganizationsController } from './organization/presentation/organizations.controller';
 import { AddPersonHandler } from './person/application/commands/add-person/add-person.command.handler';
 import { RemovePersonHandler } from './person/application/commands/remove-person/remove-person.command.handler';
@@ -25,6 +31,8 @@ export const CommandHandlers = [
   AddPersonHandler,
   UpdatePersonHandler,
   RemovePersonHandler,
+  AddOrganizationCommandHandler,
+  UpdateOrganizationCommandHandler,
 ];
 
 export const QueryHandlers = [GetPersonQueryHandler, ListPeoplesQueryHandler];
@@ -38,6 +46,9 @@ export const Mappers = [
   PersonAggregateToSchemaMapper,
   PersonSchemaToAggregateMapper,
   PersonAggregateToResponseMapper,
+  OrganizationAggregateToResponseMapper,
+  OrganizationSchemaToAggregateMapper,
+  OrganizationAggregateToSchemaMapper,
 ];
 
 export const Services = [
@@ -46,7 +57,11 @@ export const Services = [
   CustomersService,
 ];
 
-export const Repositories = [CustomerRepository, PeoplesRepository];
+export const Repositories = [
+  CustomerRepository,
+  PeoplesRepository,
+  OrganizationsRepository,
+];
 
 @Module({
   imports: [RegisterMongooseSchemasModule, MessagingModule, CqrsModule],

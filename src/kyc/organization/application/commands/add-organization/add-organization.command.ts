@@ -1,7 +1,5 @@
 export class AddOrganizationCommand {
   constructor(
-    public readonly organizationId: string,
-    public readonly identificationNumber: string,
     public readonly registrationNumber: string,
     public readonly tin: string,
     public readonly nameEn: string,

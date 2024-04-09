@@ -1,12 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
-import {
-  PERSON_MODEL,
-  PersonDocument,
-} from '../../infrastructure/schema/person.schema';
 import {
   AddPersonCommand,
   PersonPhotoAttachment,
@@ -25,14 +19,12 @@ export class PeoplesService {
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
     private readonly personAggregateToResponseMapper: PersonAggregateToResponseMapper,
-    @InjectModel(PERSON_MODEL)
-    private readonly personModel: Model<PersonDocument>,
   ) {}
 
   async create(
     user: any,
-    createdAt,
-    updatedAt,
+    createdAt: Date,
+    updatedAt: Date,
     createPersonRequest: CreatePersonRequest,
   ): Promise<void> {
     const person = await this.commandBus.execute(
