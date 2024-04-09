@@ -1,6 +1,6 @@
 ### Create Organization Request
 # @name createOrganization
-POST  http://localhost:5000/organizations
+POST {{host}}/organizations
 Content-Type: application/json
 Accept: application/json
 

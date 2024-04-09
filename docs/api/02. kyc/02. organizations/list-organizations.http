@@ -1,0 +1,5 @@
+### List Organization Request
+# @name listOrganizations
+GET {{host}}/organizations
+Content-Type: application/json
+Accept: application/json

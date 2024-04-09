@@ -4,6 +4,8 @@ import { MessagingModule } from '../messaging/messaging.module';
 import { AddOrganizationCommandHandler } from './organization/application/commands/add-organization/add-organization.command.handler';
 import { UpdateOrganizationCommandHandler } from './organization/application/commands/update-organization/update-organization.command.handler';
 import { OrganizationAggregateToResponseMapper } from './organization/application/mapping/organization-aggregate-to-response.mapper';
+import { GetOrganizationQuery } from './organization/application/queries/get-organization/get-organization.query';
+import { ListOrganizationsQuery } from './organization/application/queries/list-organizations/list-organizations.query';
 import { OrganizationsService } from './organization/application/services/organizations.service';
 import { OrganizationAggregateToSchemaMapper } from './organization/infrastructure/mapping/organization-aggregate-to-schemal.mapper';
 import { OrganizationSchemaToAggregateMapper } from './organization/infrastructure/mapping/organization-schema-to-aggregate.mapper';
@@ -35,7 +37,12 @@ export const CommandHandlers = [
   UpdateOrganizationCommandHandler,
 ];
 
-export const QueryHandlers = [GetPersonQueryHandler, ListPeoplesQueryHandler];
+export const QueryHandlers = [
+  GetPersonQueryHandler,
+  ListPeoplesQueryHandler,
+  ListOrganizationsQuery,
+  GetOrganizationQuery,
+];
 
 export const EventHandlers = [
   PersonAddedEventHandler,
