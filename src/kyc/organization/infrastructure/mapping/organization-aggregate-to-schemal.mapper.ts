@@ -13,6 +13,7 @@ export class OrganizationAggregateToSchemaMapper
 {
   mapAggregateToSchema(model: OrganizationAggregate): Organization {
     const organizationSchema = new Organization();
+    organizationSchema._id = new Types.ObjectId(model.organizationId);
     organizationSchema.identificationNumber = model.identificationNumber;
     organizationSchema.nameEn = model.nameEn;
     organizationSchema.nameBn = model.nameBn;
