@@ -110,7 +110,6 @@ export class PersonAggregate extends AggregateRoot {
     this._updatedAt = personProps.updatedAt;
     this._createdBy = personProps.createdBy;
     this._updatedBy = personProps.updatedBy;
-    this._customerType = personProps.customerType;
     this.apply(new PersonAddedEvent(personProps.personId));
   }
 
@@ -134,7 +133,7 @@ export class PersonAggregate extends AggregateRoot {
     this._photo = personProps.photo;
     this._updatedAt = personProps.updatedAt;
     this._updatedBy = personProps.updatedBy;
-    this._customerType = personProps.customerType;
+
     this.apply(new PersonUpdatedEvent(personProps.personId));
   }
 

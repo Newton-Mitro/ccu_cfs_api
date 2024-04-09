@@ -6,20 +6,20 @@ Accept: application/json
 
 ## Request Body
 {
-  "RegistrationNumber":"12456",
-  "NameEn": "Bangle Co-operative",
-  "NameBn": null,
-  "TIN": null,
-  "ContactNumber": null,
-  "MobileNumber": "01704666666",
-  "PhoneNumber": null,
-  "Fax":null,
-  "Website": null,
-  "Email": "bangle.cooperative@email.com",
-  "Logo": {
-      "FileExtension": "png",
-      "DocumentTitle": "Logo",
-      "Base64Document": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+  "registration_number":"12456",
+  "name_en": "Bangle Co-operative",
+  "name_bn": null,
+  "tin": null,
+  "contact_number": null,
+  "mobile_number": "01704666666",
+  "phone_number": null,
+  "fax":null,
+  "website": null,
+  "email": "bangle.cooperative@email.com",
+  "logo": {
+      "file_extension": "png",
+      "document_title": "Logo",
+      "base64_document": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
     }
 }
 

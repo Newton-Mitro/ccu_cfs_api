@@ -7,7 +7,15 @@ export class OrganizationSchemaToAggregateMapper
   implements IAggregateModelMapper<Organization, OrganizationAggregate>
 {
   mapSchemaToAggregate(entitySchema: Organization): OrganizationAggregate {
-    const organizationModel = new OrganizationAggregate({
+    const addresses = entitySchema.addresses?.map((address: Address) => {
+      return {
+        ...address,
+        addressId: address._id.toHexString(),
+      };
+    });
+
+    const organizationModel = new OrganizationAggregate();
+    organizationModel.organizationInit({
       organizationId: entitySchema._id.toHexString(),
       identificationNumber: entitySchema.identificationNumber,
       registrationNumber: entitySchema.registrationNumber,
@@ -25,13 +33,6 @@ export class OrganizationSchemaToAggregateMapper
       updatedAt: entitySchema.updatedAt,
       createdBy: entitySchema.createdBy,
       updatedBy: entitySchema.updatedBy,
-    });
-
-    entitySchema.addresses?.map((address: Address) => {
-      organizationModel.addAddress({
-        ...address,
-        addressId: address._id.toHexString(),
-      });
     });
 
     return organizationModel;

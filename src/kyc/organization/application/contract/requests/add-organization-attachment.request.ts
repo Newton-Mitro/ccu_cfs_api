@@ -1,18 +1,13 @@
-import { IsBase64, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { OrganizationalDocumentType } from '../../../../shared/domain/enums/kyc-attachment-type.enum';
+import { IsBase64, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class AddOrganizationAttachmentRequest {
   @IsString()
   @IsNotEmpty()
-  organization_id: string;
-
-  @IsString()
-  @IsNotEmpty()
   file_extension: string;
 
-  @IsString({ each: true })
-  @IsEnum(OrganizationalDocumentType)
-  document_title: OrganizationalDocumentType;
+  @IsString()
+  @IsOptional()
+  document_title: string;
 
   @IsString()
   @IsNotEmpty()
