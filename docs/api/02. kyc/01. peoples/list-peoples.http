@@ -1,5 +1,5 @@
 ### List Peoples Request
 # @name listPeoples
-GET {{host}}/peoples
+GET {{host}}/peoples?search_text=Rony&search_fields=nameEn&search_fields=&order_by=nameEn&sort_by=asc&page=1&limit=1
 Content-Type: application/json
 Accept: application/json

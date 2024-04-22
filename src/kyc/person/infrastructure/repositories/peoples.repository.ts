@@ -21,21 +21,37 @@ export class PeoplesRepository extends MongooseRepository<
     super(personDocument, personSchemaMapper, personBusinessModelMapper);
   }
 
-  // async findAll(
-  //   findAllQueryDto: FindAllQueryRequest,
-  // ): Promise<PersonAggregate[]> {
-  //   const { order_by, limit, page, sort_by } = findAllQueryDto;
+  async findAll(
+    searchText: string,
+    orderBy: any,
+    sortBy: any,
+    limit: number,
+    page: number,
+    searchFields?: string[],
+    select?: string[],
+  ): Promise<PersonAggregate[]> {
+    let query;
+    if (searchFields) {
+      query = {
+        $or: [
+          ...searchFields.map((field) => ({
+            [field]: { $regex: '.*' + searchText + '.*' },
+          })),
+        ],
+      };
+    }
 
-  //   const customers = await this.personDocument
-  //     .find()
-  //     .sort({ [sort_by]: order_by })
-  //     .limit(limit)
-  //     .skip(limit * (page - 1));
+    const customers = await this.personDocument
+      .find(query)
+      .select(select ? select : {})
+      .sort({ [orderBy]: sortBy })
+      .limit(limit)
+      .skip(limit * (page - 1));
 
-  //   return customers.map((customerSchema) =>
-  //     this.personBusinessModelMapper.mapSchemaToAggregate(customerSchema),
-  //   );
-  // }
+    return customers.map((customerSchema) =>
+      this.personBusinessModelMapper.mapSchemaToAggregate(customerSchema),
+    );
+  }
 
   // async findById(id: string): Promise<PersonAggregate | null> {
   //   const customer = await this.personDocument.findById(new Types.ObjectId(id));

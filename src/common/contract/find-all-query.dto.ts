@@ -1,8 +1,23 @@
 import { Type } from 'class-transformer';
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { SortBy } from 'src/common/enums/sort-by.enum';
 
 export class FindAllQueryRequest {
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  search_fields: string[];
+
+  @IsString()
+  @IsOptional()
+  search_text: string;
+
   @IsNumber()
   @IsOptional()
   @Type(() => Number)

@@ -10,7 +10,13 @@ export class ListPeoplesQueryHandler
   constructor(private peoplesRepository: PeoplesRepository) {}
 
   async execute(query: ListPeoplesQuery): Promise<PersonAggregate[]> {
-    const personModelRes = await this.peoplesRepository.find(
+    const personModelRes = await this.peoplesRepository.findAll(
+      query.search_text,
+      query.order_by,
+      query.sort_by,
+      query.limit,
+      query.page,
+      query.search_fields,
       [
         '_id',
         'createdAt',
@@ -33,10 +39,6 @@ export class ListPeoplesQueryHandler
         'photo',
         'customerType',
       ],
-      query.page,
-      query.limit,
-      query.order_by,
-      query.sort_by,
     );
     return personModelRes;
   }

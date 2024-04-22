@@ -60,6 +60,8 @@ export class PeoplesService {
   async findAll(query: FindAllQueryRequest) {
     const peoples = await this.queryBus.execute(
       new ListPeoplesQuery(
+        query.search_fields,
+        query.search_text,
         query.page,
         query.limit,
         query.order_by,
