@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { AuthUserType } from '../../common/types/auth-user.type';
 import { LoggerType } from '../domain/enums/logger-type.enum';
 import { ILoggingRepository } from './interfaces/logging-repository.interface';
 
@@ -24,6 +25,10 @@ export class LoggingService {
     body: Object,
     responseTime: number,
     statusCode: number,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     await this._iLoggingRepository.createSuccessLog(
       user,
@@ -38,6 +43,10 @@ export class LoggingService {
       body,
       responseTime,
       statusCode,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
   }
 
@@ -54,6 +63,10 @@ export class LoggingService {
     exceptionType: string,
     statusCode: number,
     errorMessage: any,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     await this._iLoggingRepository.createErrorLog(
       user,
@@ -68,6 +81,10 @@ export class LoggingService {
       exceptionType,
       statusCode,
       errorMessage,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
   }
 }

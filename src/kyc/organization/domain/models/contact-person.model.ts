@@ -3,6 +3,7 @@ import { Gender } from '../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { ContactPersonProps } from '../types/contact-person-props';
 
 export class ContactPersonModel {
@@ -25,8 +26,8 @@ export class ContactPersonModel {
   readonly photo: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
   readonly contactPersonId: string;
 
   constructor(contactPersonProps: ContactPersonProps) {

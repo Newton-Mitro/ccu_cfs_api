@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../common/types/auth-user.type';
 import { LogRecordModel } from './log-record.entity';
 
 export class SuccessLogRecordModel extends LogRecordModel {
@@ -18,6 +19,10 @@ export class SuccessLogRecordModel extends LogRecordModel {
     statusCode: number,
     requestedAt: any,
     responseTime: number,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     super(
       id,
@@ -31,6 +36,10 @@ export class SuccessLogRecordModel extends LogRecordModel {
       params,
       body,
       statusCode,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
     this._requestedAt = requestedAt;
     this._responseTime = responseTime;

@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { TrainingProps } from '../types/training-props';
 
 export class TrainingModel {
@@ -10,8 +11,8 @@ export class TrainingModel {
   readonly endDate: Date;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(trainingProps: TrainingProps) {
     this.trainingId = trainingProps.trainingId;

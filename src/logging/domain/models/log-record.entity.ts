@@ -1,4 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
+import { AuthUserType } from '../../../common/types/auth-user.type';
 
 export class LogRecordModel extends AggregateRoot {
   private _id: string;
@@ -12,6 +13,10 @@ export class LogRecordModel extends AggregateRoot {
   private _params: any;
   private _body: any;
   private _statusCode: number;
+  private _createdAt: Date;
+  private _updatedAt: Date;
+  private _createdBy: AuthUserType | null;
+  private _updatedBy: AuthUserType | null;
 
   constructor(
     id: string,
@@ -25,6 +30,10 @@ export class LogRecordModel extends AggregateRoot {
     params: any,
     body: any,
     statusCode: number,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     super();
     this._id = id;
@@ -38,6 +47,10 @@ export class LogRecordModel extends AggregateRoot {
     this._params = params;
     this._body = body;
     this._statusCode = statusCode;
+    this._createdAt = createdAt;
+    this._updatedAt = updatedAt;
+    this._createdBy = createdBy;
+    this._updatedBy = updatedBy;
   }
 
   public get id(): string {
@@ -82,5 +95,21 @@ export class LogRecordModel extends AggregateRoot {
 
   public get statusCode(): number {
     return this._statusCode;
+  }
+
+  public get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this._updatedAt;
+  }
+
+  public get createdBy(): AuthUserType | null {
+    return this._createdBy;
+  }
+
+  public get updatedBy(): AuthUserType | null {
+    return this._updatedBy;
   }
 }

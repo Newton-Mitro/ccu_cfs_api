@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 import { AccountStatus } from '../enums/account-status.enum';
 import { AccountType } from '../enums/account-type.enum';
 
@@ -13,6 +14,6 @@ export class SubLedgerProps {
   accountStatus: AccountStatus;
   createdAt: string;
   updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

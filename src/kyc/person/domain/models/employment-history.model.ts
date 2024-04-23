@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { EmploymentHistoryProps } from '../types/employment-history-props';
 
 export class EmploymentHistoryModel {
@@ -15,8 +16,8 @@ export class EmploymentHistoryModel {
   readonly tillNow: boolean;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(employmentHistoryProps: EmploymentHistoryProps) {
     this.employmentHistoryId = employmentHistoryProps.employmentHistoryId;

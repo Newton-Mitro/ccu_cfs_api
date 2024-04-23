@@ -1,4 +1,5 @@
 import { LinkObject } from '../../../../../../common/contract/link-object';
+import { AuthUserType } from '../../../../../../common/types/auth-user.type';
 
 export class EducationDTO {
   constructor(
@@ -11,8 +12,8 @@ export class EducationDTO {
     readonly grade: string,
     readonly created_at: string,
     readonly updated_at: string,
-    readonly created_by: string,
-    readonly updated_by: string,
+    readonly created_by: AuthUserType | null,
+    readonly updated_by: AuthUserType | null,
     readonly links?: LinkObject[],
   ) {}
 }

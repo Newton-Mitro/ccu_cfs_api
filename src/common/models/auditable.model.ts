@@ -1,6 +1,8 @@
+import { AuthUserType } from '../types/auth-user.type';
+
 export interface IAuditableModel {
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

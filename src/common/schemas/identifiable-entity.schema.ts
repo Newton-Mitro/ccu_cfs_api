@@ -1,5 +1,6 @@
 import { Prop } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
+import { AuthUser } from './auth-user.schema';
 
 export abstract class IdentifiableEntitySchema {
   @Prop()
@@ -11,9 +12,9 @@ export abstract class IdentifiableEntitySchema {
   @Prop()
   updatedAt: Date;
 
-  @Prop()
-  createdBy: string;
+  @Prop({ type: AuthUser })
+  createdBy: AuthUser | null;
 
-  @Prop()
-  updatedBy: string;
+  @Prop({ type: AuthUser })
+  updatedBy: AuthUser | null;
 }

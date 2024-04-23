@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import {
   AddOrganizationCommand,
   OrganizationPhotoAttachment,
@@ -21,7 +22,7 @@ export class OrganizationsService {
   ) {}
 
   async create(
-    user: any,
+    user: AuthUserType,
     createdAt: Date,
     updatedAt: Date,
     createOrganizationRequest: CreateOrganizationRequest,
@@ -46,8 +47,8 @@ export class OrganizationsService {
           ),
         createdAt,
         updatedAt,
-        user?.id,
-        user?.id,
+        user,
+        user,
       ),
     );
   }

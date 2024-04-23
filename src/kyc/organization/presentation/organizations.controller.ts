@@ -10,10 +10,13 @@ import {
   Query,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { JwtAuthGuard } from '../../../access-control/auth/guards/jwt-auth.guard';
 import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
 import { HttpMethod, LinkObject } from '../../../common/contract/link-object';
+import { AuthUserType } from '../../../common/types/auth-user.type';
 import { CreateOrganizationRequest } from '../application/contract/requests/create-organization.request';
 import { UpdateOrganizationRequest } from '../application/contract/requests/update-organization.request';
 import { OrganizationDTO } from '../application/contract/responses/dto/organization.dto';
@@ -23,6 +26,7 @@ import { OrganizationsService } from '../application/services/organizations.serv
 export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(
     @Req() req: Request,
@@ -30,9 +34,15 @@ export class OrganizationsController {
     @Body() createOrganizationRequest: CreateOrganizationRequest,
   ) {
     const user: any = req['user'];
+    const authUser: AuthUserType = {
+      id: user?.id,
+      username: user?.username,
+      name: '',
+      personId: '',
+    };
 
     const organizations = this.organizationsService.create(
-      user?.id,
+      authUser,
       new Date(),
       new Date(),
       createOrganizationRequest,

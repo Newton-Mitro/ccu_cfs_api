@@ -1,6 +1,7 @@
 import { Country } from 'src/common/enums/country.enum';
 import { AddressType } from '../../../../common/enums/address-type.enum';
 import { IAuditableModel } from '../../../../common/models/auditable.model';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 
 export type AddressProps = {
   addressId: string;
@@ -16,8 +17,8 @@ export type AddressProps = {
   zipCode: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };
 
 export class AddressModel implements IAuditableModel {
@@ -34,8 +35,8 @@ export class AddressModel implements IAuditableModel {
   readonly zipCode: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(addressProps: AddressProps) {
     this.addressId = addressProps.addressId;

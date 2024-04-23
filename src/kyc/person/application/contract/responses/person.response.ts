@@ -3,6 +3,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 import { AddressDTO } from '../../../../shared/application/contract/responses/dto/address.dto';
 import { PersonAttachmentDTO } from '../../../../shared/application/contract/responses/dto/person-attachment.dto';
 import { EducationDTO } from './dto/education.dto';
@@ -31,8 +32,8 @@ export class PersonResponse {
     readonly photo: string,
     readonly created_at: string,
     readonly updated_at: string,
-    readonly created_by: string,
-    readonly updated_by: string,
+    readonly created_by: AuthUserType | null,
+    readonly updated_by: AuthUserType | null,
     readonly customer_type: string,
   ) {}
 

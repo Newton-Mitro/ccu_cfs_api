@@ -1,8 +1,25 @@
+### Login Request
+# @name login
+POST {{host}}/auth/login
+Content-Type: application/json
+Accept: application/json
+
+## Request Body
+{
+    "username": "newtonmitro@gmail.com", 
+    "password": "password"
+}
+
+### Set Token
+@token = {{login.response.body.accessToken}}
+
+
 ### Create Organization Request
 # @name createOrganization
 POST {{host}}/organizations
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ## Request Body
 {

@@ -85,6 +85,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exceptionType,
         statusCode,
         errorMessage,
+        new Date(),
+        new Date(),
+        null,
+        null,
       );
     } catch {}
 

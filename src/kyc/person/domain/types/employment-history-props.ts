@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
+
 export type EmploymentHistoryProps = {
   employmentHistoryId: string;
   organizationName: string;
@@ -13,6 +15,6 @@ export type EmploymentHistoryProps = {
   tillNow: boolean;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

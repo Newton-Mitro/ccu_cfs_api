@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../common/types/auth-user.type';
+
 export interface ILoggingRepository {
   createSuccessLog(
     user: Object,
@@ -12,6 +14,10 @@ export interface ILoggingRepository {
     body: Object,
     responseTime: number,
     statusCode: number,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   );
 
   createErrorLog(
@@ -27,5 +33,9 @@ export interface ILoggingRepository {
     exceptionType: string,
     statusCode: number,
     errorMessage: any,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   );
 }

@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { OrganizationalDocumentType } from '../../../shared/domain/enums/kyc-attachment-type.enum';
 import { OrganizationAttachmentProps } from '../types/organization-attachment-props';
 
@@ -7,8 +8,8 @@ export class OrganizationAttachmentModel {
   readonly fileUrl: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(organizationAttachmentProps: OrganizationAttachmentProps) {
     this.attachmentId = organizationAttachmentProps.attachmentId;

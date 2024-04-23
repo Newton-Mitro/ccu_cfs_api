@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { ErrorLogRecordModel } from 'src/logging/domain/models/error-log-record.entity';
 import { SuccessLogRecordModel } from 'src/logging/domain/models/success-log-record.entity';
+import { AuthUserType } from '../../../common/types/auth-user.type';
 import { ILoggingRepository } from '../../application/interfaces/logging-repository.interface';
 import { ErrorLogRecordDocument } from '../schemas/error-log-record.schema';
 import { SuccessLogRecordDocument } from '../schemas/success-log-record.schema';
@@ -29,6 +30,10 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     body: Object,
     responseTime: number,
     statusCode: number,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     const successLogRecordObject = new SuccessLogRecordModel(
       new Types.ObjectId().toHexString(),
@@ -44,6 +49,10 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       statusCode,
       requestedAt,
       responseTime,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
 
     // const successLogRecordSchemaObject = new SuccessLogRecordSchema();
@@ -83,6 +92,10 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
     exceptionType: string,
     statusCode: number,
     errorMessage: any,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     const errorLogRecordObject = new ErrorLogRecordModel(
       new Types.ObjectId().toHexString(),
@@ -98,6 +111,10 @@ export class DatabaseLoggingRepository implements ILoggingRepository {
       statusCode,
       exceptionType,
       errorMessage,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
 
     // const errorLogRecordSchemaObject = new ErrorLogRecordSchema();

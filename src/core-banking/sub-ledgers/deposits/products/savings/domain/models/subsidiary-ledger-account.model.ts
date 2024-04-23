@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../../../../common/types/auth-user.type';
 import { IBaseCustomer } from '../../../../../shared/domain/models/base-customer.interface';
 import { IntroducerModel } from '../../../../../shared/domain/models/introducer.model';
 import { NomineeModel } from '../../../../../shared/domain/models/nominee.model';
@@ -37,6 +38,6 @@ export class SubsidiaryLedgerAccountModel {
   totalScheduleDefaultMonth: number;
   createdAt: string;
   updatedAt: string;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

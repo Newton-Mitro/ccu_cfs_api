@@ -9,6 +9,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { AuthUserType } from '../../../../../../../common/types/auth-user.type';
 import { AccountType } from '../../../../../shared/domain/enums/account-type.enum';
 import { Branch } from '../../../../../shared/domain/enums/branch.enum';
 import { ControlLedger } from '../../../../../shared/domain/enums/control-ledger';
@@ -119,9 +120,9 @@ export class CreateSubsidiaryLedgerRequest {
 
   @IsOptional()
   // @Expose({ name: 'created_by' })
-  CreatedBy: string;
+  CreatedBy: AuthUserType | null;
 
   @IsOptional()
   // @Expose({ name: 'updated_by' })
-  UpdatedBy: string;
+  UpdatedBy: AuthUserType | null;
 }

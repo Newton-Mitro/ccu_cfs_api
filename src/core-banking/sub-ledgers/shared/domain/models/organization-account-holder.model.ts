@@ -1,4 +1,5 @@
 import { CustomerType } from '../../../../../common/enums/customer-type.enum';
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 import { IOrganizationCustomer } from './organization-customer.model';
 
 export class OrganizationAccountHolderModel implements IOrganizationCustomer {
@@ -16,6 +17,6 @@ export class OrganizationAccountHolderModel implements IOrganizationCustomer {
   registrationNumber: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { EducationProps } from '../types/education-props';
 
 export class EducationModel {
@@ -10,8 +11,8 @@ export class EducationModel {
   readonly grade: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(educationProps: EducationProps) {
     this.educationId = educationProps.educationId;

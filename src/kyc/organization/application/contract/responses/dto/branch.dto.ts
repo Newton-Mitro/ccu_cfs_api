@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../../../common/types/auth-user.type';
+
 export class BranchDTO {
   constructor(
     readonly branch_id: string,
@@ -16,7 +18,7 @@ export class BranchDTO {
     readonly logo: string,
     readonly created_at: string,
     readonly updated_at: string,
-    readonly created_by: string,
-    readonly updated_by: string,
+    readonly created_by: AuthUserType | null,
+    readonly updated_by: AuthUserType | null,
   ) {}
 }

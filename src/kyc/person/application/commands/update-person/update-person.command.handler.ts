@@ -41,7 +41,8 @@ export class UpdatePersonHandler
           identificationNumber: person.identificationNumber,
           photo: fileUrl,
           createdAt: new Date(),
-          createdBy: '',
+          createdBy: person.createdBy,
+          updatedBy: person.updatedBy,
         });
       } else {
         person.updatePerson({
@@ -55,7 +56,8 @@ export class UpdatePersonHandler
           photo: person.photo,
           customerType: 'Person',
           createdAt: new Date(),
-          createdBy: '',
+          createdBy: person.createdBy,
+          updatedBy: person.updatedBy,
         });
       }
 

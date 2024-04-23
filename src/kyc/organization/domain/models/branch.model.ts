@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { BranchProps } from '../types/branch-props';
 
 export class BranchModel {
@@ -17,8 +18,8 @@ export class BranchModel {
   readonly logo: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(branchProps: BranchProps) {
     this.branchId = branchProps.branchId;

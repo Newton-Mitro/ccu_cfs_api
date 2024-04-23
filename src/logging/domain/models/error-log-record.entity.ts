@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../common/types/auth-user.type';
 import { LogRecordModel } from './log-record.entity';
 
 export class ErrorLogRecordModel extends LogRecordModel {
@@ -18,6 +19,10 @@ export class ErrorLogRecordModel extends LogRecordModel {
     statusCode: number,
     exceptionType: string,
     errorMessage: any,
+    createdAt: Date,
+    updatedAt: Date,
+    createdBy: AuthUserType | null,
+    updatedBy: AuthUserType | null,
   ) {
     super(
       id,
@@ -31,6 +36,10 @@ export class ErrorLogRecordModel extends LogRecordModel {
       params,
       body,
       statusCode,
+      createdAt,
+      updatedAt,
+      createdBy,
+      updatedBy,
     );
     this._errorMessage = errorMessage;
     this._exceptionType = exceptionType;

@@ -4,6 +4,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import {
   AddressModel,
   AddressProps,
@@ -43,8 +44,8 @@ export class PersonAggregate extends AggregateRoot {
   private _photo: string;
   private _createdAt: Date;
   private _updatedAt: Date;
-  private _createdBy: string;
-  private _updatedBy: string;
+  private _createdBy: AuthUserType | null;
+  private _updatedBy: AuthUserType | null;
   private _addresses: AddressModel[];
   private _familyTree: FamilyAndRelativeModel[];
   private _educations: EducationModel[];
@@ -278,11 +279,11 @@ export class PersonAggregate extends AggregateRoot {
     return this._updatedAt;
   }
 
-  public get createdBy(): string {
+  public get createdBy(): AuthUserType | null {
     return this._createdBy;
   }
 
-  public get updatedBy(): string {
+  public get updatedBy(): AuthUserType | null {
     return this._updatedBy;
   }
 

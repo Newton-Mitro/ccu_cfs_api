@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { PersonalDocumentType } from '../../../shared/domain/enums/kyc-attachment-type.enum';
 import { PersonAttachmentProps } from '../types/person-attachment-props';
 
@@ -7,8 +8,8 @@ export class PersonAttachmentModel {
   readonly fileUrl: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(personAttachmentProps: PersonAttachmentProps) {
     this.attachmentId = personAttachmentProps.attachmentId;

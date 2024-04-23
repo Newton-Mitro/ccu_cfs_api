@@ -3,6 +3,7 @@ import { Gender } from '../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 
 export type PersonProps = {
   personId: string;
@@ -15,8 +16,8 @@ export type PersonProps = {
   email: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
   customerType: string;
   dateOfBirth: Date;
   gender: Gender;

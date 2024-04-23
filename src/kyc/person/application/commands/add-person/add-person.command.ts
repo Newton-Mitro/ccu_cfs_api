@@ -3,6 +3,7 @@ import { Gender } from 'src/common/enums/gender.enum';
 import { MaritalStatus } from 'src/common/enums/marital-status.enum';
 import { Profession } from 'src/common/enums/profession.enum';
 import { Religion } from 'src/common/enums/religion.enum';
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 
 export class AddPersonCommand {
   constructor(
@@ -23,8 +24,8 @@ export class AddPersonCommand {
     public readonly photo: PersonPhotoAttachment,
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
-    public readonly createdBy: string,
-    public readonly updatedBy: string,
+    public readonly createdBy: AuthUserType | null,
+    public readonly updatedBy: AuthUserType | null,
   ) {}
 }
 

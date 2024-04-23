@@ -26,8 +26,8 @@ export class MapErrorLogRecordFactory
       errorMessage: entity.errorMessage,
       createdAt: new Date(),
       updatedAt: new Date(),
-      createdBy: '',
-      updatedBy: '',
+      createdBy: null,
+      updatedBy: null,
     };
   }
 
@@ -46,6 +46,10 @@ export class MapErrorLogRecordFactory
       entitySchema.statusCode,
       entitySchema.exceptionType,
       entitySchema.errorMessage,
+      entitySchema.createdAt,
+      entitySchema.updatedAt,
+      entitySchema.createdBy,
+      entitySchema.updatedBy,
     );
   }
 }

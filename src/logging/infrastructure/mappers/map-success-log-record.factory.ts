@@ -26,8 +26,8 @@ export class MapSuccessLogRecordFactory
       responseTime: entity.responseTime,
       createdAt: new Date(),
       updatedAt: new Date(),
-      createdBy: '',
-      updatedBy: '',
+      createdBy: null,
+      updatedBy: null,
     };
   }
 
@@ -46,6 +46,10 @@ export class MapSuccessLogRecordFactory
       entitySchema.statusCode,
       entitySchema.requestedAt,
       entitySchema.responseTime,
+      entitySchema.createdAt,
+      entitySchema.updatedAt,
+      entitySchema.createdBy,
+      entitySchema.updatedBy,
     );
   }
 }

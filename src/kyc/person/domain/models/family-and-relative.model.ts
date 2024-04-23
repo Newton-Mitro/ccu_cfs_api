@@ -4,6 +4,7 @@ import { Gender } from '../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../common/enums/profession.enum';
 import { Religion } from '../../../../common/enums/religion.enum';
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { FamilyTreeStatus } from '../enums/family-tree-status.enum';
 import { FamilyAndRelativeProps } from '../types/family-and-relative-props';
 
@@ -28,8 +29,8 @@ export class FamilyAndRelativeModel {
   readonly photo: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
   readonly relationship: Relationship;
   readonly status: FamilyTreeStatus;
 

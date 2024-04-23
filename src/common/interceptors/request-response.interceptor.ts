@@ -74,6 +74,10 @@ export class RequestResponseInterceptor implements NestInterceptor {
             requestBody,
             responseTime,
             statusCode,
+            new Date(),
+            new Date(),
+            null,
+            null,
           );
         } catch (error) {}
       }),

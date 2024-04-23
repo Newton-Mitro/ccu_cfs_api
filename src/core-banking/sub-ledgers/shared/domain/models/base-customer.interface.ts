@@ -1,5 +1,6 @@
 import { CustomerType } from 'src/common/enums/customer-type.enum';
 import { IAuditableModel as IAuditable } from '../../../../../common/models/auditable.model';
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 export interface IBaseCustomer extends IAuditable {
   identificationNumber: string;
   nameEn: string;
@@ -11,6 +12,6 @@ export interface IBaseCustomer extends IAuditable {
   customerType: CustomerType;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

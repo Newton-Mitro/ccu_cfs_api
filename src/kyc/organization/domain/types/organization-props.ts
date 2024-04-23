@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
+
 export type OrganizationProps = {
   organizationId: string;
   identificationNumber: string;
@@ -14,6 +16,6 @@ export type OrganizationProps = {
   logo: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
+
 export type BankAccountProps = {
   bankAccountId: string;
   bankName: string;
@@ -7,6 +9,6 @@ export type BankAccountProps = {
   accountName: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

@@ -3,6 +3,7 @@ import { Gender } from '../../../../../common/enums/gender.enum';
 import { MaritalStatus } from '../../../../../common/enums/marital-status.enum';
 import { Profession } from '../../../../../common/enums/profession.enum';
 import { Religion } from '../../../../../common/enums/religion.enum';
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
 import { IHumanCustomer } from './human-customer.interface';
 
 export class IntroducerModel implements IHumanCustomer {
@@ -24,6 +25,6 @@ export class IntroducerModel implements IHumanCustomer {
   maritalStatus: MaritalStatus;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 }

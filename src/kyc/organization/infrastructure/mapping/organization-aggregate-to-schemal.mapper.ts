@@ -25,6 +25,10 @@ export class OrganizationAggregateToSchemaMapper
     organizationSchema.fax = model.fax;
     organizationSchema.website = model.website;
     organizationSchema.logo = model.logo;
+    organizationSchema.createdAt = model.createdAt;
+    organizationSchema.createdBy = model.createdBy;
+    organizationSchema.updatedAt = model.updatedAt;
+    organizationSchema.updatedBy = model.updatedBy;
 
     organizationSchema.addresses = model.addresses?.map(
       (address: AddressModel) => ({

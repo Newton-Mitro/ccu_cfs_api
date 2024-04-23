@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
+
 export type TrainingProps = {
   trainingId: string;
   courseTitle: string;
@@ -8,6 +10,6 @@ export type TrainingProps = {
   endDate: Date;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

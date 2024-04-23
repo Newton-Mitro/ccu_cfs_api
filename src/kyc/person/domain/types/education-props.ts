@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
+
 export type EducationProps = {
   educationId: string;
   educationLevel: string;
@@ -8,6 +10,6 @@ export type EducationProps = {
   grade: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

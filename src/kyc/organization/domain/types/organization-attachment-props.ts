@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { OrganizationalDocumentType } from '../../../shared/domain/enums/kyc-attachment-type.enum';
 
 export type OrganizationAttachmentProps = {
@@ -6,6 +7,6 @@ export type OrganizationAttachmentProps = {
   fileUrl: string;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdBy: AuthUserType | null;
+  updatedBy: AuthUserType | null;
 };

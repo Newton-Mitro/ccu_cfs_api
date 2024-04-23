@@ -1,3 +1,5 @@
+import { AuthUserType } from '../../../../../common/types/auth-user.type';
+
 export class AddOrganizationCommand {
   constructor(
     public readonly registrationNumber: string,
@@ -13,8 +15,8 @@ export class AddOrganizationCommand {
     public readonly logo: OrganizationPhotoAttachment,
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
-    public readonly createdBy: string,
-    public readonly updatedBy: string,
+    public readonly createdBy: AuthUserType,
+    public readonly updatedBy: AuthUserType,
   ) {}
 }
 

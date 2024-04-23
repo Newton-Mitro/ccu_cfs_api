@@ -1,3 +1,4 @@
+import { AuthUserType } from '../../../../common/types/auth-user.type';
 import { BankAccountProps } from '../types/bank-account-props';
 
 export class BankAccountModel {
@@ -9,8 +10,8 @@ export class BankAccountModel {
   readonly accountName: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly createdBy: string;
-  readonly updatedBy: string;
+  readonly createdBy: AuthUserType | null;
+  readonly updatedBy: AuthUserType | null;
 
   constructor(bankAccountProps: BankAccountProps) {
     this.bankAccountId = bankAccountProps.bankAccountId;
