@@ -1,5 +1,5 @@
-import { LinkObject } from '../../../../../../common/contract/link-object';
-import { AuthUserType } from '../../../../../../common/types/auth-user.type';
+import { LinkObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
+import { AuthUserType } from '../../../../../../common/domain/types/auth-user.type';
 
 export class EducationDTO {
   constructor(

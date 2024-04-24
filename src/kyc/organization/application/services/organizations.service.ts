@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
-import { AuthUserType } from '../../../../common/types/auth-user.type';
+import { FindAllQueryRequest } from '../../../../common/application/contract/find-all-query.dto';
+import { AuthUserType } from '../../../../common/domain/types/auth-user.type';
 import {
   AddOrganizationCommand,
   OrganizationPhotoAttachment,

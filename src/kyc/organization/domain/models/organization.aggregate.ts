@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { AuthUserType } from '../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../common/domain/types/auth-user.type';
 import {
   AddressModel,
   AddressProps,

@@ -1,4 +1,4 @@
-import { AuthUserType } from '../../../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../../../common/domain/types/auth-user.type';
 import { PersonalDocumentType } from '../../../../domain/enums/kyc-attachment-type.enum';
 
 export class PersonAttachmentDTO {

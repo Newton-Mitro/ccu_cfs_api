@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Relationship } from 'src/common/enums/relationship.enum';
+import { Relationship } from '../../../../../../../common/domain/enums/relationship.enum';
 import { CustomerRequest } from './customer.dto';
 
 export class NomineeRequest extends CustomerRequest {

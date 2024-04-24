@@ -1,7 +1,7 @@
-import { Country } from 'src/common/enums/country.enum';
-import { AddressType } from '../../../../common/enums/address-type.enum';
-import { IAuditableModel } from '../../../../common/models/auditable.model';
-import { AuthUserType } from '../../../../common/types/auth-user.type';
+import { AddressType } from '../../../../common/domain/enums/address-type.enum';
+import { Country } from '../../../../common/domain/enums/country.enum';
+import { IAuditableModel } from '../../../../common/domain/models/auditable.model';
+import { AuthUserType } from '../../../../common/domain/types/auth-user.type';
 
 export type AddressProps = {
   addressId: string;

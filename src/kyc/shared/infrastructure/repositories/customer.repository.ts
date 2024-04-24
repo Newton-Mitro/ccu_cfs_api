@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { FindAllQueryRequest } from 'src/common/contract/find-all-query.dto';
+import { FindAllQueryRequest } from '../../../../common/application/contract/find-all-query.dto';
 import { CUSTOMER_MODEL, CustomerDocument } from '../schema/customer.schema';
 
 @Injectable()

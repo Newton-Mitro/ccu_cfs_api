@@ -1,4 +1,4 @@
-import { AuthUserType } from '../../../../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../../../../common/domain/types/auth-user.type';
 import { IBaseCustomer } from '../../../../../shared/domain/models/base-customer.interface';
 import { IntroducerModel } from '../../../../../shared/domain/models/introducer.model';
 import { NomineeModel } from '../../../../../shared/domain/models/nominee.model';

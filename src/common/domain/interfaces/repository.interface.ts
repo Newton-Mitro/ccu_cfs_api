@@ -1,6 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { SortBy } from '../enums/sort-by.enum';
-import { IdentifiableEntitySchema } from '../schemas/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from '../../infrastructure/schemas/identifiable-entity.schema';
 
 export interface IRepository<
   TSchema extends IdentifiableEntitySchema,
@@ -8,13 +7,7 @@ export interface IRepository<
 > {
   findById(id: string | number): Promise<TEntity>;
 
-  find(
-    select: string[],
-    page?: number,
-    limit?: number,
-    order_by?: string,
-    sort_by?: SortBy,
-  ): Promise<TEntity[]>;
+  find(): Promise<TEntity[]>;
 
   create(entity: TEntity): Promise<void>;
 

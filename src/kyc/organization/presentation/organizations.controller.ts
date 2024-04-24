@@ -14,9 +14,12 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { JwtAuthGuard } from '../../../access-control/auth/guards/jwt-auth.guard';
-import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
-import { HttpMethod, LinkObject } from '../../../common/contract/link-object';
-import { AuthUserType } from '../../../common/types/auth-user.type';
+import { FindAllQueryRequest } from '../../../common/application/contract/find-all-query.dto';
+import {
+  HttpMethod,
+  LinkObject,
+} from '../../../common/application/contract/link-object';
+import { AuthUserType } from '../../../common/domain/types/auth-user.type';
 import { CreateOrganizationRequest } from '../application/contract/requests/create-organization.request';
 import { UpdateOrganizationRequest } from '../application/contract/requests/update-organization.request';
 import { OrganizationDTO } from '../application/contract/responses/dto/organization.dto';

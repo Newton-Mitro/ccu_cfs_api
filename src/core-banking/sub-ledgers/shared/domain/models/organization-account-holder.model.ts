@@ -1,5 +1,5 @@
-import { CustomerType } from '../../../../../common/enums/customer-type.enum';
-import { AuthUserType } from '../../../../../common/types/auth-user.type';
+import { CustomerType } from '../../../../../common/domain/enums/customer-type.enum';
+import { AuthUserType } from '../../../../../common/domain/types/auth-user.type';
 import { IOrganizationCustomer } from './organization-customer.model';
 
 export class OrganizationAccountHolderModel implements IOrganizationCustomer {

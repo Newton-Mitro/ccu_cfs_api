@@ -1,4 +1,4 @@
-import { AuthUserType } from '../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../common/domain/types/auth-user.type';
 import { EducationProps } from '../types/education-props';
 
 export class EducationModel {

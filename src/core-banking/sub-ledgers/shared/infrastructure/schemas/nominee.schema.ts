@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CustomerType } from 'src/common/enums/customer-type.enum';
-import { Relationship } from 'src/common/enums/relationship.enum';
+import { CustomerType } from '../../../../../common/domain/enums/customer-type.enum';
+import { Relationship } from '../../../../../common/domain/enums/relationship.enum';
 import { HumanCustomer } from './human-customer.schema';
 
 @Schema()

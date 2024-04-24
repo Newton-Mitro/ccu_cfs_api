@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { SortBy } from 'src/common/enums/sort-by.enum';
+import { SortBy } from '../../domain/enums/sort-by.enum';
 
 export class FindAllQueryRequest {
   @IsArray()

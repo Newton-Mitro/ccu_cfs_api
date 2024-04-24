@@ -8,12 +8,12 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { BloodGroup } from 'src/common/enums/blood-group.enum';
-import { Gender } from 'src/common/enums/gender.enum';
-import { MaritalStatus } from 'src/common/enums/marital-status.enum';
-import { Profession } from 'src/common/enums/profession.enum';
-import { Relationship } from 'src/common/enums/relationship.enum';
-import { Religion } from 'src/common/enums/religion.enum';
+import { BloodGroup } from '../../../../../common/domain/enums/blood-group.enum';
+import { Gender } from '../../../../../common/domain/enums/gender.enum';
+import { MaritalStatus } from '../../../../../common/domain/enums/marital-status.enum';
+import { Profession } from '../../../../../common/domain/enums/profession.enum';
+import { Relationship } from '../../../../../common/domain/enums/relationship.enum';
+import { Religion } from '../../../../../common/domain/enums/religion.enum';
 import { FamilyTreeStatus } from '../../../domain/enums/family-tree-status.enum';
 import { AddPersonAttachmentRequest } from './add-person-attachment.request';
 

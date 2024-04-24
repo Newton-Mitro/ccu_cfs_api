@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { AuthUserType } from '../../common/types/auth-user.type';
+import { AuthUserType } from '../../common/domain/types/auth-user.type';
 import { LoggerType } from '../domain/enums/logger-type.enum';
 import { ILoggingRepository } from './interfaces/logging-repository.interface';
 

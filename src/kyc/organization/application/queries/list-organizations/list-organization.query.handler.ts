@@ -12,23 +12,7 @@ export class ListOrganizationsQueryHandler
   async execute(
     query: ListOrganizationsQuery,
   ): Promise<OrganizationAggregate[]> {
-    const organizations = await this.organizationsRepository.find(
-      [
-        '_id',
-        'identificationNumber',
-        'nameEn',
-        'nameBn',
-        'email',
-        'contactNumber',
-        'phoneNumber',
-        'mobileNumber',
-        'customerType',
-      ],
-      query.page,
-      query.limit,
-      query.order_by,
-      query.sort_by,
-    );
+    const organizations = await this.organizationsRepository.find();
     return organizations;
   }
 }

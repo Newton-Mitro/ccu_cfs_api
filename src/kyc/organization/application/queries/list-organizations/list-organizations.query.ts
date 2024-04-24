@@ -1,4 +1,4 @@
-import { SortBy } from '../../../../../common/enums/sort-by.enum';
+import { SortBy } from '../../../../../common/domain/enums/sort-by.enum';
 
 export class ListOrganizationsQuery {
   constructor(

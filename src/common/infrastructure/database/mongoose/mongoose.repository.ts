@@ -1,10 +1,9 @@
 import { NotFoundException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Model, Types } from 'mongoose';
-import { SortBy } from '../../enums/sort-by.enum';
-import { IRepository } from '../../interfaces/repository.interface';
-import { IAggregateModelMapper } from '../../mapper/aggregate-model.mapper';
-import { ISchemaMapper } from '../../mapper/schema.mapper';
+import { IRepository } from '../../../domain/interfaces/repository.interface';
+import { IAggregateModelMapper } from '../../../domain/mapper/aggregate-model.mapper';
+import { ISchemaMapper } from '../../../domain/mapper/schema.mapper';
 import { IdentifiableEntitySchema } from '../../schemas/identifiable-entity.schema';
 
 export abstract class MongooseRepository<
@@ -33,22 +32,8 @@ export abstract class MongooseRepository<
     return this.aggregateModelMapper.mapSchemaToAggregate(entityDocument);
   }
 
-  async find(
-    select: string[],
-    page?: number,
-    limit?: number,
-    order_by?: string,
-    sort_by?: SortBy,
-  ): Promise<TEntity[]> {
-    const recordLimit = limit ? limit : 0;
-    const currentPage = page ? page - 1 : 0;
-    return (
-      await this.entityModel
-        .find()
-        .select(select)
-        .limit(recordLimit)
-        .skip(recordLimit * currentPage)
-    ).map((entityDocument) =>
+  async find(): Promise<TEntity[]> {
+    return (await this.entityModel.find()).map((entityDocument) =>
       this.aggregateModelMapper.mapSchemaToAggregate(entityDocument),
     );
   }

@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IdentifiableEntitySchema } from '../../../../../common/schemas/identifiable-entity.schema';
+import { IdentifiableEntitySchema } from '../../../../../common/infrastructure/schemas/identifiable-entity.schema';
 import { AccountStatus } from '../../domain/enums/account-status.enum';
 import { AccountType } from '../../domain/enums/account-type.enum';
 import { ControlLedger } from '../../domain/enums/control-ledger';

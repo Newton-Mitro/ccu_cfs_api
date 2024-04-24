@@ -1,4 +1,4 @@
-import { AuthUserType } from '../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../common/domain/types/auth-user.type';
 import { LogRecordModel } from './log-record.entity';
 
 export class ErrorLogRecordModel extends LogRecordModel {

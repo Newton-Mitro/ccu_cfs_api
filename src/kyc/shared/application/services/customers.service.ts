@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { FindAllQueryRequest } from '../../../../common/contract/find-all-query.dto';
+import { FindAllQueryRequest } from '../../../../common/application/contract/find-all-query.dto';
 import { CustomerRepository } from '../../infrastructure/repositories/customer.repository';
 
 @Injectable()

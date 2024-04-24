@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CustomerType } from 'src/common/enums/customer-type.enum';
-import { IdentifiableEntitySchema } from '../../../../../common/schemas/identifiable-entity.schema';
+import { CustomerType } from '../../../../../common/domain/enums/customer-type.enum';
+import { IdentifiableEntitySchema } from '../../../../../common/infrastructure/schemas/identifiable-entity.schema';
 
 @Schema()
 export class BaseCustomer extends IdentifiableEntitySchema {

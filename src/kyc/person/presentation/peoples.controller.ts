@@ -12,8 +12,11 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { FindAllQueryRequest } from '../../../common/contract/find-all-query.dto';
-import { HttpMethod, LinkObject } from '../../../common/contract/link-object';
+import { FindAllQueryRequest } from '../../../common/application/contract/find-all-query.dto';
+import {
+  HttpMethod,
+  LinkObject,
+} from '../../../common/application/contract/link-object';
 import { CreatePersonRequest } from '../application/contract/requests/create-person.request';
 import { UpdatePersonRequest } from '../application/contract/requests/update-person.request';
 import { PersonDTO } from '../application/contract/responses/dto/person.dto';

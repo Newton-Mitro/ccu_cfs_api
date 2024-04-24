@@ -9,7 +9,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { AuthUserType } from '../../../../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../../../../common/domain/types/auth-user.type';
 import { AccountType } from '../../../../../shared/domain/enums/account-type.enum';
 import { Branch } from '../../../../../shared/domain/enums/branch.enum';
 import { ControlLedger } from '../../../../../shared/domain/enums/control-ledger';

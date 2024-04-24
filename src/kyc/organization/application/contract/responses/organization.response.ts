@@ -1,4 +1,4 @@
-import { AuthUserType } from '../../../../../common/types/auth-user.type';
+import { AuthUserType } from '../../../../../common/domain/types/auth-user.type';
 import { AddressDTO } from '../../../../shared/application/contract/responses/dto/address.dto';
 import { BankAccountDTO } from './dto/bank-account.dto';
 import { ContactPersonDTO } from './dto/contact-person.dto';

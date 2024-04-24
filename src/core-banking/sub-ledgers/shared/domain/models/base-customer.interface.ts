@@ -1,7 +1,7 @@
-import { CustomerType } from 'src/common/enums/customer-type.enum';
-import { IAuditableModel as IAuditable } from '../../../../../common/models/auditable.model';
-import { AuthUserType } from '../../../../../common/types/auth-user.type';
-export interface IBaseCustomer extends IAuditable {
+import { CustomerType } from '../../../../../common/domain/enums/customer-type.enum';
+import { IAuditableModel } from '../../../../../common/domain/models/auditable.model';
+import { AuthUserType } from '../../../../../common/domain/types/auth-user.type';
+export interface IBaseCustomer extends IAuditableModel {
   identificationNumber: string;
   nameEn: string;
   nameBn: string;

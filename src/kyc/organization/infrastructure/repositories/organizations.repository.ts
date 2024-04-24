@@ -1,7 +1,7 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MongooseRepository } from 'src/common/database/mongoose/mongoose.repository';
+import { MongooseRepository } from '../../../../common/infrastructure/database/mongoose/mongoose.repository';
 import { OrganizationAggregate } from '../../domain/models/organization.aggregate';
 import { OrganizationAggregateToSchemaMapper } from '../mapping/organization-aggregate-to-schemal.mapper';
 import { OrganizationSchemaToAggregateMapper } from '../mapping/organization-schema-to-aggregate.mapper';

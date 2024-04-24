@@ -1,10 +1,10 @@
-import { Relationship } from 'src/common/enums/relationship.enum';
-import { BloodGroup } from '../../../../common/enums/blood-group.enum';
-import { Gender } from '../../../../common/enums/gender.enum';
-import { MaritalStatus } from '../../../../common/enums/marital-status.enum';
-import { Profession } from '../../../../common/enums/profession.enum';
-import { Religion } from '../../../../common/enums/religion.enum';
-import { AuthUserType } from '../../../../common/types/auth-user.type';
+import { BloodGroup } from '../../../../common/domain/enums/blood-group.enum';
+import { Gender } from '../../../../common/domain/enums/gender.enum';
+import { MaritalStatus } from '../../../../common/domain/enums/marital-status.enum';
+import { Profession } from '../../../../common/domain/enums/profession.enum';
+import { Relationship } from '../../../../common/domain/enums/relationship.enum';
+import { Religion } from '../../../../common/domain/enums/religion.enum';
+import { AuthUserType } from '../../../../common/domain/types/auth-user.type';
 import { FamilyTreeStatus } from '../enums/family-tree-status.enum';
 import { FamilyAndRelativeProps } from '../types/family-and-relative-props';
 

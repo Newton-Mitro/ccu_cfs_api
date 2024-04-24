@@ -1,6 +1,6 @@
-import { AddressType } from 'src/common/enums/address-type.enum';
-import { Country } from 'src/common/enums/country.enum';
-import { AuthUserType } from '../../../../../../common/types/auth-user.type';
+import { AddressType } from '../../../../../../common/domain/enums/address-type.enum';
+import { Country } from '../../../../../../common/domain/enums/country.enum';
+import { AuthUserType } from '../../../../../../common/domain/types/auth-user.type';
 
 export class AddressDTO {
   constructor(

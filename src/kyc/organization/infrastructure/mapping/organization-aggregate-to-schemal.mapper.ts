@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { ISchemaMapper } from '../../../../common/mapper/schema.mapper';
+import { ISchemaMapper } from '../../../../common/domain/mapper/schema.mapper';
 import { AddressModel } from '../../../shared/domain/models/address.model';
 import { BankAccountModel } from '../../domain/models/bank-account.model';
 import { BranchModel } from '../../domain/models/branch.model';
