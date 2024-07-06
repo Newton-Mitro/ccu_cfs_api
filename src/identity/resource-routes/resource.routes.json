@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1",
+    "resource": "Peoples",
+    "description": "Create Person",
+    "Method": "POST",
+    "Route": "api/peoples"
+  }
+]
