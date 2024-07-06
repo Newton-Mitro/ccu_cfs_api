@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { Permission } from 'src/access-control/auth/enums/permissions.enum';
-import { HasPermissions } from 'src/access-control/auth/util/permissions.decorator';
 import { FindAllQueryRequest } from '../../../common/application/contract/find-all-query.dto';
+import { Permission } from '../../../identity/auth/enums/permissions.enum';
+import { HasPermissions } from '../../../identity/auth/util/permissions.decorator';
 import { CustomersService } from '../application/services/customers.service';
 
 @Controller('customers')
